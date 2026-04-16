@@ -1,0 +1,53 @@
+package com.devdyna.cakesticklib.api.aspect.templates.menu;
+
+import java.util.function.Function;
+
+import com.mojang.serialization.MapCodec;
+
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.SimpleMenuProvider;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
+
+public abstract class BlockMenu extends Block implements EntityBlock {
+
+    public BlockMenu(Properties p) {
+        super(p);
+    }
+
+    protected abstract Function<Properties, Block> getFactory();
+
+    @Override
+    protected MapCodec<Block> codec() {
+        return simpleCodec(getFactory());
+    }
+
+    @Override
+    public InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player,
+            BlockHitResult hitResult) {
+
+        if (level.getBlockEntity(pos) instanceof BEMenu be) {
+            var click = onClickAction(state, level, pos, player);
+            if(click != null)
+            return click;
+                player.openMenu(new SimpleMenuProvider(be, be.getContainerName()), pos);
+            return InteractionResult.SUCCESS;
+        }
+        return super.useWithoutItem(state, level, pos, player, hitResult);
+    }
+
+    /**
+     * Event to allow to set animations or events when menu was opened
+     * <br/><br/>
+     * return true to cancel menu open
+     */
+    protected InteractionResult onClickAction(BlockState state, Level level, BlockPos pos, Player player) {
+        return null;
+    }
+
+}

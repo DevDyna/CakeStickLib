@@ -1,0 +1,107 @@
+package com.devdyna.cakesticklib.api.compat.jei;
+
+
+import com.devdyna.cakesticklib.api.primitive.Size;
+import com.devdyna.cakesticklib.api.utils.TimeUtil;
+
+import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
+import mezz.jei.api.gui.builder.ITooltipBuilder;
+import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
+import mezz.jei.api.helpers.IGuiHelper;
+import mezz.jei.api.recipe.IFocusGroup;
+import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeHolder;
+
+public abstract class BaseRecipeCategory<T extends Recipe<?>> extends BaseCategory<RecipeHolder<T>> {
+
+    public BaseRecipeCategory(IGuiHelper h) {
+        super(h);
+    }
+
+    @Override
+    public void setRecipe(IRecipeLayoutBuilder builder, RecipeHolder<T> recipe, IFocusGroup focuses) {
+        setRecipe(builder, recipe.value(), focuses);
+    }
+
+    public void setRecipe(IRecipeLayoutBuilder builder, T recipe, IFocusGroup focuses) {
+    }
+
+    @Override
+    public void draw(RecipeHolder<T> recipe, IRecipeSlotsView recipeSlotsView, GuiGraphicsExtractor guiGraphics, double mouseX,
+            double mouseY) {
+        super.draw(recipe, recipeSlotsView, guiGraphics, mouseX, mouseY);
+        if (enableTimerRender())
+            renderTickDelay(recipe.value(), guiGraphics);
+
+        draw(recipe.value(), recipeSlotsView, guiGraphics, mouseX, mouseY);
+
+    }
+
+    public void draw(T recipe, IRecipeSlotsView recipeSlotsView, GuiGraphicsExtractor guiGraphics, double mouseX,
+            double mouseY) {
+    }
+
+    @Override
+    public void getTooltip(ITooltipBuilder tooltip, RecipeHolder<T> recipe, IRecipeSlotsView recipeSlotsView,
+            double mouseX, double mouseY) {
+        getTooltip(tooltip, recipe.value(), recipeSlotsView, mouseX, mouseY);
+        super.getTooltip(tooltip, recipe, recipeSlotsView, mouseX, mouseY);
+    }
+
+    public void getTooltip(ITooltipBuilder tooltip, T recipe, IRecipeSlotsView recipeSlotsView,
+            double mouseX, double mouseY) {
+    }
+
+    public void drawCentredStringFixed(GuiGraphicsExtractor g, Font font, Component text, int x, int y, int color,Boolean bool) {
+        var f = text.getVisualOrderText();
+        g.text(font, f, x - font.width(f) / 2, y, color,bool);
+    }
+
+    /**
+     * Default : false
+     */
+    public boolean enableTimerRender() {
+        return false;
+    }
+
+    /**
+     * Default : true
+     */
+    public boolean shortTicks() {
+        return true;
+    }
+
+    /**
+     * This method is already used by default!
+     */
+    public void renderTickDelay(T recipe, GuiGraphicsExtractor guiGraphics) {
+        guiGraphics.text(font,
+                Component.literal(TimeUtil.getTimeValue(tickValue(recipe), shortTicks())),
+                tickPos().getX(), tickPos().getY(), tickColor());
+    }
+
+    /**
+     * Default : 0
+     */
+    public int tickValue(T recipe) {
+        return 0;
+    }
+
+    /**
+     * Default : 21 | 14
+     */
+    public Size tickPos() {
+        return Size.of(21, 14);
+    }
+
+    /**
+     * Default : 0xA0A0A0
+     */
+    public int tickColor() {
+        return 0xA0A0A0;
+    }
+
+}
