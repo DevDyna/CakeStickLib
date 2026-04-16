@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:adventure/root",
+  "criteria": {
+    "craft_cake_stick": {
+      "conditions": {
+        "items": [
+          {
+            "items": "cakesticklib:cake_stick"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "cakesticklib.advancement.branch.cake_stick.desc"
+    },
+    "frame": "challenge",
+    "icon": {
+      "id": "cakesticklib:cake_stick"
+    },
+    "title": {
+      "translate": "cakesticklib.advancement.branch.cake_stick"
+    }
+  },
+  "requirements": [
+    [
+      "craft_cake_stick"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
