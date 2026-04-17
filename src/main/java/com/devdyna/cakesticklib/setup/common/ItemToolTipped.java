@@ -2,6 +2,8 @@ package com.devdyna.cakesticklib.setup.common;
 
 import static com.devdyna.cakesticklib.Main.ID;
 
+import com.devdyna.cakesticklib.api.utils.UpgradeComponents;
+import com.devdyna.cakesticklib.setup.registry.types.zComponents;
 import com.devdyna.cakesticklib.setup.registry.types.zItems;
 
 import net.minecraft.network.chat.Component;
@@ -15,6 +17,9 @@ public class ItemToolTipped {
     public static void main(ItemTooltipEvent event) {
         if (event.getItemStack().is(zItems.CAKE_STICK))
             event.getToolTip().add(OVER_THE_REGISTRY_ID, Component.translatable(ID + ".setup.cakestick.tip"));
+
+        if (event.getItemStack().has(zComponents.UPGRADE_COMPONENTS))
+            UpgradeComponents.processTooltip(event.getToolTip(), event.getItemStack());
 
     }
 }

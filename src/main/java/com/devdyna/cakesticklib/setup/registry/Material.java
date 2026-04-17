@@ -3,7 +3,7 @@ package com.devdyna.cakesticklib.setup.registry;
 import java.util.*;
 import java.util.function.*;
 
-import com.devdyna.cakesticklib.api.utils.x;
+import com.devdyna.cakesticklib.api.primitive.Locator;
 import com.devdyna.cakesticklib.setup.registry.types.*;
 
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -32,9 +32,12 @@ public class Material {
          * DON'T OVERRIDE OR IT WILL LOSE ANY RECIPE TYPES AND HANDLERS!
          */
         public static void register(IEventBus bus) {
-                zRecipeTypes.register(bus);
+                // zRecipeTypes.register(bus);
                 zHandlers.register(bus);
                 zItems.register(bus);
+                // zBlocks.register(bus);
+                // zFluids.register(bus);
+                zComponents.register(bus);
         }
 
         /**
@@ -59,32 +62,32 @@ public class Material {
         /**
          * create an itemtag
          */
-        public static TagKey<Item> tagItem(String id, String modname) {
+        public static TagKey<Item> tagItem(String modname, String id) {
                 return TagKey.create(BuiltInRegistries.ITEM.key(),
-                                x.rl(modname, id));
+                                Locator.of(modname).path(id).rl());
         }
 
         /**
          * create an blocktag
          */
-        public static TagKey<Block> tagBlock(String id, String modname) {
+        public static TagKey<Block> tagBlock(String modname, String id) {
                 return TagKey.create(BuiltInRegistries.BLOCK.key(),
-                                x.rl(modname, id));
+                                Locator.of(modname).path(id).rl());
         }
 
         /**
          * create an fluidtag
          */
-        public static TagKey<Fluid> tagFluid(String id, String modname) {
+        public static TagKey<Fluid> tagFluid(String modname, String id) {
                 return TagKey.create(BuiltInRegistries.FLUID.key(),
-                                x.rl(modname, id));
+                                Locator.of(modname).path(id).rl());
         }
 
         /**
          * create an entity tag
          */
         public static TagKey<EntityType<?>> tagEntity(String modname, String id) {
-                return TagKey.create(Registries.ENTITY_TYPE, x.rl(modname, id));
+                return TagKey.create(Registries.ENTITY_TYPE, Locator.of(modname).path(id).rl());
         }
 
         public static <T extends BlockEntity> DeferredHolder<BlockEntityType<?>, BlockEntityType<T>> createBlockEntity(
@@ -97,15 +100,18 @@ public class Material {
         }
 
         public static ResourceKey<ConfiguredFeature<?, ?>> createConfiguredFeature(String modname, String id) {
-                return ResourceKey.create(Registries.CONFIGURED_FEATURE, x.rl(modname, id));
+                return ResourceKey.create(Registries.CONFIGURED_FEATURE, Locator.of(modname).path(id).rl());
         }
 
         public static ResourceKey<PlacedFeature> createPlacedFeature(String modname, String id) {
-                return ResourceKey.create(Registries.PLACED_FEATURE, x.rl(modname, id));
+                return ResourceKey.create(Registries.PLACED_FEATURE, Locator.of(modname).path(id).rl());
         }
 
         public static ResourceKey<BiomeModifier> createBiomeModifier(String modname, String id) {
-                return ResourceKey.create(NeoForgeRegistries.Keys.BIOME_MODIFIERS, x.rl(modname, id));
+                return ResourceKey.create(NeoForgeRegistries.Keys.BIOME_MODIFIERS, Locator.of(modname).path(id).rl());
         }
+
+
+           
 
 }
