@@ -71,4 +71,10 @@ public interface MachineItemAutomation extends IndexModifier<ItemResource> {
         return getStackInSlot(slot).getMaxStackSize();
     }
 
+    default void setStackInSlot(int slot,ItemStack stack){
+        if(!getStackInSlot(slot).isEmpty())
+        extractItem(slot, getStackInSlot(slot).count());
+        insertItem(slot, stack);
+    }
+
 }
