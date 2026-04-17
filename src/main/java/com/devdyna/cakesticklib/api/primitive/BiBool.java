@@ -37,8 +37,8 @@ public class BiBool {
     }
 
     public static final Codec<BiBool> CODEC = RecordCodecBuilder.create(inst -> inst.group(
-            Codec.BOOL.fieldOf("value_a").forGetter(BiBool::get1),
-            Codec.BOOL.fieldOf("value_b").forGetter(BiBool::get2))
+            Codec.BOOL.fieldOf("bool_a").forGetter(BiBool::get1),
+            Codec.BOOL.fieldOf("bool_b").forGetter(BiBool::get2))
             .apply(inst, BiBool::new));
 
     public static final StreamCodec<RegistryFriendlyByteBuf, BiBool> STREAM_CODEC = StreamCodec

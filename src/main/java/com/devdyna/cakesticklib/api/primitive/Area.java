@@ -1,5 +1,14 @@
 package com.devdyna.cakesticklib.api.primitive;
 
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
+
+/**
+ * Mainly useful on AOE logics or cubic math
+ */
 public class Area {
 
     private Range xz;
@@ -53,5 +62,17 @@ public class Area {
     public static Area of(int xzr, int yr) {
         return of(Range.of(0, xzr), Range.of(0, yr));
     }
+
+
+     public static final Codec<Area> CODEC = RecordCodecBuilder.create(inst -> inst.group(
+            Range.CODEC.fieldOf("xz").forGetter(Area::getXZ),
+            Range.CODEC.fieldOf("y").forGetter(Area::getY))
+            .apply(inst, Area::new));
+
+    public static final StreamCodec<RegistryFriendlyByteBuf, Area> STREAM_CODEC = StreamCodec
+            .composite(
+                    Range.STREAM_CODEC, Area::getXZ,
+                    Range.STREAM_CODEC, Area::getY,
+                    Area::new);
 
 }
