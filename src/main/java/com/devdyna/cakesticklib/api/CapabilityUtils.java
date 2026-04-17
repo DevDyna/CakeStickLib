@@ -1,4 +1,4 @@
-package com.devdyna.cakesticklib.api.registry;
+package com.devdyna.cakesticklib.api;
 
 import com.devdyna.cakesticklib.api.aspect.logic.EnergyBlock;
 import com.devdyna.cakesticklib.api.aspect.logic.MachineItemAutomation;
