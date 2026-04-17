@@ -1,15 +1,18 @@
 package com.devdyna.cakesticklib.api.compat.jei;
 
+import com.devdyna.cakesticklib.api.primitive.Locator;
+
 import mezz.jei.api.helpers.IGuiHelper;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
-import net.minecraft.resources.Identifier;
 
 public class ImageJei {
 
     private int x;
     private int y;
-    private String rl;
-    private String modid = "minecraft";
+
+    private Locator locator;
+
+
     private int xo = 0;
     private int yo = 0;
 
@@ -17,7 +20,6 @@ public class ImageJei {
     private int v = 0;
 
     public ImageJei() {
-
     }
 
     public static ImageJei of() {
@@ -43,24 +45,16 @@ public class ImageJei {
     }
 
     public ImageJei rl(String image) {
-        this.rl = image;
+        this.locator = Locator.of().path(image);
         return this;
     }
-
-    public ImageJei rl(String modid, String image) {
-        this.modid = modid;
-        this.rl = image;
-        return this;
-    }
-
-    public ImageJei rl(Identifier rl) {
-        this.modid = rl.getNamespace();
-        this.rl = rl.getPath();
+    public ImageJei rl(Locator l) {
+        this.locator = l;
         return this;
     }
 
     public void render(IGuiHelper h, GuiGraphicsExtractor g) {
-        h.drawableBuilder(com.devdyna.cakesticklib.api.utils.x.rl(modid, rl), u, v, x, y).setTextureSize(x, y).build()
+        h.drawableBuilder(locator.rl(), u, v, x, y).setTextureSize(x, y).build()
                 .draw(g, xo, yo);
     }
 
