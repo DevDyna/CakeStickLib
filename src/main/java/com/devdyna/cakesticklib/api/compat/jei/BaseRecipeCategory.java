@@ -14,7 +14,9 @@ import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
-
+/**
+ * A basic implementation of a recipe category without requirements to use methods with <code>RecipeHolder</code> and a configurable timer useful on timered recipes
+ */
 public abstract class BaseRecipeCategory<T extends Recipe<?>> extends BaseCategory<RecipeHolder<T>> {
 
     public BaseRecipeCategory(IGuiHelper h) {
