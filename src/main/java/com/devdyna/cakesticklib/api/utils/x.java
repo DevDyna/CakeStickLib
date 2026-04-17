@@ -29,10 +29,16 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Stream;
 
+import com.devdyna.cakesticklib.api.primitive.Locator;
+
 public class x {
     // Basic Resourcelocation stuff
     // -------------------------------------------------//
 
+    /**
+     * use {@link Locator}
+     */
+    @Deprecated
     public static Identifier rl(String modid, String s) {
         return Identifier.fromNamespaceAndPath(modid, s);
     }
@@ -45,12 +51,8 @@ public class x {
         return Identifier.parse(s);
     }
 
-    /**
-     * @param d <code>BuiltInRegistries.BLOCK</code>
-     * @param i <code>Blocks.STONE</code>
-     */
-    public static <T> Identifier rl(DefaultedRegistry<T> d, T i) {
-        return d.getKey(i);
+    public static <T> T get(DefaultedRegistry<T> d, Identifier i) {
+        return d.getValue(i);
     }
 
     /**
@@ -61,12 +63,29 @@ public class x {
         return rl(modid, path(d, i));
     }
 
+    /**
+     * @param d <code>BuiltInRegistries.BLOCK</code>
+     * @param i <code>Blocks.STONE</code>
+     */
+    public static <T> Identifier rl(DefaultedRegistry<T> d, T i) {
+        return d.getKey(i);
+    }
+
     public static Identifier rl(Item i) {
         return rl(BuiltInRegistries.ITEM, i);
     }
 
     public static Identifier rl(Block i) {
         return rl(BuiltInRegistries.BLOCK, i);
+    }
+
+    /**
+     * @param <T>
+     * @param d   <code>BuiltInRegistries.BLOCK</code>
+     * @param i   <code>"stone"</code>
+     */
+    public static <T> T get(DefaultedRegistry<T> d, String modid, String i) {
+        return d.getValue(rl(modid, i));
     }
 
     /**
@@ -97,30 +116,6 @@ public class x {
         return path(i.getBlock());
     }
 
-    /**
-     * @param <T>
-     * @param d   <code>BuiltInRegistries.BLOCK</code>
-     * @param i   <code>"stone"</code>
-     */
-    public static <T> T get(DefaultedRegistry<T> d, String modid, String i) {
-        return d.getValue(rl(modid, i));
-    }
-
-    public static <T> T get(DefaultedRegistry<T> d, Identifier i) {
-        return d.getValue(i);
-    }
-
-    // use rl
-    @Deprecated
-    public static Identifier id(Item item) {
-        return BuiltInRegistries.ITEM.getKey(item);
-    }
-
-    @Deprecated
-    public static Item get(Identifier rl) {
-        return BuiltInRegistries.ITEM.getValue(rl);
-    }
-
     // Stack types
     // -------------------------------------------------//
 
@@ -143,6 +138,7 @@ public class x {
     public static FluidStack fluid(Fluid f) {
         return fluid(f, 1000);
     }
+  
 
     public static FluidStack fluid(Fluid f, int amount) {
         return new FluidStack(f, amount);
