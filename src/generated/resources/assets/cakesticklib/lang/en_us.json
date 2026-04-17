@@ -18,8 +18,18 @@
   "cakesticklib.item.placeable": "§7Can be placed",
   "cakesticklib.provider.every_tick": "Generate %s %s every tick",
   "cakesticklib.provider.generic": "Generate %s %s every %d ticks",
+  "cakesticklib.screen.modifier.energy": "§7Energy Modifier §7[§f§a%s§7]",
+  "cakesticklib.screen.modifier.fluid": "§7Fluid Modifier §7[§f§a%s§7]",
+  "cakesticklib.screen.modifier.luck": "§7Luck Modifier §7[§f§a%s§7]",
+  "cakesticklib.screen.modifier.speed": "§7Speed Modifier §7[§f§a%s§7]",
+  "cakesticklib.screen.upgrades": "Supported Upgrades:",
   "cakesticklib.setup.cakestick.tip": "§7Place cake slices",
   "cakesticklib.tank_interact.empty": "Empty",
   "cakesticklib.ui.dont_consume": "§cNot consume",
+  "cakesticklib.upgrades.modifier.energy": "§7Energy Usage: %s",
+  "cakesticklib.upgrades.modifier.fluid": "§7Fluid Usage: %s",
+  "cakesticklib.upgrades.modifier.luck": "§7Secondary Output: %s",
+  "cakesticklib.upgrades.modifier.speed": "§7Recipe Speed: %s",
+  "cakesticklib.upgrades.title": "§7Upgrade Modifiers",
   "item.cakesticklib.cake_stick": "Cake Stick"
 }
