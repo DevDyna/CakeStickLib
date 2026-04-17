@@ -1,8 +1,5 @@
 package com.devdyna.cakesticklib.api.recipe.recipeType;
 
-
-
-import com.devdyna.cakesticklib.api.recipe.RecipeRegister;
 import com.devdyna.cakesticklib.api.utils.x;
 
 import net.minecraft.world.item.Item;
@@ -10,29 +7,29 @@ import net.minecraft.world.item.crafting.PlacementInfo;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeBookCategory;
 import net.minecraft.world.item.crafting.RecipeInput;
-import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.item.crafting.RecipeType;
 
 public abstract class BaseRecipeType<RECIPE_INPUT extends RecipeInput>
         implements Recipe<RECIPE_INPUT> {
 
-    @Override
-    public RecipeSerializer<? extends BaseRecipeType<RECIPE_INPUT>> getSerializer() {
-        return getRecipe().getSerializer();
-    }
+    // @Override
+    // public RecipeSerializer<? extends BaseRecipeType<RECIPE_INPUT>>
+    // getSerializer() {
+    // return getRecipe().getSerializer();
+    // }
 
-    @Override
-    public RecipeType<? extends BaseRecipeType<RECIPE_INPUT>> getType() {
-        return getRecipe().getType();
-    }
+    // @Override
+    // public RecipeType<? extends BaseRecipeType<RECIPE_INPUT>> getType() {
+    // return getRecipe().getType();
+    // }
 
-    public abstract RecipeRegister<? extends BaseRecipeType<RECIPE_INPUT>> getRecipe();
+    // public abstract RecipeRegister<? extends BaseRecipeType<RECIPE_INPUT>>
+    // getRecipe();
 
     public abstract Item getToastIcon();
 
     // @Override
     // public String group() {
-    //     return ID + "/quern";
+    // return ID + "/quern";
     // }
 
     @Override
@@ -42,7 +39,7 @@ public abstract class BaseRecipeType<RECIPE_INPUT extends RecipeInput>
 
     @Override
     public RecipeBookCategory recipeBookCategory() {
-      return new RecipeBookCategory();
+        return new RecipeBookCategory();
     }
 
     @Override
