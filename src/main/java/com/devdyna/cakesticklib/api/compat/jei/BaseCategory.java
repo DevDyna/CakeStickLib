@@ -1,11 +1,10 @@
 package com.devdyna.cakesticklib.api.compat.jei;
 
-import static com.devdyna.cakesticklib.Main.ID;
-
 import java.awt.Color;
 
 import org.jetbrains.annotations.Nullable;
 
+import com.devdyna.cakesticklib.api.primitive.Locator;
 import com.devdyna.cakesticklib.api.primitive.Size;
 import com.devdyna.cakesticklib.api.utils.ColorUtil;
 
@@ -20,7 +19,9 @@ import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.ItemLike;
-
+/**
+ * A generic recipe category to show hardcoded implementations without a defined dependency
+ */
 public abstract class BaseCategory<T> implements IRecipeCategory<T> {
 
     protected IGuiHelper helper;
@@ -37,7 +38,12 @@ public abstract class BaseCategory<T> implements IRecipeCategory<T> {
 
     protected final Color defaultToolTipColor = ColorUtil.color(64, 64, 64);
 
-    public abstract String getTitleKey();
+    /**
+     * Define the category title
+     * <br/><br/>
+     * It must be <code>MODID.jei.KEY</code>
+     */
+    public abstract String getTraslationKey();
 
     public abstract ItemLike getIconItem();
 
@@ -50,11 +56,11 @@ public abstract class BaseCategory<T> implements IRecipeCategory<T> {
      */
     public abstract Size setXY();
 
-    public abstract String setBackGround();
+    public abstract Locator setBackGround();
 
     @Override
     public Component getTitle() {
-        return Component.translatable(ID + ".jei." + getTitleKey());
+        return Component.translatable(getTraslationKey());
     }
 
     @Override
