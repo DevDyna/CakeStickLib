@@ -3,6 +3,8 @@ package com.devdyna.cakesticklib.api.aspect.templates;
 import java.util.List;
 
 import com.devdyna.cakesticklib.api.aspect.logic.AreaOfEffect;
+import com.devdyna.cakesticklib.api.aspect.logic.EnergyBlock;
+import com.devdyna.cakesticklib.api.aspect.logic.SimpleFluidStorage;
 import com.devdyna.cakesticklib.api.aspect.templates.storage.item.BEStorage;
 
 import net.minecraft.core.HolderLookup.Provider;
@@ -16,6 +18,9 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
+import net.neoforged.neoforge.transfer.energy.EnergyHandler;
+import net.neoforged.neoforge.transfer.fluid.FluidStacksResourceHandler;
+import net.neoforged.neoforge.transfer.transaction.Transaction;
 
 /**
  * <b>STANDALONE BASE BE</b>
@@ -37,6 +42,8 @@ import net.minecraft.world.level.storage.ValueOutput;
  */
 public abstract class MachineBE extends BEStorage {
 
+    public final static String ENERGY = "energy";
+
     public final static String WIDTH = "width";
     public final static String HEIGHT = "height";
 
@@ -44,12 +51,23 @@ public abstract class MachineBE extends BEStorage {
     protected int height;
     protected List<BlockPos> area = null;
 
+    protected EnergyHandler energyStorage;
+    protected FluidStacksResourceHandler fluid_tank;
+
     public MachineBE(BlockEntityType<?> type, BlockPos pos, BlockState blockState) {
         super(type, pos, blockState);
-         if (this instanceof AreaOfEffect be) {
+        if (this instanceof AreaOfEffect be) {
             this.width = be.getWidth();
             this.height = be.getHeight();
         }
+
+        if (this instanceof EnergyBlock be) 
+            this.energyStorage = be.getEnergyStorage();
+        
+
+        if (this instanceof SimpleFluidStorage be) 
+            this.fluid_tank = be.getFluidStorage();
+        
     }
 
     /**
@@ -74,12 +92,6 @@ public abstract class MachineBE extends BEStorage {
     public void tickBoth() {
     }
 
-    
-    
-   
-
-    
-
     // required to sync client to server data
     @Override
     public Packet<ClientGamePacketListener> getUpdatePacket() {
@@ -94,7 +106,6 @@ public abstract class MachineBE extends BEStorage {
         level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
     }
 
-
     @Override
     protected void loadAdditional(ValueInput input) {
 
@@ -105,6 +116,16 @@ public abstract class MachineBE extends BEStorage {
                 width = input.getInt(WIDTH).get();
         }
 
+        if (this instanceof EnergyBlock) 
+            if (input.getInt(ENERGY).isPresent())
+                try (var tx = Transaction.openRoot()) {
+                    energyStorage.insert(Math.min(input.getInt(ENERGY).get(), energyStorage.getCapacityAsInt()), tx);
+                    tx.commit();
+                }
+
+        if(this instanceof SimpleFluidStorage f)
+        f.getFluidStorage().deserialize(input);
+
         super.loadAdditional(input);
     }
 
@@ -114,6 +135,13 @@ public abstract class MachineBE extends BEStorage {
             output.putInt(HEIGHT, height);
             output.putInt(WIDTH, width);
         }
+
+        if (this instanceof EnergyBlock) 
+            output.putInt("energy", energyStorage.getAmountAsInt());
+        
+        if(this instanceof SimpleFluidStorage f)
+        f.getFluidStorage().serialize(output);
+
         super.saveAdditional(output);
     }
 
