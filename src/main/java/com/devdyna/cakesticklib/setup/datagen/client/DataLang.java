@@ -44,15 +44,30 @@ public class DataLang extends LanguageProvider {
         add(ID + ".info.dir", "Dir : ");
         add(ID + ".info.dirs", "Dirs : ");
 
-        //setup
+        // setup
         addItem(zItems.CAKE_STICK, "Cake Stick");
-        add(ID+".setup.cakestick.tip", TIP_COLOR + "Place cake slices");
+        add(ID + ".setup.cakestick.tip", TIP_COLOR + "Place cake slices");
         advKey("cake_stick", "The cake is(n't) a lie!", "The Cake stick is right!");
+
+        add(ID + ".upgrades.title", TIP_COLOR + "Upgrade Modifiers");
+
+        add(ID + ".upgrades.modifier.energy", TIP_COLOR + "Energy Usage: %s");
+        add(ID + ".upgrades.modifier.speed", TIP_COLOR + "Recipe Speed: %s");
+        add(ID + ".upgrades.modifier.luck", TIP_COLOR + "Secondary Output: %s");
+        add(ID + ".upgrades.modifier.fluid", TIP_COLOR + "Fluid Usage: %s");
+
+        add(ID + ".screen.upgrades", "Supported Upgrades:");
+
+        add(ID + ".screen.modifier.energy", TIP_COLOR + "Energy Modifier §7[§f§a%s§7]");
+        add(ID + ".screen.modifier.speed", TIP_COLOR + "Speed Modifier §7[§f§a%s§7]");
+        add(ID + ".screen.modifier.luck", TIP_COLOR + "Luck Modifier §7[§f§a%s§7]");
+        add(ID + ".screen.modifier.fluid", TIP_COLOR + "Fluid Modifier §7[§f§a%s§7]");
+
     }
 
-     private void advKey(String k, String title, String desc) {
-                add(ID + ".advancement.branch." + k, title);
-                add(ID + ".advancement.branch." + k + ".desc", desc);
-        }
+    private void advKey(String k, String title, String desc) {
+        add(ID + ".advancement.branch." + k, title);
+        add(ID + ".advancement.branch." + k + ".desc", desc);
+    }
 
 }
