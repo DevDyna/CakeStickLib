@@ -25,8 +25,6 @@ public class DataModel extends ModelProvider {
         itemModels.generateFlatItem(zItems.CHISEL.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
         itemModels.generateFlatItem(zItems.PATINA.get(), ModelTemplates.FLAT_ITEM);
 
-        itemModels.generateFlatItem(zItems.PATINA.get(), ModelTemplates.FLAT_ITEM);
-
     }
 
 }
