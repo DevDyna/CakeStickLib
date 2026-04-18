@@ -4,7 +4,6 @@ import java.awt.Color;
 
 import org.jetbrains.annotations.Nullable;
 
-import com.devdyna.cakesticklib.api.primitive.Locator;
 import com.devdyna.cakesticklib.api.primitive.Size;
 import com.devdyna.cakesticklib.api.utils.ColorUtil;
 
