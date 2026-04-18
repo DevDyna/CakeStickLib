@@ -8,7 +8,6 @@ import org.jetbrains.annotations.Nullable;
 
 import com.devdyna.cakesticklib.api.primitive.Size;
 import com.devdyna.cakesticklib.api.utils.ColorUtil;
-import com.devdyna.cakesticklib.api.utils.x;
 
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
@@ -82,7 +81,7 @@ public abstract class BaseCategory<T> implements IRecipeCategory<T> {
 
     public void background(GuiGraphicsExtractor graphics) {
         ImageJei.of()
-                .rl(x.rl(MODULE_ID,this.setBackGround()))
+                .rl(MODULE_ID,this.setBackGround())
                 .size(this.getWidth(), this.getHeight())
                 .render(helper, graphics);
     }

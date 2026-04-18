@@ -152,7 +152,7 @@ public class CopperOxidationCategory extends BaseRecipeCategory<CopperOxidationR
     @Override
     public void background(GuiGraphicsExtractor graphics) {
         ImageJei.of()
-                .rl(this.setBackGround())
+                .rl(MODULE_ID,this.setBackGround())
                 .size(77, 20)
                 .render(helper, graphics);
     }
