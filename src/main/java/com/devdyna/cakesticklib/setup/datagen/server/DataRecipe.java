@@ -67,6 +67,16 @@ public class DataRecipe extends RecipeProvider {
                 .unlockedBy()
                 .save(output);
 
+        ShapedRecipeBuilder.shaped(items, RecipeCategory.TOOLS, zItems.CHISEL.get())
+                .pattern("  N")
+                .pattern(" I ")
+                .pattern("S  ")
+                .define('N', Items.IRON_NUGGET)
+                .define('S', Items.STICK)
+                .define('I', Items.IRON_INGOT)
+                .unlockedBy("iron", has(Items.IRON_INGOT))
+                .save(output);
+
     }
 
     public static final class RecipeRunner extends RecipeProvider.Runner {
