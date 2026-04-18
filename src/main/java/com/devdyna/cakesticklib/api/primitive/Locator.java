@@ -6,7 +6,9 @@ import com.mojang.serialization.Codec;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.Identifier;
-
+/**
+ * Originally made to replace <code>com.devdyna.cakesticklib.api.utils.x.rl(String)</code> but reverted due pointless
+ */
 @Deprecated
 public class Locator {
 
