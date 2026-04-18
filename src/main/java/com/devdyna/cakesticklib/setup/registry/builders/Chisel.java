@@ -49,6 +49,8 @@ public class Chisel extends Item {
 
             var id = item.get(zComponents.IDENTIFIER);
 
+            player.swing(hand);
+
             if (id == null)
                 return InteractionResult.FAIL;
 
@@ -99,7 +101,7 @@ public class Chisel extends Item {
                 }
             }
 
-            player.swing(hand);
+            
             level.playSound(player, pos, SoundEvents.UI_STONECUTTER_TAKE_RESULT, SoundSource.BLOCKS, 1f, 1f);
 
             return InteractionResult.SUCCESS;
