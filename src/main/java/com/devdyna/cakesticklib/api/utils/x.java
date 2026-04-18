@@ -29,6 +29,8 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Stream;
 
+import static com.devdyna.cakesticklib.Main.ID;
+
 public class x {
     // Basic Resourcelocation stuff
     // -------------------------------------------------//
@@ -43,6 +45,10 @@ public class x {
 
     public static Identifier parse(String s) {
         return Identifier.parse(s);
+    }
+
+    public static Identifier rl(String s) {
+        return rl(ID, s);
     }
 
     /**
@@ -95,6 +101,15 @@ public class x {
 
     public static String path(BlockState i) {
         return path(i.getBlock());
+    }
+
+    /**
+     * @param <T>
+     * @param d   <code>BuiltInRegistries.BLOCK</code>
+     * @param i   <code>"stone"</code>
+     */
+    public static <T> T get(DefaultedRegistry<T> d, String i) {
+        return d.getValue(rl(i));
     }
 
     /**
