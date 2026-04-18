@@ -56,7 +56,7 @@ public abstract class BaseCategory<T> implements IRecipeCategory<T> {
      */
     public abstract Size setXY();
 
-    public abstract Locator setBackGround();
+    public abstract String setBackGround();
 
     @Override
     public Component getTitle() {
