@@ -1,6 +1,6 @@
 package com.devdyna.cakesticklib.api.primitive;
 
-import static com.devdyna.cakesticklib.Main.ID;
+import static com.devdyna.cakesticklib.Main.MODULE_ID;
 
 import com.mojang.serialization.Codec;
 import io.netty.buffer.ByteBuf;
@@ -12,7 +12,7 @@ import net.minecraft.resources.Identifier;
 @Deprecated
 public class Locator {
 
-    private String modid = ID;
+    private String modid = MODULE_ID;
     private String path = "";
 
     protected Locator(String modid) {
@@ -23,7 +23,7 @@ public class Locator {
         return new Locator(modid);
     }
     public static Locator of() {
-        return new Locator(ID);
+        return new Locator(MODULE_ID);
     }
 
     public Locator path(String s) {
@@ -44,7 +44,7 @@ public class Locator {
     }
 
     public boolean isDefaultModID() {
-        return path.equals(ID);
+        return path.equals(MODULE_ID);
     }
 
     public String getModid() {

@@ -1,7 +1,5 @@
 package com.devdyna.cakesticklib.setup.datagen.server;
 
-import static com.devdyna.cakesticklib.Main.ID;
-
 import java.util.concurrent.CompletableFuture;
 
 import com.devdyna.cakesticklib.setup.common.recipes.oxidation.CopperOxidationBuilder;
@@ -34,40 +32,40 @@ public class DataRecipe extends RecipeProvider {
                         has(Items.CAKE))
                 .save(output);
 
-                ShapelessRecipeBuilder.shapeless(items, RecipeCategory.TOOLS, zItems.REDSTONE_ACID.get())
-                                .requires(Items.GLASS_BOTTLE)
-                                .requires(Items.REDSTONE)
-                                .requires(zItems.PATINA.get())
-                                .unlockedBy(ID, has(zItems.PATINA.get()))
-                                .save(output);
+        ShapelessRecipeBuilder.shapeless(items, RecipeCategory.TOOLS, zItems.REDSTONE_ACID.get())
+                .requires(Items.GLASS_BOTTLE)
+                .requires(Items.REDSTONE)
+                .requires(zItems.PATINA.get())
+                .unlockedBy("patina", has(zItems.PATINA.get()))
+                .save(output);
 
-                ShapelessRecipeBuilder.shapeless(items, RecipeCategory.TOOLS, zItems.HONEY_SOLUTION.get())
-                                .requires(Items.GLASS_BOTTLE)
-                                .requires(Items.HONEYCOMB)
-                                .requires(Items.DANDELION)
-                                .unlockedBy(ID, has(Items.HONEYCOMB))
-                                .save(output);
+        ShapelessRecipeBuilder.shapeless(items, RecipeCategory.TOOLS, zItems.HONEY_SOLUTION.get())
+                .requires(Items.GLASS_BOTTLE)
+                .requires(Items.HONEYCOMB)
+                .requires(Items.DANDELION)
+                .unlockedBy("honeycomb", has(Items.HONEYCOMB))
+                .save(output);
 
-                CopperOxidationBuilder.of()
-                                .type(OxidationStatus.OXIDIZING)
-                                .catalyst(zItemTags.OXIDIZER,registries)
-                                .unlockedBy()
-                                .save(output);
-                CopperOxidationBuilder.of()
-                                .type(OxidationStatus.WAXING)
-                                .catalyst(zItemTags.WAXING,registries)
-                                .unlockedBy()
-                                .save(output);
-                CopperOxidationBuilder.of()
-                                .type(OxidationStatus.SCRAPPING)
-                                .catalyst(ItemTags.AXES,registries)
-                                .unlockedBy()
-                                .save(output);
-                CopperOxidationBuilder.of()
-                                .type(OxidationStatus.UNWAXING)
-                                .catalyst(ItemTags.AXES,registries)
-                                .unlockedBy()
-                                .save(output);
+        CopperOxidationBuilder.of()
+                .type(OxidationStatus.OXIDIZING)
+                .catalyst(zItemTags.OXIDIZER, registries)
+                .unlockedBy()
+                .save(output);
+        CopperOxidationBuilder.of()
+                .type(OxidationStatus.WAXING)
+                .catalyst(zItemTags.WAXING, registries)
+                .unlockedBy()
+                .save(output);
+        CopperOxidationBuilder.of()
+                .type(OxidationStatus.SCRAPPING)
+                .catalyst(ItemTags.AXES, registries)
+                .unlockedBy()
+                .save(output);
+        CopperOxidationBuilder.of()
+                .type(OxidationStatus.UNWAXING)
+                .catalyst(ItemTags.AXES, registries)
+                .unlockedBy()
+                .save(output);
 
     }
 

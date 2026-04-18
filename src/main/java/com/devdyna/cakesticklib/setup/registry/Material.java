@@ -58,38 +58,6 @@ public class Material {
         }
 
 
-
-        /**
-         * create an itemtag
-         */
-        public static TagKey<Item> tagItem(String id) {
-                return TagKey.create(BuiltInRegistries.ITEM.key(),
-                                x.rl( id));
-        }
-
-        /**
-         * create an blocktag
-         */
-        public static TagKey<Block> tagBlock(String id) {
-                return TagKey.create(BuiltInRegistries.BLOCK.key(),
-                                x.rl( id));
-        }
-
-        /**
-         * create an fluidtag
-         */
-        public static TagKey<Fluid> tagFluid(String id) {
-                return TagKey.create(BuiltInRegistries.FLUID.key(),
-                                x.rl( id));
-        }
-
-        /**
-         * create an entity tag
-         */
-        public static TagKey<EntityType<?>> tagEntity( String id) {
-                return TagKey.create(Registries.ENTITY_TYPE, x.rl( id));
-        }
-
         /**
          * create an itemtag
          */

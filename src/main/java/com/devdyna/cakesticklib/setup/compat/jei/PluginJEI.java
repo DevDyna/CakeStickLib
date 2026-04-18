@@ -1,5 +1,7 @@
 package com.devdyna.cakesticklib.setup.compat.jei;
 
+import static com.devdyna.cakesticklib.Main.MODULE_ID;
+
 import java.util.List;
 
 import com.devdyna.cakesticklib.api.utils.x;
@@ -25,7 +27,7 @@ public class PluginJEI implements IModPlugin {
 
     @Override
     public Identifier getPluginUid() {
-        return x.rl("jei_plugin");
+        return x.rl(MODULE_ID,"jei_plugin");
     }
 
     @Override

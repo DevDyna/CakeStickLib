@@ -1,6 +1,6 @@
 package com.devdyna.cakesticklib.setup.registry.types;
 
-import static com.devdyna.cakesticklib.Main.ID;
+import static com.devdyna.cakesticklib.Main.MODULE_ID;
 
 import com.devdyna.cakesticklib.setup.RecipeRegister;
 import com.devdyna.cakesticklib.setup.common.recipes.oxidation.CopperOxidationRecipe;
@@ -20,8 +20,8 @@ public class zRecipeTypes {
 
     // ------------------------------------------------------------------------------------------------------------------------------------//
     public static final DeferredRegister<RecipeSerializer<?>> SERIALIZERS = DeferredRegister
-            .create(Registries.RECIPE_SERIALIZER, ID);
-    public static final DeferredRegister<RecipeType<?>> TYPES = DeferredRegister.create(Registries.RECIPE_TYPE, ID);
+            .create(Registries.RECIPE_SERIALIZER, MODULE_ID);
+    public static final DeferredRegister<RecipeType<?>> TYPES = DeferredRegister.create(Registries.RECIPE_TYPE, MODULE_ID);
     // ------------------------------------------------------------------------------------------------------------------------------------//
 
     public static final RecipeRegister<CopperOxidationRecipe> COPPER_OXIDATION = RecipeRegister.of("copper_oxidation",

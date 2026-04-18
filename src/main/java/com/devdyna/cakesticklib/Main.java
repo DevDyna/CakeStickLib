@@ -12,7 +12,6 @@ import net.neoforged.fml.ModContainer;
 public class Main {
 
     public static final String MODULE_ID = "cakesticklib";
-    public static final String ID = "synergy";
 
     public Main(IEventBus bus, ModContainer c) {
         Material.register(bus);

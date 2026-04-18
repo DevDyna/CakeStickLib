@@ -1,6 +1,6 @@
 package com.devdyna.cakesticklib.setup.datagen.client;
 
-import static com.devdyna.cakesticklib.Main.ID;
+import static com.devdyna.cakesticklib.Main.MODULE_ID;
 import static com.devdyna.cakesticklib.api.datagen.LangUtils.TIP_COLOR;
 import static com.devdyna.cakesticklib.api.datagen.LangUtils.named;
 
@@ -12,70 +12,72 @@ import net.neoforged.neoforge.common.data.LanguageProvider;
 public class DataLang extends LanguageProvider {
 
     public DataLang(PackOutput o) {
-        super(o, ID, "en_us");
+        super(o, MODULE_ID, "en_us");
     }
 
     @Override
     protected void addTranslations() {
 
         // mainly for Item Tooltips
-        add(ID + ".hold.shift", "§8Hold [" + TIP_COLOR + "Shift§8] to see more details");
-        add(ID + ".item.disabled", TIP_COLOR + "Item-Form unobtainable");
-        add(ID + ".item.placeable", TIP_COLOR + "Can be placed");
-        add(ID + ".block.rotate_by_click", TIP_COLOR + "Can be rotated with right-click");
-        add(ID + ".block.blast_proof", TIP_COLOR + "Blast resistance");
-        add(ID + ".item.click.install", TIP_COLOR + "Right click to install");
-        add(ID + ".block.safe_building", TIP_COLOR + "Safe for decoration");
-        add(ID + ".item.crafting_ingredient", TIP_COLOR + "Crafting Ingredient");
+        add(MODULE_ID + ".hold.shift", "§8Hold [" + TIP_COLOR + "Shift§8] to see more details");
+        add(MODULE_ID + ".item.disabled", TIP_COLOR + "Item-Form unobtainable");
+        add(MODULE_ID + ".item.placeable", TIP_COLOR + "Can be placed");
+        add(MODULE_ID + ".block.rotate_by_click", TIP_COLOR + "Can be rotated with right-click");
+        add(MODULE_ID + ".block.blast_proof", TIP_COLOR + "Blast resistance");
+        add(MODULE_ID + ".item.click.install", TIP_COLOR + "Right click to install");
+        add(MODULE_ID + ".block.safe_building", TIP_COLOR + "Safe for decoration");
+        add(MODULE_ID + ".item.crafting_ingredient", TIP_COLOR + "Crafting Ingredient");
 
         // mainly for menu or JEI categories
-        add(ID + ".ui.dont_consume", "§cNot consume");
+        add(MODULE_ID + ".ui.dont_consume", "§cNot consume");
         //
-        add(ID + ".tank_interact.empty", "Empty");
-        add(ID + ".interaction.world.immutable", "In-World interaction not editable");
+        add(MODULE_ID + ".tank_interact.empty", "Empty");
+        add(MODULE_ID + ".interaction.world.immutable", "In-World interaction not editable");
 
         // mainly for production descriptions
-        add(ID + ".provider.generic", "Generate %s %s every %d ticks");
-        add(ID + ".provider.every_tick", "Generate %s %s every tick");
+        add(MODULE_ID + ".provider.generic", "Generate %s %s every %d ticks");
+        add(MODULE_ID + ".provider.every_tick", "Generate %s %s every tick");
         //
-        add(ID + ".info.status.false", "Status: §cInactive");
-        add(ID + ".info.status.true", "Status: §aActive");
-        add(ID + ".info.color", "Color: %d");
-        add(ID + ".info.blockpos", "BlockPos : ");
-        add(ID + ".info.dir", "Dir : ");
-        add(ID + ".info.dirs", "Dirs : ");
-        add(ID + ".info.identifier.hold",
+        add(MODULE_ID + ".info.status.false", "Status: §cInactive");
+        add(MODULE_ID + ".info.status.true", "Status: §aActive");
+        add(MODULE_ID + ".info.color", "Color: %d");
+        add(MODULE_ID + ".info.blockpos", "BlockPos : ");
+        add(MODULE_ID + ".info.dir", "Dir : ");
+        add(MODULE_ID + ".info.dirs", "Dirs : ");
+        add(MODULE_ID + ".info.identifier.hold",
                 TIP_COLOR + "Block : ");
 
-        add(ID + "..info.identifier.desc",
+        add(MODULE_ID + ".info.identifier.desc",
                 TIP_COLOR + "Craft in-world Stonecutter recipes when bound to the result block");
 
         // setup
-        zItems.zItem.getEntries().forEach(i->addItem(i, named(i, ID)));
-        add(ID + ".setup.cakestick.tip", TIP_COLOR + "Place cake slices");
+        zItems.zItem.getEntries().forEach(i->addItem(i, named(i, MODULE_ID)));
+        add(MODULE_ID + ".setup.cakestick.tip", TIP_COLOR + "Place cake slices");
         advKey("cake_stick", "The cake is(n't) a lie!", "The Cake stick is right!");
 
-        add(ID + ".jei.copper_oxidation", "Copper Oxidation Info");
+        add(MODULE_ID + ".jei.copper_oxidation", "Copper Oxidation Info");
 
-        add(ID + ".upgrades.title", TIP_COLOR + "Upgrade Modifiers");
+        add(MODULE_ID + ".upgrades.title", TIP_COLOR + "Upgrade Modifiers");
 
-        add(ID + ".upgrades.modifier.energy", TIP_COLOR + "Energy Usage: %s");
-        add(ID + ".upgrades.modifier.speed", TIP_COLOR + "Recipe Speed: %s");
-        add(ID + ".upgrades.modifier.luck", TIP_COLOR + "Secondary Output: %s");
-        add(ID + ".upgrades.modifier.fluid", TIP_COLOR + "Fluid Usage: %s");
+        add(MODULE_ID + ".upgrades.modifier.energy", TIP_COLOR + "Energy Usage: %s");
+        add(MODULE_ID + ".upgrades.modifier.speed", TIP_COLOR + "Recipe Speed: %s");
+        add(MODULE_ID + ".upgrades.modifier.luck", TIP_COLOR + "Secondary Output: %s");
+        add(MODULE_ID + ".upgrades.modifier.fluid", TIP_COLOR + "Fluid Usage: %s");
 
-        add(ID + ".screen.upgrades", "Supported Upgrades:");
+        add(MODULE_ID + ".screen.upgrades", "Supported Upgrades:");
 
-        add(ID + ".screen.modifier.energy", TIP_COLOR + "Energy Modifier §7[§f§a%s§7]");
-        add(ID + ".screen.modifier.speed", TIP_COLOR + "Speed Modifier §7[§f§a%s§7]");
-        add(ID + ".screen.modifier.luck", TIP_COLOR + "Luck Modifier §7[§f§a%s§7]");
-        add(ID + ".screen.modifier.fluid", TIP_COLOR + "Fluid Modifier §7[§f§a%s§7]");
+        add(MODULE_ID + ".screen.modifier.energy", TIP_COLOR + "Energy Modifier §7[§f§a%s§7]");
+        add(MODULE_ID + ".screen.modifier.speed", TIP_COLOR + "Speed Modifier §7[§f§a%s§7]");
+        add(MODULE_ID + ".screen.modifier.luck", TIP_COLOR + "Luck Modifier §7[§f§a%s§7]");
+        add(MODULE_ID + ".screen.modifier.fluid", TIP_COLOR + "Fluid Modifier §7[§f§a%s§7]");
+
+        add(MODULE_ID + ".jei.patina_drop", TIP_COLOR + "Drop %s" + TIP_COLOR + " items every scrape");
 
     }
 
     private void advKey(String k, String title, String desc) {
-        add(ID + ".advancement.branch." + k, title);
-        add(ID + ".advancement.branch." + k + ".desc", desc);
+        add(MODULE_ID + ".advancement.branch." + k, title);
+        add(MODULE_ID + ".advancement.branch." + k + ".desc", desc);
     }
 
 }

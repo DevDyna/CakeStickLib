@@ -1,6 +1,6 @@
 package com.devdyna.cakesticklib.setup.datagen.server;
 
-import static com.devdyna.cakesticklib.Main.ID;
+import static com.devdyna.cakesticklib.Main.MODULE_ID;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -15,7 +15,7 @@ import net.neoforged.neoforge.common.data.ItemTagsProvider;
 public class DataItemTag extends ItemTagsProvider {
 
     public DataItemTag(PackOutput output, CompletableFuture<Provider> lookupProvider) {
-        super(output, lookupProvider, ID);
+        super(output, lookupProvider, MODULE_ID);
     }
 
     @Override

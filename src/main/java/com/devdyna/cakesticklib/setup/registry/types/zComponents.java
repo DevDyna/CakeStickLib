@@ -1,6 +1,6 @@
 package com.devdyna.cakesticklib.setup.registry.types;
 
-import static com.devdyna.cakesticklib.Main.ID;
+import static com.devdyna.cakesticklib.Main.MODULE_ID;
 
 import com.devdyna.cakesticklib.api.utils.UpgradeComponents;
 import net.minecraft.core.component.DataComponentType;
@@ -18,7 +18,7 @@ public class zComponents {
         // ---------------------------------------------------------------------------------------//
 
         public static final DeferredRegister<DataComponentType<?>> zComponents = DeferredRegister
-                        .createDataComponents(Registries.DATA_COMPONENT_TYPE, ID);
+                        .createDataComponents(Registries.DATA_COMPONENT_TYPE, MODULE_ID);
         // ---------------------------------------------------------------------------------------//
 
         public static final DeferredHolder<DataComponentType<?>, DataComponentType<UpgradeComponents>> UPGRADE_COMPONENTS = zComponents

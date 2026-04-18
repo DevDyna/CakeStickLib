@@ -3,12 +3,7 @@ package com.devdyna.cakesticklib.setup;
 import java.util.List;
 
 import com.devdyna.cakesticklib.setup.common.*;
-import com.devdyna.cakesticklib.setup.common.events.EnderEyeReturn;
-import com.devdyna.cakesticklib.setup.common.events.ItemStorageBreak;
-import com.devdyna.cakesticklib.setup.common.events.ItemToolTipped;
-import com.devdyna.cakesticklib.setup.common.events.PatinaDropEvent;
-import com.devdyna.cakesticklib.setup.common.events.RecipeSender;
-import com.devdyna.cakesticklib.setup.common.events.VanillaHarvestable;
+import com.devdyna.cakesticklib.setup.common.events.*;
 
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;

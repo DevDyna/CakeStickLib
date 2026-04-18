@@ -1,6 +1,6 @@
 package com.devdyna.cakesticklib.setup.registry.types;
 
-import static com.devdyna.cakesticklib.Main.ID;
+import static com.devdyna.cakesticklib.Main.MODULE_ID;
 
 import java.util.function.Supplier;
 
@@ -25,7 +25,7 @@ public class zHandlers {
 
     public static final DeferredRegister<AttachmentType<?>> zHandler = DeferredRegister.create(
             Keys.ATTACHMENT_TYPES,
-            ID);
+            MODULE_ID);
 
     public static final Supplier<AttachmentType<ItemStacksResourceHandler>> ITEM_STORAGE = zHandler.register(
             "item_storage", () -> AttachmentType.serializable(h -> {

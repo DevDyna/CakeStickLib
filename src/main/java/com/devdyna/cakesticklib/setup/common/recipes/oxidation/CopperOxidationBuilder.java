@@ -1,7 +1,7 @@
 package com.devdyna.cakesticklib.setup.common.recipes.oxidation;
 
 
-import static com.devdyna.cakesticklib.Main.ID;
+import static com.devdyna.cakesticklib.Main.MODULE_ID;
 
 import java.util.LinkedHashMap;
 
@@ -34,7 +34,7 @@ public class CopperOxidationBuilder extends BaseRecipeBuilder {
     }
 
     public CopperOxidationBuilder unlockedBy() {
-        return unlockedBy(ID, InventoryChangeTrigger.TriggerInstance
+        return unlockedBy(MODULE_ID, InventoryChangeTrigger.TriggerInstance
                 .hasItems(Items.COPPER_INGOT));
     }
 
@@ -58,7 +58,7 @@ public class CopperOxidationBuilder extends BaseRecipeBuilder {
 
     @Override
     public Identifier getSuffix(String extra) {
-        return x.rl("copper_oxidation/" + type.name().toLowerCase() + extra);
+        return x.rl(MODULE_ID,"copper_oxidation/" + type.name().toLowerCase() + extra);
     }
 
     @Override

@@ -1,7 +1,7 @@
 package com.devdyna.cakesticklib.api.aspect.logic;
 
 
-import static com.devdyna.cakesticklib.Main.ID;
+import static com.devdyna.cakesticklib.Main.MODULE_ID;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -38,7 +38,7 @@ public interface FluidTooltipWhenEmpty {
         if (showWhen(level.getBlockEntity(pos)) && tank != null) {
             var fluid = tank.getResource(0);
             if (fluid.isEmpty())
-                player.sendOverlayMessage(Component.translatable(ID + ".tank_interact.empty"));
+                player.sendOverlayMessage(Component.translatable(MODULE_ID + ".tank_interact.empty"));
             else
                 player.sendOverlayMessage(
                         Component.literal(

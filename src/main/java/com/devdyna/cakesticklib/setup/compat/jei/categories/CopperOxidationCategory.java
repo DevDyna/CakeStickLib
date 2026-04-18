@@ -12,7 +12,7 @@ import com.devdyna.cakesticklib.setup.common.recipes.oxidation.OxidationStatus;
 import com.devdyna.cakesticklib.setup.registry.types.zItems;
 import com.devdyna.cakesticklib.setup.registry.types.zRecipeTypes;
 
-import static com.devdyna.cakesticklib.Main.ID;
+import static com.devdyna.cakesticklib.Main.MODULE_ID;
 
 import java.awt.Color;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
@@ -59,7 +59,7 @@ public class CopperOxidationCategory extends BaseRecipeCategory<CopperOxidationR
 
     @Override
     public String getTraslationKey() {
-        return ID + ".jei.copper_oxidation";
+        return MODULE_ID + ".jei.copper_oxidation";
     }
 
     @Override
@@ -125,7 +125,7 @@ public class CopperOxidationCategory extends BaseRecipeCategory<CopperOxidationR
         if (recipe.getOxidationType().equals(OxidationStatus.SCRAPPING))
             builder.addSlot(RecipeIngredientRole.OUTPUT, 59, 21)
                     .add(x.item(zItems.PATINA.get()))
-                    .addRichTooltipCallback((v, t) -> t.add(Component.translatable(ID + ".jei.patina_drop", "0-2")));
+                    .addRichTooltipCallback((v, t) -> t.add(Component.translatable(MODULE_ID + ".jei.patina_drop", "0-2")));
     }
 
     private Ingredient mapBlocks(List<Block> blocks, Function<Block, Block> f) {

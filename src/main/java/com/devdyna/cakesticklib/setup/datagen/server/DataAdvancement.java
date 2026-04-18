@@ -1,6 +1,6 @@
 package com.devdyna.cakesticklib.setup.datagen.server;
 
-import static com.devdyna.cakesticklib.Main.ID;
+import static com.devdyna.cakesticklib.Main.MODULE_ID;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -32,13 +32,13 @@ public class DataAdvancement extends AdvancementProvider {
 
                          AdvancementsUtils
                                         .getExistingParent("minecraft:adventure/root", zItems.CAKE_STICK.get(),
-                                                        ID,
+                                                        MODULE_ID,
                                                         "cake_stick", AdvancementType.CHALLENGE, true, true, false)
                                         .addCriterion("craft_cake_stick",
                                                         InventoryChangeTrigger.TriggerInstance
                                                                         .hasItems(zItems.CAKE_STICK.get()))
                                         .requirements(AdvancementRequirements.allOf(List.of("craft_cake_stick")))
-                                        .save(c, ID + ":setup/cake_stick");
+                                        .save(c, MODULE_ID + ":setup/cake_stick");
 
                 }
 
