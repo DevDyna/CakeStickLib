@@ -35,6 +35,7 @@ public class Material {
                 zHandlers.register(bus);
                 zItems.register(bus);
                 zComponents.register(bus);
+                zRecipeTypes.register(bus);
         }
 
         /**
@@ -56,10 +57,43 @@ public class Material {
                 return registerItemBlock(blockname, () -> new Block(BlockBehaviour.Properties.of()), b, i);
         }
 
+
+
         /**
          * create an itemtag
          */
-        public static TagKey<Item> tagItem(String id, String modname) {
+        public static TagKey<Item> tagItem(String id) {
+                return TagKey.create(BuiltInRegistries.ITEM.key(),
+                                x.rl( id));
+        }
+
+        /**
+         * create an blocktag
+         */
+        public static TagKey<Block> tagBlock(String id) {
+                return TagKey.create(BuiltInRegistries.BLOCK.key(),
+                                x.rl( id));
+        }
+
+        /**
+         * create an fluidtag
+         */
+        public static TagKey<Fluid> tagFluid(String id) {
+                return TagKey.create(BuiltInRegistries.FLUID.key(),
+                                x.rl( id));
+        }
+
+        /**
+         * create an entity tag
+         */
+        public static TagKey<EntityType<?>> tagEntity( String id) {
+                return TagKey.create(Registries.ENTITY_TYPE, x.rl( id));
+        }
+
+        /**
+         * create an itemtag
+         */
+        public static TagKey<Item> tagItem(String modname, String id) {
                 return TagKey.create(BuiltInRegistries.ITEM.key(),
                                 x.rl(modname, id));
         }
@@ -67,7 +101,7 @@ public class Material {
         /**
          * create an blocktag
          */
-        public static TagKey<Block> tagBlock(String id, String modname) {
+        public static TagKey<Block> tagBlock(String modname, String id) {
                 return TagKey.create(BuiltInRegistries.BLOCK.key(),
                                 x.rl(modname, id));
         }
@@ -75,7 +109,7 @@ public class Material {
         /**
          * create an fluidtag
          */
-        public static TagKey<Fluid> tagFluid(String id, String modname) {
+        public static TagKey<Fluid> tagFluid(String modname, String id) {
                 return TagKey.create(BuiltInRegistries.FLUID.key(),
                                 x.rl(modname, id));
         }

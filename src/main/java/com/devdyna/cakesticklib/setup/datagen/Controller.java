@@ -27,12 +27,15 @@ public class Controller {
         // client
 
         v.addProvider(DataLang::new);
+        v.addProvider(DataModel::new);
 
         // server
+        v.addProvider(o -> new DataItemTag(o, pr));
 
         v.addProvider(o -> new DataAdvancement(o, pr, List.of(new DataAdvancementGenerator())));
 
         v.addProvider(o -> new DataRecipe.RecipeRunner(o, pr));
+        
     }
 
 }

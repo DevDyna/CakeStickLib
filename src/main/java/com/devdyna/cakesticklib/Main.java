@@ -1,5 +1,6 @@
 package com.devdyna.cakesticklib;
 
+import com.devdyna.cakesticklib.setup.Config;
 import com.devdyna.cakesticklib.setup.GameEvents;
 import com.devdyna.cakesticklib.setup.registry.Material;
 
@@ -16,6 +17,7 @@ public class Main {
     public Main(IEventBus bus, ModContainer c) {
         Material.register(bus);
         GameEvents.build(bus, c);
+        Config.register(c);
     }
 
 }

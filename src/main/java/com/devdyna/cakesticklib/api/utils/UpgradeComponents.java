@@ -1,7 +1,5 @@
 package com.devdyna.cakesticklib.api.utils;
 
-import static com.devdyna.cakesticklib.Main.ID;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -10,7 +8,6 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.Item;
@@ -108,36 +105,6 @@ public record UpgradeComponents(
         public int value() {
             return i;
         }
-    }
-
-    public static void processTooltip(List<Component> t, ItemStack s){
-        var nbt = s.get(zComponents.UPGRADE_COMPONENTS);
-
-            if (nbt != null && !UpgradeComponents.isEmpty(nbt)) {
-                t.add(Component.translatable(ID + ".upgrades.title"));
-
-                if (UpgradeComponents.has(nbt, UpgradeType.ENERGY)) {
-                    var energy = UpgradeComponents.get(nbt, UpgradeType.ENERGY);
-                    t.add(Component.translatable(ID + ".upgrades.modifier.energy",
-                            ((energy < 0 ? "§a" : "§c+") + energy + "%")));
-                }
-                if (UpgradeComponents.has(nbt, UpgradeType.SPEED)) {
-                    var speed = UpgradeComponents.get(nbt, UpgradeType.SPEED);
-                    t.add(Component.translatable(ID + ".upgrades.modifier.speed",
-                            ((speed >= 0 ? "§a+" : "§c") + speed + "%")));
-                }
-                if (UpgradeComponents.has(nbt, UpgradeType.LUCK)) {
-                    var luck = UpgradeComponents.get(nbt, UpgradeType.LUCK);
-                    t.add(Component.translatable(ID + ".upgrades.modifier.luck",
-                            ((luck > 0 ? "§a+" : "§c") + luck + "%")));
-                }
-                if (UpgradeComponents.has(nbt, UpgradeType.FLUID)) {
-                    var fluid = UpgradeComponents.get(nbt, UpgradeType.FLUID);
-                    t.add(Component.translatable(ID + ".upgrades.modifier.fluid",
-                            ((fluid < 0 ? "§a" : "§c+") + fluid + "%")));
-                }
-
-            }
     }
 
 }

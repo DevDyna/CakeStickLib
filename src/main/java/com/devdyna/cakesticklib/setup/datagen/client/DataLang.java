@@ -2,6 +2,7 @@ package com.devdyna.cakesticklib.setup.datagen.client;
 
 import static com.devdyna.cakesticklib.Main.ID;
 import static com.devdyna.cakesticklib.api.datagen.LangUtils.TIP_COLOR;
+import static com.devdyna.cakesticklib.api.datagen.LangUtils.named;
 
 import com.devdyna.cakesticklib.setup.registry.types.zItems;
 
@@ -43,11 +44,18 @@ public class DataLang extends LanguageProvider {
         add(ID + ".info.blockpos", "BlockPos : ");
         add(ID + ".info.dir", "Dir : ");
         add(ID + ".info.dirs", "Dirs : ");
+        add(ID + ".info.identifier.hold",
+                TIP_COLOR + "Block : ");
+
+        add(ID + "..info.identifier.desc",
+                TIP_COLOR + "Craft in-world Stonecutter recipes when bound to the result block");
 
         // setup
-        addItem(zItems.CAKE_STICK, "Cake Stick");
+        zItems.zItem.getEntries().forEach(i->addItem(i, named(i, ID)));
         add(ID + ".setup.cakestick.tip", TIP_COLOR + "Place cake slices");
         advKey("cake_stick", "The cake is(n't) a lie!", "The Cake stick is right!");
+
+        add(ID + ".jei.copper_oxidation", "Copper Oxidation Info");
 
         add(ID + ".upgrades.title", TIP_COLOR + "Upgrade Modifiers");
 
