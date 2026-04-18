@@ -1,7 +1,6 @@
-package com.devdyna.cakesticklib.setup.registry;
+package com.devdyna.cakesticklib.setup.registry.builders;
 
 import com.devdyna.cakesticklib.api.utils.ColorUtil;
-import com.devdyna.cakesticklib.setup.registry.types.zItems;
 
 import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.network.chat.Component;
@@ -15,11 +14,10 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CakeBlock;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
-
 public class CakeStick extends Item {
 
-    public CakeStick() {
-        super(new Properties().setId(zItems.CAKE_STICK.getKey()).stacksTo(1).durability(7));
+    public CakeStick(Properties p) {
+        super(p.stacksTo(1).durability(7));
     }
 
     @Override
@@ -44,8 +42,9 @@ public class CakeStick extends Item {
                 item.hurtAndBreak(1, player, player.getUsedItemHand());
 
                 if (!level.isClientSide())
-                    ParticleUtils.spawnParticlesOnBlockFaces(level, pos.relative(dir), new DustParticleOptions(16711680, 1f),
-                        UniformInt.of(3, 5));
+                    ParticleUtils.spawnParticlesOnBlockFaces(level, pos.relative(dir),
+                            new DustParticleOptions(16711680, 1f),
+                            UniformInt.of(3, 5));
 
                 return InteractionResult.SUCCESS;
             }
@@ -61,9 +60,10 @@ public class CakeStick extends Item {
             item.hurtAndBreak(1, player, player.getUsedItemHand());
 
             if (!level.isClientSide())
-                ParticleUtils.spawnParticlesOnBlockFaces(level, pos.relative(dir), new DustParticleOptions(16711680, 1f),
+                ParticleUtils.spawnParticlesOnBlockFaces(level, pos.relative(dir),
+                        new DustParticleOptions(16711680, 1f),
                         UniformInt.of(3, 5));
-                    
+
             return InteractionResult.SUCCESS;
         }
 

@@ -1,4 +1,4 @@
-package com.devdyna.cakesticklib.api.factories;
+package com.devdyna.cakesticklib.setup.registry.builders;
 
 
 import com.devdyna.cakesticklib.api.utils.x;
