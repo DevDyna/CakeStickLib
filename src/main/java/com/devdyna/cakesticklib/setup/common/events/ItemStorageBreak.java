@@ -1,4 +1,4 @@
-package com.devdyna.cakesticklib.setup.common;
+package com.devdyna.cakesticklib.setup.common.events;
 
 import com.devdyna.cakesticklib.api.aspect.logic.ItemStorageBlock;
 
