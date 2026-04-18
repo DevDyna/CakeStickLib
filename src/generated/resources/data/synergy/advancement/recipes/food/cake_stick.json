@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "cakesticklib:cake_stick"
+        "recipe": "synergy:cake_stick"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "cakesticklib:cake_stick"
+      "synergy:cake_stick"
     ]
   }
 }
