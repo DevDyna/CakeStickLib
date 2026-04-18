@@ -1,6 +1,5 @@
 package com.devdyna.cakesticklib;
 
-import com.devdyna.cakesticklib.api.primitive.Locator;
 import com.devdyna.cakesticklib.setup.GameEvents;
 import com.devdyna.cakesticklib.setup.registry.Material;
 
@@ -8,12 +7,10 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.ModContainer;
 
-@Mod(Main.ID)
+@Mod("cakesticklib")
 public class Main {
 
-    public static final String ID = "cakesticklib";
-
-    public static final Locator LOCATOR = Locator.of(ID);
+    public static final String ID = "synergy";
 
     public Main(IEventBus bus, ModContainer c) {
         Material.register(bus);
