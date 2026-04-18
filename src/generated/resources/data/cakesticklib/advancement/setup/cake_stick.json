@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "synergy:cake_stick"
+            "items": "cakesticklib:cake_stick"
           }
         ]
       },
@@ -14,14 +14,14 @@
   },
   "display": {
     "description": {
-      "translate": "synergy.advancement.branch.cake_stick.desc"
+      "translate": "cakesticklib.advancement.branch.cake_stick.desc"
     },
     "frame": "challenge",
     "icon": {
-      "id": "synergy:cake_stick"
+      "id": "cakesticklib:cake_stick"
     },
     "title": {
-      "translate": "synergy.advancement.branch.cake_stick"
+      "translate": "cakesticklib.advancement.branch.cake_stick"
     }
   },
   "requirements": [

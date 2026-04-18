@@ -1,0 +1,5 @@
+{
+  "type": "cakesticklib:copper_oxidation",
+  "catalyst": "#minecraft:axes",
+  "step": "unwaxing"
+}

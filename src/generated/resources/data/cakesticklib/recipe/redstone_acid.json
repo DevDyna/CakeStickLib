@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    "minecraft:glass_bottle",
+    "minecraft:redstone",
+    "cakesticklib:patina"
+  ],
+  "result": {
+    "id": "cakesticklib:redstone_acid"
+  }
+}

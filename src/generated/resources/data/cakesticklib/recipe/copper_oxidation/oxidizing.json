@@ -1,0 +1,5 @@
+{
+  "type": "cakesticklib:copper_oxidation",
+  "catalyst": "#cakesticklib:oxidizer",
+  "step": "oxidizing"
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "cakesticklib:honey_solution"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "honeycomb": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:honeycomb"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "honeycomb"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "cakesticklib:honey_solution"
+    ]
+  }
+}
