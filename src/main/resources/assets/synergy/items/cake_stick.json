@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "cakesticklib:item/cake_stick"
+    "model": "synergy:item/cake_stick"
   }
 }
