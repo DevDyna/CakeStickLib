@@ -3,16 +3,16 @@ package com.devdyna.cakesticklib.setup.datagen.client;
 import static com.devdyna.cakesticklib.CakeStickLib.MODULE_ID;
 
 import java.util.List;
-
+import com.devdyna.cakesticklib.api.utils.x;
 import com.devdyna.cakesticklib.setup.registry.zLibrary.*;
-
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ModelProvider;
 import net.minecraft.client.data.models.model.ItemModelUtils;
 import net.minecraft.client.data.models.model.ModelTemplates;
 import net.minecraft.client.data.models.model.TextureMapping;
-import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.client.data.models.model.TextureSlot;
+import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.data.PackOutput;
 
 public class DataModel extends ModelProvider {
@@ -33,23 +33,28 @@ public class DataModel extends ModelProvider {
         itemModels.generateFlatItem(zItems.SAWDUST.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(zItems.FLOUR.get(), ModelTemplates.FLAT_ITEM);
 
-        List.of(zItems.AMETHYST_DUST.get(),
-                zItems.CARBON_DUST.get(),
-                zItems.COPPER_DUST.get(),
-                zItems.DIAMOND_DUST.get(),
-                zItems.EMERALD_DUST.get(),
-                zItems.GOLD_DUST.get(),
-                zItems.IRON_DUST.get(),
-                zItems.LAPIS_DUST.get(),
-                zItems.QUARTZ_DUST.get(),
-                zItems.SULFUR_DUST.get()).forEach(i ->
-
-        itemModels.itemModelOutput.accept(i,
+        List.of(zItems.AMETHYST_DUST,
+                zItems.CARBON_DUST,
+                zItems.COPPER_DUST,
+                zItems.DIAMOND_DUST,
+                zItems.EMERALD_DUST,
+                zItems.GOLD_DUST,
+                zItems.IRON_DUST,
+                zItems.LAPIS_DUST,
+                zItems.QUARTZ_DUST,
+                zItems.SULFUR_DUST).forEach(i ->
+        itemModels.itemModelOutput.accept(i.get(),
                 ItemModelUtils.plainModel(
                         ModelTemplates.FLAT_ITEM.create(
-                                BuiltInRegistries.ITEM.getKey(i).withPrefix("item/dust/"),
-                                TextureMapping.layer0(i),
-                                itemModels.modelOutput).withSuffix("dust/"))));
+                                i.get(),
+                                new TextureMapping()
+                                        .put(TextureSlot.LAYER0, new Material(
+                                                x.rl(i.getId().getNamespace(),
+                                                        i.getId().getPath().replace("_dust", ""))
+                                                        .withPrefix("item/dust/"))),
+                                itemModels.modelOutput))
+
+        ));
 
     }
 
