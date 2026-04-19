@@ -35,9 +35,21 @@
   "cakesticklib.upgrades.modifier.luck": "§7Secondary Output: %s",
   "cakesticklib.upgrades.modifier.speed": "§7Recipe Speed: %s",
   "cakesticklib.upgrades.title": "§7Upgrade Modifiers",
+  "item.cakesticklib.amethyst_dust": "Amethyst Dust",
   "item.cakesticklib.cake_stick": "Cake Stick",
+  "item.cakesticklib.carbon_dust": "Carbon Dust",
   "item.cakesticklib.chisel": "Chisel",
+  "item.cakesticklib.copper_dust": "Copper Dust",
+  "item.cakesticklib.diamond_dust": "Diamond Dust",
+  "item.cakesticklib.emerald_dust": "Emerald Dust",
+  "item.cakesticklib.flour": "Flour",
+  "item.cakesticklib.gold_dust": "Gold Dust",
   "item.cakesticklib.honey_solution": "Honey Solution",
+  "item.cakesticklib.iron_dust": "Iron Dust",
+  "item.cakesticklib.lapis_dust": "Lapis Dust",
   "item.cakesticklib.patina": "Patina",
-  "item.cakesticklib.redstone_acid": "Redstone Acid"
+  "item.cakesticklib.quartz_dust": "Quartz Dust",
+  "item.cakesticklib.redstone_acid": "Redstone Acid",
+  "item.cakesticklib.sawdust": "Sawdust",
+  "item.cakesticklib.sulfur_dust": "Sulfur Dust"
 }

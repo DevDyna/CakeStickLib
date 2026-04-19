@@ -1,0 +1,9 @@
+{
+  "values": [
+    "cakesticklib:sawdust",
+    {
+      "id": "#c:dusts/saw",
+      "required": false
+    }
+  ]
+}
