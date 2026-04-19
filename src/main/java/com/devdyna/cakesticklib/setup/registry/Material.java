@@ -45,6 +45,7 @@ public class Material {
          * @param sup () -> new Builder
          * @param b   Blocks.zBlock
          */
+        @Deprecated
         public static DeferredHolder<Block, Block> registerItemBlock(String blockname, Supplier<Block> sup,
                         DeferredRegister.Blocks b, DeferredRegister.Items i) {
                 DeferredHolder<Block, Block> block = b.register(blockname, sup);
@@ -52,11 +53,11 @@ public class Material {
                 return block;
         }
 
+        @Deprecated
         public static DeferredHolder<Block, Block> registerItemBlock(String blockname, DeferredRegister.Blocks b,
                         DeferredRegister.Items i) {
                 return registerItemBlock(blockname, () -> new Block(BlockBehaviour.Properties.of()), b, i);
         }
-
 
         /**
          * create an itemtag
