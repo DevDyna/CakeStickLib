@@ -40,13 +40,13 @@ public abstract class BaseScreen<T extends BaseMenu> extends AbstractContainerSc
 
     @Override
     public void extractBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float a) {
-        graphics.blitSprite(RenderPipelines.GUI, background(), getGuiLeft(), getGuiTop(), 0, 0);
+        graphics.blitSprite(RenderPipelines.GUI, background(), getLeftPos(), getTopPos(), 0, 0);
         renderArrow(graphics);
     }
 
     protected void renderArrow(GuiGraphicsExtractor guiGraphics) {
         if (arrow() != null && whenAnimateArrow())
-            guiGraphics.blit(arrow(), getGuiLeft() + 73, getGuiTop() + 35, 0, 0, getScaledArrowProgress(), 16, 24, 16);
+            guiGraphics.blit(arrow(), getLeftPos() + 73, getTopPos() + 35, 0, 0, getScaledArrowProgress(), 16, 24, 16);
     }
 
     public void drawCenteredString(GuiGraphicsExtractor pGuiGraphics, Font font, Component text, int x, int y,
