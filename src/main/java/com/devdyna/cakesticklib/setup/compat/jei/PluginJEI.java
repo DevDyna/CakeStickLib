@@ -7,8 +7,7 @@ import java.util.List;
 import com.devdyna.cakesticklib.api.utils.x;
 import com.devdyna.cakesticklib.setup.Client;
 import com.devdyna.cakesticklib.setup.compat.jei.categories.CopperOxidationCategory;
-import com.devdyna.cakesticklib.setup.registry.types.zLibItems;
-import com.devdyna.cakesticklib.setup.registry.types.zLibRecipeTypes;
+import com.devdyna.cakesticklib.setup.registry.zLibrary.*;
 
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
@@ -33,8 +32,8 @@ public class PluginJEI implements IModPlugin {
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration r) {
 
-        r.addCraftingStation(CopperOxidationCategory.TYPE, zLibItems.REDSTONE_ACID.get(), zLibItems.HONEY_SOLUTION.get());
-        r.addCraftingStation(RecipeTypes.STONECUTTING, zLibItems.CHISEL.get());
+        r.addCraftingStation(CopperOxidationCategory.TYPE, zItems.REDSTONE_ACID.get(), zItems.HONEY_SOLUTION.get());
+        r.addCraftingStation(RecipeTypes.STONECUTTING, zItems.CHISEL.get());
 
     }
 
@@ -54,7 +53,7 @@ public class PluginJEI implements IModPlugin {
     public void registerRecipes(IRecipeRegistration r) {
 
         r.addRecipes(CopperOxidationCategory.TYPE,
-                getRecipes(zLibRecipeTypes.COPPER_OXIDATION.getType()));
+                getRecipes(zRecipeTypes.COPPER_OXIDATION.getType()));
 
     }
 

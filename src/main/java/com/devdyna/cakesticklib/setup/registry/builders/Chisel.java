@@ -1,7 +1,7 @@
 package com.devdyna.cakesticklib.setup.registry.builders;
 
 import com.devdyna.cakesticklib.api.utils.x;
-import com.devdyna.cakesticklib.setup.registry.types.zLibComponents;
+import com.devdyna.cakesticklib.setup.registry.zLibrary.zComponents;
 
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -20,7 +20,7 @@ import net.minecraft.world.level.block.EntityBlock;
 public class Chisel extends Item {
 
     public Chisel(Properties properties) {
-        super(properties.stacksTo(1).component(zLibComponents.IDENTIFIER, null));
+        super(properties.stacksTo(1).component(zComponents.IDENTIFIER, null));
     }
 
     @Override
@@ -39,15 +39,15 @@ public class Chisel extends Item {
                 return InteractionResult.FAIL;
             }
 
-            item.set(zLibComponents.IDENTIFIER, id);
+            item.set(zComponents.IDENTIFIER, id);
             level.playSound(player, pos, SoundEvents.RESPAWN_ANCHOR_CHARGE, SoundSource.BLOCKS, 1f, 1f);
             player.swing(hand);
         } else {
 
-            if (!item.has(zLibComponents.IDENTIFIER))
+            if (!item.has(zComponents.IDENTIFIER))
                 return InteractionResult.FAIL;
 
-            var id = item.get(zLibComponents.IDENTIFIER);
+            var id = item.get(zComponents.IDENTIFIER);
 
             player.swing(hand);
 

@@ -3,8 +3,7 @@ package com.devdyna.cakesticklib.api;
 import com.devdyna.cakesticklib.api.aspect.logic.EnergyBlock;
 import com.devdyna.cakesticklib.api.aspect.logic.MachineItemAutomation;
 import com.devdyna.cakesticklib.api.aspect.logic.SimpleFluidStorage;
-import com.devdyna.cakesticklib.setup.registry.types.zLibHandlers;
-
+import com.devdyna.cakesticklib.setup.registry.zLibrary.*;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
@@ -17,9 +16,9 @@ public class CapabilityUtils {
                 (level, pos, state, be, side) -> {
 
                     if (be instanceof SimpleFluidStorage)
-                        return be.getData(zLibHandlers.FLUID_STORAGE);
+                        return be.getData(zHandlers.FLUID_STORAGE);
 
-                    return (be != null) ? be.getData(zLibHandlers.FLUID_STORAGE) : null;
+                    return (be != null) ? be.getData(zHandlers.FLUID_STORAGE) : null;
                 },
                 blocks);
     }
@@ -44,7 +43,7 @@ public class CapabilityUtils {
                     if (be instanceof MachineItemAutomation m)
                         return m.getAutomationItemStorage();
 
-                    return (be != null) ? be.getData(zLibHandlers.ITEM_STORAGE) : null;
+                    return (be != null) ? be.getData(zHandlers.ITEM_STORAGE) : null;
 
                 },
                 blocks

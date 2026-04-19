@@ -7,7 +7,7 @@ import com.devdyna.cakesticklib.api.utils.UpgradeComponents.UpgradeType;
 import com.devdyna.cakesticklib.api.utils.x;
 import com.devdyna.cakesticklib.setup.registry.builders.CakeStick;
 import com.devdyna.cakesticklib.setup.registry.builders.Chisel;
-import com.devdyna.cakesticklib.setup.registry.types.zLibComponents;
+import com.devdyna.cakesticklib.setup.registry.zLibrary.*;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -25,8 +25,8 @@ public class ItemToolTipped {
         if (item.getItem() instanceof CakeStick)
             tip.add(OVER_THE_REGISTRY_ID, Component.translatable(MODULE_ID + ".setup.cakestick.tip"));
 
-        if (item.has(zLibComponents.UPGRADE_COMPONENTS)) {
-            var nbt = item.get(zLibComponents.UPGRADE_COMPONENTS);
+        if (item.has(zComponents.UPGRADE_COMPONENTS)) {
+            var nbt = item.get(zComponents.UPGRADE_COMPONENTS);
 
             if (nbt != null && !UpgradeComponents.isEmpty(nbt)) {
                 tip.add(OVER_THE_REGISTRY_ID, Component.translatable(MODULE_ID + ".upgrades.title"));
@@ -58,8 +58,8 @@ public class ItemToolTipped {
         if (item.getItem() instanceof Chisel)
             tip.add(OVER_THE_REGISTRY_ID, Component.translatable(MODULE_ID + ".info.identifier.desc"));
 
-        if (item.has(zLibComponents.IDENTIFIER)) {
-            var nbt = item.get(zLibComponents.IDENTIFIER);
+        if (item.has(zComponents.IDENTIFIER)) {
+            var nbt = item.get(zComponents.IDENTIFIER);
 
             if (nbt != null)
                 tip.add(2, Component.translatable(MODULE_ID + ".info.identifier.hold")

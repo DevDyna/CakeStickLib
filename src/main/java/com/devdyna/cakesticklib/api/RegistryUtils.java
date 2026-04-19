@@ -1,10 +1,9 @@
-package com.devdyna.cakesticklib.setup.registry;
+package com.devdyna.cakesticklib.api;
 
 import java.util.*;
 import java.util.function.*;
 
 import com.devdyna.cakesticklib.api.utils.x;
-import com.devdyna.cakesticklib.setup.registry.types.*;
 
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -20,23 +19,12 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.material.Fluid;
-import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.common.world.BiomeModifier;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
-public class Material {
-
-        /**
-         * DON'T OVERRIDE OR IT WILL LOSE ANY RECIPE TYPES AND HANDLERS!
-         */
-        public static void register(IEventBus bus) {
-                zLibHandlers.register(bus);
-                zLibItems.register(bus);
-                zLibComponents.register(bus);
-                zLibRecipeTypes.register(bus);
-        }
+public class RegistryUtils {
 
         /**
          * register an block + item

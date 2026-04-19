@@ -4,7 +4,7 @@ import static com.devdyna.cakesticklib.CakeStickLib.MODULE_ID;
 import static com.devdyna.cakesticklib.api.datagen.LangUtils.TIP_COLOR;
 import static com.devdyna.cakesticklib.api.datagen.LangUtils.named;
 
-import com.devdyna.cakesticklib.setup.registry.types.zLibItems;
+import com.devdyna.cakesticklib.setup.registry.zLibrary.*;
 
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.LanguageProvider;
@@ -51,7 +51,7 @@ public class DataLang extends LanguageProvider {
                 TIP_COLOR + "Craft in-world Stonecutter recipes when bound to the result block");
 
         // setup
-        zLibItems.zItem.getEntries().forEach(i->addItem(i, named(i, MODULE_ID)));
+        zItems.zItem.getEntries().forEach(i->addItem(i, named(i, MODULE_ID)));
         add(MODULE_ID + ".setup.cakestick.tip", TIP_COLOR + "Place cake slices");
         advKey("cake_stick", "The cake is(n't) a lie!", "The Cake stick is right!");
 

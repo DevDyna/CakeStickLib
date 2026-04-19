@@ -2,8 +2,7 @@ package com.devdyna.cakesticklib.api.aspect.templates.storage.item;
 
 import com.devdyna.cakesticklib.api.aspect.logic.ItemStorageBlock;
 import com.devdyna.cakesticklib.api.aspect.templates.menu.BEMenu;
-import com.devdyna.cakesticklib.setup.registry.types.zLibHandlers;
-
+import com.devdyna.cakesticklib.setup.registry.zLibrary.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -27,7 +26,7 @@ public abstract class BEStorage extends BEMenu implements ItemStorageBlock {
 
     @Override
     public ItemStacksResourceHandler getItemStorage() {
-        return getData(zLibHandlers.ITEM_STORAGE);
+        return getData(zHandlers.ITEM_STORAGE);
     }
 
     @Override

@@ -4,8 +4,7 @@ import java.util.concurrent.CompletableFuture;
 
 import com.devdyna.cakesticklib.setup.common.recipes.oxidation.CopperOxidationBuilder;
 import com.devdyna.cakesticklib.setup.common.recipes.oxidation.OxidationStatus;
-import com.devdyna.cakesticklib.setup.registry.types.zLibItemTags;
-import com.devdyna.cakesticklib.setup.registry.types.zLibItems;
+import com.devdyna.cakesticklib.setup.registry.zLibrary.*;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.HolderLookup.Provider;
@@ -23,7 +22,7 @@ public class DataRecipe extends RecipeProvider {
     @Override
     protected void buildRecipes() {
 
-        ShapedRecipeBuilder.shaped(items, RecipeCategory.FOOD, zLibItems.CAKE_STICK.get())
+        ShapedRecipeBuilder.shaped(items, RecipeCategory.FOOD, zItems.CAKE_STICK.get())
                 .pattern(" C")
                 .pattern("S ")
                 .define('C', Items.CAKE)
@@ -32,14 +31,14 @@ public class DataRecipe extends RecipeProvider {
                         has(Items.CAKE))
                 .save(output);
 
-        ShapelessRecipeBuilder.shapeless(items, RecipeCategory.TOOLS, zLibItems.REDSTONE_ACID.get())
+        ShapelessRecipeBuilder.shapeless(items, RecipeCategory.TOOLS, zItems.REDSTONE_ACID.get())
                 .requires(Items.GLASS_BOTTLE)
                 .requires(Items.REDSTONE)
-                .requires(zLibItems.PATINA.get())
-                .unlockedBy("patina", has(zLibItems.PATINA.get()))
+                .requires(zItems.PATINA.get())
+                .unlockedBy("patina", has(zItems.PATINA.get()))
                 .save(output);
 
-        ShapelessRecipeBuilder.shapeless(items, RecipeCategory.TOOLS, zLibItems.HONEY_SOLUTION.get())
+        ShapelessRecipeBuilder.shapeless(items, RecipeCategory.TOOLS, zItems.HONEY_SOLUTION.get())
                 .requires(Items.GLASS_BOTTLE)
                 .requires(Items.HONEYCOMB)
                 .requires(Items.DANDELION)
@@ -48,12 +47,12 @@ public class DataRecipe extends RecipeProvider {
 
         CopperOxidationBuilder.of()
                 .type(OxidationStatus.OXIDIZING)
-                .catalyst(zLibItemTags.OXIDIZER, registries)
+                .catalyst(zItemTags.OXIDIZER, registries)
                 .unlockedBy()
                 .save(output);
         CopperOxidationBuilder.of()
                 .type(OxidationStatus.WAXING)
-                .catalyst(zLibItemTags.WAXING, registries)
+                .catalyst(zItemTags.WAXING, registries)
                 .unlockedBy()
                 .save(output);
         CopperOxidationBuilder.of()
@@ -67,7 +66,7 @@ public class DataRecipe extends RecipeProvider {
                 .unlockedBy()
                 .save(output);
 
-        ShapedRecipeBuilder.shaped(items, RecipeCategory.TOOLS, zLibItems.CHISEL.get())
+        ShapedRecipeBuilder.shaped(items, RecipeCategory.TOOLS, zItems.CHISEL.get())
                 .pattern("  N")
                 .pattern(" I ")
                 .pattern("S  ")

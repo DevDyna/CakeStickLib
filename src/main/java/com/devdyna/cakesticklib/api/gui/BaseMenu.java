@@ -6,8 +6,7 @@ import java.util.function.Function;
 import com.devdyna.cakesticklib.api.aspect.logic.EnergyBlock;
 import com.devdyna.cakesticklib.api.aspect.logic.ItemStorageBlock;
 import com.devdyna.cakesticklib.api.aspect.logic.MachineItemAutomation;
-import com.devdyna.cakesticklib.setup.registry.types.zLibComponents;
-
+import com.devdyna.cakesticklib.setup.registry.zLibrary.*;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -145,7 +144,7 @@ public abstract class BaseMenu extends AbstractContainerMenu {
     }
 
     protected void addMachineUpgradeSlot(ItemStacksResourceHandler beSlot, int id, int x, int y) {
-        addMachineSlot(s -> s.has(zLibComponents.UPGRADE_COMPONENTS),
+        addMachineSlot(s -> s.has(zComponents.UPGRADE_COMPONENTS),
                 beSlot, id, 4, x, y);
     }
 

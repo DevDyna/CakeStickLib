@@ -3,7 +3,7 @@ package com.devdyna.cakesticklib.setup;
 
 import java.util.function.Supplier;
 
-import com.devdyna.cakesticklib.setup.registry.types.zLibRecipeTypes;
+import com.devdyna.cakesticklib.setup.registry.zLibrary.zRecipeTypes;
 
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -38,7 +38,7 @@ public class RecipeRegister<T extends Recipe<?>> {
     public RecipeRegister(String id,
             Supplier<? extends RecipeSerializer<T>> serializer,
             Supplier<? extends RecipeType<T>> type) {
-        this(id, serializer, type, zLibRecipeTypes.SERIALIZERS, zLibRecipeTypes.TYPES);
+        this(id, serializer, type, zRecipeTypes.SERIALIZERS, zRecipeTypes.TYPES);
     }
 
     public String getId() {

@@ -2,8 +2,7 @@ package com.devdyna.cakesticklib.setup.datagen.client;
 
 import static com.devdyna.cakesticklib.CakeStickLib.MODULE_ID;
 
-import com.devdyna.cakesticklib.setup.registry.types.zLibItems;
-
+import com.devdyna.cakesticklib.setup.registry.zLibrary.*;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ModelProvider;
@@ -19,11 +18,11 @@ public class DataModel extends ModelProvider {
     @Override
     protected void registerModels(BlockModelGenerators blockModels, ItemModelGenerators itemModels) {
 
-        itemModels.generateFlatItem(zLibItems.CAKE_STICK.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
-        itemModels.generateFlatItem(zLibItems.REDSTONE_ACID.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
-        itemModels.generateFlatItem(zLibItems.HONEY_SOLUTION.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
-        itemModels.generateFlatItem(zLibItems.CHISEL.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
-        itemModels.generateFlatItem(zLibItems.PATINA.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(zItems.CAKE_STICK.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+        itemModels.generateFlatItem(zItems.REDSTONE_ACID.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+        itemModels.generateFlatItem(zItems.HONEY_SOLUTION.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+        itemModels.generateFlatItem(zItems.CHISEL.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+        itemModels.generateFlatItem(zItems.PATINA.get(), ModelTemplates.FLAT_ITEM);
 
     }
 
