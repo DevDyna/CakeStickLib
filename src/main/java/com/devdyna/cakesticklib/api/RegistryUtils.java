@@ -32,8 +32,9 @@ public class RegistryUtils {
          * @param be  zBlockEntities.zTiles
          * @param sup () -> new Builder
          * @param b   Blocks.zBlock
+         * @deprecated
          */
-        @Deprecated
+        @Deprecated(forRemoval = true)
         public static DeferredHolder<Block, Block> registerItemBlock(String blockname, Supplier<Block> sup,
                         DeferredRegister.Blocks b, DeferredRegister.Items i) {
                 DeferredHolder<Block, Block> block = b.register(blockname, sup);
@@ -41,7 +42,8 @@ public class RegistryUtils {
                 return block;
         }
 
-        @Deprecated
+        /** @deprecated */
+        @Deprecated(forRemoval = true)
         public static DeferredHolder<Block, Block> registerItemBlock(String blockname, DeferredRegister.Blocks b,
                         DeferredRegister.Items i) {
                 return registerItemBlock(blockname, () -> new Block(BlockBehaviour.Properties.of()), b, i);
