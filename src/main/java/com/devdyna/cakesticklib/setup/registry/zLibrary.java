@@ -129,9 +129,41 @@ public class zLibrary {
 
         public static final DeferredHolder<Item, Item> PATINA = zItem.registerSimpleItem("patina");
 
+        public static final DeferredHolder<Item, Item> SAWDUST = zItem.registerSimpleItem("sawdust");
+        public static final DeferredHolder<Item, Item> SULFUR_DUST = zItem.registerSimpleItem("sulfur_dust");
+        public static final DeferredHolder<Item, Item> FLOUR = zItem.registerSimpleItem("flour");
+
+        public static final DeferredHolder<Item, Item> AMETHYST_DUST = zItem.registerSimpleItem("amethyst_dust");
+        public static final DeferredHolder<Item, Item> CARBON_DUST = zItem.registerSimpleItem("carbon_dust");
+        public static final DeferredHolder<Item, Item> COPPER_DUST = zItem.registerSimpleItem("copper_dust");
+        public static final DeferredHolder<Item, Item> DIAMOND_DUST = zItem.registerSimpleItem("diamond_dust");
+        public static final DeferredHolder<Item, Item> EMERALD_DUST = zItem.registerSimpleItem("emerald_dust");
+        public static final DeferredHolder<Item, Item> GOLD_DUST = zItem.registerSimpleItem("gold_dust");
+        public static final DeferredHolder<Item, Item> IRON_DUST = zItem.registerSimpleItem("iron_dust");
+        public static final DeferredHolder<Item, Item> LAPIS_DUST = zItem.registerSimpleItem("lapis_dust");
+        public static final DeferredHolder<Item, Item> QUARTZ_DUST = zItem.registerSimpleItem("quartz_dust");
+
     }
 
     public class zItemTags {
+
+        public static final TagKey<Item> COAL_LIKE = RegistryUtils.tagItem("c", "coal_like");
+
+        public static final TagKey<Item> SAWDUST = RegistryUtils.tagItem("c", "dusts/wood");
+        public static final TagKey<Item> SAWDUST2 = RegistryUtils.tagItem("c", "dusts/saw");
+
+        public static final TagKey<Item> METAL_NUGGETS = RegistryUtils.tagItem("c", "metal_nuggets");
+
+        public static final TagKey<Item> DUST_SULFUR = RegistryUtils.tagItem("c", "dusts/sulfur");
+        public static final TagKey<Item> DUST_GOLD = RegistryUtils.tagItem("c", "dusts/gold");
+        public static final TagKey<Item> DUST_IRON = RegistryUtils.tagItem("c", "dusts/iron");
+        public static final TagKey<Item> DUST_EMERALD = RegistryUtils.tagItem("c", "dusts/emerald");
+        public static final TagKey<Item> DUST_QUARTZ = RegistryUtils.tagItem("c", "dusts/quartz");
+        public static final TagKey<Item> DUST_DIAMOND = RegistryUtils.tagItem("c", "dusts/diamond");
+        public static final TagKey<Item> DUST_AMETHYST = RegistryUtils.tagItem("c", "dusts/amethyst");
+        public static final TagKey<Item> DUST_COPPER = RegistryUtils.tagItem("c", "dusts/copper");
+        public static final TagKey<Item> DUST_COAL = RegistryUtils.tagItem("c", "dusts/coal");
+        public static final TagKey<Item> DUST_LAPIS = RegistryUtils.tagItem("c", "dusts/lapis");
 
         public static final TagKey<Item> OXIDIZER = RegistryUtils.tagItem(MODULE_ID, "oxidizer");
         public static final TagKey<Item> WAXING = RegistryUtils.tagItem(MODULE_ID, "waxing");
