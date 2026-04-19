@@ -5,7 +5,6 @@ import static com.devdyna.cakesticklib.CakeStickLib.MODULE_ID;
 import java.util.List;
 
 import com.devdyna.cakesticklib.setup.registry.zLibrary.*;
-import com.mojang.logging.LogUtils;
 
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
