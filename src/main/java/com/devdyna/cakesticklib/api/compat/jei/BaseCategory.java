@@ -1,7 +1,5 @@
 package com.devdyna.cakesticklib.api.compat.jei;
 
-import static com.devdyna.cakesticklib.Main.MODULE_ID;
-
 import java.awt.Color;
 
 import org.jetbrains.annotations.Nullable;
@@ -19,9 +17,12 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.ItemLike;
+
 /**
- * A generic recipe category to show hardcoded implementations without a defined dependency
+ * A generic recipe category to show hardcoded implementations without a defined
+ * dependency
  */
 public abstract class BaseCategory<T> implements IRecipeCategory<T> {
 
@@ -29,8 +30,13 @@ public abstract class BaseCategory<T> implements IRecipeCategory<T> {
 
     public final Font font = Minecraft.getInstance().font;
 
+    protected final ImageJei backgroundImage;
+
     public BaseCategory(IGuiHelper h) {
         this.helper = h;
+        this.backgroundImage = ImageJei.of()
+                .rl(this.setBackGround())
+                .size(this.getWidth(), this.getHeight());
     }
 
     @Override
@@ -41,7 +47,8 @@ public abstract class BaseCategory<T> implements IRecipeCategory<T> {
 
     /**
      * Define the category title
-     * <br/><br/>
+     * <br/>
+     * <br/>
      * It must be <code>MODID.jei.KEY</code>
      */
     public abstract String getTraslationKey();
@@ -57,7 +64,7 @@ public abstract class BaseCategory<T> implements IRecipeCategory<T> {
      */
     public abstract Size setXY();
 
-    public abstract String setBackGround();
+    public abstract Identifier setBackGround();
 
     @Override
     public Component getTitle() {
@@ -79,11 +86,11 @@ public abstract class BaseCategory<T> implements IRecipeCategory<T> {
         return setXY().getY();
     }
 
+    /**
+     * Don't override without super it!
+     */
     public void background(GuiGraphicsExtractor graphics) {
-        ImageJei.of()
-                .rl(MODULE_ID,this.setBackGround())
-                .size(this.getWidth(), this.getHeight())
-                .render(helper, graphics);
+        this.backgroundImage.render(helper, graphics);
     }
 
     @Override

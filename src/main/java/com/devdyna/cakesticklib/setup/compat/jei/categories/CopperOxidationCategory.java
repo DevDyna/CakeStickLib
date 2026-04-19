@@ -24,6 +24,7 @@ import mezz.jei.api.recipe.types.IRecipeType;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.core.Holder.Reference;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.ItemLike;
@@ -38,7 +39,7 @@ public class CopperOxidationCategory extends BaseRecipeCategory<CopperOxidationR
             .filter(Optional::isPresent)
             .map(Optional::get)
             .map(Reference::value).toList();
-            
+
     private List<Block> waxable = x.getBlocks(NeoForgeDataMaps.WAXABLES)
             .stream()
             .filter(Optional::isPresent)
@@ -73,8 +74,8 @@ public class CopperOxidationCategory extends BaseRecipeCategory<CopperOxidationR
     }
 
     @Override
-    public String setBackGround() {
-        return "textures/gui/jei/oxidation.png";
+    public Identifier setBackGround() {
+        return x.rl(MODULE_ID, "textures/gui/jei/oxidation.png");
     }
 
     @Override
@@ -125,7 +126,8 @@ public class CopperOxidationCategory extends BaseRecipeCategory<CopperOxidationR
         if (recipe.getOxidationType().equals(OxidationStatus.SCRAPPING))
             builder.addSlot(RecipeIngredientRole.OUTPUT, 59, 21)
                     .add(x.item(zItems.PATINA.get()))
-                    .addRichTooltipCallback((v, t) -> t.add(Component.translatable(MODULE_ID + ".jei.patina_drop", "0-2")));
+                    .addRichTooltipCallback(
+                            (v, t) -> t.add(Component.translatable(MODULE_ID + ".jei.patina_drop", "0-2")));
     }
 
     private Ingredient mapBlocks(List<Block> blocks, Function<Block, Block> f) {
@@ -151,8 +153,7 @@ public class CopperOxidationCategory extends BaseRecipeCategory<CopperOxidationR
 
     @Override
     public void background(GuiGraphicsExtractor graphics) {
-        ImageJei.of()
-                .rl(MODULE_ID,this.setBackGround())
+        this.backgroundImage
                 .size(77, 20)
                 .render(helper, graphics);
     }
