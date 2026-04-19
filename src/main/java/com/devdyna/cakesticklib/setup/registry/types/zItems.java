@@ -1,6 +1,6 @@
 package com.devdyna.cakesticklib.setup.registry.types;
 
-import com.devdyna.cakesticklib.Main;
+import com.devdyna.cakesticklib.CakeStickLib;
 import com.devdyna.cakesticklib.setup.registry.builders.*;
 
 import net.minecraft.world.item.Item;
@@ -14,7 +14,7 @@ public class zItems {
                 zItem.register(bus);
         }
 
-        public static final DeferredRegister.Items zItem = DeferredRegister.createItems(Main.MODULE_ID);
+        public static final DeferredRegister.Items zItem = DeferredRegister.createItems(CakeStickLib.MODULE_ID);
 
         public static final DeferredItem<Item> CAKE_STICK = zItem.registerItem("cake_stick",
                         p -> new CakeStick(p));

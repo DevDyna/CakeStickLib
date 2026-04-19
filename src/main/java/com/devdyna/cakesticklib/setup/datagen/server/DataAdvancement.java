@@ -1,6 +1,6 @@
 package com.devdyna.cakesticklib.setup.datagen.server;
 
-import static com.devdyna.cakesticklib.Main.MODULE_ID;
+import static com.devdyna.cakesticklib.CakeStickLib.MODULE_ID;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;

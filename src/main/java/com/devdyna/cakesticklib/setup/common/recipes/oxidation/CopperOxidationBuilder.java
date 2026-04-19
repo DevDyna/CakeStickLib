@@ -1,7 +1,7 @@
 package com.devdyna.cakesticklib.setup.common.recipes.oxidation;
 
 
-import static com.devdyna.cakesticklib.Main.MODULE_ID;
+import static com.devdyna.cakesticklib.CakeStickLib.MODULE_ID;
 
 import java.util.LinkedHashMap;
 

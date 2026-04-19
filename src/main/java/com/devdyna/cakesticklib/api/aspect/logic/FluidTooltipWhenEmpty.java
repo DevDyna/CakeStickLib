@@ -1,7 +1,7 @@
 package com.devdyna.cakesticklib.api.aspect.logic;
 
 
-import static com.devdyna.cakesticklib.Main.MODULE_ID;
+import static com.devdyna.cakesticklib.CakeStickLib.MODULE_ID;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;

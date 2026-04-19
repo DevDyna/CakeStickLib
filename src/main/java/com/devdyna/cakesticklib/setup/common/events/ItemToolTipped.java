@@ -1,6 +1,6 @@
 package com.devdyna.cakesticklib.setup.common.events;
 
-import static com.devdyna.cakesticklib.Main.MODULE_ID;
+import static com.devdyna.cakesticklib.CakeStickLib.MODULE_ID;
 
 import com.devdyna.cakesticklib.api.utils.UpgradeComponents;
 import com.devdyna.cakesticklib.api.utils.UpgradeComponents.UpgradeType;

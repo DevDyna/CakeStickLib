@@ -1,6 +1,6 @@
 package com.devdyna.cakesticklib.api.primitive;
 
-import static com.devdyna.cakesticklib.Main.MODULE_ID;
+import static com.devdyna.cakesticklib.CakeStickLib.MODULE_ID;
 
 import com.mojang.serialization.Codec;
 import io.netty.buffer.ByteBuf;

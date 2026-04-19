@@ -1,6 +1,6 @@
 package com.devdyna.cakesticklib.setup.datagen.client;
 
-import static com.devdyna.cakesticklib.Main.MODULE_ID;
+import static com.devdyna.cakesticklib.CakeStickLib.MODULE_ID;
 import static com.devdyna.cakesticklib.api.datagen.LangUtils.TIP_COLOR;
 import static com.devdyna.cakesticklib.api.datagen.LangUtils.named;
 

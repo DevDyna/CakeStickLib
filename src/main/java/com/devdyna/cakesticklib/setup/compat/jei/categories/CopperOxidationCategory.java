@@ -12,7 +12,7 @@ import com.devdyna.cakesticklib.setup.common.recipes.oxidation.OxidationStatus;
 import com.devdyna.cakesticklib.setup.registry.types.zItems;
 import com.devdyna.cakesticklib.setup.registry.types.zRecipeTypes;
 
-import static com.devdyna.cakesticklib.Main.MODULE_ID;
+import static com.devdyna.cakesticklib.CakeStickLib.MODULE_ID;
 
 import java.awt.Color;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
