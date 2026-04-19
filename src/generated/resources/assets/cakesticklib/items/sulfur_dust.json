@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "cakesticklib:item/dust/sulfur_dustdust/"
+    "model": "cakesticklib:item/sulfur_dust"
   }
 }

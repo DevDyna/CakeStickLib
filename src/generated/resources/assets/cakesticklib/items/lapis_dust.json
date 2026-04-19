@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "cakesticklib:item/dust/lapis_dustdust/"
+    "model": "cakesticklib:item/lapis_dust"
   }
 }
