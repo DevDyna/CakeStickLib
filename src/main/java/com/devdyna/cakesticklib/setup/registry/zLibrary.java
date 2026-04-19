@@ -44,6 +44,7 @@ public class zLibrary {
         zItems.register(bus);
         zComponents.register(bus);
         zRecipeTypes.register(bus);
+        zItemTags.register(bus);
     }
 
     public class zComponents {
@@ -51,11 +52,9 @@ public class zLibrary {
             zComponents.register(bus);
 
         }
-        // ---------------------------------------------------------------------------------------//
 
         public static final DeferredRegister<DataComponentType<?>> zComponents = DeferredRegister
                 .createDataComponents(Registries.DATA_COMPONENT_TYPE, MODULE_ID);
-        // ---------------------------------------------------------------------------------------//
 
         public static final DeferredHolder<DataComponentType<?>, DataComponentType<UpgradeComponents>> UPGRADE_COMPONENTS = zComponents
                 .register("upgrade_components",
@@ -77,8 +76,6 @@ public class zLibrary {
         public static void register(IEventBus bus) {
             zHandler.register(bus);
         }
-
-        // ---------------------------------------------------------------------------------------//
 
         public static final DeferredRegister<AttachmentType<?>> zHandler = DeferredRegister.create(
                 Keys.ATTACHMENT_TYPES,
@@ -147,6 +144,9 @@ public class zLibrary {
 
     public class zItemTags {
 
+        public static void register(IEventBus bus) {
+        }
+
         public static final TagKey<Item> COAL_LIKE = RegistryUtils.tagItem("c", "coal_like");
 
         public static final TagKey<Item> SAWDUST = RegistryUtils.tagItem("c", "dusts/wood");
@@ -170,23 +170,19 @@ public class zLibrary {
     }
 
     public class zRecipeTypes {
-        // ------------------------------------------------------------------------------------------------------------------------------------//
         public static void register(IEventBus bus) {
             SERIALIZERS.register(bus);
             TYPES.register(bus);
         }
 
-        // ------------------------------------------------------------------------------------------------------------------------------------//
         public static final DeferredRegister<RecipeSerializer<?>> SERIALIZERS = DeferredRegister
                 .create(Registries.RECIPE_SERIALIZER, MODULE_ID);
         public static final DeferredRegister<RecipeType<?>> TYPES = DeferredRegister.create(Registries.RECIPE_TYPE,
                 MODULE_ID);
-        // ------------------------------------------------------------------------------------------------------------------------------------//
 
         public static final RecipeRegister<CopperOxidationRecipe> COPPER_OXIDATION = RecipeRegister.of(
                 "copper_oxidation",
                 () -> CopperOxidationRecipe.serializer());
 
-        // ------------------------------------------------------------------------------------------------------------------------------------//
     }
 }
