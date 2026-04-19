@@ -10,7 +10,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-public class zComponents {
+public class zLibComponents {
         public static void register(IEventBus bus) {
                 zComponents.register(bus);
 

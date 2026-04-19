@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 import com.devdyna.cakesticklib.api.utils.x;
 import com.devdyna.cakesticklib.setup.Config;
-import com.devdyna.cakesticklib.setup.registry.types.zItems;
+import com.devdyna.cakesticklib.setup.registry.types.zLibItems;
 
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -41,7 +41,7 @@ public class PatinaDropEvent {
 
         if (level.getRandom().nextBoolean())
             Block.popResource(level, event.getPos().relative(event.getContext().getClickedFace()),
-                    x.item(zItems.PATINA.get(),
+                    x.item(zLibItems.PATINA.get(),
                             level.getRandom().nextInt(1) + 1 + (age > 1 ? level.getRandom().nextInt(1) : 0)));
 
     }

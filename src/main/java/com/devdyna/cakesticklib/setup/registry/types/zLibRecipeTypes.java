@@ -11,7 +11,7 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-public class zRecipeTypes {
+public class zLibRecipeTypes {
     // ------------------------------------------------------------------------------------------------------------------------------------//
     public static void register(IEventBus bus) {
         SERIALIZERS.register(bus);

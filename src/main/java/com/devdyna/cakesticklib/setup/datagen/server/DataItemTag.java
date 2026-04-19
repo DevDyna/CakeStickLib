@@ -4,8 +4,8 @@ import static com.devdyna.cakesticklib.CakeStickLib.MODULE_ID;
 
 import java.util.concurrent.CompletableFuture;
 
-import com.devdyna.cakesticklib.setup.registry.types.zItemTags;
-import com.devdyna.cakesticklib.setup.registry.types.zItems;
+import com.devdyna.cakesticklib.setup.registry.types.zLibItemTags;
+import com.devdyna.cakesticklib.setup.registry.types.zLibItems;
 
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.PackOutput;
@@ -20,8 +20,8 @@ public class DataItemTag extends ItemTagsProvider {
 
     @Override
     protected void addTags(Provider p) {
-        tag(zItemTags.OXIDIZER).add(zItems.REDSTONE_ACID.get());
-        tag(zItemTags.WAXING).add(zItems.HONEY_SOLUTION.get(), Items.HONEYCOMB);
+        tag(zLibItemTags.OXIDIZER).add(zLibItems.REDSTONE_ACID.get());
+        tag(zLibItemTags.WAXING).add(zLibItems.HONEY_SOLUTION.get(), Items.HONEYCOMB);
     }
 
 }

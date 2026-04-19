@@ -32,10 +32,10 @@ public class Material {
          * DON'T OVERRIDE OR IT WILL LOSE ANY RECIPE TYPES AND HANDLERS!
          */
         public static void register(IEventBus bus) {
-                zHandlers.register(bus);
-                zItems.register(bus);
-                zComponents.register(bus);
-                zRecipeTypes.register(bus);
+                zLibHandlers.register(bus);
+                zLibItems.register(bus);
+                zLibComponents.register(bus);
+                zLibRecipeTypes.register(bus);
         }
 
         /**

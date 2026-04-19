@@ -3,7 +3,7 @@ package com.devdyna.cakesticklib.api.utils;
 import java.util.List;
 import java.util.Optional;
 
-import com.devdyna.cakesticklib.setup.registry.types.zComponents;
+import com.devdyna.cakesticklib.setup.registry.types.zLibComponents;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
@@ -51,17 +51,17 @@ public record UpgradeComponents(
     }
 
     public static final boolean has(ItemStack i, UpgradeType type) {
-        return has(i.get(zComponents.UPGRADE_COMPONENTS), type);
+        return has(i.get(zLibComponents.UPGRADE_COMPONENTS), type);
     }
 
     public static final int get(ItemStack i, UpgradeType type) {
-        return get(i.get(zComponents.UPGRADE_COMPONENTS), type);
+        return get(i.get(zLibComponents.UPGRADE_COMPONENTS), type);
     }
 
     public static final int getStacked(ItemStack i, UpgradeType type) {
         var tot = 0;
         for (int j = 0; j < i.getCount(); j++)
-            tot += get(i.get(zComponents.UPGRADE_COMPONENTS), type);
+            tot += get(i.get(zLibComponents.UPGRADE_COMPONENTS), type);
         return tot;
     }
 
@@ -85,7 +85,7 @@ public record UpgradeComponents(
      */
     public static ItemStack create(Item i, int speed, int energy, int luck, int fluid) {
         var item = x.item(i);
-        item.set(zComponents.UPGRADE_COMPONENTS, builder(speed, energy, luck, fluid));
+        item.set(zLibComponents.UPGRADE_COMPONENTS, builder(speed, energy, luck, fluid));
         return item;
     }
 

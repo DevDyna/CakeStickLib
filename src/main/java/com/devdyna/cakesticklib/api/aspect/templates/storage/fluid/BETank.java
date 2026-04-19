@@ -3,7 +3,7 @@ package com.devdyna.cakesticklib.api.aspect.templates.storage.fluid;
 import javax.annotation.Nullable;
 
 import com.devdyna.cakesticklib.api.aspect.logic.SimpleFluidStorage;
-import com.devdyna.cakesticklib.setup.registry.types.zHandlers;
+import com.devdyna.cakesticklib.setup.registry.types.zLibHandlers;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
@@ -28,7 +28,7 @@ public abstract class BETank extends BlockEntity implements SimpleFluidStorage {
 
     @Override
     public FluidStacksResourceHandler getFluidStorage() {
-        return getData(zHandlers.FLUID_STORAGE);
+        return getData(zLibHandlers.FLUID_STORAGE);
     }
 
     @Override

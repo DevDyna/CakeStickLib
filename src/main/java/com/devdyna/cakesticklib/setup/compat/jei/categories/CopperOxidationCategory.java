@@ -9,8 +9,8 @@ import com.devdyna.cakesticklib.api.primitive.Size;
 import com.devdyna.cakesticklib.api.utils.x;
 import com.devdyna.cakesticklib.setup.common.recipes.oxidation.CopperOxidationRecipe;
 import com.devdyna.cakesticklib.setup.common.recipes.oxidation.OxidationStatus;
-import com.devdyna.cakesticklib.setup.registry.types.zItems;
-import com.devdyna.cakesticklib.setup.registry.types.zRecipeTypes;
+import com.devdyna.cakesticklib.setup.registry.types.zLibItems;
+import com.devdyna.cakesticklib.setup.registry.types.zLibRecipeTypes;
 
 import static com.devdyna.cakesticklib.CakeStickLib.MODULE_ID;
 
@@ -51,7 +51,7 @@ public class CopperOxidationCategory extends BaseRecipeCategory<CopperOxidationR
     }
 
     public static final IRecipeType<RecipeHolder<CopperOxidationRecipe>> TYPE = IRecipeType
-            .create(zRecipeTypes.COPPER_OXIDATION.getType());
+            .create(zLibRecipeTypes.COPPER_OXIDATION.getType());
 
     @Override
     public IRecipeType<RecipeHolder<CopperOxidationRecipe>> getRecipeType() {
@@ -65,7 +65,7 @@ public class CopperOxidationCategory extends BaseRecipeCategory<CopperOxidationR
 
     @Override
     public ItemLike getIconItem() {
-        return zItems.REDSTONE_ACID.get();
+        return zLibItems.REDSTONE_ACID.get();
     }
 
     @Override
@@ -125,7 +125,7 @@ public class CopperOxidationCategory extends BaseRecipeCategory<CopperOxidationR
 
         if (recipe.getOxidationType().equals(OxidationStatus.SCRAPPING))
             builder.addSlot(RecipeIngredientRole.OUTPUT, 59, 21)
-                    .add(x.item(zItems.PATINA.get()))
+                    .add(x.item(zLibItems.PATINA.get()))
                     .addRichTooltipCallback(
                             (v, t) -> t.add(Component.translatable(MODULE_ID + ".jei.patina_drop", "0-2")));
     }

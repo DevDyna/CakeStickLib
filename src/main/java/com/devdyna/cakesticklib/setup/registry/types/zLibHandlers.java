@@ -16,7 +16,7 @@ import net.neoforged.neoforge.transfer.energy.SimpleEnergyHandler;
 import net.neoforged.neoforge.transfer.fluid.FluidStacksResourceHandler;
 import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
 
-public class zHandlers {
+public class zLibHandlers {
     public static void register(IEventBus bus) {
         zHandler.register(bus);
     }

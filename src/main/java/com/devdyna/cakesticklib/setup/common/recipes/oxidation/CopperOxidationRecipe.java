@@ -2,7 +2,7 @@ package com.devdyna.cakesticklib.setup.common.recipes.oxidation;
 
 import com.devdyna.cakesticklib.api.recipe.recipeType.BaseRecipeType;
 import com.devdyna.cakesticklib.setup.common.recipes.oxidation.OxidationStatus.OxidationInput;
-import com.devdyna.cakesticklib.setup.registry.types.zRecipeTypes;
+import com.devdyna.cakesticklib.setup.registry.types.zLibRecipeTypes;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
@@ -68,12 +68,12 @@ public class CopperOxidationRecipe extends BaseRecipeType<OxidationInput> {
 
     @Override
     public RecipeSerializer<? extends Recipe<OxidationInput>> getSerializer() {
-        return zRecipeTypes.COPPER_OXIDATION.getSerializer();
+        return zLibRecipeTypes.COPPER_OXIDATION.getSerializer();
     }
 
     @Override
     public RecipeType<? extends Recipe<OxidationInput>> getType() {
-        return zRecipeTypes.COPPER_OXIDATION.getType();
+        return zLibRecipeTypes.COPPER_OXIDATION.getType();
     }
 
     @Override
