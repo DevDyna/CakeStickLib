@@ -3,6 +3,7 @@ package com.devdyna.cakesticklib.api.utils;
 import net.minecraft.core.DefaultedRegistry;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Holder.Reference;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.HolderSet.Named;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -204,8 +205,13 @@ public class x {
                 .toList());
     }
 
+    @Deprecated
     public static Ingredient itemIngredient(TagKey<Item> i) {
         return Ingredient.of(BuiltInRegistries.ITEM.getOrThrow(i));
+    }
+    
+    public static Ingredient itemIngredient(TagKey<Item> i,HolderLookup.Provider p) {
+        return Ingredient.of(p.getOrThrow(i));
     }
 
     public static Ingredient itemIngredient(Identifier tag) {

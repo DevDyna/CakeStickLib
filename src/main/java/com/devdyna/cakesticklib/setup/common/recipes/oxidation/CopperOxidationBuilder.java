@@ -1,6 +1,5 @@
 package com.devdyna.cakesticklib.setup.common.recipes.oxidation;
 
-
 import static com.devdyna.cakesticklib.CakeStickLib.MODULE_ID;
 
 import java.util.LinkedHashMap;
@@ -48,17 +47,22 @@ public class CopperOxidationBuilder extends BaseRecipeBuilder {
         return this;
     }
 
-    public CopperOxidationBuilder catalyst(Ingredient catalyst) {
+    private CopperOxidationBuilder catalyst(Ingredient catalyst) {
         this.catalyst = catalyst;
         return this;
     }
-    public CopperOxidationBuilder catalyst(TagKey<Item> catalyst , HolderLookup.Provider p) {
-        return catalyst(x.itemIngredient(p.get(catalyst).get()));
+
+    public CopperOxidationBuilder catalyst(TagKey<Item> catalyst, HolderLookup.Provider p) {
+        return catalyst(x.itemIngredient(p.getOrThrow(catalyst)));
+    }
+
+    public CopperOxidationBuilder catalyst(Item catalyst) {
+        return catalyst(x.itemIngredient(catalyst));
     }
 
     @Override
     public Identifier getSuffix(String extra) {
-        return x.rl(MODULE_ID,"copper_oxidation/" + type.name().toLowerCase() + extra);
+        return x.rl(MODULE_ID, "copper_oxidation/" + type.name().toLowerCase() + extra);
     }
 
     @Override
