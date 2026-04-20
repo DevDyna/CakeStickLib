@@ -2,6 +2,8 @@ package com.devdyna.cakesticklib.api.factories.plants;
 
 import java.util.List;
 
+import com.devdyna.cakesticklib.setup.Config;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -20,14 +22,13 @@ public interface Harvestable {
     IntegerProperty getPublicAgeProperty();
 
     default boolean harvestCrop(Level level, BlockState state, BlockPos pos, Player player, ItemStack tool) {
-        if (!level.isClientSide() && canBeHarvested(state) //&& !Common.DISABLE_HARVESTABLE_ACTION.get() TODO
-        ) {
+        if (!level.isClientSide() && canBeHarvested(state) && Config.HARVESTABLE_ACTION.get()) {
 
             getItemResult(level, state, pos, player, tool)
                     .forEach(item -> player.addItem(item));
 
             level.setBlockAndUpdate(pos,
-                    state.setValue(getPublicAgeProperty(),level.getRandom().nextInt(maxAge() - 2)));
+                    state.setValue(getPublicAgeProperty(), level.getRandom().nextInt(maxAge() - 2)));
             return true;
         }
         return false;
