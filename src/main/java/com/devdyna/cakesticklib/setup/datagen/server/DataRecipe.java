@@ -40,14 +40,14 @@ public class DataRecipe extends RecipeProvider {
                                 .requires(Items.GLASS_BOTTLE)
                                 .requires(Items.REDSTONE)
                                 .requires(zItems.PATINA.get())
-                                .unlockedBy("patina", has(zItems.PATINA.get()))
+                                .unlockedBy("has_patina", has(zItems.PATINA.get()))
                                 .save(output);
 
                 ShapelessRecipeBuilder.shapeless(items, RecipeCategory.TOOLS, zItems.HONEY_SOLUTION.get())
                                 .requires(Items.GLASS_BOTTLE)
                                 .requires(Items.HONEYCOMB)
                                 .requires(Items.DANDELION)
-                                .unlockedBy("honeycomb", has(Items.HONEYCOMB))
+                                .unlockedBy("has_honeycomb", has(Items.HONEYCOMB))
                                 .save(output);
 
                 CopperOxidationBuilder.of()
