@@ -51,7 +51,7 @@ public class DataLang extends LanguageProvider {
                 TIP_COLOR + "Craft in-world Stonecutter recipes when bound to the result block");
 
         // setup
-        zItems.zItem.getEntries().forEach(i->addItem(i, named(i, MODULE_ID)));
+        zItems.zItem.getEntries().forEach(i -> addItem(i, named(i, MODULE_ID)));
         add(MODULE_ID + ".setup.cakestick.tip", TIP_COLOR + "Place cake slices");
         advKey("cake_stick", "The cake is(n't) a lie!", "The Cake stick is right!");
 
