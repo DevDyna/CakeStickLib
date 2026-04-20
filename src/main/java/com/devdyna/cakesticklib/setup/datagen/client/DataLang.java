@@ -73,6 +73,27 @@ public class DataLang extends LanguageProvider {
 
         add(MODULE_ID + ".jei.patina_drop", TIP_COLOR + "Drop %s" + TIP_COLOR + " items every scrape");
 
+        // config
+        add(MODULE_ID + ".configuration.events", "General events");
+
+        add(MODULE_ID + ".configuration.harvestable_action",
+                "Right-click on crops to collect");
+
+        add(MODULE_ID + ".configuration.harvester_limit",
+                "Max number of harvestable blocks foreach interaction");
+
+        add(MODULE_ID + ".configuration.ender_eye_return",
+                "End Portal Frame interaction to remove Eye of Ender");
+
+        add(MODULE_ID + ".configuration.patina_drop",
+                "Patina drop when scrapped any oxidized copper block");
+
+        add(MODULE_ID + ".configuration.redstone_acid_oxide",
+                "Redstone Acid can increase a stage of oxidation at the copper block clicked");
+
+        add(MODULE_ID + ".configuration.honey_solution_wax",
+                "Honey Solution can wax the copper block clicked");
+
     }
 
     private void advKey(String k, String title, String desc) {
