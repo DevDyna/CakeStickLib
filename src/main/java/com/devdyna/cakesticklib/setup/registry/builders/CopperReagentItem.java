@@ -1,6 +1,5 @@
 package com.devdyna.cakesticklib.setup.registry.builders;
 
-
 import com.devdyna.cakesticklib.api.utils.x;
 
 import net.minecraft.core.BlockPos;
@@ -10,6 +9,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.ParticleUtils;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.UseOnContext;
@@ -49,9 +49,8 @@ public abstract class CopperReagentItem extends Item {
                 player.addItem(x.item(Items.GLASS_BOTTLE));
         }
 
-        if (level.isClientSide())
-            getParticles(level, pos);
-        getSound(level, pos);
+        getParticles(level, pos);
+        getSound(player,level, pos);
 
         return InteractionResult.SUCCESS;
 
@@ -65,8 +64,8 @@ public abstract class CopperReagentItem extends Item {
         ParticleUtils.spawnParticlesOnBlockFaces(level, pos, ParticleTypes.COMPOSTER, UniformInt.of(3, 5));
     }
 
-    public void getSound(Level level, BlockPos pos) {
-        level.playLocalSound(pos, SoundEvents.COPPER_GRATE_STEP, SoundSource.BLOCKS, 1.0F, 0.1F, false);
+    public void getSound(Player player ,Level level, BlockPos pos) {
+        level.playSound(player,pos, SoundEvents.COPPER_GRATE_STEP, SoundSource.BLOCKS, 1.0F, 0.1F);
     }
 
 }
