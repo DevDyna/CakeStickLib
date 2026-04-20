@@ -1,5 +1,6 @@
 package com.devdyna.cakesticklib.api.datagen;
 
+import net.neoforged.neoforge.common.data.LanguageProvider;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
 public class LangUtils {
@@ -22,6 +23,11 @@ public class LangUtils {
                         .append(word.substring(1))
                         .append(" ");
         return result.toString().trim();
+    }
+
+    public static void advKey(LanguageProvider l,String modid,String k, String title, String desc) {
+        l.add(modid + ".advancement.branch." + k, title);
+        l.add(modid + ".advancement.branch." + k + ".desc", desc);
     }
 
 }
