@@ -17,7 +17,7 @@ public class EnderEyeReturn {
         var state = level.getBlockState(pos);
 
         if (state.is(Blocks.END_PORTAL_FRAME) && state.getValue(EndPortalFrameBlock.HAS_EYE)
-                && !Config.DISABLE_ENDER_EYE_RETURN_EVENT.get()) {
+                && Config.ENDER_EYE_RETURN_EVENT.get()) {
             player.addItem(x.item(Items.ENDER_EYE));
             level.setBlockAndUpdate(pos, state.setValue(EndPortalFrameBlock.HAS_EYE, false));
         }

@@ -36,7 +36,7 @@ public abstract class CopperReagentItem extends Item {
         if (next == null || state.is(next))
             return super.useOn(c);
 
-        if (getConfig())
+        if (!getConfig())
             return super.useOn(c);
 
         player.swing(hand);

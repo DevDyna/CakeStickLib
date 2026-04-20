@@ -24,7 +24,7 @@ public class HoneySolution extends CopperReagentItem {
 
     @Override
     public Boolean getConfig() {
-        return Config.DISABLE_HONEY_SOLUTION_EVENT.get();
+        return Config.HONEY_SOLUTION_EVENT.get();
     }
 
     public void getParticles(Level level, BlockPos pos) {

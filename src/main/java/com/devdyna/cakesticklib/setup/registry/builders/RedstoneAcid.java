@@ -17,7 +17,7 @@ public class RedstoneAcid extends CopperReagentItem {
 
     @Override
     public Boolean getConfig() {
-        return Config.DISABLE_REDSTONE_ACID_EVENT.get();
+        return Config.REDSTONE_ACID_EVENT.get();
     }
 
 }

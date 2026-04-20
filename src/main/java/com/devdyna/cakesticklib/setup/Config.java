@@ -11,12 +11,12 @@ import net.neoforged.neoforge.common.ModConfigSpec.*;
 @SuppressWarnings("unused")
 public class Config {
 
-    public static BooleanValue DISABLE_HARVESTABLE_ACTION;
+    public static BooleanValue HARVESTABLE_ACTION;
     public static IntValue TREE_CUTTING_LIMIT;
-    public static BooleanValue DISABLE_ENDER_EYE_RETURN_EVENT;
-    public static BooleanValue DISABLE_PATINA_DROP_EVENT;
-    public static BooleanValue DISABLE_REDSTONE_ACID_EVENT;
-    public static BooleanValue DISABLE_HONEY_SOLUTION_EVENT;
+    public static BooleanValue ENDER_EYE_RETURN_EVENT;
+    public static BooleanValue PATINA_DROP_EVENT;
+    public static BooleanValue REDSTONE_ACID_EVENT;
+    public static BooleanValue HONEY_SOLUTION_EVENT;
 
     private static final ModConfigSpec.Builder qCOMMON = new ModConfigSpec.Builder();
 
@@ -24,28 +24,28 @@ public class Config {
 
         qCOMMON.comment("Gameplay Additions").push("events");
 
-        DISABLE_HARVESTABLE_ACTION = bool(
-                "Disable player right-click on crops to collect" +
+        HARVESTABLE_ACTION = bool(
+                "Player can right-click on crops to collect intend of breaking" +
                         "\nIf detected Farmers Delight it will turn off by default",
                 "harvestable_action",
-                ModAddonUtil.checkMod("farmersdelight"));
+                !ModAddonUtil.checkMod("farmersdelight"));
 
         TREE_CUTTING_LIMIT = number(
                 "Max number of harvestable blocks foreach interaction",
                 "tree_cutting_limit", 2048);
 
-        DISABLE_ENDER_EYE_RETURN_EVENT = bool("Disable End Portal Frame interaction to remove Eye of Ender",
-                "ender_eye_return");
+        ENDER_EYE_RETURN_EVENT = bool("End Portal Frame can be interacted to remove Eye of Ender",
+                "ender_eye_return",true);
 
-        DISABLE_PATINA_DROP_EVENT = bool("Disable Patina drop when scrapped any oxidized copper block",
-                "patina_drop");
+        PATINA_DROP_EVENT = bool("Patina will drop when scrapped any oxidized copper block",
+                "patina_drop",true);
 
-        DISABLE_REDSTONE_ACID_EVENT = bool(
-                "Disable Redstone Acid can increase a stage of oxidation at the copper block clicked",
-                "redstone_acid_oxide");
+        REDSTONE_ACID_EVENT = bool(
+                "Redstone Acid can be used to increase a stage of oxidation at the copper block clicked",
+                "redstone_acid_oxide",true);
 
-        DISABLE_HONEY_SOLUTION_EVENT = bool("Disable Honey Solution can wax the copper block clicked",
-                "honey_solution_wax");
+        HONEY_SOLUTION_EVENT = bool("Honey Solution can be used to wax copper blocks clicked",
+                "honey_solution_wax",true);
 
         qCOMMON.pop();
 

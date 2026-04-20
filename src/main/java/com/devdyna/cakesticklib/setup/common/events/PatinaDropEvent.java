@@ -35,7 +35,7 @@ public class PatinaDropEvent {
         if (age <= 0)
             return;
 
-        if (Config.DISABLE_PATINA_DROP_EVENT.get())
+        if (!Config.PATINA_DROP_EVENT.get())
             return;
 
         if (level.getRandom().nextBoolean())
