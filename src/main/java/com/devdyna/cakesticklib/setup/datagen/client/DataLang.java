@@ -52,7 +52,7 @@ public class DataLang extends LanguageProvider {
 
         // setup
         zItems.zItem.getEntries().forEach(i -> addItem(i, named(i, MODULE_ID)));
-        add(MODULE_ID + ".setup.redstone_acid.tip", TIP_COLOR + "Aging of copper blocks");
+        add(MODULE_ID + ".setup.redstone_acid.tip", TIP_COLOR + "Oxidize copper blocks");
         add(MODULE_ID + ".setup.honey_solution.tip", TIP_COLOR + "Wax copper blocks");
 
         
