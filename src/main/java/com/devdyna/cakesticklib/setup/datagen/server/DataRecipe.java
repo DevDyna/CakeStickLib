@@ -87,6 +87,15 @@ public class DataRecipe extends RecipeProvider {
                 cooking(output, zItems.GOLD_DUST.get(), Items.GOLD_INGOT);
                 cooking(output, zItems.IRON_DUST.get(), Items.IRON_INGOT);
 
+                shaped(RecipeCategory.MISC, Items.PAPER, 6)
+                                .define('#', zItemTags.SAWDUST)
+                                .pattern("###")
+                                .unlockedBy("has_sawdust", has(zItemTags.SAWDUST))
+                                .save(output, MODULE_ID + ":"
+                                                + getConversionRecipeName(
+                                                                Items.PAPER,
+                                                                 zItems.SAWDUST.get()));
+
         }
 
         private void cooking(RecipeOutput c, Item input, Item output) {
