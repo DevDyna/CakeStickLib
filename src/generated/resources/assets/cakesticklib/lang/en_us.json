@@ -36,7 +36,7 @@
   "cakesticklib.screen.upgrades": "Supported Upgrades:",
   "cakesticklib.setup.cakestick.tip": "§7Place cake slices",
   "cakesticklib.setup.honey_solution.tip": "§7Wax copper blocks",
-  "cakesticklib.setup.redstone_acid.tip": "§7Aging of copper blocks",
+  "cakesticklib.setup.redstone_acid.tip": "§7Oxidize copper blocks",
   "cakesticklib.tank_interact.empty": "Empty",
   "cakesticklib.ui.dont_consume": "§cNot consume",
   "cakesticklib.upgrades.modifier.energy": "§7Energy Usage: %s",
