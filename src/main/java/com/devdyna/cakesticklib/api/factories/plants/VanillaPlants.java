@@ -8,6 +8,7 @@ import java.util.Queue;
 import java.util.Set;
 import java.util.function.BiFunction;
 
+import com.devdyna.cakesticklib.api.factories.plants.builder.BaseCropBlock;
 import com.devdyna.cakesticklib.setup.Config;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -74,6 +75,10 @@ public class VanillaPlants {
 
         var state = level.getBlockState(pos);
         var block = state.getBlock();
+
+        if (block instanceof BaseCropBlock)
+            return null;
+        // skip BaseCropBlock plants due it already support Harvestable
 
         if (block instanceof CropBlock crop) {
 
