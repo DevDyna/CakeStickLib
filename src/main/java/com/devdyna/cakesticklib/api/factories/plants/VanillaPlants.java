@@ -70,9 +70,6 @@ public class VanillaPlants {
 
     public static List<ItemStack> checkReplant(Level level, BlockPos pos) {
 
-        if (level.isClientSide())
-            return null;
-
         var state = level.getBlockState(pos);
         var block = state.getBlock();
 
