@@ -4,11 +4,8 @@ import java.util.*;
 
 import com.devdyna.cakesticklib.api.factories.plants.*;
 
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.util.ParticleUtils;
-import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -28,8 +25,7 @@ public class VanillaHarvestable {
 
             player.swing(hand);
 
-            level.playSound(player, pos, SoundEvents.CROP_BREAK, SoundSource.BLOCKS, 1.0F, 2F);
-            ParticleUtils.spawnParticlesOnBlockFaces(level, pos, ParticleTypes.COMPOSTER, UniformInt.of(3, 5));
+            level.playSound(player, pos, SoundEvents.BONE_MEAL_USE, SoundSource.BLOCKS, 3.0F, 2F);
 
             if (level.isClientSide())
                 return;
