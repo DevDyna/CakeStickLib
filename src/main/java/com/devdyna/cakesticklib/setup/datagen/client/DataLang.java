@@ -77,22 +77,22 @@ public class DataLang extends LanguageProvider {
         add(MODULE_ID + ".configuration.events", "General events");
 
         add(MODULE_ID + ".configuration.harvestable_action",
-                "Right-click on crops to collect");
+                "Harvestable Action");
 
-        add(MODULE_ID + ".configuration.harvester_limit",
-                "Max number of harvestable blocks foreach interaction");
+        add(MODULE_ID + ".configuration.tree_cutting_limit",
+                "Tree Cutting Limit");
 
         add(MODULE_ID + ".configuration.ender_eye_return",
-                "End Portal Frame interaction to remove Eye of Ender");
+                "Eye of Ender Event");
 
         add(MODULE_ID + ".configuration.patina_drop",
-                "Patina drop when scrapped any oxidized copper block");
+                "Patina drop");
 
         add(MODULE_ID + ".configuration.redstone_acid_oxide",
-                "Redstone Acid can increase a stage of oxidation at the copper block clicked");
+                "Redstone Acid use");
 
         add(MODULE_ID + ".configuration.honey_solution_wax",
-                "Honey Solution can wax the copper block clicked");
+                "Honey Solution use");
 
     }
 

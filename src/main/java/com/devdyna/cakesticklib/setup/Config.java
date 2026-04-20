@@ -32,7 +32,7 @@ public class Config {
 
         TREE_CUTTING_LIMIT = number(
                 "Max number of harvestable blocks foreach interaction",
-                "harvester_limit", 2048);
+                "tree_cutting_limit", 2048);
 
         DISABLE_ENDER_EYE_RETURN_EVENT = bool("Disable End Portal Frame interaction to remove Eye of Ender",
                 "ender_eye_return");
