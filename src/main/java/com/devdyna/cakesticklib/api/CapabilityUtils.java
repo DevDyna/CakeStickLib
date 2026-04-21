@@ -1,6 +1,7 @@
 package com.devdyna.cakesticklib.api;
 
 import com.devdyna.cakesticklib.api.aspect.logic.EnergyBlock;
+import com.devdyna.cakesticklib.api.aspect.logic.MachineFluidAutomation;
 import com.devdyna.cakesticklib.api.aspect.logic.MachineItemAutomation;
 import com.devdyna.cakesticklib.api.aspect.logic.SimpleFluidStorage;
 import com.devdyna.cakesticklib.setup.registry.zLibrary.*;
@@ -14,6 +15,9 @@ public class CapabilityUtils {
         e.registerBlock(
                 Capabilities.Fluid.BLOCK,
                 (level, pos, state, be, side) -> {
+
+                    if (be instanceof MachineFluidAutomation m)
+                        return m.getAutomationFluidStorage();
 
                     if (be instanceof SimpleFluidStorage)
                         return be.getData(zHandlers.FLUID_STORAGE);
