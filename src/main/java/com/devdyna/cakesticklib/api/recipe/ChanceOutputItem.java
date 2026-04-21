@@ -8,22 +8,22 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 
-public record ChanceOutputItem(ItemStack item, float chance) {
+public record ChanceOutputItem(ItemStackTemplate item, float chance) {
 
         public static final Codec<ChanceOutputItem> CODEC = RecordCodecBuilder.create(inst -> inst.group(
-                        ItemStack.CODEC.fieldOf("item").forGetter(ChanceOutputItem::item),
+                        ItemStackTemplate.CODEC.fieldOf("item").forGetter(ChanceOutputItem::item),
                         Codec.floatRange(0, 1).fieldOf("chance").forGetter(ChanceOutputItem::chance))
                         .apply(inst, ChanceOutputItem::new));
 
         public static final StreamCodec<RegistryFriendlyByteBuf, ChanceOutputItem> STREAM_CODEC = StreamCodec
                         .composite(
-                                        ItemStack.STREAM_CODEC, ChanceOutputItem::item,
+                                        ItemStackTemplate.STREAM_CODEC, ChanceOutputItem::item,
                                         ByteBufCodecs.FLOAT, ChanceOutputItem::chance,
                                         ChanceOutputItem::new);
 
-        public static final ChanceOutputItem of(ItemStack stack, float chance) {
+        public static final ChanceOutputItem of(ItemStackTemplate stack, float chance) {
                 return new ChanceOutputItem(stack, chance);
         }
 
@@ -36,6 +36,6 @@ public record ChanceOutputItem(ItemStack item, float chance) {
         }
 
         public static final boolean itemValid(ChanceOutputItem t) {
-                return t != null && t.item != null && !t.item.isEmpty();
+                return t != null && t.item != null && t.item.item().value() != null;
         }
 }
