@@ -5,12 +5,12 @@ import com.devdyna.cakesticklib.api.aspect.logic.ItemStorageBlock;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.neoforge.event.level.BlockEvent;
+import net.neoforged.neoforge.event.level.block.BreakBlockEvent;
 
 public class ItemStorageBreak {
 
     @SubscribeEvent
-    public static void inventoryDestroy(BlockEvent.BreakEvent event) {
+    public static void inventoryDestroy(BreakBlockEvent event) {
         var level = event.getLevel();
         var pos = event.getPos();
         var be = level.getBlockEntity(pos);
