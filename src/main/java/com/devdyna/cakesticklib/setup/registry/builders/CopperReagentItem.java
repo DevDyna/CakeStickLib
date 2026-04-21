@@ -45,12 +45,12 @@ public abstract class CopperReagentItem extends Item {
 
         if (!player.isCreative()) {
             item.hurtAndBreak(1, player, player.getUsedItemHand());
-            if (item.getMaxDamage() - item.getDamageValue() == 1)
+            if (item.getMaxDamage() - item.getDamageValue() == 0)
                 player.addItem(x.item(Items.GLASS_BOTTLE));
         }
 
         getParticles(level, pos);
-        getSound(player,level, pos);
+        getSound(player, level, pos);
 
         return InteractionResult.SUCCESS;
 
@@ -64,8 +64,8 @@ public abstract class CopperReagentItem extends Item {
         ParticleUtils.spawnParticlesOnBlockFaces(level, pos, ParticleTypes.COMPOSTER, UniformInt.of(3, 5));
     }
 
-    public void getSound(Player player ,Level level, BlockPos pos) {
-        level.playSound(player,pos, SoundEvents.COPPER_GRATE_STEP, SoundSource.BLOCKS, 1.0F, 0.1F);
+    public void getSound(Player player, Level level, BlockPos pos) {
+        level.playSound(player, pos, SoundEvents.COPPER_GRATE_STEP, SoundSource.BLOCKS, 1.0F, 0.1F);
     }
 
 }
