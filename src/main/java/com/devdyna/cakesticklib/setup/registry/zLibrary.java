@@ -5,6 +5,7 @@ import static com.devdyna.cakesticklib.CakeStickLib.MODULE_ID;
 import java.util.function.Supplier;
 
 import com.devdyna.cakesticklib.CakeStickLib;
+import com.devdyna.cakesticklib.api.FluidStorageTank;
 import com.devdyna.cakesticklib.api.RegistryUtils;
 import com.devdyna.cakesticklib.api.aspect.logic.*;
 import com.devdyna.cakesticklib.api.utils.UpgradeComponents;
@@ -22,6 +23,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.attachment.AttachmentType;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -90,6 +92,8 @@ public class zLibrary {
 
         public static final Supplier<AttachmentType<FluidStacksResourceHandler>> FLUID_STORAGE = zHandler.register(
                 "fluid_storage", () -> AttachmentType.serializable(h -> {
+                    if (h instanceof MachineFluidAutomation be)
+                        return new FluidStorageTank((BlockEntity) be, be.getTanks(), be.getTankCapacity());
                     if (h instanceof SimpleFluidStorage be)
                         return new FluidStacksResourceHandler(be.getTanks(), be.getTankCapacity());
                     return null;
