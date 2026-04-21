@@ -10,7 +10,7 @@ import net.neoforged.neoforge.transfer.fluid.FluidStacksResourceHandler;
 
 public interface MachineFluidAutomation extends IndexModifier<FluidResource> {
 
-    FluidStacksResourceHandler getFluidAutomation();
+    FluidStacksResourceHandler getAutomationFluidStorage();
 
     FluidStacksResourceHandler getFluidStorage();
 

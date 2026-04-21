@@ -90,12 +90,12 @@ public class zLibrary {
                     return null;
                 }).build());
 
-        public static final Supplier<AttachmentType<FluidStacksResourceHandler>> FLUID_STORAGE = zHandler.register(
+        public static final Supplier<AttachmentType<FluidStorageTank>> FLUID_STORAGE = zHandler.register(
                 "fluid_storage", () -> AttachmentType.serializable(h -> {
-                    if (h instanceof MachineFluidAutomation be)
-                        return new FluidStorageTank((BlockEntity) be, be.getTanks(), be.getTankCapacity());
+                    // if (h instanceof MachineFluidAutomation be)
+                    //     return new FluidStorageTank((BlockEntity) be, be.getTanks(), be.getTankCapacity());
                     if (h instanceof SimpleFluidStorage be)
-                        return new FluidStacksResourceHandler(be.getTanks(), be.getTankCapacity());
+                        return new FluidStorageTank((BlockEntity)be,be.getTanks(), be.getTankCapacity());
                     return null;
                 }).build());
 
