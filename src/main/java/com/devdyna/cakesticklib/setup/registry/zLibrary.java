@@ -6,9 +6,7 @@ import java.util.function.Supplier;
 
 import com.devdyna.cakesticklib.CakeStickLib;
 import com.devdyna.cakesticklib.api.RegistryUtils;
-import com.devdyna.cakesticklib.api.aspect.logic.EnergyBlock;
-import com.devdyna.cakesticklib.api.aspect.logic.ItemStorageBlock;
-import com.devdyna.cakesticklib.api.aspect.logic.SimpleFluidStorage;
+import com.devdyna.cakesticklib.api.aspect.logic.*;
 import com.devdyna.cakesticklib.api.utils.UpgradeComponents;
 import com.devdyna.cakesticklib.setup.RecipeRegister;
 import com.devdyna.cakesticklib.setup.common.recipes.oxidation.CopperOxidationRecipe;
@@ -85,6 +83,8 @@ public class zLibrary {
                 "item_storage", () -> AttachmentType.serializable(h -> {
                     if (h instanceof ItemStorageBlock be)
                         return new ItemStacksResourceHandler(be.getSlots());
+                    if (h instanceof MachineItemAutomation be)
+                        return be.getAutomationItemStorage();
                     return null;
                 }).build());
 
