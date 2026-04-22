@@ -16,23 +16,23 @@ public class CreativeTab {
             event.accept(zItems.CHISEL.get());
             event.accept(zItems.REDSTONE_ACID.get());
             event.accept(zItems.HONEY_SOLUTION.get());
+
+            event.accept(zItems.SPEED_UPGRADE.get().set(20, 125, 0, 0));
+            event.accept(zItems.ENERGY_UPGRADE.get().set(0, -50, 0, 0));
+            event.accept(zItems.LUCK_UPGRADE.get().set(0, 150, 15, 0));
+            event.accept(zItems.FLUID_UPGRADE.get().set(0, 150, 0, -20));
         }
 
-        if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
+        if (event.getTabKey() == zCreativeTabs.INGREDIENTS.getKey()) {
             CreativeTabUtils.accept(event,
-                    zItems.PATINA.get(),
-                    zItems.AMETHYST_DUST.get(),
-                    zItems.CARBON_DUST.get(),
-                    zItems.COPPER_DUST.get(),
-                    zItems.DIAMOND_DUST.get(),
-                    zItems.EMERALD_DUST.get(),
-                    zItems.GOLD_DUST.get(),
-                    zItems.IRON_DUST.get(),
-                    zItems.LAPIS_DUST.get(),
-                    zItems.QUARTZ_DUST.get(),
-                    zItems.SULFUR_DUST.get(),
-                    zItems.SAWDUST.get(),
-                    zItems.FLOUR.get());
+                    zItems.zSimple,
+                    zItems.zPebbles,
+                    zItems.zIngots,
+                    zItems.zDusts,
+                    zItems.zPlates,
+                    zItems.zMolds,
+                    zItems.zChunks,
+                    zItems.zDeposits);
 
         }
 
