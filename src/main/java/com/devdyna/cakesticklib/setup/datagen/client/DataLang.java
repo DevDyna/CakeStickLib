@@ -72,13 +72,17 @@ public class DataLang extends LanguageProvider {
                                 .map(DeferredRegister.Items::getEntries)
                                 .forEach(c -> c.forEach(i -> addItem(i, named(i, MODULE_ID))));
 
-                add(MODULE_ID + ".setup.redstone_acid.tip", TIP_COLOR + "Oxidize copper blocks");
-                add(MODULE_ID + ".setup.honey_solution.tip", TIP_COLOR + "Wax copper blocks");
+                add(MODULE_ID + ".redstone_acid.tip", TIP_COLOR + "Oxidize copper blocks");
+                add(MODULE_ID + ".honey_solution.tip", TIP_COLOR + "Wax copper blocks");
 
-                add(MODULE_ID + ".setup.cakestick.tip", TIP_COLOR + "Place cake slices");
+                add(MODULE_ID + ".cakestick.tip", TIP_COLOR + "Place cake slices");
                 LangUtils.advKey(this, MODULE_ID, "cake_stick", "The cake is(n't) a lie!", "The Cake stick is right!");
 
                 add(MODULE_ID + ".jei.copper_oxidation", "Copper Oxidation Info");
+
+                add(MODULE_ID + ".jei.patina_drop", TIP_COLOR + "Drop %s" + TIP_COLOR + " items every scrape");
+
+                // upgrades
 
                 add(MODULE_ID + ".upgrades.title", TIP_COLOR + "Upgrade Modifiers");
 
@@ -93,8 +97,6 @@ public class DataLang extends LanguageProvider {
                 add(MODULE_ID + ".screen.modifier.speed", TIP_COLOR + "Speed Modifier §7[§f§a%s§7]");
                 add(MODULE_ID + ".screen.modifier.luck", TIP_COLOR + "Luck Modifier §7[§f§a%s§7]");
                 add(MODULE_ID + ".screen.modifier.fluid", TIP_COLOR + "Fluid Modifier §7[§f§a%s§7]");
-
-                add(MODULE_ID + ".jei.patina_drop", TIP_COLOR + "Drop %s" + TIP_COLOR + " items every scrape");
 
                 // config
                 add(MODULE_ID + ".configuration.events", "General events");

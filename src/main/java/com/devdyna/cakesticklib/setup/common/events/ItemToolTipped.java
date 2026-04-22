@@ -25,7 +25,7 @@ public class ItemToolTipped {
         var tip = event.getToolTip();
 
         if (item.getItem() instanceof CakeStick)
-            tip.add(OVER_THE_REGISTRY_ID, Component.translatable(MODULE_ID + ".setup.cakestick.tip"));
+            tip.add(OVER_THE_REGISTRY_ID, Component.translatable(MODULE_ID + ".cakestick.tip"));
 
         if (item.has(zComponents.UPGRADE_COMPONENTS)) {
             var nbt = item.get(zComponents.UPGRADE_COMPONENTS);
@@ -71,12 +71,10 @@ public class ItemToolTipped {
         }
 
         if (item.getItem() instanceof RedstoneAcid)
-            tip.add(OVER_THE_REGISTRY_ID, Component.translatable(MODULE_ID + ".setup.redstone_acid.tip"));
+            tip.add(OVER_THE_REGISTRY_ID, Component.translatable(MODULE_ID + ".redstone_acid.tip"));
 
-
-            if (item.getItem() instanceof HoneySolution)
-            tip.add(OVER_THE_REGISTRY_ID, Component.translatable(MODULE_ID + ".setup.honey_solution.tip"));
-
+        if (item.getItem() instanceof HoneySolution)
+            tip.add(OVER_THE_REGISTRY_ID, Component.translatable(MODULE_ID + ".honey_solution.tip"));
 
     }
 }
