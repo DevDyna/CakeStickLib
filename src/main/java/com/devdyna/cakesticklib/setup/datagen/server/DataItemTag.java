@@ -30,18 +30,7 @@ public class DataItemTag extends ItemTagsProvider {
 
         tag(zItemTags.COAL_LIKE).add(Items.COAL, Items.CHARCOAL);
 
-        tag(Tags.Items.DUSTS).add(
-                zItems.AMETHYST_DUST.get(),
-                zItems.CARBON_DUST.get(),
-                zItems.COPPER_DUST.get(),
-                zItems.DIAMOND_DUST.get(),
-                zItems.EMERALD_DUST.get(),
-                zItems.GOLD_DUST.get(),
-                zItems.IRON_DUST.get(),
-                zItems.LAPIS_DUST.get(),
-                zItems.QUARTZ_DUST.get(),
-                zItems.SAWDUST.get(),
-                zItems.SULFUR_DUST.get());
+        zItems.zDusts.getEntries().forEach(i->tag(Tags.Items.DUSTS).add(i.get()));
 
         tag(zItemTags.DUST_AMETHYST).add(zItems.AMETHYST_DUST.get());
 
