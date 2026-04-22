@@ -19,8 +19,8 @@ public class GameEvents {
                 PatinaDropEvent.class,
                 VanillaHarvestable.class,
                 RecipeSender.class,
-                EnderEyeReturn.class
-        ).forEach(NeoForge.EVENT_BUS::register);
+                EnderEyeReturn.class)
+                .forEach(NeoForge.EVENT_BUS::register);
 
         bus.register(CreativeTab.class);
     }
