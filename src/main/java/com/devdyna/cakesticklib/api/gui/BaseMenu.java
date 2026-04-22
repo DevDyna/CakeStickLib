@@ -21,7 +21,6 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
 import net.neoforged.neoforge.transfer.item.ResourceHandlerSlot;
 
-@SuppressWarnings("null")
 public abstract class BaseMenu extends AbstractContainerMenu {
 
     public enum BlockMenuType {

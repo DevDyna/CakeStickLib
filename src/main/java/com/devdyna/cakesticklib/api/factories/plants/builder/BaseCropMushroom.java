@@ -19,7 +19,6 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.common.CommonHooks;
 
-@SuppressWarnings("null")
 public class BaseCropMushroom extends BaseShortCropBlock {
 
     protected BaseCropMushroom(Properties properties) {

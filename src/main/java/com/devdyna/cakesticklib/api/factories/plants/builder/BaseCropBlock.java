@@ -21,7 +21,6 @@ import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.BlockHitResult;
 
-@SuppressWarnings("null")
 public class BaseCropBlock extends CropBlock implements Harvestable, PlantHandler {
 
     public BaseCropBlock(Properties properties) {

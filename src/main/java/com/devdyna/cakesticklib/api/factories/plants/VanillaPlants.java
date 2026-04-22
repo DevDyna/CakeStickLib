@@ -38,7 +38,6 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
  * 
  * Credits : @DevDyna
  */
-@SuppressWarnings("null")
 public class VanillaPlants {
 
     static int treeHarvestingBlockLimit = Config.TREE_CUTTING_LIMIT.get();

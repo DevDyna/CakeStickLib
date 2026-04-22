@@ -16,7 +16,6 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 
-@SuppressWarnings("null")
 public class CopperOxidationRecipe extends BaseRecipeType<OxidationInput> {
 
     private OxidationStatus type;

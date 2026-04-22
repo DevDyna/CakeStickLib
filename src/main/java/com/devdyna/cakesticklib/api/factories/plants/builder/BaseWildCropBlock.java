@@ -11,7 +11,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 
-@SuppressWarnings("null")
 public class BaseWildCropBlock extends BushBlock {
 
     protected BaseWildCropBlock(Properties properties) {
