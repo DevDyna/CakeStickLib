@@ -1,5 +1,6 @@
 {
   "values": [
+    "cakesticklib:sulfur_dust",
     "cakesticklib:amethyst_dust",
     "cakesticklib:carbon_dust",
     "cakesticklib:copper_dust",
@@ -8,8 +9,6 @@
     "cakesticklib:gold_dust",
     "cakesticklib:iron_dust",
     "cakesticklib:lapis_dust",
-    "cakesticklib:quartz_dust",
-    "cakesticklib:sawdust",
-    "cakesticklib:sulfur_dust"
+    "cakesticklib:quartz_dust"
   ]
 }
