@@ -7,9 +7,11 @@ import com.devdyna.cakesticklib.api.utils.x;
 
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -25,6 +27,18 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
 public class RegistryUtils {
+
+        public static DeferredHolder<CreativeModeTab, CreativeModeTab> createCreativeTab(
+                        String modid,
+                        String id,
+                        Supplier<Item> icon, DeferredRegister<CreativeModeTab> register) {
+                return register
+                                .register(modid + "_" + id, () -> CreativeModeTab.builder()
+                                                .title(Component.translatable(
+                                                                modid + ".creative_tab." + id))
+                                                .icon(() -> icon.get().getDefaultInstance())
+                                                .build());
+        }
 
         /**
          * register an block + item
