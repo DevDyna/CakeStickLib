@@ -40,17 +40,17 @@ public class ItemToolTipped {
                 }
                 if (UpgradeComponents.has(nbt, UpgradeType.SPEED)) {
                     var speed = UpgradeComponents.get(nbt, UpgradeType.SPEED);
-                    tip.add(3, Component.translatable(MODULE_ID + ".upgrades.modifier.speed",
+                    tip.add(2, Component.translatable(MODULE_ID + ".upgrades.modifier.speed",
                             ((speed >= 0 ? "§a+" : "§c") + speed + "%")));
                 }
                 if (UpgradeComponents.has(nbt, UpgradeType.LUCK)) {
                     var luck = UpgradeComponents.get(nbt, UpgradeType.LUCK);
-                    tip.add(4, Component.translatable(MODULE_ID + ".upgrades.modifier.luck",
+                    tip.add(2, Component.translatable(MODULE_ID + ".upgrades.modifier.luck",
                             ((luck > 0 ? "§a+" : "§c") + luck + "%")));
                 }
                 if (UpgradeComponents.has(nbt, UpgradeType.FLUID)) {
                     var fluid = UpgradeComponents.get(nbt, UpgradeType.FLUID);
-                    tip.add(5, Component.translatable(MODULE_ID + ".upgrades.modifier.fluid",
+                    tip.add(2, Component.translatable(MODULE_ID + ".upgrades.modifier.fluid",
                             ((fluid < 0 ? "§a" : "§c+") + fluid + "%")));
                 }
 
