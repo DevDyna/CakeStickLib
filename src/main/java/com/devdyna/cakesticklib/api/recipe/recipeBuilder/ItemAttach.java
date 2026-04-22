@@ -135,7 +135,7 @@ public class ItemAttach {
             }
 
             default BUILDER input(TagKey<Item> input,HolderLookup.Provider p) {
-                return input(x.itemSized(input));
+                return input(x.itemSized(input,p));
             }
 
             default BUILDER input(Item input, int c) {
@@ -147,7 +147,7 @@ public class ItemAttach {
             }
 
             default BUILDER input(TagKey<Item> input, int c,HolderLookup.Provider p) {
-                return input(x.itemSized(input, c));
+                return input(x.itemSized(input, c,p));
             }
 
         }

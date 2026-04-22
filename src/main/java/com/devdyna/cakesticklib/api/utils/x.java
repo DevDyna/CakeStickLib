@@ -209,11 +209,14 @@ public class x {
     public static Ingredient itemIngredient(TagKey<Item> i) {
         return Ingredient.of(BuiltInRegistries.ITEM.getOrThrow(i));
     }
-    
-    public static Ingredient itemIngredient(TagKey<Item> i,HolderLookup.Provider p) {
+
+    public static Ingredient itemIngredient(TagKey<Item> i, HolderLookup.Provider p) {
         return Ingredient.of(p.getOrThrow(i));
     }
 
+    /**
+     * This method will create a new itemtag!
+     */
     public static Ingredient itemIngredient(Identifier tag) {
         return itemIngredient(TagKey.create(Registries.ITEM, tag));
     }
@@ -230,8 +233,13 @@ public class x {
         return FluidIngredient.of(i);
     }
 
+    @Deprecated
     public static FluidIngredient fluidIngredient(TagKey<Fluid> i) {
         return FluidIngredient.of(BuiltInRegistries.FLUID.getOrThrow(i));
+    }
+
+    public static FluidIngredient fluidIngredient(TagKey<Fluid> i, HolderLookup.Provider p) {
+        return FluidIngredient.of(p.getOrThrow(i));
     }
 
     public static FluidIngredient fluidIngredient(Identifier tag) {
@@ -249,16 +257,16 @@ public class x {
         return itemSized(stack, 1);
     }
 
-    public static SizedIngredient itemSized(TagKey<Item> stack) {
-        return itemSized(stack, 1);
+    public static SizedIngredient itemSized(TagKey<Item> stack,HolderLookup.Provider p) {
+        return itemSized(stack, 1,p);
     }
 
     public static SizedIngredient itemSized(ItemLike stack, int c) {
         return SizedIngredient.of(stack, c);
     }
 
-    public static SizedIngredient itemSized(TagKey<Item> stack, int c) {
-        return itemSized(itemIngredient(stack), c);
+    public static SizedIngredient itemSized(TagKey<Item> stack, int c,HolderLookup.Provider p) {
+        return itemSized(itemIngredient(stack,p), c);
     }
 
     public static SizedIngredient itemSized(ItemStack stack) {
@@ -273,8 +281,8 @@ public class x {
         return itemSized(i, 1);
     }
 
-    public static SizedFluidIngredient fluidSized(TagKey<Fluid> tag, int amount) {
-        return fluidSized(fluidIngredient(tag), amount);
+    public static SizedFluidIngredient fluidSized(TagKey<Fluid> tag, int amount,HolderLookup.Provider p) {
+        return fluidSized(fluidIngredient(tag,p), amount);
     }
 
     public static SizedFluidIngredient fluidSized(Fluid fluid, int amount) {
@@ -285,8 +293,8 @@ public class x {
         return new SizedFluidIngredient(fluid, amount);
     }
 
-    public static SizedFluidIngredient fluidSized(TagKey<Fluid> tag) {
-        return fluidSized(tag, 1000);
+    public static SizedFluidIngredient fluidSized(TagKey<Fluid> tag,HolderLookup.Provider p) {
+        return fluidSized(tag, 1000,p);
     }
 
     public static SizedFluidIngredient fluidSized(Fluid fluid) {
