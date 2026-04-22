@@ -5,6 +5,8 @@ import java.awt.Color;
 import javax.annotation.Nullable;
 
 import com.devdyna.cakesticklib.api.utils.ColorUtil;
+
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -36,12 +38,16 @@ public abstract class BaseScreen<T extends BaseMenu> extends AbstractContainerSc
 
     protected final Color defaultToolTipColor = ColorUtil.color(64, 64, 64);
 
-
     @Override
     public void extractBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float a) {
-       super.extractBackground(graphics, mouseX, mouseY, a);
-        graphics.blit(RenderPipelines.GUI, background(), getLeftPos(), getTopPos(), 0, 0, this.imageWidth, this.imageHeight, 256, 256);
+        super.extractBackground(graphics, mouseX, mouseY, a);
+        graphics.blit(RenderPipelines.GUI, background(), getLeftPos(), getTopPos(), 0, 0, this.imageWidth,
+                this.imageHeight, 256, 256);
         renderArrow(graphics);
+    }
+
+    public boolean hasShiftDown() {
+        return Minecraft.getInstance().hasShiftDown();
     }
 
     protected void renderArrow(GuiGraphicsExtractor guiGraphics) {
