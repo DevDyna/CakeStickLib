@@ -20,6 +20,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.common.crafting.SizedIngredient;
 import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.FluidStackTemplate;
 import net.neoforged.neoforge.fluids.crafting.FluidIngredient;
 import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -46,10 +47,6 @@ public class x {
     public static Identifier parse(String s) {
         return Identifier.parse(s);
     }
-
-    // public static Identifier rl(String s) {
-    // return Main.rl( s);
-    // }
 
     /**
      * @param d <code>BuiltInRegistries.BLOCK</code>
@@ -174,6 +171,14 @@ public class x {
         return itemTemplate(i.getBlock());
     }
 
+    public static FluidStackTemplate fluidTemplate(Fluid i, int c) {
+        return new FluidStackTemplate(i, c);
+    }
+
+    public static FluidStackTemplate fluidTemplate(DeferredHolder<Fluid, Fluid> i, int c) {
+        return fluidTemplate(i.get(), c);
+    }
+
     // Simple Ingredient types
     // -------------------------------------------------//
 
@@ -225,10 +230,6 @@ public class x {
         return itemIngredient(list.stream().toArray(ItemLike[]::new));
     }
 
-    public static FluidIngredient fluidIngredient(FluidStack i) {
-        return FluidIngredient.of(i);
-    }
-
     public static FluidIngredient fluidIngredient(Fluid i) {
         return FluidIngredient.of(i);
     }
@@ -257,16 +258,16 @@ public class x {
         return itemSized(stack, 1);
     }
 
-    public static SizedIngredient itemSized(TagKey<Item> stack,HolderLookup.Provider p) {
-        return itemSized(stack, 1,p);
+    public static SizedIngredient itemSized(TagKey<Item> stack, HolderLookup.Provider p) {
+        return itemSized(stack, 1, p);
     }
 
     public static SizedIngredient itemSized(ItemLike stack, int c) {
         return SizedIngredient.of(stack, c);
     }
 
-    public static SizedIngredient itemSized(TagKey<Item> stack, int c,HolderLookup.Provider p) {
-        return itemSized(itemIngredient(stack,p), c);
+    public static SizedIngredient itemSized(TagKey<Item> stack, int c, HolderLookup.Provider p) {
+        return itemSized(itemIngredient(stack, p), c);
     }
 
     public static SizedIngredient itemSized(ItemStack stack) {
@@ -281,8 +282,8 @@ public class x {
         return itemSized(i, 1);
     }
 
-    public static SizedFluidIngredient fluidSized(TagKey<Fluid> tag, int amount,HolderLookup.Provider p) {
-        return fluidSized(fluidIngredient(tag,p), amount);
+    public static SizedFluidIngredient fluidSized(TagKey<Fluid> tag, int amount, HolderLookup.Provider p) {
+        return fluidSized(fluidIngredient(tag, p), amount);
     }
 
     public static SizedFluidIngredient fluidSized(Fluid fluid, int amount) {
@@ -293,16 +294,12 @@ public class x {
         return new SizedFluidIngredient(fluid, amount);
     }
 
-    public static SizedFluidIngredient fluidSized(TagKey<Fluid> tag,HolderLookup.Provider p) {
-        return fluidSized(tag, 1000,p);
+    public static SizedFluidIngredient fluidSized(TagKey<Fluid> tag, HolderLookup.Provider p) {
+        return fluidSized(tag, 1000, p);
     }
 
     public static SizedFluidIngredient fluidSized(Fluid fluid) {
         return fluidSized(fluid, 1000);
-    }
-
-    public static SizedFluidIngredient fluidSized(FluidStack stack) {
-        return fluidSized(stack.getFluid(), stack.amount());
     }
 
     // Block types

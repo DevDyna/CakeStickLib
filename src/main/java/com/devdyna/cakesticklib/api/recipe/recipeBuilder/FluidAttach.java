@@ -6,7 +6,7 @@ import com.devdyna.cakesticklib.api.utils.x;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.material.Fluid;
-import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.FluidStackTemplate;
 import net.neoforged.neoforge.fluids.crafting.FluidIngredient;
 import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
 
@@ -24,7 +24,7 @@ public class FluidAttach {
                 return fluid(x.fluidSized(fluid, 1000, p));
             }
 
-            default BUILDER fluid(FluidStack fluid) {
+            default BUILDER fluid(Fluid fluid) {
                 return fluid(x.fluidSized(fluid));
             }
 
@@ -51,10 +51,6 @@ public class FluidAttach {
                 return fluids(x.fluidSized(a, 1000), x.fluidSized(b, 1000));
             }
 
-            default BUILDER fluids(FluidStack a, FluidStack b) {
-                return fluids(x.fluidSized(a), x.fluidSized(b));
-            }
-
         }
 
         @Deprecated
@@ -66,20 +62,16 @@ public class FluidAttach {
                 return fluid(x.fluidIngredient(fluid));
             }
 
-            default BUILDER fluid(FluidStack fluid) {
-                return fluid(x.fluidIngredient(fluid));
-            }
-
         }
     }
 
     public class Any {
         public static interface SimpleFluidAttach<BUILDER extends BaseRecipeBuilder> extends BuilderAttach<BUILDER> {
 
-            abstract BUILDER fluid(FluidStack fluid);
+            abstract BUILDER fluid(FluidStackTemplate fluid);
 
             default BUILDER fluid(Fluid fluid, int amount) {
-                return fluid(x.fluid(fluid, amount));
+                return fluid(x.fluidTemplate(fluid, amount));
             }
 
             default BUILDER fluid(Fluid fluid) {
@@ -92,10 +84,10 @@ public class FluidAttach {
     public class Output {
         public static interface OutputFluid<BUILDER extends BaseRecipeBuilder> extends BuilderAttach<BUILDER> {
 
-            abstract BUILDER output(FluidStack fluid);
+            abstract BUILDER output(FluidStackTemplate fluid);
 
             default BUILDER output(Fluid fluid, int amount) {
-                return output(x.fluid(fluid, amount));
+                return output(x.fluidTemplate(fluid, amount));
             }
 
             default BUILDER output(Fluid fluid) {
