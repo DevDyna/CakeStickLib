@@ -7,7 +7,6 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.fluids.FluidStackTemplate;
-import net.neoforged.neoforge.fluids.crafting.FluidIngredient;
 import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
 
 public class FluidAttach {
@@ -26,6 +25,10 @@ public class FluidAttach {
 
             default BUILDER fluid(Fluid fluid) {
                 return fluid(x.fluidSized(fluid));
+            }
+
+            default BUILDER fluid(Fluid fluid, int c) {
+                return fluid(x.fluidSized(fluid, c));
             }
 
         }
@@ -53,26 +56,12 @@ public class FluidAttach {
 
         }
 
-        @Deprecated
-        public static interface NoFluidCount<BUILDER extends BaseRecipeBuilder> extends Any.SimpleFluidAttach<BUILDER> {
-
-            abstract BUILDER fluid(FluidIngredient fluid);
-
-            default BUILDER fluid(TagKey<Fluid> fluid) {
-                return fluid(x.fluidIngredient(fluid));
-            }
-
-        }
     }
 
     public class Any {
         public static interface SimpleFluidAttach<BUILDER extends BaseRecipeBuilder> extends BuilderAttach<BUILDER> {
 
-            abstract BUILDER fluid(FluidStackTemplate fluid);
-
-            default BUILDER fluid(Fluid fluid, int amount) {
-                return fluid(x.fluidTemplate(fluid, amount));
-            }
+            abstract BUILDER fluid(Fluid fluid, int amount);
 
             default BUILDER fluid(Fluid fluid) {
                 return fluid(fluid, 1000);
