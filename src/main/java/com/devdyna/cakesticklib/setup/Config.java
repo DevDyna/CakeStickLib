@@ -18,9 +18,44 @@ public class Config {
     public static BooleanValue REDSTONE_ACID_EVENT;
     public static BooleanValue HONEY_SOLUTION_EVENT;
 
+    public static IntValue MACHINE_MAX_SPEED_UPGRADES_TYPE;// 4
+    public static IntValue MACHINE_MAX_ENERGY_UPGRADES_TYPE;// max
+    public static IntValue MACHINE_MAX_LUCK_UPGRADES_TYPE;// max
+    public static IntValue MACHINE_MAX_FLUID_UPGRADES_TYPE;// max
+
+    public static IntValue MACHINE_MINIMAL_TICK_DELAY;// 1
+    public static IntValue MACHINE_MINIMAL_FE_COST;// 0
+    public static IntValue MACHINE_MINIMAL_FLUID_COST;// 0
+    public static IntValue MACHINE_MAXIMAL_LUCK;// 100
+
     private static final ModConfigSpec.Builder qCOMMON = new ModConfigSpec.Builder();
 
     public static void register(ModContainer c) {
+
+        MACHINE_MAX_SPEED_UPGRADES_TYPE = number("Max Speed Increaser Upgrade Types usable foreach machine",
+                "max_speed_upgrades", 4, 0, 16);
+
+        MACHINE_MAX_ENERGY_UPGRADES_TYPE = number(
+                "Max Energy Efficiency Upgrade Types usable foreach machine",
+                "max_energy_upgrades", 16, 0, 16);
+
+        MACHINE_MAX_LUCK_UPGRADES_TYPE = number(
+                "Max Secondary Output Increaser Upgrade Types usable foreach machine",
+                "max_luck_upgrades", 4, 0, 16);
+
+        MACHINE_MAX_FLUID_UPGRADES_TYPE = number("Max Fluid Efficiency Upgrade Types usable foreach machine",
+                "max_fluid_upgrades", 4, 0, 16);
+
+        MACHINE_MINIMAL_TICK_DELAY = number("Minimal tick delay based on upgrade installed",
+                "min_tick_rate", 1);
+
+        MACHINE_MINIMAL_FE_COST = number("Minimal Energy cost based on upgrade installed",
+                "min_fe_cost", 5);
+
+        MACHINE_MINIMAL_FLUID_COST = number("Minimal Fluid cost based on upgrade installed",
+                "min_mb_cost", 0);
+        MACHINE_MAXIMAL_LUCK = number("Maximal Secondary Chance based on upgrade installed",
+                "max_luck", 100);
 
         qCOMMON.comment("Gameplay Additions").push("events");
 
@@ -35,17 +70,17 @@ public class Config {
                 "tree_cutting_limit", 2048);
 
         ENDER_EYE_RETURN_EVENT = bool("End Portal Frame can be interacted to remove Eye of Ender",
-                "ender_eye_return",true);
+                "ender_eye_return", true);
 
         PATINA_DROP_EVENT = bool("Patina will drop when scrapped any oxidized copper block",
-                "patina_drop",true);
+                "patina_drop", true);
 
         REDSTONE_ACID_EVENT = bool(
                 "Redstone Acid can be used to increase a stage of oxidation at the copper block clicked",
-                "redstone_acid_oxide",true);
+                "redstone_acid_oxide", true);
 
         HONEY_SOLUTION_EVENT = bool("Honey Solution can be used to wax copper blocks clicked",
-                "honey_solution_wax",true);
+                "honey_solution_wax", true);
 
         qCOMMON.pop();
 
