@@ -11,148 +11,152 @@ import net.neoforged.neoforge.common.ModConfigSpec.*;
 @SuppressWarnings("unused")
 public class Config {
 
-    public static BooleanValue HARVESTABLE_ACTION;
-    public static IntValue TREE_CUTTING_LIMIT;
-    public static BooleanValue ENDER_EYE_RETURN_EVENT;
-    public static BooleanValue PATINA_DROP_EVENT;
-    public static BooleanValue REDSTONE_ACID_EVENT;
-    public static BooleanValue HONEY_SOLUTION_EVENT;
+        public static BooleanValue HARVESTABLE_ACTION;
+        public static IntValue TREE_CUTTING_LIMIT;
+        public static BooleanValue ENDER_EYE_RETURN_EVENT;
+        public static BooleanValue PATINA_DROP_EVENT;
+        public static BooleanValue REDSTONE_ACID_EVENT;
+        public static BooleanValue HONEY_SOLUTION_EVENT;
 
-    public static IntValue MACHINE_MAX_SPEED_UPGRADES_TYPE;// 4
-    public static IntValue MACHINE_MAX_ENERGY_UPGRADES_TYPE;// max
-    public static IntValue MACHINE_MAX_LUCK_UPGRADES_TYPE;// max
-    public static IntValue MACHINE_MAX_FLUID_UPGRADES_TYPE;// max
+        public static IntValue MACHINE_MAX_SPEED_UPGRADES_TYPE;// 4
+        public static IntValue MACHINE_MAX_ENERGY_UPGRADES_TYPE;// max
+        public static IntValue MACHINE_MAX_LUCK_UPGRADES_TYPE;// max
+        public static IntValue MACHINE_MAX_FLUID_UPGRADES_TYPE;// max
 
-    public static IntValue MACHINE_MINIMAL_TICK_DELAY;// 1
-    public static IntValue MACHINE_MINIMAL_FE_COST;// 0
-    public static IntValue MACHINE_MINIMAL_FLUID_COST;// 0
-    public static IntValue MACHINE_MAXIMAL_LUCK;// 100
+        public static IntValue MACHINE_MINIMAL_TICK_DELAY;// 1
+        public static IntValue MACHINE_MINIMAL_FE_COST;// 0
+        public static IntValue MACHINE_MINIMAL_FLUID_COST;// 0
+        public static IntValue MACHINE_MAXIMAL_LUCK;// 100
 
-    private static final ModConfigSpec.Builder qCOMMON = new ModConfigSpec.Builder();
+        private static final ModConfigSpec.Builder qCOMMON = new ModConfigSpec.Builder();
 
-    public static void register(ModContainer c) {
+        public static void register(ModContainer c) {
 
-        MACHINE_MAX_SPEED_UPGRADES_TYPE = number("Max Speed Increaser Upgrade Types usable foreach machine",
-                "max_speed_upgrades", 4, 0, 16);
+                qCOMMON.comment("Machine Upgrades").push("upgrades");
 
-        MACHINE_MAX_ENERGY_UPGRADES_TYPE = number(
-                "Max Energy Efficiency Upgrade Types usable foreach machine",
-                "max_energy_upgrades", 16, 0, 16);
+                MACHINE_MAX_SPEED_UPGRADES_TYPE = number("Max Speed Increaser Upgrade Types usable foreach machine",
+                                "max_speed_upgrades", 4, 0, 16);
 
-        MACHINE_MAX_LUCK_UPGRADES_TYPE = number(
-                "Max Secondary Output Increaser Upgrade Types usable foreach machine",
-                "max_luck_upgrades", 4, 0, 16);
+                MACHINE_MAX_ENERGY_UPGRADES_TYPE = number(
+                                "Max Energy Efficiency Upgrade Types usable foreach machine",
+                                "max_energy_upgrades", 16, 0, 16);
 
-        MACHINE_MAX_FLUID_UPGRADES_TYPE = number("Max Fluid Efficiency Upgrade Types usable foreach machine",
-                "max_fluid_upgrades", 4, 0, 16);
+                MACHINE_MAX_LUCK_UPGRADES_TYPE = number(
+                                "Max Secondary Output Increaser Upgrade Types usable foreach machine",
+                                "max_luck_upgrades", 4, 0, 16);
 
-        MACHINE_MINIMAL_TICK_DELAY = number("Minimal tick delay based on upgrade installed",
-                "min_tick_rate", 1);
+                MACHINE_MAX_FLUID_UPGRADES_TYPE = number("Max Fluid Efficiency Upgrade Types usable foreach machine",
+                                "max_fluid_upgrades", 4, 0, 16);
 
-        MACHINE_MINIMAL_FE_COST = number("Minimal Energy cost based on upgrade installed",
-                "min_fe_cost", 5);
+                MACHINE_MINIMAL_TICK_DELAY = number("Minimal tick delay based on upgrade installed",
+                                "min_tick_rate", 1);
 
-        MACHINE_MINIMAL_FLUID_COST = number("Minimal Fluid cost based on upgrade installed",
-                "min_mb_cost", 0);
-        MACHINE_MAXIMAL_LUCK = number("Maximal Secondary Chance based on upgrade installed",
-                "max_luck", 100);
+                MACHINE_MINIMAL_FE_COST = number("Minimal Energy cost based on upgrade installed",
+                                "min_fe_cost", 5);
 
-        qCOMMON.comment("Gameplay Additions").push("events");
+                MACHINE_MINIMAL_FLUID_COST = number("Minimal Fluid cost based on upgrade installed",
+                                "min_mb_cost", 0);
+                MACHINE_MAXIMAL_LUCK = number("Maximal Secondary Chance based on upgrade installed",
+                                "max_luck", 100);
 
-        HARVESTABLE_ACTION = bool(
-                "Player can right-click on crops to collect intend of breaking" +
-                        "\nIf detected Farmers Delight it will turn off by default",
-                "harvestable_action",
-                !ModAddonUtil.checkMod("farmersdelight"));
+                qCOMMON.pop();
 
-        TREE_CUTTING_LIMIT = number(
-                "Max number of harvestable blocks foreach interaction",
-                "tree_cutting_limit", 2048);
+                qCOMMON.comment("Gameplay Additions").push("events");
 
-        ENDER_EYE_RETURN_EVENT = bool("End Portal Frame can be interacted to remove Eye of Ender",
-                "ender_eye_return", true);
+                HARVESTABLE_ACTION = bool(
+                                "Player can right-click on crops to collect intend of breaking" +
+                                                "\nIf detected Farmers Delight it will turn off by default",
+                                "harvestable_action",
+                                !ModAddonUtil.checkMod("farmersdelight"));
 
-        PATINA_DROP_EVENT = bool("Patina will drop when scrapped any oxidized copper block",
-                "patina_drop", true);
+                TREE_CUTTING_LIMIT = number(
+                                "Max number of harvestable blocks foreach interaction",
+                                "tree_cutting_limit", 2048);
 
-        REDSTONE_ACID_EVENT = bool(
-                "Redstone Acid can be used to increase a stage of oxidation at the copper block clicked",
-                "redstone_acid_oxide", true);
+                ENDER_EYE_RETURN_EVENT = bool("End Portal Frame can be interacted to remove Eye of Ender",
+                                "ender_eye_return", true);
 
-        HONEY_SOLUTION_EVENT = bool("Honey Solution can be used to wax copper blocks clicked",
-                "honey_solution_wax", true);
+                PATINA_DROP_EVENT = bool("Patina will drop when scrapped any oxidized copper block",
+                                "patina_drop", true);
 
-        qCOMMON.pop();
+                REDSTONE_ACID_EVENT = bool(
+                                "Redstone Acid can be used to increase a stage of oxidation at the copper block clicked",
+                                "redstone_acid_oxide", true);
 
-        c.registerConfig(ModConfig.Type.COMMON, qCOMMON.build());
-    }
+                HONEY_SOLUTION_EVENT = bool("Honey Solution can be used to wax copper blocks clicked",
+                                "honey_solution_wax", true);
 
-    private static BooleanValue bool(String c, String k, boolean b) {
-        return qCOMMON
-                .comment(c)
-                .define(k, b);
-    }
+                qCOMMON.pop();
 
-    /**
-     * default = false
-     */
-    private static BooleanValue bool(String c, String k) {
-        return bool(c, k, false);
-    }
-
-    private static IntValue number(String c, String k, int d, int mn, int mx) {
-        return qCOMMON
-                .comment(c)
-                .defineInRange(k, d, mn, mx);
-    }
-
-    private static DoubleValue numberFloat(String c, String k, double d, double min, double max) {
-        return qCOMMON
-                .comment(c)
-                .defineInRange(k, d, min, max);
-    }
-
-    /**
-     * min = 0<br/>
-     * <br/>
-     * max = Double.MAX_VALUE
-     */
-
-    private static DoubleValue numberFloat(String c, String k, double d) {
-        return numberFloat(c, k, d, 0, Integer.MAX_VALUE);
-    }
-
-    /**
-     * max = Double.MAX_VALUE
-     */
-    private static DoubleValue numberFloat(String c, String k, double d, double min) {
-        return numberFloat(c, k, d, min, Integer.MAX_VALUE);
-    }
-
-    /**
-     * min = 1<br/>
-     * <br/>
-     * max = Integer.MAX_VALUE
-     */
-    private static IntValue number(String c, String k, int d) {
-        return number(c, k, d, 1, Integer.MAX_VALUE);
-    }
-
-    /**
-     * max = Integer.MAX_VALUE
-     */
-    private static IntValue number(String c, String k, int d, int min) {
-        return number(c, k, d, min, Integer.MAX_VALUE);
-    }
-
-    protected class decor {
-        protected static void complex(String s) {
-            qCOMMON.comment(StringUtil.nameCapitalized(s));
+                c.registerConfig(ModConfig.Type.COMMON, qCOMMON.build());
         }
 
-        protected static void simple(String s) {
-            qCOMMON.comment(s);
+        private static BooleanValue bool(String c, String k, boolean b) {
+                return qCOMMON
+                                .comment(c)
+                                .define(k, b);
         }
-    }
+
+        /**
+         * default = false
+         */
+        private static BooleanValue bool(String c, String k) {
+                return bool(c, k, false);
+        }
+
+        private static IntValue number(String c, String k, int d, int mn, int mx) {
+                return qCOMMON
+                                .comment(c)
+                                .defineInRange(k, d, mn, mx);
+        }
+
+        private static DoubleValue numberFloat(String c, String k, double d, double min, double max) {
+                return qCOMMON
+                                .comment(c)
+                                .defineInRange(k, d, min, max);
+        }
+
+        /**
+         * min = 0<br/>
+         * <br/>
+         * max = Double.MAX_VALUE
+         */
+
+        private static DoubleValue numberFloat(String c, String k, double d) {
+                return numberFloat(c, k, d, 0, Integer.MAX_VALUE);
+        }
+
+        /**
+         * max = Double.MAX_VALUE
+         */
+        private static DoubleValue numberFloat(String c, String k, double d, double min) {
+                return numberFloat(c, k, d, min, Integer.MAX_VALUE);
+        }
+
+        /**
+         * min = 1<br/>
+         * <br/>
+         * max = Integer.MAX_VALUE
+         */
+        private static IntValue number(String c, String k, int d) {
+                return number(c, k, d, 1, Integer.MAX_VALUE);
+        }
+
+        /**
+         * max = Integer.MAX_VALUE
+         */
+        private static IntValue number(String c, String k, int d, int min) {
+                return number(c, k, d, min, Integer.MAX_VALUE);
+        }
+
+        protected class decor {
+                protected static void complex(String s) {
+                        qCOMMON.comment(StringUtil.nameCapitalized(s));
+                }
+
+                protected static void simple(String s) {
+                        qCOMMON.comment(s);
+                }
+        }
 
 }

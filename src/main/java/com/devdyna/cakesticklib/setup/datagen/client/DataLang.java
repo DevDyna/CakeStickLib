@@ -55,6 +55,8 @@ public class DataLang extends LanguageProvider {
 
                 // setup
 
+                add(MODULE_ID + ".creative_tab.resources", "Resources");
+
                 List.of(
                                 zItems.zItem,
                                 zItems.zSimple,
@@ -97,6 +99,8 @@ public class DataLang extends LanguageProvider {
                 // config
                 add(MODULE_ID + ".configuration.events", "General events");
 
+                add(MODULE_ID + ".configuration.upgrades", "Machine Upgrades");
+
                 add(MODULE_ID + ".configuration.harvestable_action",
                                 "Harvestable Action");
 
@@ -115,7 +119,30 @@ public class DataLang extends LanguageProvider {
                 add(MODULE_ID + ".configuration.honey_solution_wax",
                                 "Honey Solution use");
 
-                add(MODULE_ID+".creative_tab.resources", "Resources");
+                add(MODULE_ID + ".configuration.max_speed_upgrades",
+                                "Max Speed Modifiers");
+
+                add(MODULE_ID + ".configuration.max_energy_upgrades",
+                                "Max Energy Modifiers");
+
+                add(MODULE_ID + ".configuration.max_luck_upgrades",
+                                "Max Luck Modifiers");
+
+                add(MODULE_ID + ".configuration.max_fluid_upgrades",
+                                "Max Fluid Modifiers");
+
+                add(MODULE_ID + ".configuration.min_tick_rate",
+                                "Minimal Tick Rate");
+
+                add(MODULE_ID + ".configuration.min_fe_cost",
+                                "Minimal FE Cost");
+
+                add(MODULE_ID + ".configuration.min_mb_cost",
+                                "Minimal MB Cost");
+
+                add(MODULE_ID + ".configuration.max_luck",
+                                "Maximal Luck");
+
         }
 
 }
