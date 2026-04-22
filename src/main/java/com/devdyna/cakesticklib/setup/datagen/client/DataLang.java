@@ -3,11 +3,14 @@ package com.devdyna.cakesticklib.setup.datagen.client;
 import static com.devdyna.cakesticklib.CakeStickLib.MODULE_ID;
 import static com.devdyna.cakesticklib.api.datagen.LangUtils.*;
 
+import java.util.List;
+
 import com.devdyna.cakesticklib.api.datagen.LangUtils;
 import com.devdyna.cakesticklib.setup.registry.zLibrary.*;
 
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.LanguageProvider;
+import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class DataLang extends LanguageProvider {
 
@@ -51,7 +54,22 @@ public class DataLang extends LanguageProvider {
                                 TIP_COLOR + "Craft in-world Stonecutter recipes when bound to the result block");
 
                 // setup
-                zItems.zItem.getEntries().forEach(i -> addItem(i, named(i, MODULE_ID)));
+
+                List.of(
+                                zItems.zItem,
+                                zItems.zSimple,
+                                zItems.zUpgrade,
+                                zItems.zDusts,
+                                zItems.zPlates,
+                                zItems.zPebbles,
+                                zItems.zMolds,
+                                zItems.zIngots,
+                                zItems.zDeposits,
+                                zItems.zChunks)
+                                .stream()
+                                .map(DeferredRegister.Items::getEntries)
+                                .forEach(c -> c.forEach(i -> addItem(i, named(i, MODULE_ID))));
+
                 add(MODULE_ID + ".setup.redstone_acid.tip", TIP_COLOR + "Oxidize copper blocks");
                 add(MODULE_ID + ".setup.honey_solution.tip", TIP_COLOR + "Wax copper blocks");
 
@@ -97,6 +115,7 @@ public class DataLang extends LanguageProvider {
                 add(MODULE_ID + ".configuration.honey_solution_wax",
                                 "Honey Solution use");
 
+                add(MODULE_ID+".creative_tab.resources", "Resources");
         }
 
 }
