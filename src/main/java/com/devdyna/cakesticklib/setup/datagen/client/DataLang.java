@@ -58,6 +58,7 @@ public class DataLang extends LanguageProvider {
                 add(MODULE_ID + ".creative_tab.resources", "Resources");
 
                 List.of(
+
                                 zItems.zItem,
                                 zItems.zSimple,
                                 zItems.zUpgrade,
@@ -66,8 +67,13 @@ public class DataLang extends LanguageProvider {
                                 zItems.zPebbles,
                                 zItems.zMolds,
                                 zItems.zIngots,
+                                zItems.zGears,
+                                zItems.zNuggets,
+                                zItems.zFoils,
+                                zItems.zCoils,
                                 zItems.zDeposits,
-                                zItems.zChunks)
+                                zItems.zChunks,
+                                zItems.zBlockItem)
                                 .stream()
                                 .map(DeferredRegister.Items::getEntries)
                                 .forEach(c -> c.forEach(i -> addItem(i, named(i, MODULE_ID))));
@@ -101,8 +107,6 @@ public class DataLang extends LanguageProvider {
                 // config
                 add(MODULE_ID + ".configuration.events", "General events");
 
-                add(MODULE_ID + ".configuration.upgrades", "Machine Upgrades");
-
                 add(MODULE_ID + ".configuration.harvestable_action",
                                 "Harvestable Action");
 
@@ -120,6 +124,8 @@ public class DataLang extends LanguageProvider {
 
                 add(MODULE_ID + ".configuration.honey_solution_wax",
                                 "Honey Solution use");
+
+                add(MODULE_ID + ".configuration.upgrades", "Machine Upgrades");
 
                 add(MODULE_ID + ".configuration.max_speed_upgrades",
                                 "Max Speed Modifiers");
