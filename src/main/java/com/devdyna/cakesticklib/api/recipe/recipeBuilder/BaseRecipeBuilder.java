@@ -40,6 +40,27 @@ public abstract class BaseRecipeBuilder {
         this.criteria.forEach(adv::addCriterion);
         c.accept(pId, createRecipe(),
                 adv.build(pId.identifier().withPrefix("recipes/" + RecipeCategory.MISC.getFolderName() + "/")));
+        onRecipeCreation(c, pId, createRecipe());
+    }
+
+    /**
+     * async recipe creation , mainly to create mid-hardcoded linked recipes using
+     * datagen to create stuff like fallback recipes
+     */
+    protected void onRecipeCreation(RecipeOutput c, ResourceKey<Recipe<?>> pId, Recipe<?> created) {
+
+    }
+
+    protected void buildRecipe(RecipeOutput c, ResourceKey<Recipe<?>> pId, Recipe<?> recipe) {
+        if (this.criteria.isEmpty())
+            throw new IllegalStateException("Recipe unobtainable : " + String.valueOf(pId));
+        Advancement.Builder adv = c.advancement()
+                .addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(pId))
+                .rewards(AdvancementRewards.Builder.recipe(pId))
+                .requirements(AdvancementRequirements.Strategy.OR);
+        this.criteria.forEach(adv::addCriterion);
+        c.accept(pId, recipe,
+                adv.build(pId.identifier().withPrefix("recipes/" + RecipeCategory.MISC.getFolderName() + "/")));
     }
 
 }
