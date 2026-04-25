@@ -2,6 +2,7 @@ package com.devdyna.cakesticklib.setup.registry;
 
 import static com.devdyna.cakesticklib.CakeStickLib.MODULE_ID;
 
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 import com.devdyna.cakesticklib.CakeStickLib;
@@ -10,12 +11,10 @@ import com.devdyna.cakesticklib.api.RegistryUtils;
 import com.devdyna.cakesticklib.api.aspect.logic.*;
 import com.devdyna.cakesticklib.api.utils.UpgradeComponents;
 import com.devdyna.cakesticklib.setup.RecipeRegister;
+import com.devdyna.cakesticklib.setup.common.recipes.hammering.HammeringRecipe;
 import com.devdyna.cakesticklib.setup.common.recipes.oxidation.CopperOxidationRecipe;
-import com.devdyna.cakesticklib.setup.registry.builders.CakeStick;
-import com.devdyna.cakesticklib.setup.registry.builders.Chisel;
-import com.devdyna.cakesticklib.setup.registry.builders.HoneySolution;
-import com.devdyna.cakesticklib.setup.registry.builders.IndustrialUpgrade;
-import com.devdyna.cakesticklib.setup.registry.builders.RedstoneAcid;
+import com.devdyna.cakesticklib.setup.common.recipes.upgrade_application.UpgradeApplication;
+import com.devdyna.cakesticklib.setup.registry.builders.*;
 
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
@@ -23,9 +22,15 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraft.world.level.material.MapColor;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.attachment.AttachmentType;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -47,6 +52,8 @@ public class zLibrary {
                 zRecipeTypes.register(bus);
                 zItemTags.register(bus);
                 zCreativeTabs.register(bus);
+                zBlocks.register(bus);
+                zBlockTags.register(bus);
         }
 
         public class zComponents {
@@ -127,8 +134,15 @@ public class zLibrary {
                         zIngots.register(bus);
                         zDeposits.register(bus);
                         zChunks.register(bus);
+                        zFoils.register(bus);
+                        zCoils.register(bus);
+                        zGears.register(bus);
+                        zNuggets.register(bus);
+                        zBlockItem.register(bus);
                 }
 
+                public static final DeferredRegister.Items zBlockItem = DeferredRegister
+                                .createItems(CakeStickLib.MODULE_ID);
                 public static final DeferredRegister.Items zSimple = DeferredRegister
                                 .createItems(CakeStickLib.MODULE_ID);
                 public static final DeferredRegister.Items zUpgrade = DeferredRegister
@@ -147,6 +161,14 @@ public class zLibrary {
                 public static final DeferredRegister.Items zDeposits = DeferredRegister
                                 .createItems(CakeStickLib.MODULE_ID);
                 public static final DeferredRegister.Items zChunks = DeferredRegister
+                                .createItems(CakeStickLib.MODULE_ID);
+                public static final DeferredRegister.Items zNuggets = DeferredRegister
+                                .createItems(CakeStickLib.MODULE_ID);
+                public static final DeferredRegister.Items zCoils = DeferredRegister
+                                .createItems(CakeStickLib.MODULE_ID);
+                public static final DeferredRegister.Items zFoils = DeferredRegister
+                                .createItems(CakeStickLib.MODULE_ID);
+                public static final DeferredRegister.Items zGears = DeferredRegister
                                 .createItems(CakeStickLib.MODULE_ID);
 
                 public static final DeferredItem<Item> CAKE_STICK = zItem.registerItem("cake_stick",
@@ -201,8 +223,14 @@ public class zLibrary {
                                 .registerSimpleItem("green_battery");
                 public static final DeferredHolder<Item, Item> ELECTRON_TUBE = zSimple
                                 .registerSimpleItem("electron_tube");
+
                 public static final DeferredHolder<Item, Item> FOSSIL = zSimple.registerSimpleItem("fossil");
                 public static final DeferredHolder<Item, Item> PLASTIC = zSimple.registerSimpleItem("plastic");
+                public static final DeferredHolder<Item, Item> HAMMER = zSimple.registerSimpleItem("hammer",
+                                p -> p.durability(1024)
+                                                .pickaxe(ToolMaterial.IRON, 6.0F, -3.1F)
+                                                .repairable(Items.IRON_INGOT));
+
                 public static final DeferredHolder<Item, Item> RESISTOR = zSimple.registerSimpleItem("resistor");
 
                 public static final DeferredHolder<Item, Item> ADVANCED_ALLOY_INGOT = zIngots
@@ -312,6 +340,57 @@ public class zLibrary {
                 public static final DeferredHolder<Item, Item> HEMATITE = zDeposits
                                 .registerSimpleItem("hematite_deposit");
 
+                public static final DeferredHolder<Item, Item> METAL_BOLTS = zSimple
+                                .registerSimpleItem("metal_bolts");
+                public static final DeferredHolder<Item, Item> RAW_SILICON = zSimple
+                                .registerSimpleItem("raw_silicon");
+                public static final DeferredHolder<Item, Item> SILICON_GEM = zSimple
+                                .registerSimpleItem("silicon_gem");
+                public static final DeferredHolder<Item, Item> SILICON_SHARD = zSimple
+                                .registerSimpleItem("silicon_shard");
+
+                public static final DeferredHolder<Item, Item> COPPER_FOIL = zFoils
+                                .registerSimpleItem("copper_foil");
+
+                public static final DeferredHolder<Item, Item> GOLD_FOIL = zFoils
+                                .registerSimpleItem("gold_foil");
+
+                public static final DeferredHolder<Item, Item> IRON_FOIL = zFoils
+                                .registerSimpleItem("iron_foil");
+
+                public static final DeferredHolder<Item, Item> ADVANCED_ALLOY_NUGGET = zNuggets
+                                .registerSimpleItem("advanced_alloy_nugget");
+
+                public static final DeferredHolder<Item, Item> WROUGHT_IRON_NUGGET = zNuggets
+                                .registerSimpleItem("wrought_iron_nugget");
+
+                public static final DeferredHolder<Item, Item> STEEL_NUGGET = zNuggets
+                                .registerSimpleItem("steel_nugget");
+
+                public static final DeferredHolder<Item, Item> COPPER_COIL = zCoils
+                                .registerSimpleItem("copper_coil");
+
+                public static final DeferredHolder<Item, Item> IRON_COIL = zCoils
+                                .registerSimpleItem("iron_coil");
+
+                public static final DeferredHolder<Item, Item> GOLD_COIL = zCoils
+                                .registerSimpleItem("gold_coil");
+
+                public static final DeferredHolder<Item, Item> WOODEN_GEAR = zGears
+                                .registerSimpleItem("wooden_gear");
+
+                public static final DeferredHolder<Item, Item> COPPER_GEAR = zGears
+                                .registerSimpleItem("copper_gear");
+
+                public static final DeferredHolder<Item, Item> GOLD_GEAR = zGears
+                                .registerSimpleItem("gold_gear");
+
+                public static final DeferredHolder<Item, Item> IRON_GEAR = zGears
+                                .registerSimpleItem("iron_gear");
+
+                public static final DeferredHolder<Item, Item> STEEL_GEAR = zGears
+                                .registerSimpleItem("steel_gear");
+
         }
 
         public class zItemTags {
@@ -319,6 +398,7 @@ public class zLibrary {
                 public static void register(IEventBus bus) {
                 }
 
+                @Deprecated
                 public static final TagKey<Item> COAL_LIKE = RegistryUtils.tagItem("c", "coal_like");
 
                 public static final TagKey<Item> SAWDUST = RegistryUtils.tagItem("c", "dusts/wood");
@@ -339,6 +419,72 @@ public class zLibrary {
 
                 public static final TagKey<Item> OXIDIZER = RegistryUtils.tagItem(MODULE_ID, "oxidizer");
                 public static final TagKey<Item> WAXING = RegistryUtils.tagItem(MODULE_ID, "waxing");
+
+                public static final TagKey<Item> INGOT_STEEL = RegistryUtils.tagItem("c", "ingots/steel");
+                public static final TagKey<Item> INGOT_ADVANCEDALLOY = RegistryUtils.tagItem("c",
+                                "ingots/advanced_alloy");
+                public static final TagKey<Item> INGOT_WROUGHT_IRON = RegistryUtils.tagItem("c", "ingots/wrought_iron");
+
+                public static final TagKey<Item> NUGGET_STEEL = RegistryUtils.tagItem("c", "nuggets/steel");
+                public static final TagKey<Item> NUGGET_ADVANCEDALLOY = RegistryUtils.tagItem("c",
+                                "nuggets/advanced_alloy");
+                public static final TagKey<Item> NUGGET_COPPER = RegistryUtils.tagItem("c", "nuggets/copper");
+                public static final TagKey<Item> NUGGET_WROUGHT_IRON = RegistryUtils.tagItem("c",
+                                "nuggets/wrought_iron");
+
+                public static final TagKey<Item> FOILS = RegistryUtils.tagItem("c", "foils");
+                public static final TagKey<Item> FOIL_COPPER = RegistryUtils.tagItem("c", "foils/copper");
+                public static final TagKey<Item> FOIL_GOLD = RegistryUtils.tagItem("c", "foils/gold");
+                public static final TagKey<Item> FOIL_IRON = RegistryUtils.tagItem("c", "foils/iron");
+
+                public static final TagKey<Item> PLATES = RegistryUtils.tagItem("c", "plates");
+
+                public static final TagKey<Item> PLATE_COPPER = RegistryUtils.tagItem("c", "plates/copper");
+                public static final TagKey<Item> PLATE_GOLD = RegistryUtils.tagItem("c", "plates/gold");
+                public static final TagKey<Item> PLATE_IRON = RegistryUtils.tagItem("c", "plates/iron");
+                public static final TagKey<Item> PLATE_STEEL = RegistryUtils.tagItem("c", "plates/steel");
+                public static final TagKey<Item> PLATE_COAL = RegistryUtils.tagItem("c", "plates/coal");
+                public static final TagKey<Item> PLATE_ADVANCED_ALLOY = RegistryUtils.tagItem("c",
+                                "plates/advanced_alloy");
+                public static final TagKey<Item> PLATE_WROUGHT_IRON = RegistryUtils.tagItem("c", "plates/wrought_iron");
+
+                public static final TagKey<Item> GEMS_SILICON = RegistryUtils.tagItem("c", "gems/silicon");
+
+                public static final TagKey<Item> SILICON = RegistryUtils.tagItem("c", "silicon");
+
+                public static final TagKey<Item> GEARS = RegistryUtils.tagItem("c", "gears");
+                public static final TagKey<Item> GEAR_WOODEN = RegistryUtils.tagItem("c", "gears/wooden");
+                public static final TagKey<Item> GEAR_IRON = RegistryUtils.tagItem("c", "gears/iron");
+                public static final TagKey<Item> GEAR_GOLD = RegistryUtils.tagItem("c", "gears/gold");
+                public static final TagKey<Item> GEAR_COPPER = RegistryUtils.tagItem("c", "gears/copper");
+                public static final TagKey<Item> GEAR_STEEL = RegistryUtils.tagItem("c", "gears/steel");
+
+                public static final TagKey<Item> COILS = RegistryUtils.tagItem("c", "coils");
+                public static final TagKey<Item> COIL_COPPER = RegistryUtils.tagItem("c", "coils/copper");
+                public static final TagKey<Item> COIL_GOLD = RegistryUtils.tagItem("c", "coils/gold");
+                public static final TagKey<Item> COIL_IRON = RegistryUtils.tagItem("c", "coils/iron");
+
+                public static final TagKey<Item> UPGRADES = RegistryUtils
+                                .tagItem(MODULE_ID, "upgrades");
+
+                public static final TagKey<Item> MOLDS = RegistryUtils
+                                .tagItem("c", "molds");
+
+                public static final TagKey<Item> ELECTRON_TUBES = RegistryUtils.tagItem("c", "electron_tubes");
+
+                public static final TagKey<Item> BLOCK_STEEL = RegistryUtils
+                                .tagItem("c", "storage_blocks/steel");
+
+                public static final TagKey<Item> BLOCK_ADVANCED_ALLOY = RegistryUtils
+                                .tagItem("c", "storage_blocks/advanced_alloy");
+
+                public static final TagKey<Item> BLOCK_WROUGHT_IRON = RegistryUtils
+                                .tagItem("c", "storage_blocks/wrought_iron");
+
+                public static final TagKey<Item> ORE_DEPOSITS = RegistryUtils.tagItem("c", "deposit");
+
+                public static final TagKey<Item> BATTERIES = RegistryUtils.tagItem("c", "batteries");
+
         }
 
         public class zRecipeTypes {
@@ -357,6 +503,56 @@ public class zLibrary {
                                 "copper_oxidation",
                                 () -> CopperOxidationRecipe.serializer());
 
+                public static final RecipeRegister<HammeringRecipe> HAMMERING = RecipeRegister.of(
+                                "hammering",
+                                () -> HammeringRecipe.serializer());
+
+                public static final RecipeRegister<UpgradeApplication> UPGRADE_APPLICATION = RecipeRegister.of(
+                                "upgrade_application",
+                                () -> UpgradeApplication.serializer());
+
+        }
+
+        public class zBlocks {
+                public static void register(IEventBus bus) {
+                        zBlockItem.register(bus);
+                }
+
+                public static final DeferredRegister.Blocks zBlockItem = DeferredRegister
+                                .createBlocks(CakeStickLib.MODULE_ID);
+
+                public static final DeferredHolder<Block, Block> WROUGHT_IRON_BLOCK = registerItemBlock(
+                                "wrought_iron_block",
+                                p -> p.sound(SoundType.METAL)
+                                                .strength(2.5f)
+                                                .mapColor(MapColor.RAW_IRON));
+
+                public static final DeferredHolder<Block, Block> ADVANCED_ALLOY_BLOCK = registerItemBlock(
+                                "advanced_alloy_block",
+                                p -> p.sound(SoundType.METAL)
+                                                .strength(2f)
+                                                .mapColor(MapColor.METAL));
+
+                public static final DeferredHolder<Block, Block> STEEL_BLOCK = registerItemBlock(
+                                "steel_block",
+                                p -> p.sound(SoundType.METAL)
+                                                .strength(2f)
+                                                .mapColor(MapColor.METAL));
+
+        }
+
+        public class zBlockTags {
+                public static void register(IEventBus bus) {
+                }
+
+                public static final TagKey<Block> BLOCK_STEEL = RegistryUtils
+                                .tagBlock("c", "storage_blocks/steel");
+
+                public static final TagKey<Block> BLOCK_ADVANCED_ALLOY = RegistryUtils
+                                .tagBlock("c", "storage_blocks/advanced_alloy");
+
+                public static final TagKey<Block> BLOCK_WROUGHT_IRON = RegistryUtils
+                                .tagBlock("c", "storage_blocks/wrought_iron");
         }
 
         public class zCreativeTabs {
@@ -371,5 +567,13 @@ public class zLibrary {
                                 .createCreativeTab(MODULE_ID, "resources", () -> zItems.CHIP.get(),
                                                 zCreativeTabs.zCreative);
 
+        }
+
+        private static DeferredHolder<Block, Block> registerItemBlock(String blockname,
+                        Function<Properties, Properties> sup) {
+                DeferredHolder<Block, Block> block = zBlocks.zBlockItem.registerBlock(blockname,
+                                p -> new Block(sup.apply(p)));
+                zItems.zBlockItem.registerSimpleBlockItem(block);
+                return block;
         }
 }
