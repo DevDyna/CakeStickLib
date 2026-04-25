@@ -16,6 +16,7 @@ public class CreativeTab {
             event.accept(zItems.CHISEL.get());
             event.accept(zItems.REDSTONE_ACID.get());
             event.accept(zItems.HONEY_SOLUTION.get());
+            event.accept(zItems.HAMMER.get());
 
             event.accept(zItems.SPEED_UPGRADE.get().set(20, 125, 0, 0));
             event.accept(zItems.ENERGY_UPGRADE.get().set(0, -50, 0, 0));
