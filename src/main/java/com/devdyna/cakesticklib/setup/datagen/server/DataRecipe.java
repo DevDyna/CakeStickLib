@@ -185,6 +185,16 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .unlockedBy(getHasName(zItems.CONDENSER.get()), has(zItems.CONDENSER.get()))
                                 .save(output);
 
+                shaped(RecipeCategory.MISC, zItems.HAMMER.get())
+                                .pattern(" IS")
+                                .pattern(" TI")
+                                .pattern("T  ")
+                                .define('S', Items.STRING)
+                                .define('T', Items.STICK)
+                                .define('I', Items.IRON_INGOT)
+                                .unlockedBy(getHasName(Items.IRON_INGOT), has(Items.IRON_INGOT))
+                                .save(output);
+
                 twoByTwoPacker(output, zItems.CARBON_FIBER.get(), zItemTags.DUST_COAL);
                 twoByTwoPacker(RecipeCategory.MISC, zItems.CARBON_PLATE.get(), zItems.CARBON_FIBER.get());
 
