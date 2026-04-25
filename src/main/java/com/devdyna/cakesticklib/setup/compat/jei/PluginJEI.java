@@ -26,7 +26,7 @@ public class PluginJEI implements IModPlugin {
 
     @Override
     public Identifier getPluginUid() {
-        return x.rl(MODULE_ID,"jei_plugin");
+        return x.rl(MODULE_ID, "jei_plugin");
     }
 
     @Override
