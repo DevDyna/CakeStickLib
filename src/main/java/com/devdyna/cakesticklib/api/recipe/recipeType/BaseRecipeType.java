@@ -11,26 +11,7 @@ import net.minecraft.world.item.crafting.RecipeInput;
 public abstract class BaseRecipeType<RECIPE_INPUT extends RecipeInput>
         implements Recipe<RECIPE_INPUT> {
 
-    // @Override
-    // public RecipeSerializer<? extends BaseRecipeType<RECIPE_INPUT>>
-    // getSerializer() {
-    // return getRecipe().getSerializer();
-    // }
-
-    // @Override
-    // public RecipeType<? extends BaseRecipeType<RECIPE_INPUT>> getType() {
-    // return getRecipe().getType();
-    // }
-
-    // public abstract RecipeRegister<? extends BaseRecipeType<RECIPE_INPUT>>
-    // getRecipe();
-
     public abstract Item getToastIcon();
-
-    // @Override
-    // public String group() {
-    // return ID + "/quern";
-    // }
 
     @Override
     public PlacementInfo placementInfo() {
