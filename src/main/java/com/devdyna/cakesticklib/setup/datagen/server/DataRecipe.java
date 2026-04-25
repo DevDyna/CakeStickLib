@@ -308,6 +308,8 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                 gemProcessing(Tags.Items.GEMS_LAPIS, zItems.LAPIS_DUST.get());
                 gemProcessing(Tags.Items.GEMS_QUARTZ, zItems.QUARTZ_DUST.get());
 
+                gemProcessing(Items.RESIN_BRICK, Items.RESIN_CLUMP);
+
                 HammeringRecipeBuilder.of()
                                 .tool(zItems.HAMMER.get())
                                 .add(Items.WHEAT)
