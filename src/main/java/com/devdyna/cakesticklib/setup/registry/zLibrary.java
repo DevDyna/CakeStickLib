@@ -228,9 +228,9 @@ public class zLibrary {
 
                 public static final DeferredHolder<Item, Item> FOSSIL = zSimple.registerSimpleItem("fossil");
                 public static final DeferredHolder<Item, Item> PLASTIC = zSimple.registerSimpleItem("plastic");
-                public static final DeferredHolder<Item, Item> HAMMER = zSimple.registerSimpleItem("hammer",
-                                p -> p.durability(1024)
-                                                .pickaxe(ToolMaterial.IRON, 6.0F, -3.1F)
+                public static final DeferredHolder<Item, Item> HAMMER = zItem.registerSimpleItem("hammer",
+                                p -> p.pickaxe(ToolMaterial.IRON, 6.0F, -3.1F)
+                                                .durability(1024)
                                                 .repairable(Items.IRON_INGOT));
 
                 public static final DeferredHolder<Item, Item> RESISTOR = zSimple.registerSimpleItem("resistor");
