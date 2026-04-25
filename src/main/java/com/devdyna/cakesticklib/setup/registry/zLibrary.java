@@ -191,6 +191,8 @@ public class zLibrary {
 
                 public static final DeferredHolder<Item, Item> AMETHYST_DUST = zDusts
                                 .registerSimpleItem("amethyst_dust");
+                public static final DeferredHolder<Item, Item> GLASS_DUST = zDusts.registerSimpleItem("glass_dust");
+
                 public static final DeferredHolder<Item, Item> CARBON_DUST = zDusts.registerSimpleItem("carbon_dust");
                 public static final DeferredHolder<Item, Item> COPPER_DUST = zDusts.registerSimpleItem("copper_dust");
                 public static final DeferredHolder<Item, Item> DIAMOND_DUST = zDusts.registerSimpleItem("diamond_dust");

@@ -322,6 +322,13 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .unlockedBy()
                                 .save(output);
 
+                HammeringRecipeBuilder.of()
+                                .tool(zItems.HAMMER.get())
+                                .add(Tags.Items.GLASS_BLOCKS, registries)
+                                .output(zItems.GLASS_DUST)
+                                .unlockedBy()
+                                .save(output);
+
                 plate(output, zItems.STEEL_INGOT.get(), zItems.STEEL_PLATE.get());
                 plate(output, zItems.WROUGHT_IRON_INGOT.get(), zItems.WROUGHT_IRON_PLATE.get());
                 plate(output, zItems.ADVANCED_ALLOY_INGOT.get(), zItems.ADVANCED_ALLOY_PLATE.get());
@@ -405,6 +412,18 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                 HammeringRecipeBuilder.of()
                                 .tool(zItems.HAMMER.get(), 1)
                                 .add(gem, registries)
+                                .output(dust)
+                                .unlockedBy()
+                                .save(output);
+
+        }
+        public void gemProcessing(
+                        Item gem,
+                        Item dust) {
+
+                HammeringRecipeBuilder.of()
+                                .tool(zItems.HAMMER.get(), 1)
+                                .add(gem)
                                 .output(dust)
                                 .unlockedBy()
                                 .save(output);
