@@ -3,16 +3,11 @@ package com.devdyna.cakesticklib.setup.datagen.client;
 import static com.devdyna.cakesticklib.CakeStickLib.MODULE_ID;
 
 import com.devdyna.cakesticklib.api.datagen.ModelUtils;
-import com.devdyna.cakesticklib.api.utils.x;
 import com.devdyna.cakesticklib.setup.registry.zLibrary.*;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ModelProvider;
-import net.minecraft.client.data.models.model.ItemModelUtils;
 import net.minecraft.client.data.models.model.ModelTemplates;
-import net.minecraft.client.data.models.model.TextureMapping;
-import net.minecraft.client.data.models.model.TextureSlot;
-import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.data.PackOutput;
 
 public class DataModel extends ModelProvider {
@@ -25,6 +20,7 @@ public class DataModel extends ModelProvider {
         protected void registerModels(BlockModelGenerators blockModels, ItemModelGenerators itemModels) {
 
                 itemModels.generateFlatItem(zItems.CAKE_STICK.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+                itemModels.generateFlatItem(zItems.HAMMER.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
                 itemModels.generateFlatItem(zItems.REDSTONE_ACID.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
                 itemModels.generateFlatItem(zItems.HONEY_SOLUTION.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
                 itemModels.generateFlatItem(zItems.CHISEL.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
@@ -44,6 +40,11 @@ public class DataModel extends ModelProvider {
                 itemModels.generateFlatItem(zItems.PLASTIC.get(), ModelTemplates.FLAT_ITEM);
                 itemModels.generateFlatItem(zItems.RESISTOR.get(), ModelTemplates.FLAT_ITEM);
 
+                itemModels.generateFlatItem(zItems.METAL_BOLTS.get(), ModelTemplates.FLAT_ITEM);
+                itemModels.generateFlatItem(zItems.RAW_SILICON.get(), ModelTemplates.FLAT_ITEM);
+                itemModels.generateFlatItem(zItems.SILICON_GEM.get(), ModelTemplates.FLAT_ITEM);
+                itemModels.generateFlatItem(zItems.SILICON_SHARD.get(), ModelTemplates.FLAT_ITEM);
+
                 ModelUtils.itemSubFolder(zItems.zDusts, "item/dust/", "_dust", itemModels);
                 ModelUtils.itemSubFolder(zItems.zChunks, "item/chunk/", "_chunk", itemModels);
                 ModelUtils.itemSubFolder(zItems.zDeposits, "item/deposit/", "_deposit", itemModels);
@@ -52,19 +53,14 @@ public class DataModel extends ModelProvider {
                 ModelUtils.itemSubFolder(zItems.zPebbles, "item/pebble/", "_pebble", itemModels);
                 ModelUtils.itemSubFolder(zItems.zPlates, "item/plate/", "_plate", itemModels);
 
-                zItems.zUpgrade.getEntries().forEach(i -> itemModels.itemModelOutput.accept(i.get(),
-                                ItemModelUtils.plainModel(
-                                                ModelTemplates.FLAT_ITEM.create(
-                                                                i.get(),
-                                                                new TextureMapping().put(TextureSlot.LAYER0,
-                                                                                new Material(x
-                                                                                                .rl(MODULE_ID, "item/upgrade/"
-                                                                                                                + i.getId().getPath()
-                                                                                                                                .replace("_upgrade",
-                                                                                                                                                "")))),
-                                                                itemModels.modelOutput))
+                ModelUtils.itemSubFolder(zItems.zCoils, "item/coil/", "_coil", itemModels);
+                ModelUtils.itemSubFolder(zItems.zFoils, "item/foil/", "_foil", itemModels);
+                ModelUtils.itemSubFolder(zItems.zGears, "item/gear/", "_gear", itemModels);
+                ModelUtils.itemSubFolder(zItems.zNuggets, "item/nugget/", "_nugget", itemModels);
 
-                ));
+                ModelUtils.itemSubFolder(zItems.zUpgrade, "item/upgrade/", "_upgrade", itemModels);
+
+                zBlocks.zBlockItem.getEntries().forEach(b -> blockModels.createTrivialCube(b.get()));
 
         }
 
