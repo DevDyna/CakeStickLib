@@ -121,6 +121,17 @@ public class x {
         return BuiltInRegistries.ITEM.getKey(item);
     }
 
+    public static String getMod(Item item) {
+        return BuiltInRegistries.ITEM.getKey(item).getNamespace();
+    }
+    public static String getMod(ItemLike item) {
+        return getMod(item.asItem());
+    }
+
+    public static String getTagName(TagKey<?> tag) {
+        return tag.location().getPath().toString();
+    }
+
     public static Item get(Identifier rl) {
         return BuiltInRegistries.ITEM.getValue(rl);
     }
@@ -196,7 +207,7 @@ public class x {
     }
 
     public static Ingredient itemIngredient(Item i) {
-        return itemIngredient(x.item(i));
+        return itemIngredient(List.of(i));
     }
 
     public static Ingredient itemIngredient(DeferredHolder<Item, ?> i) {
@@ -205,8 +216,8 @@ public class x {
 
     public static Ingredient itemIngredient(ItemStackTemplate[] i) {
         return x.itemIngredient(Arrays.asList(i).stream()
-                .map(ItemStackTemplate::create)
-                .map(ItemStack::getItem)
+                .map(ItemStackTemplate::item)
+                .map(Holder::value)
                 .toList());
     }
 
