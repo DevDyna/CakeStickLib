@@ -115,4 +115,8 @@ public class RegistryUtils {
                 return ResourceKey.create(NeoForgeRegistries.Keys.BIOME_MODIFIERS, x.rl(modname, id));
         }
 
+        public static Item[] getItems(DeferredRegister.Items items) {
+                return items.getEntries().stream().map(DeferredHolder::get).toArray(Item[]::new);
+        }
+
 }
