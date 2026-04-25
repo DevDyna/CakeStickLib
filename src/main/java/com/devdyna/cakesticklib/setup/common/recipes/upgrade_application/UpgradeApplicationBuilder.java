@@ -18,7 +18,10 @@ import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.criterion.InventoryChangeTrigger;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponentPatch;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStackTemplate;
@@ -132,6 +135,13 @@ public class UpgradeApplicationBuilder extends BaseRecipeBuilder
     @Override
     public UpgradeApplicationBuilder getBuilder() {
         return this;
+    }
+
+    @Override
+    public void onRecipeCreation(RecipeOutput c, ResourceKey<Recipe<?>> pId, Recipe<?> created) {
+        buildRecipe(c, ResourceKey.create(Registries.RECIPE, getSuffix("_clear_nbt")), new UpgradeApplication(
+                ShapedRecipePattern.of(Map.of('U', x.itemIngredient(result.item().value())), List.of("U")), result,
+                UpgradeComponents.builder(speed, energy, luck, fluid)));
     }
 
 }

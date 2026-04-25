@@ -185,11 +185,6 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .unlockedBy(getHasName(zItems.CONDENSER.get()), has(zItems.CONDENSER.get()))
                                 .save(output);
 
-                zItems.zUpgrade.getEntries().forEach(i -> shapeless(RecipeCategory.MISC, i.get())
-                                .requires(i.get())
-                                .unlockedBy(getHasName(i.get()), has(i.get()))
-                                .save(output, asRecipeID(i.get(), "_clear_nbt")));
-
                 twoByTwoPacker(output, zItems.CARBON_FIBER.get(), zItemTags.DUST_COAL);
                 twoByTwoPacker(RecipeCategory.MISC, zItems.CARBON_PLATE.get(), zItems.CARBON_FIBER.get());
 
@@ -430,6 +425,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .save(output);
 
         }
+
         public void gemProcessing(
                         Item gem,
                         Item dust) {
