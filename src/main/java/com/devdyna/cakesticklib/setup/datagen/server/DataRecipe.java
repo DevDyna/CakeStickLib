@@ -264,6 +264,17 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .unlockedBy(getHasName(zItemTags.PLATE_IRON), has(zItemTags.PLATE_IRON))
                                 .save(output);
 
+                shaped(RecipeCategory.MISC, zItems.ELECTRON_TUBE.get())
+                                .define('G', zItems.GLASS_DUST.get())
+                                .define('A', zItems.ADVANCED_ALLOY_NUGGET.get())
+                                .define('D', zItems.RESISTOR.get())
+                                .define('C', Tags.Items.NUGGETS_COPPER)
+                                .pattern(" G ")
+                                .pattern("DAD")
+                                .pattern(" C ")
+                                .unlockedBy(getHasName(zItemTags.PLATE_IRON), has(zItemTags.PLATE_IRON))
+                                .save(output);
+
                 doubleSmelt(output, zItems.MIXED_INGOT.get(), zItems.ADVANCED_ALLOY_INGOT.get());
 
                 shapeless(RecipeCategory.MISC, zItems.WROUGHT_IRON_INGOT.get())
