@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "cakesticklib:wrought_iron_ingot"
+  ],
+  "result": {
+    "count": 9,
+    "id": "cakesticklib:wrought_iron_nugget"
+  }
+}

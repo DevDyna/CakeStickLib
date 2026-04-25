@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.1,
+  "ingredient": "cakesticklib:mixed_ingot",
+  "result": {
+    "id": "cakesticklib:advanced_alloy_ingot"
+  }
+}

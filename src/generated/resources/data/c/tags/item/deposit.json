@@ -1,0 +1,21 @@
+{
+  "values": [
+    "cakesticklib:bauxite_deposit",
+    "cakesticklib:cylindrite_deposit",
+    "cakesticklib:auricupride_deposit",
+    "cakesticklib:pentlandite_deposit",
+    "cakesticklib:galena_deposit",
+    "cakesticklib:osmiridium_deposit",
+    "cakesticklib:argentite_deposit",
+    "cakesticklib:cassiterite_deposit",
+    "cakesticklib:malachite_deposit",
+    "cakesticklib:uraninite_deposit",
+    "cakesticklib:kaolin_deposit",
+    "cakesticklib:xenothite_deposit",
+    "cakesticklib:quartzite_deposit",
+    "cakesticklib:chalcopyrite_deposit",
+    "cakesticklib:pyrolite_deposit",
+    "cakesticklib:lignite_deposit",
+    "cakesticklib:hematite_deposit"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "upgrade_application",
+  "key": {
+    "B": "minecraft:redstone",
+    "C": "cakesticklib:chip",
+    "R": "cakesticklib:resistor",
+    "S": "#c:plates/steel"
+  },
+  "pattern": [
+    " B ",
+    "CSC",
+    " R "
+  ],
+  "result": {
+    "components": {
+      "cakesticklib:upgrade_components": {
+        "energy": -50
+      }
+    },
+    "id": "cakesticklib:energy_upgrade"
+  }
+}

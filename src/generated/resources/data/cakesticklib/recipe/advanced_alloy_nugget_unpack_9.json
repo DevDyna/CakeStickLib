@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "cakesticklib:advanced_alloy_ingot"
+  ],
+  "result": {
+    "count": 9,
+    "id": "cakesticklib:advanced_alloy_nugget"
+  }
+}

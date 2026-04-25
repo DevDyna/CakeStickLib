@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "G": "cakesticklib:plastic",
+    "I": "cakesticklib:advanced_alloy_ingot",
+    "M": "cakesticklib:silicon_gem",
+    "N": "cakesticklib:advanced_alloy_nugget"
+  },
+  "pattern": [
+    "N N",
+    "GMG",
+    " I "
+  ],
+  "result": {
+    "count": 8,
+    "id": "cakesticklib:condenser"
+  }
+}

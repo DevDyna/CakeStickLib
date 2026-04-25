@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_fluid_upgrade": {
+      "conditions": {
+        "items": [
+          {
+            "items": "cakesticklib:fluid_upgrade"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "cakesticklib:fluid_upgrade_clear_nbt"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_fluid_upgrade"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "cakesticklib:fluid_upgrade_clear_nbt"
+    ]
+  }
+}

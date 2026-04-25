@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "#c:molds",
+  "result": {
+    "id": "cakesticklib:block_mold"
+  }
+}

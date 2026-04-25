@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "I": "cakesticklib:steel_ingot"
+  },
+  "pattern": [
+    "III"
+  ],
+  "result": {
+    "count": 3,
+    "id": "cakesticklib:steel_plate"
+  }
+}

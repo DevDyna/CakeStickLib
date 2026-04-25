@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "H": "cakesticklib:condenser",
+    "R": "#c:slime_balls",
+    "S": "minecraft:redstone"
+  },
+  "pattern": [
+    " S ",
+    "RHR",
+    " R "
+  ],
+  "result": {
+    "id": "cakesticklib:green_battery"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "I": "cakesticklib:copper_plate",
+    "S": "minecraft:stick"
+  },
+  "pattern": [
+    " IS",
+    " I ",
+    "SI "
+  ],
+  "result": {
+    "count": 3,
+    "id": "cakesticklib:copper_foil"
+  }
+}

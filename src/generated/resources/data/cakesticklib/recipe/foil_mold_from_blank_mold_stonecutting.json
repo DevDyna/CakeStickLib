@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "cakesticklib:blank_mold",
+  "result": {
+    "id": "cakesticklib:foil_mold"
+  }
+}

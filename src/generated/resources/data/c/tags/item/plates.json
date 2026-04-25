@@ -1,0 +1,11 @@
+{
+  "values": [
+    "cakesticklib:advanced_alloy_plate",
+    "cakesticklib:wrought_iron_plate",
+    "cakesticklib:carbon_plate",
+    "cakesticklib:copper_plate",
+    "cakesticklib:gold_plate",
+    "cakesticklib:iron_plate",
+    "cakesticklib:steel_plate"
+  ]
+}

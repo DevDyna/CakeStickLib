@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "G": "cakesticklib:silicon_gem",
+    "N": "cakesticklib:advanced_alloy_nugget",
+    "Q": "cakesticklib:plastic"
+  },
+  "pattern": [
+    " N ",
+    " GN",
+    "Q  "
+  ],
+  "result": {
+    "count": 8,
+    "id": "cakesticklib:chip"
+  }
+}

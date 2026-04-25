@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "#c:dusts/coal",
+    "#c:dusts/coal",
+    "#c:ingots/iron"
+  ],
+  "result": {
+    "id": "cakesticklib:wrought_iron_ingot"
+  }
+}

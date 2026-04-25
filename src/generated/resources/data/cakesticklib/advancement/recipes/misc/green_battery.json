@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_condenser": {
+      "conditions": {
+        "items": [
+          {
+            "items": "cakesticklib:condenser"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "cakesticklib:green_battery"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_condenser"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "cakesticklib:green_battery"
+    ]
+  }
+}

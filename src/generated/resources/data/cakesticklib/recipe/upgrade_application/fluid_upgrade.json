@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "upgrade_application",
+  "key": {
+    "B": "minecraft:glowstone_dust",
+    "C": "cakesticklib:chip",
+    "R": "cakesticklib:metal_bolts",
+    "S": "#c:plates/steel"
+  },
+  "pattern": [
+    " B ",
+    "CSC",
+    " R "
+  ],
+  "result": {
+    "components": {
+      "cakesticklib:upgrade_components": {
+        "energy": 150,
+        "fluid": -20
+      }
+    },
+    "id": "cakesticklib:fluid_upgrade"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "M": "minecraft:lapis_lazuli",
+    "N": "cakesticklib:advanced_alloy_nugget",
+    "R": "cakesticklib:plastic"
+  },
+  "pattern": [
+    " MN",
+    "MRM",
+    "NM "
+  ],
+  "result": {
+    "count": 8,
+    "id": "cakesticklib:resistor"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "cakesticklib:steel_gear"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "ingots/steel": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#c:ingots/steel"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "ingots/steel"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "cakesticklib:steel_gear"
+    ]
+  }
+}

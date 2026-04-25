@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_energy_upgrade": {
+      "conditions": {
+        "items": [
+          {
+            "items": "cakesticklib:energy_upgrade"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "cakesticklib:energy_upgrade_clear_nbt"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_energy_upgrade"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "cakesticklib:energy_upgrade_clear_nbt"
+    ]
+  }
+}

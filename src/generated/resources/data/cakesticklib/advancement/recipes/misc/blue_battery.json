@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_resistor": {
+      "conditions": {
+        "items": [
+          {
+            "items": "cakesticklib:resistor"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "cakesticklib:blue_battery"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_resistor"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "cakesticklib:blue_battery"
+    ]
+  }
+}

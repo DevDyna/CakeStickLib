@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "hammering",
+  "ingredients": [
+    "cakesticklib:hammer",
+    "#c:gems/diamond"
+  ],
+  "result": {
+    "id": "cakesticklib:diamond_dust"
+  }
+}

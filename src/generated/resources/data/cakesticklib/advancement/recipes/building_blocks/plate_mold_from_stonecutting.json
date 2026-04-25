@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "cakesticklib:plate_mold_from_stonecutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "molds_from_plate_mold": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#c:molds"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "molds_from_plate_mold"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "cakesticklib:plate_mold_from_stonecutting"
+    ]
+  }
+}

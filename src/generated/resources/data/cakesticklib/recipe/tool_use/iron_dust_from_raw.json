@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "hammering",
+  "ingredients": [
+    "cakesticklib:hammer",
+    "#c:raw_materials/iron"
+  ],
+  "result": {
+    "count": 2,
+    "id": "cakesticklib:iron_dust"
+  }
+}

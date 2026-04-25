@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "cakesticklib": {
+      "conditions": {
+        "items": [
+          {
+            "items": "cakesticklib:hammer"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "cakesticklib:tool_use/copper_dust_from_raw"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "cakesticklib"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "cakesticklib:tool_use/copper_dust_from_raw"
+    ]
+  }
+}

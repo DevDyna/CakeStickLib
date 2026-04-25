@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "G": "cakesticklib:steel_plate",
+    "N": "minecraft:iron_nugget",
+    "Q": "minecraft:quartz"
+  },
+  "pattern": [
+    " N ",
+    " GN",
+    "Q  "
+  ],
+  "result": {
+    "count": 4,
+    "id": "cakesticklib:chip"
+  }
+}

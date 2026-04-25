@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": "cakesticklib:condenser",
+    "R": "cakesticklib:resistor",
+    "S": "minecraft:redstone"
+  },
+  "pattern": [
+    " S ",
+    "RCR",
+    " R "
+  ],
+  "result": {
+    "id": "cakesticklib:blue_battery"
+  }
+}
