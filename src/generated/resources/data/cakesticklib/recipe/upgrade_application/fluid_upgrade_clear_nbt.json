@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "upgrade_application",
+  "key": {
+    "U": "cakesticklib:fluid_upgrade"
+  },
+  "pattern": [
+    "U"
+  ],
+  "result": {
+    "components": {
+      "cakesticklib:upgrade_components": {
+        "energy": 150,
+        "fluid": -20
+      }
+    },
+    "id": "cakesticklib:fluid_upgrade"
+  }
+}

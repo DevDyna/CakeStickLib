@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_speed_upgrade": {
+    "has_steel_plate": {
       "conditions": {
         "items": [
           {
-            "items": "cakesticklib:speed_upgrade"
+            "items": "#c:plates/steel"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "cakesticklib:speed_upgrade_clear_nbt"
+        "recipe": "cakesticklib:upgrade_application/luck_upgrade_clear_nbt"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_speed_upgrade"
+      "has_steel_plate"
     ]
   ],
   "rewards": {
     "recipes": [
-      "cakesticklib:speed_upgrade_clear_nbt"
+      "cakesticklib:upgrade_application/luck_upgrade_clear_nbt"
     ]
   }
 }

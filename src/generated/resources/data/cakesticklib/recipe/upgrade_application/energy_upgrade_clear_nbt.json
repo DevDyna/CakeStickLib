@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "upgrade_application",
+  "key": {
+    "U": "cakesticklib:energy_upgrade"
+  },
+  "pattern": [
+    "U"
+  ],
+  "result": {
+    "components": {
+      "cakesticklib:upgrade_components": {
+        "energy": -50
+      }
+    },
+    "id": "cakesticklib:energy_upgrade"
+  }
+}

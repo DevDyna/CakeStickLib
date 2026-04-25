@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "upgrade_application",
+  "key": {
+    "U": "cakesticklib:luck_upgrade"
+  },
+  "pattern": [
+    "U"
+  ],
+  "result": {
+    "components": {
+      "cakesticklib:upgrade_components": {
+        "energy": 150,
+        "luck": 15
+      }
+    },
+    "id": "cakesticklib:luck_upgrade"
+  }
+}
