@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "hammering",
+  "ingredients": [
+    "cakesticklib:hammer",
+    "minecraft:resin_brick"
+  ],
+  "result": {
+    "id": "minecraft:resin_clump"
+  }
+}

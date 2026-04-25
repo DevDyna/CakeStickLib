@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": "cakesticklib:advanced_alloy_nugget",
+    "C": "#c:nuggets/copper",
+    "D": "cakesticklib:resistor",
+    "G": "cakesticklib:glass_dust"
+  },
+  "pattern": [
+    " G ",
+    "DAD",
+    " C "
+  ],
+  "result": {
+    "id": "cakesticklib:electron_tube"
+  }
+}
