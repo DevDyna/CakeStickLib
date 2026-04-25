@@ -11,19 +11,22 @@ import net.minecraft.client.resources.model.sprite.Material;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class ModelUtils {
-    public static void itemSubFolder(DeferredRegister.Items items, String prefix, String replacer,
-            ItemModelGenerators g) {
-        items.getEntries().forEach(i -> g.itemModelOutput.accept(i.get(),
-                ItemModelUtils.plainModel(
-                        ModelTemplates.FLAT_ITEM.create(
-                                i.get(),
-                                new TextureMapping()
-                                        .put(TextureSlot.LAYER0, new Material(
-                                                x.rl(i.getId().getNamespace(),
-                                                        i.getId().getPath().replace(replacer, ""))
-                                                        .withPrefix(prefix))),
-                                g.modelOutput))
+        public static void itemSubFolder(DeferredRegister.Items items, String prefix, String replacer,
+                        ItemModelGenerators g) {
+                items.getEntries().forEach(i -> g.itemModelOutput.accept(i.get(),
+                                ItemModelUtils.plainModel(
+                                                ModelTemplates.FLAT_ITEM.create(
+                                                                i.get(),
+                                                                new TextureMapping()
+                                                                                .put(TextureSlot.LAYER0, new Material(
+                                                                                                x.rl(i.getId().getNamespace(),
+                                                                                                                i.getId().getPath()
+                                                                                                                                .replace(replacer,
+                                                                                                                                                ""))
+                                                                                                                .withPrefix(prefix))),
+                                                                g.modelOutput))
 
-        ));
-    }
+                ));
+        }
+
 }
