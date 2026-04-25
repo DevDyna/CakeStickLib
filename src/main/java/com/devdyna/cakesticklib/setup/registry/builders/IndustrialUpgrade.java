@@ -49,7 +49,10 @@ public class IndustrialUpgrade extends Item {
      * @param e energy usage %
      * @param l  secondary output luck %
      * @param f  fluid usage %
+     * <br/><br/>
+     * Cannot be used on Datagen and Item registry!
      */
+    @SuppressWarnings("deprecation")
     public ItemStack set(int s, int e, int l, int f) {
         return UpgradeComponents.create(this, s, e, l, f);
     }
