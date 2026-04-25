@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.registries.DeferredHolder;
-
+@Deprecated
 public class ClazzUtil {
 
     public static String[] getAllStrings(Class<?> clazz) {
