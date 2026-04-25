@@ -21,8 +21,8 @@ public record UpgradeComponents(
     public static final Codec<UpgradeComponents> CODEC = RecordCodecBuilder.create(i -> i.group(
             Codec.INT.optionalFieldOf("speed").forGetter(UpgradeComponents::speed),
             Codec.INT.optionalFieldOf("energy").forGetter(UpgradeComponents::energy),
-            Codec.INT.optionalFieldOf("secondary_luck").forGetter(UpgradeComponents::luck),
-            Codec.INT.optionalFieldOf("fluid_usage").forGetter(UpgradeComponents::fluid_usage))
+            Codec.INT.optionalFieldOf("luck").forGetter(UpgradeComponents::luck),
+            Codec.INT.optionalFieldOf("fluid").forGetter(UpgradeComponents::fluid_usage))
             .apply(i, UpgradeComponents::new));
 
     public static final StreamCodec<FriendlyByteBuf, UpgradeComponents> STREAM_CODEC = StreamCodec.composite(
@@ -83,6 +83,7 @@ public record UpgradeComponents(
     /**
      * Value 0 will set Optional.empty()
      */
+    @Deprecated
     public static ItemStack create(Item i, int speed, int energy, int luck, int fluid) {
         var item = x.item(i);
         item.set(zComponents.UPGRADE_COMPONENTS, builder(speed, energy, luck, fluid));
