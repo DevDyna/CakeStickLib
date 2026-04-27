@@ -55,7 +55,7 @@ public class Config {
                                 "min_fe_cost", 5);
 
                 MACHINE_MINIMAL_FLUID_COST = number("Minimal Fluid cost based on upgrade installed",
-                                "min_mb_cost", 0);
+                                "min_mb_cost", 1);
                 MACHINE_MAXIMAL_LUCK = number("Maximal Secondary Chance based on upgrade installed",
                                 "max_luck", 100);
 
@@ -104,16 +104,16 @@ public class Config {
                 return bool(c, k, false);
         }
 
-        private static IntValue number(String c, String k, int d, int mn, int mx) {
+        private static IntValue number(String c, String k, int d, int min, int max) {
                 return qCOMMON
                                 .comment(c)
-                                .defineInRange(k, d, mn, mx);
+                                .defineInRange(k, d, (d < min ? d : min), (d > max ? d : max));
         }
 
         private static DoubleValue numberFloat(String c, String k, double d, double min, double max) {
                 return qCOMMON
                                 .comment(c)
-                                .defineInRange(k, d, min, max);
+                                .defineInRange(k, d, (d < min ? d : min), (d > max ? d : max));
         }
 
         /**
