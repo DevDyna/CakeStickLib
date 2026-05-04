@@ -78,15 +78,14 @@ public class CopperOxidationCategory extends BaseRecipeCategory<CopperOxidationR
     }
 
     @Override
-    public void setRecipe(IRecipeLayoutBuilder builder, CopperOxidationRecipe recipe, IFocusGroup focuses) {
-
-        super.setRecipe(builder, recipe, focuses);
+    public void setRecipe(IRecipeLayoutBuilder builder, RecipeHolder<CopperOxidationRecipe> recipe,
+            IFocusGroup focuses) {
 
         Ingredient input = null;
         Ingredient output = null;
-        Ingredient catalyst = recipe.getCatalyst();
+        Ingredient catalyst = recipe.value().getCatalyst();
 
-        switch (recipe.getOxidationType()) {
+        switch (recipe.value().getOxidationType()) {
             case OxidationStatus.SCRAPPING:
                 input = mapBlocks(oxidable, DataMapHooks::getNextOxidizedStage);
                 output = x.itemIngredient(oxidable.stream().map(Block::asItem).toList());
@@ -122,7 +121,7 @@ public class CopperOxidationCategory extends BaseRecipeCategory<CopperOxidationR
             builder.addSlot(RecipeIngredientRole.OUTPUT, 59, 2)
                     .add(output);
 
-        if (recipe.getOxidationType().equals(OxidationStatus.SCRAPPING))
+        if (recipe.value().getOxidationType().equals(OxidationStatus.SCRAPPING))
             builder.addSlot(RecipeIngredientRole.OUTPUT, 59, 21)
                     .add(x.item(zItems.PATINA.get()))
                     .addRichTooltipCallback(
@@ -134,11 +133,13 @@ public class CopperOxidationCategory extends BaseRecipeCategory<CopperOxidationR
     }
 
     @Override
-    public void draw(CopperOxidationRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphicsExtractor guiGraphics,
+    public void draw(RecipeHolder<CopperOxidationRecipe> recipe, IRecipeSlotsView recipeSlotsView,
+            GuiGraphicsExtractor guiGraphics,
             double mouseX, double mouseY) {
-        super.draw(recipe, recipeSlotsView, guiGraphics, mouseX, mouseY);
 
-        if (recipe.getOxidationType().equals(OxidationStatus.SCRAPPING)) {
+        drawBackground(guiGraphics);
+
+        if (recipe.value().getOxidationType().equals(OxidationStatus.SCRAPPING)) {
             ImageJei.of()
                     .rl(x.mcLoc("textures/gui/sprites/container/slot.png"))
                     .size(18, 18)
@@ -151,7 +152,7 @@ public class CopperOxidationCategory extends BaseRecipeCategory<CopperOxidationR
     }
 
     @Override
-    public void background(GuiGraphicsExtractor graphics) {
+    public void drawBackground(GuiGraphicsExtractor graphics) {
         this.backgroundImage
                 .size(77, 20)
                 .render(helper, graphics);
