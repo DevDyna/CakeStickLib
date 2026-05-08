@@ -3,7 +3,7 @@ package com.devdyna.cakesticklib.api.utils;
 import java.util.List;
 import java.util.Optional;
 
-import com.devdyna.cakesticklib.setup.registry.zLibrary.*;
+import com.devdyna.cakesticklib.setup.registry.zComponents;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 

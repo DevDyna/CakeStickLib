@@ -9,7 +9,7 @@ import com.devdyna.cakesticklib.setup.registry.builders.CakeStick;
 import com.devdyna.cakesticklib.setup.registry.builders.Chisel;
 import com.devdyna.cakesticklib.setup.registry.builders.HoneySolution;
 import com.devdyna.cakesticklib.setup.registry.builders.RedstoneAcid;
-import com.devdyna.cakesticklib.setup.registry.zLibrary.*;
+import com.devdyna.cakesticklib.setup.registry.*;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.neoforged.bus.api.SubscribeEvent;

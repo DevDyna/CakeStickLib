@@ -5,8 +5,8 @@ import java.util.List;
 
 import com.devdyna.cakesticklib.api.utils.UpgradeComponents;
 import com.devdyna.cakesticklib.api.utils.UpgradeComponents.UpgradeType;
-import com.devdyna.cakesticklib.setup.registry.zLibrary.zComponents;
 import com.devdyna.cakesticklib.setup.Config;
+import com.devdyna.cakesticklib.setup.registry.zComponents;
 import com.devdyna.cakesticklib.setup.registry.builders.IndustrialUpgrade;
 
 import net.minecraft.world.item.ItemStack;

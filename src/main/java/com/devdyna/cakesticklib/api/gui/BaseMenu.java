@@ -6,7 +6,8 @@ import java.util.function.Function;
 import com.devdyna.cakesticklib.api.aspect.logic.EnergyBlock;
 import com.devdyna.cakesticklib.api.aspect.logic.ItemStorageBlock;
 import com.devdyna.cakesticklib.api.aspect.logic.MachineItemAutomation;
-import com.devdyna.cakesticklib.setup.registry.zLibrary.*;
+import com.devdyna.cakesticklib.setup.registry.zComponents;
+
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;

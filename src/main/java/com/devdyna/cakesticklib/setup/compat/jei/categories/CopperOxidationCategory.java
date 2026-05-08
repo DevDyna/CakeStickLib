@@ -9,7 +9,7 @@ import com.devdyna.cakesticklib.api.primitive.Size;
 import com.devdyna.cakesticklib.api.utils.x;
 import com.devdyna.cakesticklib.setup.common.recipes.oxidation.CopperOxidationRecipe;
 import com.devdyna.cakesticklib.setup.common.recipes.oxidation.OxidationStatus;
-import com.devdyna.cakesticklib.setup.registry.zLibrary.*;
+import com.devdyna.cakesticklib.setup.registry.*;
 
 import static com.devdyna.cakesticklib.CakeStickLib.MODULE_ID;
 

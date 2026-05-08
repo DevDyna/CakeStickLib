@@ -1,7 +1,7 @@
 package com.devdyna.cakesticklib.setup.common.recipes.upgrade_application;
 
 import com.devdyna.cakesticklib.api.utils.UpgradeComponents;
-import com.devdyna.cakesticklib.setup.registry.zLibrary.zComponents;
+import com.devdyna.cakesticklib.setup.registry.zComponents;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 

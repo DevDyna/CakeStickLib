@@ -7,7 +7,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
 
 import com.devdyna.cakesticklib.api.datagen.AdvancementsUtils;
-import com.devdyna.cakesticklib.setup.registry.zLibrary.*;
+import com.devdyna.cakesticklib.setup.registry.*;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.AdvancementRequirements;
 import net.minecraft.advancements.AdvancementType;

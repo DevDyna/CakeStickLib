@@ -1,8 +1,7 @@
 package com.devdyna.cakesticklib.setup.common.events;
 
 import com.devdyna.cakesticklib.api.utils.ModAddonUtil;
-import com.devdyna.cakesticklib.setup.registry.zLibrary.*;
-
+import com.devdyna.cakesticklib.setup.registry.*;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.OnDatapackSyncEvent;

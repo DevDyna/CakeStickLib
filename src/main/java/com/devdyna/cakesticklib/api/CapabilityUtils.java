@@ -4,7 +4,8 @@ import com.devdyna.cakesticklib.api.aspect.logic.EnergyBlock;
 import com.devdyna.cakesticklib.api.aspect.logic.MachineFluidAutomation;
 import com.devdyna.cakesticklib.api.aspect.logic.MachineItemAutomation;
 import com.devdyna.cakesticklib.api.aspect.logic.SimpleFluidStorage;
-import com.devdyna.cakesticklib.setup.registry.zLibrary.*;
+import com.devdyna.cakesticklib.setup.registry.zHandlers;
+
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;

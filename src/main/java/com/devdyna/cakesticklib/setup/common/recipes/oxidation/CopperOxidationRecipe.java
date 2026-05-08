@@ -2,7 +2,8 @@ package com.devdyna.cakesticklib.setup.common.recipes.oxidation;
 
 import com.devdyna.cakesticklib.api.recipe.recipeType.BaseRecipeType;
 import com.devdyna.cakesticklib.setup.common.recipes.oxidation.OxidationStatus.OxidationInput;
-import com.devdyna.cakesticklib.setup.registry.zLibrary.*;import com.mojang.serialization.MapCodec;
+import com.devdyna.cakesticklib.setup.registry.*;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import net.minecraft.network.RegistryFriendlyByteBuf;

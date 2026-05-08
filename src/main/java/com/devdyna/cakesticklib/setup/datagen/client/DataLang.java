@@ -6,7 +6,7 @@ import static com.devdyna.cakesticklib.api.datagen.LangUtils.*;
 import java.util.List;
 
 import com.devdyna.cakesticklib.api.datagen.LangUtils;
-import com.devdyna.cakesticklib.setup.registry.zLibrary.*;
+import com.devdyna.cakesticklib.setup.registry.*;
 
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.LanguageProvider;

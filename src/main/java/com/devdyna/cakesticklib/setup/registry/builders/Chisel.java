@@ -1,7 +1,7 @@
 package com.devdyna.cakesticklib.setup.registry.builders;
 
 import com.devdyna.cakesticklib.api.utils.x;
-import com.devdyna.cakesticklib.setup.registry.zLibrary.zComponents;
+import com.devdyna.cakesticklib.setup.registry.zComponents;
 
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;

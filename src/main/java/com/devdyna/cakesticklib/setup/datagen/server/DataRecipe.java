@@ -9,7 +9,7 @@ import com.devdyna.cakesticklib.setup.common.recipes.hammering.HammeringRecipeBu
 import com.devdyna.cakesticklib.setup.common.recipes.oxidation.CopperOxidationBuilder;
 import com.devdyna.cakesticklib.setup.common.recipes.oxidation.OxidationStatus;
 import com.devdyna.cakesticklib.setup.common.recipes.upgrade_application.UpgradeApplicationBuilder;
-import com.devdyna.cakesticklib.setup.registry.zLibrary.*;
+import com.devdyna.cakesticklib.setup.registry.*;
 
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderLookup;

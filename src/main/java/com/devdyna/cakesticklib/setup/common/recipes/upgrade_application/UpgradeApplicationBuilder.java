@@ -11,8 +11,8 @@ import java.util.Map;
 import com.devdyna.cakesticklib.api.recipe.recipeBuilder.*;
 import com.devdyna.cakesticklib.api.utils.UpgradeComponents;
 import com.devdyna.cakesticklib.api.utils.x;
-import com.devdyna.cakesticklib.setup.registry.zLibrary.zComponents;
-import com.devdyna.cakesticklib.setup.registry.zLibrary.zItems;
+import com.devdyna.cakesticklib.setup.registry.zComponents;
+import com.devdyna.cakesticklib.setup.registry.zItems;
 
 import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.criterion.InventoryChangeTrigger;

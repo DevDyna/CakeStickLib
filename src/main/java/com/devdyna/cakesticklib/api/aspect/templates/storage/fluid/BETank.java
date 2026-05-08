@@ -3,7 +3,8 @@ package com.devdyna.cakesticklib.api.aspect.templates.storage.fluid;
 import javax.annotation.Nullable;
 
 import com.devdyna.cakesticklib.api.aspect.logic.SimpleFluidStorage;
-import com.devdyna.cakesticklib.setup.registry.zLibrary.*;
+import com.devdyna.cakesticklib.setup.registry.zHandlers;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;

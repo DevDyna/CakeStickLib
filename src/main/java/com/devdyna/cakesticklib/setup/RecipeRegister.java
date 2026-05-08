@@ -3,7 +3,7 @@ package com.devdyna.cakesticklib.setup;
 
 import java.util.function.Supplier;
 
-import com.devdyna.cakesticklib.setup.registry.zLibrary.zRecipeTypes;
+import com.devdyna.cakesticklib.setup.registry.zRecipeTypes;
 
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;

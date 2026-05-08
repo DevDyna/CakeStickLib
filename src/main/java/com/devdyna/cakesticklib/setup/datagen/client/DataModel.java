@@ -3,7 +3,7 @@ package com.devdyna.cakesticklib.setup.datagen.client;
 import static com.devdyna.cakesticklib.CakeStickLib.MODULE_ID;
 
 import com.devdyna.cakesticklib.api.datagen.ModelUtils;
-import com.devdyna.cakesticklib.setup.registry.zLibrary.*;
+import com.devdyna.cakesticklib.setup.registry.*;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ModelProvider;

@@ -5,7 +5,7 @@ import static com.devdyna.cakesticklib.CakeStickLib.MODULE_ID;
 import java.util.concurrent.CompletableFuture;
 
 import com.devdyna.cakesticklib.api.RegistryUtils;
-import com.devdyna.cakesticklib.setup.registry.zLibrary.*;
+import com.devdyna.cakesticklib.setup.registry.*;
 
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.PackOutput;

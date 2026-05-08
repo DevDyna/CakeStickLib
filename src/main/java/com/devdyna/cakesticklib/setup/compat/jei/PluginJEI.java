@@ -7,7 +7,7 @@ import java.util.List;
 import com.devdyna.cakesticklib.api.utils.x;
 import com.devdyna.cakesticklib.setup.Client;
 import com.devdyna.cakesticklib.setup.compat.jei.categories.CopperOxidationCategory;
-import com.devdyna.cakesticklib.setup.registry.zLibrary.*;
+import com.devdyna.cakesticklib.setup.registry.*;
 
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;

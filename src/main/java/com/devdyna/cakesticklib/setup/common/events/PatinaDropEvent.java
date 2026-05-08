@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 import com.devdyna.cakesticklib.api.utils.x;
 import com.devdyna.cakesticklib.setup.Config;
-import com.devdyna.cakesticklib.setup.registry.zLibrary.*;
+import com.devdyna.cakesticklib.setup.registry.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.WeatheringCopper;

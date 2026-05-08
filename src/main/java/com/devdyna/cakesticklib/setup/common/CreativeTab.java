@@ -1,7 +1,8 @@
 package com.devdyna.cakesticklib.setup.common;
 
 import com.devdyna.cakesticklib.api.CreativeTabUtils;
-import com.devdyna.cakesticklib.setup.registry.zLibrary.*;
+import com.devdyna.cakesticklib.setup.registry.*;
+
 import net.minecraft.world.item.CreativeModeTabs;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
