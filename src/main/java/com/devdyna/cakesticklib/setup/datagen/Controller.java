@@ -30,7 +30,8 @@ public class Controller {
         v.addProvider(DataModel::new);
 
         // server
-        v.addProvider(o -> new DataItemTag(o, pr));
+
+        e.createBlockAndItemTags(DataBlockTag::new, DataItemTag::new);
 
         v.addProvider(o -> new DataAdvancement(o, pr, List.of(new DataAdvancementGenerator())));
 
