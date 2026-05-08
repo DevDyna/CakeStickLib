@@ -33,7 +33,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
         @Override
         protected void buildRecipes() {
 
-                ShapedRecipeBuilder.shaped(items, RecipeCategory.FOOD, zItems.CAKE_STICK.get())
+                ShapedRecipeBuilder.shaped(items, RecipeCategory.FOOD, LibItems.CAKE_STICK.get())
                                 .pattern(" C")
                                 .pattern("S ")
                                 .define('C', Items.CAKE)
@@ -42,14 +42,14 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                                 has(Items.CAKE))
                                 .save(output);
 
-                ShapelessRecipeBuilder.shapeless(items, RecipeCategory.TOOLS, zItems.REDSTONE_ACID.get())
+                ShapelessRecipeBuilder.shapeless(items, RecipeCategory.TOOLS, LibItems.REDSTONE_ACID.get())
                                 .requires(Items.GLASS_BOTTLE)
                                 .requires(Items.REDSTONE)
-                                .requires(zItems.PATINA.get())
-                                .unlockedBy("has_patina", has(zItems.PATINA.get()))
+                                .requires(LibItems.PATINA.get())
+                                .unlockedBy("has_patina", has(LibItems.PATINA.get()))
                                 .save(output);
 
-                ShapelessRecipeBuilder.shapeless(items, RecipeCategory.TOOLS, zItems.HONEY_SOLUTION.get())
+                ShapelessRecipeBuilder.shapeless(items, RecipeCategory.TOOLS, LibItems.HONEY_SOLUTION.get())
                                 .requires(Items.GLASS_BOTTLE)
                                 .requires(Items.HONEYCOMB)
                                 .requires(Items.DANDELION)
@@ -58,13 +58,13 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
 
                 CopperOxidationBuilder.of()
                                 .type(OxidationStatus.OXIDIZING)
-                                .catalyst(zItemTags.OXIDIZER, registries)
+                                .catalyst(LibTags.Items.OXIDIZER, registries)
                                 .unlockedBy()
                                 .save(output);
 
                 CopperOxidationBuilder.of()
                                 .type(OxidationStatus.WAXING)
-                                .catalyst(zItemTags.WAXING, registries)
+                                .catalyst(LibTags.Items.WAXING, registries)
                                 .unlockedBy()
                                 .save(output);
 
@@ -80,7 +80,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .unlockedBy()
                                 .save(output);
 
-                ShapedRecipeBuilder.shaped(items, RecipeCategory.TOOLS, zItems.CHISEL.get())
+                ShapedRecipeBuilder.shaped(items, RecipeCategory.TOOLS, LibItems.CHISEL.get())
                                 .pattern("  N")
                                 .pattern(" I ")
                                 .pattern("S  ")
@@ -90,102 +90,102 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .unlockedBy("iron", has(Items.IRON_INGOT))
                                 .save(output);
 
-                simpleCooking(output, zItems.FLOUR.get(), Items.BREAD);
+                simpleCooking(output, LibItems.FLOUR.get(), Items.BREAD);
 
                 shaped(RecipeCategory.MISC, Items.PAPER, 6)
-                                .define('#', zItemTags.SAWDUST)
+                                .define('#', LibTags.Items.SAWDUST)
                                 .pattern("###")
-                                .unlockedBy("has_sawdust", has(zItemTags.SAWDUST))
+                                .unlockedBy("has_sawdust", has(LibTags.Items.SAWDUST))
                                 .save(output, MODULE_ID + ":"
                                                 + getConversionRecipeName(
                                                                 Items.PAPER,
-                                                                zItems.SAWDUST.get()));
+                                                                LibItems.SAWDUST.get()));
 
-                shaped(RecipeCategory.MISC, zItems.RESISTOR.get(), 4)
+                shaped(RecipeCategory.MISC, LibItems.RESISTOR.get(), 4)
                                 .pattern(" MN")
                                 .pattern("MRM")
                                 .pattern("NM ")
-                                .define('N', zItems.WROUGHT_IRON_NUGGET.get())
+                                .define('N', LibItems.WROUGHT_IRON_NUGGET.get())
                                 .define('M', Items.LAPIS_LAZULI)
                                 .define('R', Items.REDSTONE)
-                                .unlockedBy(getHasName(zItems.WROUGHT_IRON_NUGGET.get()),
-                                                has(zItems.WROUGHT_IRON_NUGGET.get()))
+                                .unlockedBy(getHasName(LibItems.WROUGHT_IRON_NUGGET.get()),
+                                                has(LibItems.WROUGHT_IRON_NUGGET.get()))
                                 .save(output);
 
-                shaped(RecipeCategory.MISC, zItems.RESISTOR.get(), 8)
+                shaped(RecipeCategory.MISC, LibItems.RESISTOR.get(), 8)
                                 .pattern(" MN")
                                 .pattern("MRM")
                                 .pattern("NM ")
-                                .define('N', zItems.ADVANCED_ALLOY_NUGGET.get())
+                                .define('N', LibItems.ADVANCED_ALLOY_NUGGET.get())
                                 .define('M', Items.LAPIS_LAZULI)
-                                .define('R', zItems.PLASTIC.get())
-                                .unlockedBy(getHasName(zItems.PLASTIC.get()), has(zItems.PLASTIC.get()))
-                                .save(output, asRecipeID(zItems.RESISTOR.get()));
+                                .define('R', LibItems.PLASTIC.get())
+                                .unlockedBy(getHasName(LibItems.PLASTIC.get()), has(LibItems.PLASTIC.get()))
+                                .save(output, asRecipeID(LibItems.RESISTOR.get()));
 
-                shaped(RecipeCategory.MISC, zItems.CHIP.get(), 4)
+                shaped(RecipeCategory.MISC, LibItems.CHIP.get(), 4)
                                 .pattern(" N ")
                                 .pattern(" GN")
                                 .pattern("Q  ")
-                                .define('G', zItems.STEEL_PLATE.get())
+                                .define('G', LibItems.STEEL_PLATE.get())
                                 .define('N', Items.IRON_NUGGET)
                                 .define('Q', Items.QUARTZ)
-                                .unlockedBy(getHasName(zItems.STEEL_PLATE.get()), has(zItems.STEEL_PLATE.get()))
+                                .unlockedBy(getHasName(LibItems.STEEL_PLATE.get()), has(LibItems.STEEL_PLATE.get()))
                                 .save(output);
 
-                shaped(RecipeCategory.MISC, zItems.CHIP.get(), 8)
+                shaped(RecipeCategory.MISC, LibItems.CHIP.get(), 8)
                                 .pattern(" N ")
                                 .pattern(" GN")
                                 .pattern("Q  ")
-                                .define('G', zItems.SILICON_GEM.get())
-                                .define('N', zItems.ADVANCED_ALLOY_NUGGET.get())
-                                .define('Q', zItems.PLASTIC.get())
-                                .unlockedBy(getHasName(zItems.PLASTIC.get()), has(zItems.PLASTIC.get()))
-                                .save(output, asRecipeID(zItems.CHIP.get()));
+                                .define('G', LibItems.SILICON_GEM.get())
+                                .define('N', LibItems.ADVANCED_ALLOY_NUGGET.get())
+                                .define('Q', LibItems.PLASTIC.get())
+                                .unlockedBy(getHasName(LibItems.PLASTIC.get()), has(LibItems.PLASTIC.get()))
+                                .save(output, asRecipeID(LibItems.CHIP.get()));
 
-                shaped(RecipeCategory.MISC, zItems.CONDENSER.get(), 4)
+                shaped(RecipeCategory.MISC, LibItems.CONDENSER.get(), 4)
                                 .pattern("N N")
                                 .pattern("GMG")
                                 .pattern(" I ")
                                 .define('N', Items.IRON_NUGGET)
-                                .define('G', zItems.STEEL_PLATE.get())
-                                .define('M', zItems.CARBON_FIBER.get())
+                                .define('G', LibItems.STEEL_PLATE.get())
+                                .define('M', LibItems.CARBON_FIBER.get())
                                 .define('I', Items.IRON_INGOT)
-                                .unlockedBy(getHasName(zItems.STEEL_PLATE.get()), has(zItems.STEEL_PLATE.get()))
+                                .unlockedBy(getHasName(LibItems.STEEL_PLATE.get()), has(LibItems.STEEL_PLATE.get()))
                                 .save(output);
 
-                shaped(RecipeCategory.MISC, zItems.CONDENSER.get(), 8)
+                shaped(RecipeCategory.MISC, LibItems.CONDENSER.get(), 8)
                                 .pattern("N N")
                                 .pattern("GMG")
                                 .pattern(" I ")
-                                .define('N', zItems.ADVANCED_ALLOY_NUGGET.get())
-                                .define('G', zItems.PLASTIC.get())
-                                .define('M', zItems.SILICON_GEM.get())
-                                .define('I', zItems.ADVANCED_ALLOY_INGOT.get())
-                                .unlockedBy(getHasName(zItems.ADVANCED_ALLOY_INGOT.get()),
-                                                has(zItems.ADVANCED_ALLOY_INGOT.get()))
-                                .save(output, asRecipeID(zItems.CONDENSER.get()));
+                                .define('N', LibItems.ADVANCED_ALLOY_NUGGET.get())
+                                .define('G', LibItems.PLASTIC.get())
+                                .define('M', LibItems.SILICON_GEM.get())
+                                .define('I', LibItems.ADVANCED_ALLOY_INGOT.get())
+                                .unlockedBy(getHasName(LibItems.ADVANCED_ALLOY_INGOT.get()),
+                                                has(LibItems.ADVANCED_ALLOY_INGOT.get()))
+                                .save(output, asRecipeID(LibItems.CONDENSER.get()));
 
-                shaped(RecipeCategory.MISC, zItems.BLUE_BATTERY.get())
+                shaped(RecipeCategory.MISC, LibItems.BLUE_BATTERY.get())
                                 .pattern(" S ")
                                 .pattern("RCR")
                                 .pattern(" R ")
                                 .define('S', Items.REDSTONE)
-                                .define('R', zItems.RESISTOR.get())
-                                .define('C', zItems.CONDENSER.get())
-                                .unlockedBy(getHasName(zItems.RESISTOR.get()), has(zItems.RESISTOR.get()))
+                                .define('R', LibItems.RESISTOR.get())
+                                .define('C', LibItems.CONDENSER.get())
+                                .unlockedBy(getHasName(LibItems.RESISTOR.get()), has(LibItems.RESISTOR.get()))
                                 .save(output);
 
-                shaped(RecipeCategory.MISC, zItems.GREEN_BATTERY.get())
+                shaped(RecipeCategory.MISC, LibItems.GREEN_BATTERY.get())
                                 .pattern(" S ")
                                 .pattern("RHR")
                                 .pattern(" R ")
                                 .define('S', Items.REDSTONE)
                                 .define('R', Tags.Items.SLIME_BALLS)
-                                .define('H', zItems.CONDENSER.get())
-                                .unlockedBy(getHasName(zItems.CONDENSER.get()), has(zItems.CONDENSER.get()))
+                                .define('H', LibItems.CONDENSER.get())
+                                .unlockedBy(getHasName(LibItems.CONDENSER.get()), has(LibItems.CONDENSER.get()))
                                 .save(output);
 
-                shaped(RecipeCategory.MISC, zItems.HAMMER.get())
+                shaped(RecipeCategory.MISC, LibItems.HAMMER.get())
                                 .pattern(" IS")
                                 .pattern(" TI")
                                 .pattern("T  ")
@@ -195,20 +195,20 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .unlockedBy(getHasName(Items.IRON_INGOT), has(Items.IRON_INGOT))
                                 .save(output);
 
-                twoByTwoPacker(output, zItems.CARBON_FIBER.get(), zItemTags.DUST_COAL);
-                twoByTwoPacker(RecipeCategory.MISC, zItems.CARBON_PLATE.get(), zItems.CARBON_FIBER.get());
+                twoByTwoPacker(output, LibItems.CARBON_FIBER.get(), LibTags.Items.DUST_COAL);
+                twoByTwoPacker(RecipeCategory.MISC, LibItems.CARBON_PLATE.get(), LibItems.CARBON_FIBER.get());
 
                 UpgradeApplicationBuilder.of()
                                 .energy(-50)
                                 .pattern(" B ")
                                 .pattern("CSC")
                                 .pattern(" R ")
-                                .define('S', zItemTags.PLATE_STEEL, registries)
-                                .define('R', zItems.RESISTOR.get())
+                                .define('S', LibTags.Items.PLATE_STEEL, registries)
+                                .define('R', LibItems.RESISTOR.get())
                                 .define('B', Items.REDSTONE)
-                                .define('C', zItems.CHIP.get())
-                                .unlockedBy(getHasName(zItems.STEEL_PLATE.get()), has(zItemTags.PLATE_STEEL))
-                                .output(zItems.ENERGY_UPGRADE.get())
+                                .define('C', LibItems.CHIP.get())
+                                .unlockedBy(getHasName(LibItems.STEEL_PLATE.get()), has(LibTags.Items.PLATE_STEEL))
+                                .output(LibItems.ENERGY_UPGRADE.get())
                                 .save(output);
 
                 UpgradeApplicationBuilder.of()
@@ -217,12 +217,12 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .pattern(" B ")
                                 .pattern("CSC")
                                 .pattern(" R ")
-                                .define('S', zItemTags.PLATE_STEEL, registries)
-                                .define('R', zItems.CONDENSER.get())
+                                .define('S', LibTags.Items.PLATE_STEEL, registries)
+                                .define('R', LibItems.CONDENSER.get())
                                 .define('B', Items.DIAMOND)
-                                .define('C', zItems.CHIP.get())
-                                .unlockedBy(getHasName(zItems.STEEL_PLATE.get()), has(zItemTags.PLATE_STEEL))
-                                .output(zItems.SPEED_UPGRADE.get())
+                                .define('C', LibItems.CHIP.get())
+                                .unlockedBy(getHasName(LibItems.STEEL_PLATE.get()), has(LibTags.Items.PLATE_STEEL))
+                                .output(LibItems.SPEED_UPGRADE.get())
                                 .save(output);
 
                 UpgradeApplicationBuilder.of()
@@ -231,12 +231,12 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .pattern(" B ")
                                 .pattern("CSC")
                                 .pattern(" R ")
-                                .define('S', zItemTags.PLATE_STEEL, registries)
-                                .define('R', zItems.ELECTRON_TUBE.get())
+                                .define('S', LibTags.Items.PLATE_STEEL, registries)
+                                .define('R', LibItems.ELECTRON_TUBE.get())
                                 .define('B', Items.LAPIS_LAZULI)
-                                .define('C', zItems.CHIP.get())
-                                .unlockedBy(getHasName(zItems.STEEL_PLATE.get()), has(zItemTags.PLATE_STEEL))
-                                .output(zItems.LUCK_UPGRADE.get())
+                                .define('C', LibItems.CHIP.get())
+                                .unlockedBy(getHasName(LibItems.STEEL_PLATE.get()), has(LibTags.Items.PLATE_STEEL))
+                                .output(LibItems.LUCK_UPGRADE.get())
                                 .save(output);
 
                 UpgradeApplicationBuilder.of()
@@ -245,130 +245,130 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .pattern(" B ")
                                 .pattern("CSC")
                                 .pattern(" R ")
-                                .define('S', zItemTags.PLATE_STEEL, registries)
-                                .define('R', zItems.METAL_BOLTS.get())
+                                .define('S', LibTags.Items.PLATE_STEEL, registries)
+                                .define('R', LibItems.METAL_BOLTS.get())
                                 .define('B', Items.GLOWSTONE_DUST)
-                                .define('C', zItems.CHIP.get())
-                                .unlockedBy(getHasName(zItems.STEEL_PLATE.get()), has(zItemTags.PLATE_STEEL))
-                                .output(zItems.FLUID_UPGRADE.get())
+                                .define('C', LibItems.CHIP.get())
+                                .unlockedBy(getHasName(LibItems.STEEL_PLATE.get()), has(LibTags.Items.PLATE_STEEL))
+                                .output(LibItems.FLUID_UPGRADE.get())
                                 .save(output);
 
-                packUnpack(output, zItems.STONE_PEBBLE.get(), Items.COBBLESTONE, true);
-                packUnpack(output, zItems.NETHERRACK_PEBBLE.get(), Items.NETHERRACK, true);
-                simplePacked(output, zItems.ENDSTONE_PEBBLE.get(), Items.END_STONE, false);
+                packUnpack(output, LibItems.STONE_PEBBLE.get(), Items.COBBLESTONE, true);
+                packUnpack(output, LibItems.NETHERRACK_PEBBLE.get(), Items.NETHERRACK, true);
+                simplePacked(output, LibItems.ENDSTONE_PEBBLE.get(), Items.END_STONE, false);
 
-                doubleSmelt(output, zItems.RAW_SILICON.get(), zItems.SILICON_GEM.get());
+                doubleSmelt(output, LibItems.RAW_SILICON.get(), LibItems.SILICON_GEM.get());
 
-                shaped(RecipeCategory.MISC, zItems.MIXED_INGOT.get(), 3)
-                                .define('T', zItemTags.PLATE_COPPER)
-                                .define('C', zItemTags.PLATE_GOLD)
-                                .define('B', zItemTags.PLATE_IRON)
+                shaped(RecipeCategory.MISC, LibItems.MIXED_INGOT.get(), 3)
+                                .define('T', LibTags.Items.PLATE_COPPER)
+                                .define('C', LibTags.Items.PLATE_GOLD)
+                                .define('B', LibTags.Items.PLATE_IRON)
                                 .pattern("T")
                                 .pattern("C")
                                 .pattern("B")
-                                .unlockedBy(getHasName(zItemTags.PLATE_IRON), has(zItemTags.PLATE_IRON))
+                                .unlockedBy(getHasName(LibTags.Items.PLATE_IRON), has(LibTags.Items.PLATE_IRON))
                                 .save(output);
 
-                shaped(RecipeCategory.MISC, zItems.ELECTRON_TUBE.get())
-                                .define('G', zItems.GLASS_DUST.get())
-                                .define('A', zItems.ADVANCED_ALLOY_NUGGET.get())
-                                .define('D', zItems.RESISTOR.get())
+                shaped(RecipeCategory.MISC, LibItems.ELECTRON_TUBE.get())
+                                .define('G', LibItems.GLASS_DUST.get())
+                                .define('A', LibItems.ADVANCED_ALLOY_NUGGET.get())
+                                .define('D', LibItems.RESISTOR.get())
                                 .define('C', Tags.Items.NUGGETS_COPPER)
                                 .pattern(" G ")
                                 .pattern("DAD")
                                 .pattern(" C ")
-                                .unlockedBy(getHasName(zItemTags.PLATE_IRON), has(zItemTags.PLATE_IRON))
+                                .unlockedBy(getHasName(LibTags.Items.PLATE_IRON), has(LibTags.Items.PLATE_IRON))
                                 .save(output);
 
-                doubleSmelt(output, zItems.MIXED_INGOT.get(), zItems.ADVANCED_ALLOY_INGOT.get());
+                doubleSmelt(output, LibItems.MIXED_INGOT.get(), LibItems.ADVANCED_ALLOY_INGOT.get());
 
-                shapeless(RecipeCategory.MISC, zItems.WROUGHT_IRON_INGOT.get())
-                                .requires(zItemTags.DUST_COAL)
-                                .requires(zItemTags.DUST_COAL)
+                shapeless(RecipeCategory.MISC, LibItems.WROUGHT_IRON_INGOT.get())
+                                .requires(LibTags.Items.DUST_COAL)
+                                .requires(LibTags.Items.DUST_COAL)
                                 .requires(Tags.Items.INGOTS_IRON)
                                 .unlockedBy(getHasName(Items.IRON_INGOT), has(Items.IRON_INGOT))
                                 .save(output);
 
-                doubleSmelt(output, zItems.WROUGHT_IRON_INGOT.get(), zItems.STEEL_INGOT.get());
+                doubleSmelt(output, LibItems.WROUGHT_IRON_INGOT.get(), LibItems.STEEL_INGOT.get());
 
-                packUnpack(output, zItems.SILICON_SHARD.get(), zItems.RAW_SILICON.get(), false);
+                packUnpack(output, LibItems.SILICON_SHARD.get(), LibItems.RAW_SILICON.get(), false);
 
                 ingotProcessing(Tags.Items.RAW_MATERIALS_IRON,
                                 Items.IRON_INGOT,
-                                zItems.IRON_DUST.get(),
-                                zItems.IRON_PLATE.get(),
-                                zItems.IRON_GEAR.get(),
-                                zItems.IRON_FOIL.get(),
-                                zItems.IRON_COIL.get());
+                                LibItems.IRON_DUST.get(),
+                                LibItems.IRON_PLATE.get(),
+                                LibItems.IRON_GEAR.get(),
+                                LibItems.IRON_FOIL.get(),
+                                LibItems.IRON_COIL.get());
 
                 ingotProcessing(Tags.Items.RAW_MATERIALS_GOLD,
                                 Items.GOLD_INGOT,
-                                zItems.GOLD_DUST.get(),
-                                zItems.GOLD_PLATE.get(),
-                                zItems.GOLD_GEAR.get(),
-                                zItems.GOLD_FOIL.get(),
-                                zItems.GOLD_COIL.get());
+                                LibItems.GOLD_DUST.get(),
+                                LibItems.GOLD_PLATE.get(),
+                                LibItems.GOLD_GEAR.get(),
+                                LibItems.GOLD_FOIL.get(),
+                                LibItems.GOLD_COIL.get());
 
                 ingotProcessing(Tags.Items.RAW_MATERIALS_COPPER,
                                 Items.COPPER_INGOT,
-                                zItems.COPPER_DUST.get(),
-                                zItems.COPPER_PLATE.get(),
-                                zItems.COPPER_GEAR.get(),
-                                zItems.COPPER_FOIL.get(),
-                                zItems.COPPER_COIL.get());
+                                LibItems.COPPER_DUST.get(),
+                                LibItems.COPPER_PLATE.get(),
+                                LibItems.COPPER_GEAR.get(),
+                                LibItems.COPPER_FOIL.get(),
+                                LibItems.COPPER_COIL.get());
 
-                gemProcessing(Tags.Items.GEMS_AMETHYST, zItems.AMETHYST_DUST.get());
-                gemProcessing(ItemTags.COALS, zItems.CARBON_DUST.get());
-                gemProcessing(Tags.Items.GEMS_DIAMOND, zItems.DIAMOND_DUST.get());
-                gemProcessing(Tags.Items.GEMS_EMERALD, zItems.EMERALD_DUST.get());
-                gemProcessing(Tags.Items.GEMS_LAPIS, zItems.LAPIS_DUST.get());
-                gemProcessing(Tags.Items.GEMS_QUARTZ, zItems.QUARTZ_DUST.get());
+                gemProcessing(Tags.Items.GEMS_AMETHYST, LibItems.AMETHYST_DUST.get());
+                gemProcessing(ItemTags.COALS, LibItems.CARBON_DUST.get());
+                gemProcessing(Tags.Items.GEMS_DIAMOND, LibItems.DIAMOND_DUST.get());
+                gemProcessing(Tags.Items.GEMS_EMERALD, LibItems.EMERALD_DUST.get());
+                gemProcessing(Tags.Items.GEMS_LAPIS, LibItems.LAPIS_DUST.get());
+                gemProcessing(Tags.Items.GEMS_QUARTZ, LibItems.QUARTZ_DUST.get());
 
                 gemProcessing(Items.RESIN_BRICK, Items.RESIN_CLUMP);
 
                 HammeringRecipeBuilder.of()
-                                .tool(zItems.HAMMER.get())
+                                .tool(LibItems.HAMMER.get())
                                 .add(Items.WHEAT)
-                                .output(zItems.FLOUR)
+                                .output(LibItems.FLOUR)
                                 .unlockedBy()
                                 .save(output);
 
                 HammeringRecipeBuilder.of()
-                                .tool(zItems.HAMMER.get())
+                                .tool(LibItems.HAMMER.get())
                                 .add(ItemTags.LOGS, registries)
-                                .output(zItems.SAWDUST, 4)
+                                .output(LibItems.SAWDUST, 4)
                                 .unlockedBy()
                                 .save(output);
 
                 HammeringRecipeBuilder.of()
-                                .tool(zItems.HAMMER.get())
+                                .tool(LibItems.HAMMER.get())
                                 .add(Tags.Items.GLASS_BLOCKS, registries)
-                                .output(zItems.GLASS_DUST)
+                                .output(LibItems.GLASS_DUST)
                                 .unlockedBy()
                                 .save(output);
 
-                plate(output, zItems.STEEL_INGOT.get(), zItems.STEEL_PLATE.get());
-                plate(output, zItems.WROUGHT_IRON_INGOT.get(), zItems.WROUGHT_IRON_PLATE.get());
-                plate(output, zItems.ADVANCED_ALLOY_INGOT.get(), zItems.ADVANCED_ALLOY_PLATE.get());
+                plate(output, LibItems.STEEL_INGOT.get(), LibItems.STEEL_PLATE.get());
+                plate(output, LibItems.WROUGHT_IRON_INGOT.get(), LibItems.WROUGHT_IRON_PLATE.get());
+                plate(output, LibItems.ADVANCED_ALLOY_INGOT.get(), LibItems.ADVANCED_ALLOY_PLATE.get());
 
-                nuggetIngotBlock(output, zItems.STEEL_NUGGET.get(), zItems.STEEL_INGOT.get(),
-                                zBlocks.STEEL_BLOCK.get());
-                nuggetIngotBlock(output, zItems.WROUGHT_IRON_NUGGET.get(), zItems.WROUGHT_IRON_INGOT.get(),
-                                zBlocks.WROUGHT_IRON_BLOCK.get());
-                nuggetIngotBlock(output, zItems.ADVANCED_ALLOY_NUGGET.get(), zItems.ADVANCED_ALLOY_INGOT.get(),
-                                zBlocks.ADVANCED_ALLOY_BLOCK.get());
+                nuggetIngotBlock(output, LibItems.STEEL_NUGGET.get(), LibItems.STEEL_INGOT.get(),
+                                LibBlocks.STEEL_BLOCK.get());
+                nuggetIngotBlock(output, LibItems.WROUGHT_IRON_NUGGET.get(), LibItems.WROUGHT_IRON_INGOT.get(),
+                                LibBlocks.WROUGHT_IRON_BLOCK.get());
+                nuggetIngotBlock(output, LibItems.ADVANCED_ALLOY_NUGGET.get(), LibItems.ADVANCED_ALLOY_INGOT.get(),
+                                LibBlocks.ADVANCED_ALLOY_BLOCK.get());
 
-                gear(output, zItems.STEEL_GEAR.get(), zItemTags.INGOT_STEEL);
-                gear(output, zItems.WOODEN_GEAR.get(), ItemTags.PLANKS);
+                gear(output, LibItems.STEEL_GEAR.get(), LibTags.Items.INGOT_STEEL);
+                gear(output, LibItems.WOODEN_GEAR.get(), ItemTags.PLANKS);
 
-                twoByTwoPacker(output, zItems.BLANK_MOLD.get(), zItemTags.PLATE_STEEL);
+                twoByTwoPacker(output, LibItems.BLANK_MOLD.get(), LibTags.Items.PLATE_STEEL);
 
-                twoByTwoPacker(output, zItems.METAL_BOLTS.get(), zItemTags.METAL_NUGGETS);
+                twoByTwoPacker(output, LibItems.METAL_BOLTS.get(), LibTags.Items.METAL_NUGGETS);
 
-                zItems.zMolds.getEntries().stream().map(DeferredHolder::get)
+                LibItems.zMolds.getEntries().stream().map(DeferredHolder::get)
                                 .forEach(i -> {
-                                        stonecutter(output, i, zItems.BLANK_MOLD.get());
-                                        stonecutter(output, i, zItemTags.MOLDS);
+                                        stonecutter(output, i, LibItems.BLANK_MOLD.get());
+                                        stonecutter(output, i, LibTags.Items.MOLDS);
                                 });
 
         }
@@ -403,14 +403,14 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                 doubleSmelt(output, dust, ingot);
 
                 HammeringRecipeBuilder.of()
-                                .tool(zItems.HAMMER.get(), 2)
+                                .tool(LibItems.HAMMER.get(), 2)
                                 .add(raw, registries)
                                 .output(dust, 2)
                                 .unlockedBy()
                                 .save(output, "_from_raw");
 
                 HammeringRecipeBuilder.of()
-                                .tool(zItems.HAMMER.get(), 1)
+                                .tool(LibItems.HAMMER.get(), 1)
                                 .add(ingot)
                                 .output(dust)
                                 .unlockedBy()
@@ -428,7 +428,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                         Item dust) {
 
                 HammeringRecipeBuilder.of()
-                                .tool(zItems.HAMMER.get(), 1)
+                                .tool(LibItems.HAMMER.get(), 1)
                                 .add(gem, registries)
                                 .output(dust)
                                 .unlockedBy()
@@ -441,7 +441,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                         Item dust) {
 
                 HammeringRecipeBuilder.of()
-                                .tool(zItems.HAMMER.get(), 1)
+                                .tool(LibItems.HAMMER.get(), 1)
                                 .add(gem)
                                 .output(dust)
                                 .unlockedBy()

@@ -9,145 +9,147 @@ import com.devdyna.cakesticklib.setup.registry.*;
 
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.PackOutput;
+import net.minecraft.data.tags.TagsProvider;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ItemTagsProvider;
 
 public class DataItemTag extends ItemTagsProvider {
 
-        public DataItemTag(PackOutput output, CompletableFuture<Provider> lookupProvider) {
+        public DataItemTag(PackOutput output, CompletableFuture<Provider> lookupProvider,CompletableFuture<TagsProvider.TagLookup<Block>> blocks) {
                 super(output, lookupProvider, MODULE_ID);
         }
 
         @Override
         protected void addTags(Provider p) {
 
-                tag(zItemTags.OXIDIZER)
-                                .add(zItems.REDSTONE_ACID.get());
+                tag(LibTags.Items.OXIDIZER)
+                                .add(LibItems.REDSTONE_ACID.get());
 
-                tag(zItemTags.WAXING)
-                                .add(zItems.HONEY_SOLUTION.get(), Items.HONEYCOMB);
+                tag(LibTags.Items.WAXING)
+                                .add(LibItems.HONEY_SOLUTION.get(), Items.HONEYCOMB);
 
-                tag(Tags.Items.DUSTS).add(RegistryUtils.getItems(zItems.zDusts));
+                tag(Tags.Items.DUSTS).add(RegistryUtils.getItems(LibItems.zDusts));
 
-                tag(zItemTags.DUST_AMETHYST).add(zItems.AMETHYST_DUST.get());
+                tag(LibTags.Items.DUST_AMETHYST).add(LibItems.AMETHYST_DUST.get());
 
-                tag(zItemTags.DUST_COAL)
-                                .add(zItems.CARBON_DUST.get());
+                tag(LibTags.Items.DUST_COAL)
+                                .add(LibItems.CARBON_DUST.get());
 
-                tag(zItemTags.DUST_COPPER)
-                                .add(zItems.COPPER_DUST.get());
+                tag(LibTags.Items.DUST_COPPER)
+                                .add(LibItems.COPPER_DUST.get());
 
-                tag(zItemTags.DUST_DIAMOND)
-                                .add(zItems.DIAMOND_DUST.get());
+                tag(LibTags.Items.DUST_DIAMOND)
+                                .add(LibItems.DIAMOND_DUST.get());
 
-                tag(zItemTags.DUST_EMERALD)
-                                .add(zItems.EMERALD_DUST.get());
+                tag(LibTags.Items.DUST_EMERALD)
+                                .add(LibItems.EMERALD_DUST.get());
 
-                tag(zItemTags.DUST_GOLD)
-                                .add(zItems.GOLD_DUST.get());
+                tag(LibTags.Items.DUST_GOLD)
+                                .add(LibItems.GOLD_DUST.get());
 
-                tag(zItemTags.DUST_IRON)
-                                .add(zItems.IRON_DUST.get());
+                tag(LibTags.Items.DUST_IRON)
+                                .add(LibItems.IRON_DUST.get());
 
-                tag(zItemTags.DUST_LAPIS)
-                                .add(zItems.LAPIS_DUST.get());
+                tag(LibTags.Items.DUST_LAPIS)
+                                .add(LibItems.LAPIS_DUST.get());
 
-                tag(zItemTags.DUST_QUARTZ)
-                                .add(zItems.QUARTZ_DUST.get());
+                tag(LibTags.Items.DUST_QUARTZ)
+                                .add(LibItems.QUARTZ_DUST.get());
 
-                tag(zItemTags.SAWDUST)
-                                .add(zItems.SAWDUST.get())
-                                .addOptionalTag(zItemTags.SAWDUST2);
+                tag(LibTags.Items.SAWDUST)
+                                .add(LibItems.SAWDUST.get())
+                                .addOptionalTag(LibTags.Items.SAWDUST2);
 
                 tag(ItemTags.PIGLIN_LOVED)
-                                .add(zItems.GOLD_DUST.get());
+                                .add(LibItems.GOLD_DUST.get());
 
-                tag(zItemTags.METAL_NUGGETS)
+                tag(LibTags.Items.METAL_NUGGETS)
                                 .addTag(Tags.Items.NUGGETS);
 
-                tag(zItemTags.DUST_SULFUR)
-                                .add(zItems.SULFUR_DUST.get());
+                tag(LibTags.Items.DUST_SULFUR)
+                                .add(LibItems.SULFUR_DUST.get());
 
                 tag(Tags.Items.SLIME_BALLS)
-                                .add(zItems.PATINA.get());
+                                .add(LibItems.PATINA.get());
 
                 tag(Tags.Items.INGOTS)
-                                .add(RegistryUtils.getItems(zItems.zIngots));
+                                .add(RegistryUtils.getItems(LibItems.zIngots));
 
                 tag(Tags.Items.NUGGETS)
-                                .add(RegistryUtils.getItems(zItems.zNuggets));
+                                .add(RegistryUtils.getItems(LibItems.zNuggets));
 
-                tag(zItemTags.INGOT_WROUGHT_IRON).add(zItems.WROUGHT_IRON_INGOT.get());
-                tag(zItemTags.INGOT_STEEL).add(zItems.STEEL_INGOT.get());
-                tag(zItemTags.INGOT_ADVANCEDALLOY).add(zItems.ADVANCED_ALLOY_INGOT.get());
-                tag(zItemTags.NUGGET_STEEL).add(zItems.STEEL_NUGGET.get());
-                tag(zItemTags.NUGGET_WROUGHT_IRON).add(zItems.WROUGHT_IRON_NUGGET.get());
-                tag(zItemTags.NUGGET_ADVANCEDALLOY).add(zItems.ADVANCED_ALLOY_NUGGET.get());
+                tag(LibTags.Items.INGOT_WROUGHT_IRON).add(LibItems.WROUGHT_IRON_INGOT.get());
+                tag(LibTags.Items.INGOT_STEEL).add(LibItems.STEEL_INGOT.get());
+                tag(LibTags.Items.INGOT_ADVANCEDALLOY).add(LibItems.ADVANCED_ALLOY_INGOT.get());
+                tag(LibTags.Items.NUGGET_STEEL).add(LibItems.STEEL_NUGGET.get());
+                tag(LibTags.Items.NUGGET_WROUGHT_IRON).add(LibItems.WROUGHT_IRON_NUGGET.get());
+                tag(LibTags.Items.NUGGET_ADVANCEDALLOY).add(LibItems.ADVANCED_ALLOY_NUGGET.get());
 
-                tag(zItemTags.FOILS)
-                                .add(RegistryUtils.getItems(zItems.zFoils));
+                tag(LibTags.Items.FOILS)
+                                .add(RegistryUtils.getItems(LibItems.zFoils));
 
-                tag(zItemTags.FOIL_COPPER).add(zItems.COPPER_FOIL.get());
-                tag(zItemTags.FOIL_GOLD).add(zItems.GOLD_FOIL.get());
-                tag(zItemTags.FOIL_IRON).add(zItems.IRON_FOIL.get());
+                tag(LibTags.Items.FOIL_COPPER).add(LibItems.COPPER_FOIL.get());
+                tag(LibTags.Items.FOIL_GOLD).add(LibItems.GOLD_FOIL.get());
+                tag(LibTags.Items.FOIL_IRON).add(LibItems.IRON_FOIL.get());
 
-                tag(zItemTags.PLATES)
-                                .add(RegistryUtils.getItems(zItems.zPlates));
+                tag(LibTags.Items.PLATES)
+                                .add(RegistryUtils.getItems(LibItems.zPlates));
 
-                tag(zItemTags.PLATE_WROUGHT_IRON).add(zItems.WROUGHT_IRON_PLATE.get());
-                tag(zItemTags.PLATE_COAL).add(zItems.CARBON_PLATE.get());
-                tag(zItemTags.PLATE_COPPER).add(zItems.COPPER_PLATE.get());
-                tag(zItemTags.PLATE_GOLD).add(zItems.GOLD_PLATE.get());
-                tag(zItemTags.PLATE_IRON).add(zItems.IRON_PLATE.get());
-                tag(zItemTags.PLATE_STEEL).add(zItems.STEEL_PLATE.get());
-                tag(zItemTags.PLATE_ADVANCED_ALLOY).add(zItems.ADVANCED_ALLOY_PLATE.get());
+                tag(LibTags.Items.PLATE_WROUGHT_IRON).add(LibItems.WROUGHT_IRON_PLATE.get());
+                tag(LibTags.Items.PLATE_COAL).add(LibItems.CARBON_PLATE.get());
+                tag(LibTags.Items.PLATE_COPPER).add(LibItems.COPPER_PLATE.get());
+                tag(LibTags.Items.PLATE_GOLD).add(LibItems.GOLD_PLATE.get());
+                tag(LibTags.Items.PLATE_IRON).add(LibItems.IRON_PLATE.get());
+                tag(LibTags.Items.PLATE_STEEL).add(LibItems.STEEL_PLATE.get());
+                tag(LibTags.Items.PLATE_ADVANCED_ALLOY).add(LibItems.ADVANCED_ALLOY_PLATE.get());
 
-                tag(Tags.Items.GEMS).add(zItems.SILICON_GEM.get());
+                tag(Tags.Items.GEMS).add(LibItems.SILICON_GEM.get());
 
-                tag(zItemTags.GEMS_SILICON).add(zItems.SILICON_GEM.get());
+                tag(LibTags.Items.GEMS_SILICON).add(LibItems.SILICON_GEM.get());
 
-                tag(zItemTags.SILICON).add(zItems.SILICON_GEM.get());
+                tag(LibTags.Items.SILICON).add(LibItems.SILICON_GEM.get());
 
-                tag(zItemTags.GEARS).add(RegistryUtils.getItems(zItems.zGears));
-                tag(zItemTags.GEAR_WOODEN).add(zItems.WOODEN_GEAR.get());
-                tag(zItemTags.GEAR_COPPER).add(zItems.COPPER_GEAR.get());
-                tag(zItemTags.GEAR_GOLD).add(zItems.GOLD_GEAR.get());
-                tag(zItemTags.GEAR_IRON).add(zItems.IRON_GEAR.get());
-                tag(zItemTags.GEAR_STEEL).add(zItems.STEEL_GEAR.get());
+                tag(LibTags.Items.GEARS).add(RegistryUtils.getItems(LibItems.zGears));
+                tag(LibTags.Items.GEAR_WOODEN).add(LibItems.WOODEN_GEAR.get());
+                tag(LibTags.Items.GEAR_COPPER).add(LibItems.COPPER_GEAR.get());
+                tag(LibTags.Items.GEAR_GOLD).add(LibItems.GOLD_GEAR.get());
+                tag(LibTags.Items.GEAR_IRON).add(LibItems.IRON_GEAR.get());
+                tag(LibTags.Items.GEAR_STEEL).add(LibItems.STEEL_GEAR.get());
 
-                tag(zItemTags.COILS)
-                                .add(RegistryUtils.getItems(zItems.zCoils));
+                tag(LibTags.Items.COILS)
+                                .add(RegistryUtils.getItems(LibItems.zCoils));
 
-                tag(zItemTags.COIL_COPPER).add(zItems.COPPER_COIL.get());
-                tag(zItemTags.COIL_GOLD).add(zItems.GOLD_COIL.get());
-                tag(zItemTags.COIL_IRON).add(zItems.IRON_COIL.get());
+                tag(LibTags.Items.COIL_COPPER).add(LibItems.COPPER_COIL.get());
+                tag(LibTags.Items.COIL_GOLD).add(LibItems.GOLD_COIL.get());
+                tag(LibTags.Items.COIL_IRON).add(LibItems.IRON_COIL.get());
 
-                tag(zItemTags.UPGRADES)
-                                .add(RegistryUtils.getItems(zItems.zUpgrade));
+                tag(LibTags.Items.UPGRADES)
+                                .add(RegistryUtils.getItems(LibItems.zUpgrade));
 
-                tag(zItemTags.MOLDS)
-                                .add(RegistryUtils.getItems(zItems.zMolds));
+                tag(LibTags.Items.MOLDS)
+                                .add(RegistryUtils.getItems(LibItems.zMolds));
 
                 tag(Tags.Items.STORAGE_BLOCKS)
-                                .add(zBlocks.ADVANCED_ALLOY_BLOCK.get().asItem(), zBlocks.STEEL_BLOCK.get().asItem(),
-                                                zBlocks.WROUGHT_IRON_BLOCK.get().asItem());
+                                .add(LibBlocks.ADVANCED_ALLOY_BLOCK.get().asItem(), LibBlocks.STEEL_BLOCK.get().asItem(),
+                                                LibBlocks.WROUGHT_IRON_BLOCK.get().asItem());
 
-                tag(zItemTags.BLOCK_ADVANCED_ALLOY)
-                                .add(zBlocks.ADVANCED_ALLOY_BLOCK.get().asItem());
+                tag(LibTags.Items.BLOCK_ADVANCED_ALLOY)
+                                .add(LibBlocks.ADVANCED_ALLOY_BLOCK.get().asItem());
 
-                tag(zItemTags.BLOCK_STEEL)
-                                .add(zBlocks.STEEL_BLOCK.get().asItem());
+                tag(LibTags.Items.BLOCK_STEEL)
+                                .add(LibBlocks.STEEL_BLOCK.get().asItem());
 
-                tag(zItemTags.BLOCK_WROUGHT_IRON)
-                                .add(zBlocks.WROUGHT_IRON_BLOCK.get().asItem());
+                tag(LibTags.Items.BLOCK_WROUGHT_IRON)
+                                .add(LibBlocks.WROUGHT_IRON_BLOCK.get().asItem());
 
-                tag(zItemTags.ORE_DEPOSITS)
-                                .add(RegistryUtils.getItems(zItems.zDeposits));
+                tag(LibTags.Items.ORE_DEPOSITS)
+                                .add(RegistryUtils.getItems(LibItems.zDeposits));
 
-                tag(zItemTags.BATTERIES)
-                                .add(zItems.GREEN_BATTERY.get(), zItems.BLUE_BATTERY.get());
+                tag(LibTags.Items.BATTERIES)
+                                .add(LibItems.GREEN_BATTERY.get(), LibItems.BLUE_BATTERY.get());
 
         }
 

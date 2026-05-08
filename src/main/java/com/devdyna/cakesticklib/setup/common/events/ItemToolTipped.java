@@ -27,8 +27,8 @@ public class ItemToolTipped {
         if (item.getItem() instanceof CakeStick)
             tip.add(OVER_THE_REGISTRY_ID, Component.translatable(MODULE_ID + ".cakestick.tip"));
 
-        if (item.has(zComponents.UPGRADE_COMPONENTS)) {
-            var nbt = item.get(zComponents.UPGRADE_COMPONENTS);
+        if (item.has(LibComponents.UPGRADE_COMPONENTS)) {
+            var nbt = item.get(LibComponents.UPGRADE_COMPONENTS);
 
             if (nbt != null && !UpgradeComponents.isEmpty(nbt)) {
                 tip.add(OVER_THE_REGISTRY_ID, Component.translatable(MODULE_ID + ".upgrades.title"));
@@ -60,8 +60,8 @@ public class ItemToolTipped {
         if (item.getItem() instanceof Chisel)
             tip.add(OVER_THE_REGISTRY_ID, Component.translatable(MODULE_ID + ".info.identifier.desc"));
 
-        if (item.has(zComponents.IDENTIFIER)) {
-            var nbt = item.get(zComponents.IDENTIFIER);
+        if (item.has(LibComponents.IDENTIFIER)) {
+            var nbt = item.get(LibComponents.IDENTIFIER);
 
             if (nbt != null)
                 tip.add(2, Component.translatable(MODULE_ID + ".info.identifier.hold")

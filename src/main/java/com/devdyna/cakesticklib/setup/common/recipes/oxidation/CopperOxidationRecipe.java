@@ -67,12 +67,12 @@ public class CopperOxidationRecipe extends BaseRecipeType<OxidationInput> {
 
     @Override
     public RecipeSerializer<? extends Recipe<OxidationInput>> getSerializer() {
-        return zRecipeTypes.COPPER_OXIDATION.getSerializer();
+        return LibRecipeTypes.COPPER_OXIDATION.getSerializer();
     }
 
     @Override
     public RecipeType<? extends Recipe<OxidationInput>> getType() {
-        return zRecipeTypes.COPPER_OXIDATION.getType();
+        return LibRecipeTypes.COPPER_OXIDATION.getType();
     }
 
     @Override

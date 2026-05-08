@@ -6,7 +6,7 @@ import java.util.List;
 import com.devdyna.cakesticklib.api.utils.UpgradeComponents;
 import com.devdyna.cakesticklib.api.utils.UpgradeComponents.UpgradeType;
 import com.devdyna.cakesticklib.setup.Config;
-import com.devdyna.cakesticklib.setup.registry.zComponents;
+import com.devdyna.cakesticklib.setup.registry.LibComponents;
 import com.devdyna.cakesticklib.setup.registry.builders.IndustrialUpgrade;
 
 import net.minecraft.world.item.ItemStack;
@@ -27,7 +27,7 @@ public interface UpgradeInstallable {
         return getUpgradeSlots().stream()
                 .map(s -> getUpgradeItemStorage().getResource(s).toStack(getUpgradeItemStorage().getAmountAsInt(s)))
                 .filter(i -> i.getItem() instanceof IndustrialUpgrade)
-                .filter(i -> i.get(zComponents.UPGRADE_COMPONENTS) != null)
+                .filter(i -> i.get(LibComponents.UPGRADE_COMPONENTS) != null)
                 .toList();
     }
 

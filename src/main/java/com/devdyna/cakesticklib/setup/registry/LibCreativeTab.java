@@ -9,7 +9,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-public class zCreativeTabs {
+public class LibCreativeTab {
         
         public static void register(IEventBus bus) {
                 zCreative.register(bus);
@@ -19,7 +19,7 @@ public class zCreativeTabs {
                         .create(Registries.CREATIVE_MODE_TAB, MODULE_ID);
 
         public static final DeferredHolder<CreativeModeTab, CreativeModeTab> INGREDIENTS = RegistryUtils
-                        .createCreativeTab(MODULE_ID, "resources", () -> zItems.CHIP.get(),
-                                        zCreativeTabs.zCreative);
+                        .createCreativeTab(MODULE_ID, "resources", () -> LibItems.CHIP.get(),
+                                        LibCreativeTab.zCreative);
 
 }

@@ -11,35 +11,35 @@ public class CreativeTab {
     @SubscribeEvent
     public static void register(BuildCreativeModeTabContentsEvent event) {
         if (event.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS)
-            event.accept(zItems.CAKE_STICK.get());
+            event.accept(LibItems.CAKE_STICK.get());
 
         if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
-            event.accept(zItems.CHISEL.get());
-            event.accept(zItems.REDSTONE_ACID.get());
-            event.accept(zItems.HONEY_SOLUTION.get());
-            event.accept(zItems.HAMMER.get());
+            event.accept(LibItems.CHISEL.get());
+            event.accept(LibItems.REDSTONE_ACID.get());
+            event.accept(LibItems.HONEY_SOLUTION.get());
+            event.accept(LibItems.HAMMER.get());
 
-            event.accept(zItems.SPEED_UPGRADE.get().set(20, 125, 0, 0));
-            event.accept(zItems.ENERGY_UPGRADE.get().set(0, -50, 0, 0));
-            event.accept(zItems.LUCK_UPGRADE.get().set(0, 150, 15, 0));
-            event.accept(zItems.FLUID_UPGRADE.get().set(0, 150, 0, -20));
+            event.accept(LibItems.SPEED_UPGRADE.get().set(20, 125, 0, 0));
+            event.accept(LibItems.ENERGY_UPGRADE.get().set(0, -50, 0, 0));
+            event.accept(LibItems.LUCK_UPGRADE.get().set(0, 150, 15, 0));
+            event.accept(LibItems.FLUID_UPGRADE.get().set(0, 150, 0, -20));
         }
 
-        if (event.getTabKey() == zCreativeTabs.INGREDIENTS.getKey()) {
+        if (event.getTabKey() == LibCreativeTab.INGREDIENTS.getKey()) {
             CreativeTabUtils.accept(event,
-                    zItems.zSimple,
-                    zItems.zPebbles,
-                    zItems.zNuggets,
-                    zItems.zIngots,
-                    zItems.zBlockItem,
-                    zItems.zDusts,
-                    zItems.zPlates,
-                    zItems.zCoils,
-                    zItems.zFoils,
-                    zItems.zGears,
-                    zItems.zMolds,
-                    zItems.zChunks,
-                    zItems.zDeposits);
+                    LibItems.zSimple,
+                    LibItems.zPebbles,
+                    LibItems.zNuggets,
+                    LibItems.zIngots,
+                    LibItems.zBlockItem,
+                    LibItems.zDusts,
+                    LibItems.zPlates,
+                    LibItems.zCoils,
+                    LibItems.zFoils,
+                    LibItems.zGears,
+                    LibItems.zMolds,
+                    LibItems.zChunks,
+                    LibItems.zDeposits);
 
         }
 

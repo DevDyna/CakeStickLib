@@ -11,9 +11,9 @@ public class RecipeSender {
     public static void onDatapackSync(OnDatapackSyncEvent event) {
         if (ModAddonUtil.checkMod("jei"))
             event.sendRecipes(
-                    zRecipeTypes.COPPER_OXIDATION.getType(),
-                    zRecipeTypes.HAMMERING.getType(),
-                    zRecipeTypes.UPGRADE_APPLICATION.getType(),
+                    LibRecipeTypes.COPPER_OXIDATION.getType(),
+                    LibRecipeTypes.HAMMERING.getType(),
+                    LibRecipeTypes.UPGRADE_APPLICATION.getType(),
                     RecipeType.CRAFTING);
 
     }

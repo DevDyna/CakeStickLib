@@ -50,7 +50,7 @@ public class CopperOxidationCategory extends BaseRecipeCategory<CopperOxidationR
     }
 
     public static final IRecipeType<RecipeHolder<CopperOxidationRecipe>> TYPE = IRecipeType
-            .create(zRecipeTypes.COPPER_OXIDATION.getType());
+            .create(LibRecipeTypes.COPPER_OXIDATION.getType());
 
     @Override
     public IRecipeType<RecipeHolder<CopperOxidationRecipe>> getRecipeType() {
@@ -64,7 +64,7 @@ public class CopperOxidationCategory extends BaseRecipeCategory<CopperOxidationR
 
     @Override
     public ItemLike getIconItem() {
-        return zItems.REDSTONE_ACID.get();
+        return LibItems.REDSTONE_ACID.get();
     }
 
     @Override
@@ -124,7 +124,7 @@ public class CopperOxidationCategory extends BaseRecipeCategory<CopperOxidationR
 
         if (recipe.getOxidationType().equals(OxidationStatus.SCRAPPING))
             builder.addSlot(RecipeIngredientRole.OUTPUT, 59, 21)
-                    .add(x.item(zItems.PATINA.get()))
+                    .add(x.item(LibItems.PATINA.get()))
                     .addRichTooltipCallback(
                             (v, t) -> t.add(Component.translatable(MODULE_ID + ".jei.patina_drop", "0-2")));
     }

@@ -59,21 +59,21 @@ public class DataLang extends LanguageProvider {
 
                 List.of(
 
-                                zItems.zItem,
-                                zItems.zSimple,
-                                zItems.zUpgrade,
-                                zItems.zDusts,
-                                zItems.zPlates,
-                                zItems.zPebbles,
-                                zItems.zMolds,
-                                zItems.zIngots,
-                                zItems.zGears,
-                                zItems.zNuggets,
-                                zItems.zFoils,
-                                zItems.zCoils,
-                                zItems.zDeposits,
-                                zItems.zChunks,
-                                zItems.zBlockItem)
+                                LibItems.zItem,
+                                LibItems.zSimple,
+                                LibItems.zUpgrade,
+                                LibItems.zDusts,
+                                LibItems.zPlates,
+                                LibItems.zPebbles,
+                                LibItems.zMolds,
+                                LibItems.zIngots,
+                                LibItems.zGears,
+                                LibItems.zNuggets,
+                                LibItems.zFoils,
+                                LibItems.zCoils,
+                                LibItems.zDeposits,
+                                LibItems.zChunks,
+                                LibItems.zBlockItem)
                                 .stream()
                                 .map(DeferredRegister.Items::getEntries)
                                 .forEach(c -> c.forEach(i -> addItem(i, named(i, MODULE_ID))));

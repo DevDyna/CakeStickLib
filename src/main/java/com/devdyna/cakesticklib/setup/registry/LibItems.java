@@ -15,7 +15,7 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-public class zItems {
+public class LibItems {
                 public static void register(IEventBus bus) {
                         zItem.register(bus);
                         zSimple.register(bus);

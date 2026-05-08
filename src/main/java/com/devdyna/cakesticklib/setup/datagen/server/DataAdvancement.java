@@ -30,12 +30,12 @@ public class DataAdvancement extends AdvancementProvider {
                 public void generate(Provider p, Consumer<AdvancementHolder> c) {
 
                          AdvancementsUtils
-                                        .getExistingParent("minecraft:adventure/root", zItems.CAKE_STICK.get(),
+                                        .getExistingParent("minecraft:adventure/root", LibItems.CAKE_STICK.get(),
                                                         MODULE_ID,
                                                         "cake_stick", AdvancementType.CHALLENGE, true, true, false)
                                         .addCriterion("craft_cake_stick",
                                                         InventoryChangeTrigger.TriggerInstance
-                                                                        .hasItems(zItems.CAKE_STICK.get()))
+                                                                        .hasItems(LibItems.CAKE_STICK.get()))
                                         .requirements(AdvancementRequirements.allOf(List.of("craft_cake_stick")))
                                         .save(c, MODULE_ID + ":setup/cake_stick");
 

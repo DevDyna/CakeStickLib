@@ -32,8 +32,8 @@ public class PluginJEI implements IModPlugin {
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration r) {
 
-        r.addCraftingStation(CopperOxidationCategory.TYPE, zItems.REDSTONE_ACID.get(), zItems.HONEY_SOLUTION.get());
-        r.addCraftingStation(RecipeTypes.STONECUTTING, zItems.CHISEL.get());
+        r.addCraftingStation(CopperOxidationCategory.TYPE, LibItems.REDSTONE_ACID.get(), LibItems.HONEY_SOLUTION.get());
+        r.addCraftingStation(RecipeTypes.STONECUTTING, LibItems.CHISEL.get());
 
     }
 
@@ -53,7 +53,7 @@ public class PluginJEI implements IModPlugin {
     public void registerRecipes(IRecipeRegistration r) {
 
         r.addRecipes(CopperOxidationCategory.TYPE,
-                getRecipes(zRecipeTypes.COPPER_OXIDATION.getType()));
+                getRecipes(LibRecipeTypes.COPPER_OXIDATION.getType()));
 
     }
 

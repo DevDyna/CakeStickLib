@@ -40,7 +40,7 @@ public class PatinaDropEvent {
 
         if (level.getRandom().nextBoolean())
             Block.popResource(level, event.getPos().relative(event.getContext().getClickedFace()),
-                    x.item(zItems.PATINA.get(),
+                    x.item(LibItems.PATINA.get(),
                             level.getRandom().nextInt(1) + 1 + (age > 1 ? level.getRandom().nextInt(1) : 0)));
 
     }

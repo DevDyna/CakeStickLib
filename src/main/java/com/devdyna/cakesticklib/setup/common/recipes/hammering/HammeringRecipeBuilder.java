@@ -37,7 +37,7 @@ public class HammeringRecipeBuilder extends BaseRecipeBuilder implements
 
     public HammeringRecipeBuilder unlockedBy() {
         return unlockedBy(MODULE_ID, InventoryChangeTrigger.TriggerInstance
-                .hasItems(zItems.HAMMER.get()));
+                .hasItems(LibItems.HAMMER.get()));
     }
 
     public HammeringRecipeBuilder unlockedBy(String name, Criterion<?> criterion) {

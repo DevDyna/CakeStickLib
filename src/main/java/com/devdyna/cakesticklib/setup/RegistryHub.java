@@ -9,13 +9,12 @@ public class RegistryHub {
          * DON'T OVERRIDE OR IT WILL LOSE ANY RECIPE TYPES AND HANDLERS!
          */
         public static void register(IEventBus bus) {
-                zHandlers.register(bus);
-                zItems.register(bus);
-                zComponents.register(bus);
-                zRecipeTypes.register(bus);
-                zItemTags.register(bus);
-                zCreativeTabs.register(bus);
-                zBlocks.register(bus);
-                zBlockTags.register(bus);
+                LibHandlers.register(bus);
+                LibItems.register(bus);
+                LibComponents.register(bus);
+                LibRecipeTypes.register(bus);
+                LibTags.register(bus);
+                LibCreativeTab.register(bus);
+                LibBlocks.register(bus);
         }
 }

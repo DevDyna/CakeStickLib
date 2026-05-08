@@ -35,7 +35,7 @@ public class Controller {
         v.addProvider(o -> new DataAdvancement(o, pr, List.of(new DataAdvancementGenerator())));
 
         v.addProvider(o -> new DataRecipe.RecipeRunner(o, pr));
-        
+
     }
 
 }

@@ -1,7 +1,7 @@
 package com.devdyna.cakesticklib.setup.common.recipes.upgrade_application;
 
 import com.devdyna.cakesticklib.api.utils.UpgradeComponents;
-import com.devdyna.cakesticklib.setup.registry.zComponents;
+import com.devdyna.cakesticklib.setup.registry.LibComponents;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
@@ -47,7 +47,7 @@ public class UpgradeApplication extends ShapedRecipe {
     @Override
     public ItemStack assemble(CraftingInput input) {
         var item = result.create();
-        item.set(zComponents.UPGRADE_COMPONENTS, builder);
+        item.set(LibComponents.UPGRADE_COMPONENTS, builder);
         return item;
     }
 

@@ -11,8 +11,8 @@ import java.util.Map;
 import com.devdyna.cakesticklib.api.recipe.recipeBuilder.*;
 import com.devdyna.cakesticklib.api.utils.UpgradeComponents;
 import com.devdyna.cakesticklib.api.utils.x;
-import com.devdyna.cakesticklib.setup.registry.zComponents;
-import com.devdyna.cakesticklib.setup.registry.zItems;
+import com.devdyna.cakesticklib.setup.registry.LibComponents;
+import com.devdyna.cakesticklib.setup.registry.LibItems;
 
 import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.criterion.InventoryChangeTrigger;
@@ -53,7 +53,7 @@ public class UpgradeApplicationBuilder extends BaseRecipeBuilder
 
     public UpgradeApplicationBuilder unlockedBy() {
         return unlockedBy(MODULE_ID, InventoryChangeTrigger.TriggerInstance
-                .hasItems(zItems.STEEL_PLATE.get()));
+                .hasItems(LibItems.STEEL_PLATE.get()));
     }
 
     public UpgradeApplicationBuilder unlockedBy(String name, Criterion<?> criterion) {
@@ -66,7 +66,7 @@ public class UpgradeApplicationBuilder extends BaseRecipeBuilder
 
         this.result = new ItemStackTemplate(upgrade.item(), 1,
                 DataComponentPatch.builder()
-                        .set(zComponents.UPGRADE_COMPONENTS.get(), UpgradeComponents
+                        .set(LibComponents.UPGRADE_COMPONENTS.get(), UpgradeComponents
                                 .builder(speed, energy, luck, fluid))
                         .build());
         return this;
