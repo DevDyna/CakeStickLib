@@ -7,8 +7,11 @@ import org.jetbrains.annotations.Nullable;
 import com.devdyna.cakesticklib.api.primitive.Size;
 import com.devdyna.cakesticklib.api.utils.ColorUtil;
 
+import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
+import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
+import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
@@ -34,6 +37,10 @@ public abstract class BaseCategory<T> implements IRecipeCategory<T> {
         this.backgroundImage = ImageJei.of()
                 .rl(this.setBackGround())
                 .size(this.getWidth(), this.getHeight());
+    }
+
+    @Override
+    public void setRecipe(IRecipeLayoutBuilder builder, T recipe, IFocusGroup focuses) {
     }
 
     protected final Color defaultToolTipColor = ColorUtil.color(64, 64, 64);
@@ -82,14 +89,14 @@ public abstract class BaseCategory<T> implements IRecipeCategory<T> {
     /**
      * Don't override without super it!
      */
-    public void drawBackground(GuiGraphicsExtractor graphics) {
+    public void background(GuiGraphicsExtractor graphics) {
         this.backgroundImage.render(helper, graphics);
     }
 
-    public void drawCentredStringFixed(GuiGraphicsExtractor g, Font font, Component text, int x, int y, int color,
-            boolean shadow) {
-        var f = text.getVisualOrderText();
-        g.text(font, f, x - font.width(f) / 2, y, color, shadow);
+    @Override
+    public void draw(T recipe, IRecipeSlotsView recipeSlotsView, GuiGraphicsExtractor guiGraphics, double mouseX,
+            double mouseY) {
+        background(guiGraphics);
     }
 
 }
