@@ -13,6 +13,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -92,6 +93,13 @@ public class RegistryUtils {
          */
         public static TagKey<EntityType<?>> tagEntity(String modname, String id) {
                 return TagKey.create(Registries.ENTITY_TYPE, x.rl(modname, id));
+        }
+
+        /**
+         * create an biome tag
+         */
+        public static TagKey<Biome> tagBiome(String modname, String id) {
+                return TagKey.create(Registries.BIOME, x.rl(modname, id));
         }
 
         public static <T extends BlockEntity> DeferredHolder<BlockEntityType<?>, BlockEntityType<T>> createBlockEntity(
