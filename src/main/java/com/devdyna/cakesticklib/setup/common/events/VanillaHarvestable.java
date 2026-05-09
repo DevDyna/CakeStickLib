@@ -3,9 +3,8 @@ package com.devdyna.cakesticklib.setup.common.events;
 import java.util.*;
 
 import com.devdyna.cakesticklib.api.factories.plants.*;
+import com.devdyna.cakesticklib.setup.Config;
 
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -19,19 +18,15 @@ public class VanillaHarvestable {
         var player = event.getEntity();
         var hand = event.getHand();
 
-        List<ItemStack> check = VanillaPlants.checkReplant(level, pos);
-        // no valid plants found
-        if (check != null && hand.equals(InteractionHand.MAIN_HAND)) {
+        if (!Config.HARVESTABLE_ACTION.get())
+            return;
 
-            player.swing(hand);
+        List<ItemStack> check = VanillaPlants.checkReplant(level, pos,player,hand);
 
-            level.playSound(player, pos, SoundEvents.BONE_MEAL_USE, SoundSource.BLOCKS, 3.0F, 2F);
-
-            if (level.isClientSide())
-                return;
-
+        if (check != null && hand.equals(InteractionHand.MAIN_HAND)) 
             check.forEach(i -> player.addItem(i));
-        }
+        
 
+      
     }
 }
