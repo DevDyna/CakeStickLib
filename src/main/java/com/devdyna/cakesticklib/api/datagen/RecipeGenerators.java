@@ -162,7 +162,7 @@ public interface RecipeGenerators {
                                 .pattern("# #")
                                 .pattern(" # ")
                                 .define('#', input)
-                                .unlockedBy(x.getTagName(input), has(input))
+                                .unlockedBy(getHasName(input), has(input))
                                 .save(c);
 
         }
@@ -172,7 +172,7 @@ public interface RecipeGenerators {
                                 .define('#', tag)
                                 .pattern("##")
                                 .pattern("##")
-                                .unlockedBy(x.getTagName(tag), has(tag))
+                                .unlockedBy(getHasName(tag), has(tag))
                                 .save(c);
         }
 
