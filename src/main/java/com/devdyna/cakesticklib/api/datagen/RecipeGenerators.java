@@ -2,6 +2,7 @@ package com.devdyna.cakesticklib.api.datagen;
 
 import com.devdyna.cakesticklib.api.utils.x;
 
+import io.netty.util.internal.UnstableApi;
 import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.criterion.InventoryChangeTrigger;
 import net.minecraft.advancements.criterion.ItemPredicate;
@@ -61,7 +62,7 @@ public interface RecipeGenerators {
 
         default void simpleCooking(RecipeOutput c, Item input, Item output) {
                 SimpleCookingRecipeBuilder
-                                .smelting(Ingredient.of(input),
+                                .smelting(x.itemIngredient(input),
                                                 RecipeCategory.MISC,
                                                 CookingBookCategory.MISC, output, 0.1F, 200)
                                 .unlockedBy(getHasNameGen(input),
@@ -70,6 +71,19 @@ public interface RecipeGenerators {
                                                 + getConversionRecipeNameGen(
                                                                 output,
                                                                 input));
+        }
+
+        default void simpleCooking(RecipeOutput c, TagKey<Item> input, Item output) {
+                SimpleCookingRecipeBuilder
+                                .smelting(x.itemIngredient(input, getProvider()),
+                                                RecipeCategory.MISC,
+                                                CookingBookCategory.MISC, output, 0.1F, 200)
+                                .unlockedBy(getHasName(input),
+                                                has(input))
+                                .save(c, getModName() + ":"
+                                                + getConversionRecipeName(
+                                                                input,
+                                                                output));
         }
 
         default void doubleSmelt(RecipeOutput c, ItemLike input, ItemLike output) {
@@ -91,6 +105,25 @@ public interface RecipeGenerators {
                                                 + "_smelting");
         }
 
+        default void doubleSmelt(RecipeOutput c, TagKey<Item> input, ItemLike output) {
+                SimpleCookingRecipeBuilder
+                                .blasting(x.itemIngredient(input, getProvider()), RecipeCategory.MISC,
+                                                CookingBookCategory.MISC,
+                                                output.asItem(), 0.1F, 100)
+                                .unlockedBy(getHasName(input), has(output))
+                                .save(c, getModName() + ":" + x.path(output.asItem()) + "_from_"
+                                                + x.path(input)
+                                                + "_blasting");
+                SimpleCookingRecipeBuilder
+                                .smelting(x.itemIngredient(input, getProvider()), RecipeCategory.MISC,
+                                                CookingBookCategory.MISC,
+                                                output.asItem(), 0.1F, 200)
+                                .unlockedBy(getHasName(input), has(output))
+                                .save(c, getModName() + ":" + x.path(output.asItem()) + "_from_"
+                                                + x.path(input)
+                                                + "_smelting");
+        }
+
         default void unpacker(RecipeOutput c, ItemLike input, ItemLike output, int count) {
                 ShapelessRecipeBuilder.shapeless(getItems(), RecipeCategory.MISC, output, count).requires(input)
                                 .unlockedBy(getHasNameGen(input), has(input))
@@ -102,7 +135,13 @@ public interface RecipeGenerators {
                 packUnpack(c, ingot, block, false);
         }
 
-        default void gear(RecipeOutput c,  Item gear, Item input) {
+        
+        /**
+         * BREAKING CHANGES :<br/><br/>
+         * {@code input} and {@code gear} has been switched of position
+         */
+        @UnstableApi
+        default void gear(RecipeOutput c, Item input, Item gear) {
                 ShapedRecipeBuilder.shaped(getItems(), RecipeCategory.MISC, gear)
                                 .pattern(" # ")
                                 .pattern("# #")
@@ -113,7 +152,11 @@ public interface RecipeGenerators {
 
         }
 
+        @Deprecated
         default void gear(RecipeOutput c, Item gear, TagKey<Item> input) {
+        }
+
+        default void gear(RecipeOutput c, TagKey<Item> input, Item gear) {
                 ShapedRecipeBuilder.shaped(getItems(), RecipeCategory.MISC, gear)
                                 .pattern(" # ")
                                 .pattern("# #")
@@ -139,11 +182,11 @@ public interface RecipeGenerators {
                                 .unlockedBy(getHasNameGen(o), has(o)).save(c, e);
         }
 
-        default void plate(RecipeOutput c,TagKey<Item> input, Item output) {
+        default void plate(RecipeOutput c, TagKey<Item> input, Item output) {
                 ShapedRecipeBuilder.shaped(getItems(), RecipeCategory.MISC, output, 3)
                                 .pattern("III")
                                 .define('I', input)
-                                .unlockedBy(x.getTagName(input),
+                                .unlockedBy(getHasName(input),
                                                 has(input))
                                 .save(c);
 
@@ -156,7 +199,7 @@ public interface RecipeGenerators {
                                 .pattern("SI ")
                                 .define('I', input)
                                 .define('S', Items.STICK)
-                                .unlockedBy(x.getTagName(input),
+                                .unlockedBy(getHasName(input),
                                                 has(Items.STICK))
                                 .save(c);
 
@@ -169,13 +212,13 @@ public interface RecipeGenerators {
                                 .pattern(" I ")
                                 .define('I', input)
                                 .define('S', Items.STICK)
-                                .unlockedBy(x.getTagName(input),
+                                .unlockedBy(getHasName(input),
                                                 has(Items.STICK))
                                 .save(c);
 
         }
 
-        default void plate(RecipeOutput c,Item input, Item output) {
+        default void plate(RecipeOutput c, Item input, Item output) {
                 ShapedRecipeBuilder.shaped(getItems(), RecipeCategory.MISC, output, 3)
                                 .pattern("III")
                                 .define('I', input)
