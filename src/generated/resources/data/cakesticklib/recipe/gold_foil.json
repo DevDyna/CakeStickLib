@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "I": "cakesticklib:gold_plate",
+    "I": "#c:plates/gold",
     "S": "minecraft:stick"
   },
   "pattern": [

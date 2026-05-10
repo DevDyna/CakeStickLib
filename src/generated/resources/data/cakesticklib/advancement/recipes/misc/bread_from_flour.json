@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "cakesticklib:flour"
+            "items": "#c:flour"
           }
         ]
       },

@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "I": "cakesticklib:iron_foil",
+    "I": "#c:foils/iron",
     "S": "minecraft:stick"
   },
   "pattern": [

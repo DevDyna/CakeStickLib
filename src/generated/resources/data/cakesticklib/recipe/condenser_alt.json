@@ -2,10 +2,10 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "G": "cakesticklib:plastic",
-    "I": "cakesticklib:advanced_alloy_ingot",
+    "G": "#c:plastic",
+    "I": "#c:ingots/advanced_alloy",
     "M": "cakesticklib:silicon_gem",
-    "N": "cakesticklib:advanced_alloy_nugget"
+    "N": "#c:nuggets/advanced_alloy"
   },
   "pattern": [
     "N N",

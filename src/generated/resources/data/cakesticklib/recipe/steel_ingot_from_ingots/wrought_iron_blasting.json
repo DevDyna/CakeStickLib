@@ -3,8 +3,8 @@
   "category": "misc",
   "cookingtime": 100,
   "experience": 0.1,
-  "ingredient": "cakesticklib:iron_dust",
+  "ingredient": "#c:ingots/wrought_iron",
   "result": {
-    "id": "minecraft:iron_ingot"
+    "id": "cakesticklib:steel_ingot"
   }
 }

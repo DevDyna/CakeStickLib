@@ -2,10 +2,10 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "G": "cakesticklib:steel_plate",
-    "I": "minecraft:iron_ingot",
-    "M": "cakesticklib:carbon_fiber",
-    "N": "minecraft:iron_nugget"
+    "G": "#c:plates/steel",
+    "I": "#c:ingots/iron",
+    "M": "#c:carbon_fiber",
+    "N": "#c:nuggets/iron"
   },
   "pattern": [
     "N N",

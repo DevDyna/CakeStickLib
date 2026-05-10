@@ -3,9 +3,9 @@
   "category": "misc",
   "group": "upgrade_application",
   "key": {
-    "B": "minecraft:lapis_lazuli",
+    "B": "#c:gems/lapis",
     "C": "cakesticklib:chip",
-    "R": "cakesticklib:electron_tube",
+    "R": "#c:electron_tubes",
     "S": "#c:plates/steel"
   },
   "pattern": [

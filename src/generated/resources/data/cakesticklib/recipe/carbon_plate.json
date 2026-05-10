@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "#": "cakesticklib:carbon_fiber"
+    "#": "#c:carbon_fiber"
   },
   "pattern": [
     "##",

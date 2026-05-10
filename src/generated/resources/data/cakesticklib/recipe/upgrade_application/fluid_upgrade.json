@@ -3,7 +3,7 @@
   "category": "misc",
   "group": "upgrade_application",
   "key": {
-    "B": "minecraft:glowstone_dust",
+    "B": "#c:dusts/glowstone",
     "C": "cakesticklib:chip",
     "R": "cakesticklib:metal_bolts",
     "S": "#c:plates/steel"

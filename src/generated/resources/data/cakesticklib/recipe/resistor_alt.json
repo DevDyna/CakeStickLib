@@ -2,9 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "M": "minecraft:lapis_lazuli",
-    "N": "cakesticklib:advanced_alloy_nugget",
-    "R": "cakesticklib:plastic"
+    "M": "#c:gems/lapis",
+    "N": "#c:nuggets/advanced_alloy",
+    "R": "#c:plastic"
   },
   "pattern": [
     " MN",

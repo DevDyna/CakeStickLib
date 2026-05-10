@@ -3,7 +3,7 @@
   "category": "misc",
   "group": "upgrade_application",
   "key": {
-    "B": "minecraft:redstone",
+    "B": "#c:dusts/redstone",
     "C": "cakesticklib:chip",
     "R": "cakesticklib:resistor",
     "S": "#c:plates/steel"

@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "#": "minecraft:gold_ingot"
+    "#": "#c:ingots/gold"
   },
   "pattern": [
     " # ",

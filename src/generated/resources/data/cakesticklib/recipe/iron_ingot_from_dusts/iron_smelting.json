@@ -3,8 +3,8 @@
   "category": "misc",
   "cookingtime": 200,
   "experience": 0.1,
-  "ingredient": "cakesticklib:gold_dust",
+  "ingredient": "#c:dusts/iron",
   "result": {
-    "id": "minecraft:gold_ingot"
+    "id": "minecraft:iron_ingot"
   }
 }

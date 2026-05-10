@@ -1,9 +1,9 @@
 {
-  "type": "minecraft:smelting",
+  "type": "minecraft:blasting",
   "category": "misc",
-  "cookingtime": 200,
+  "cookingtime": 100,
   "experience": 0.1,
-  "ingredient": "cakesticklib:iron_dust",
+  "ingredient": "#c:dusts/iron",
   "result": {
     "id": "minecraft:iron_ingot"
   }

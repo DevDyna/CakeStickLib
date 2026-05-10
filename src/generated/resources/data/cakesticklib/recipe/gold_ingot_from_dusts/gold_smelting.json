@@ -1,9 +1,9 @@
 {
-  "type": "minecraft:blasting",
+  "type": "minecraft:smelting",
   "category": "misc",
-  "cookingtime": 100,
+  "cookingtime": 200,
   "experience": 0.1,
-  "ingredient": "cakesticklib:gold_dust",
+  "ingredient": "#c:dusts/gold",
   "result": {
     "id": "minecraft:gold_ingot"
   }

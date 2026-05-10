@@ -2,9 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "M": "minecraft:lapis_lazuli",
-    "N": "cakesticklib:wrought_iron_nugget",
-    "R": "minecraft:redstone"
+    "M": "#c:gems/lapis",
+    "N": "#c:nuggets/wrought_iron",
+    "R": "#c:dusts/redstone"
   },
   "pattern": [
     " MN",

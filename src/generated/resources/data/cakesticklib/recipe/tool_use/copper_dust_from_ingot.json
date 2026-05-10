@@ -4,7 +4,7 @@
   "group": "hammering",
   "ingredients": [
     "cakesticklib:hammer",
-    "minecraft:copper_ingot"
+    "#c:ingots/copper"
   ],
   "result": {
     "id": "cakesticklib:copper_dust"

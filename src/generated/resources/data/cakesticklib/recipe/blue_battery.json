@@ -4,7 +4,7 @@
   "key": {
     "C": "cakesticklib:condenser",
     "R": "cakesticklib:resistor",
-    "S": "minecraft:redstone"
+    "S": "#c:dusts/redstone"
   },
   "pattern": [
     " S ",

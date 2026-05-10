@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "I": "cakesticklib:copper_plate",
+    "I": "#c:plates/copper",
     "S": "minecraft:stick"
   },
   "pattern": [

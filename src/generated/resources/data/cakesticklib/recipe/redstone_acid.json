@@ -3,7 +3,7 @@
   "category": "equipment",
   "ingredients": [
     "minecraft:glass_bottle",
-    "minecraft:redstone",
+    "#c:dusts/redstone",
     "cakesticklib:patina"
   ],
   "result": {

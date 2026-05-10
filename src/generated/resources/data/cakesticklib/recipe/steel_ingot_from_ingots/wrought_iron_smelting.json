@@ -3,7 +3,7 @@
   "category": "misc",
   "cookingtime": 200,
   "experience": 0.1,
-  "ingredient": "cakesticklib:wrought_iron_ingot",
+  "ingredient": "#c:ingots/wrought_iron",
   "result": {
     "id": "cakesticklib:steel_ingot"
   }

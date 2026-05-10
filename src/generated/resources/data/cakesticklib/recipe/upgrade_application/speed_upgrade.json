@@ -3,7 +3,7 @@
   "category": "misc",
   "group": "upgrade_application",
   "key": {
-    "B": "minecraft:diamond",
+    "B": "#c:gems/diamond",
     "C": "cakesticklib:chip",
     "R": "cakesticklib:condenser",
     "S": "#c:plates/steel"

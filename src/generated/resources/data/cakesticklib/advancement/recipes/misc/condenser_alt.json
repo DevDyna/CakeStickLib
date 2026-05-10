@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_advanced_alloy_ingot": {
+    "has_ingots/advanced_alloy": {
       "conditions": {
         "items": [
           {
-            "items": "cakesticklib:advanced_alloy_ingot"
+            "items": "#c:ingots/advanced_alloy"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_advanced_alloy_ingot"
+      "has_ingots/advanced_alloy"
     ]
   ],
   "rewards": {

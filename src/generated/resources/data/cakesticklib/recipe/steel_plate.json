@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "I": "cakesticklib:steel_ingot"
+    "I": "#c:ingots/steel"
   },
   "pattern": [
     "III"

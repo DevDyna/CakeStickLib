@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "I": "cakesticklib:wrought_iron_ingot"
+    "I": "#c:ingots/wrought_iron"
   },
   "pattern": [
     "III"

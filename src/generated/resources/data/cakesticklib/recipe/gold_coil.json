@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "I": "cakesticklib:gold_foil",
+    "I": "#c:foils/gold",
     "S": "minecraft:stick"
   },
   "pattern": [

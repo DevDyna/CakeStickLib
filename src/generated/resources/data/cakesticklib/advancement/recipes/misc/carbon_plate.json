@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "cakesticklib:carbon_fiber"
+            "items": "#c:carbon_fiber"
           }
         ]
       },

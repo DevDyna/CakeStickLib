@@ -1,5 +1,8 @@
 {
   "values": [
-    "#c:nuggets"
+    {
+      "id": "#c:nuggets",
+      "required": false
+    }
   ]
 }

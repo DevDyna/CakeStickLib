@@ -1,13 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_the_recipe": {
-      "conditions": {
-        "recipe": "cakesticklib:steel_ingot_from_wrought_iron_ingot_smelting"
-      },
-      "trigger": "minecraft:recipe_unlocked"
-    },
-    "has_wrought_iron_ingot": {
+    "has_ingots/wrought_iron": {
       "conditions": {
         "items": [
           {
@@ -16,17 +10,23 @@
         ]
       },
       "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "cakesticklib:steel_ingot_from_ingots/wrought_iron_blasting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
       "has_the_recipe",
-      "has_wrought_iron_ingot"
+      "has_ingots/wrought_iron"
     ]
   ],
   "rewards": {
     "recipes": [
-      "cakesticklib:steel_ingot_from_wrought_iron_ingot_smelting"
+      "cakesticklib:steel_ingot_from_ingots/wrought_iron_blasting"
     ]
   }
 }

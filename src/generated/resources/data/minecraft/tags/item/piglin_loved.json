@@ -1,5 +1,28 @@
 {
   "values": [
-    "cakesticklib:gold_dust"
+    {
+      "id": "#c:coils/gold",
+      "required": false
+    },
+    {
+      "id": "#c:dusts/gold",
+      "required": false
+    },
+    {
+      "id": "#c:foils/gold",
+      "required": false
+    },
+    {
+      "id": "#c:gears/gold",
+      "required": false
+    },
+    {
+      "id": "#c:gears/gold",
+      "required": false
+    },
+    {
+      "id": "#c:plates/gold",
+      "required": false
+    }
   ]
 }

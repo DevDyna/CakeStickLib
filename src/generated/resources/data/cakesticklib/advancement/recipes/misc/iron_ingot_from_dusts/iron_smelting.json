@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_iron_dust": {
+    "has_dusts/iron": {
       "conditions": {
         "items": [
           {
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "cakesticklib:iron_ingot_from_iron_dust_blasting"
+        "recipe": "cakesticklib:iron_ingot_from_dusts/iron_smelting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_iron_dust"
+      "has_dusts/iron"
     ]
   ],
   "rewards": {
     "recipes": [
-      "cakesticklib:iron_ingot_from_iron_dust_blasting"
+      "cakesticklib:iron_ingot_from_dusts/iron_smelting"
     ]
   }
 }

@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_iron_dust": {
+    "has_dusts/copper": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:iron_ingot"
+            "items": "minecraft:copper_ingot"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "cakesticklib:iron_ingot_from_iron_dust_smelting"
+        "recipe": "cakesticklib:copper_ingot_from_dusts/copper_blasting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_iron_dust"
+      "has_dusts/copper"
     ]
   ],
   "rewards": {
     "recipes": [
-      "cakesticklib:iron_ingot_from_iron_dust_smelting"
+      "cakesticklib:copper_ingot_from_dusts/copper_blasting"
     ]
   }
 }

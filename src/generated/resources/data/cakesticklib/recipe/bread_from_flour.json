@@ -3,7 +3,7 @@
   "category": "misc",
   "cookingtime": 200,
   "experience": 0.1,
-  "ingredient": "cakesticklib:flour",
+  "ingredient": "#c:flour",
   "result": {
     "id": "minecraft:bread"
   }

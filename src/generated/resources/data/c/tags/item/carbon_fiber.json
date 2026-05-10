@@ -1,0 +1,9 @@
+{
+  "values": [
+    {
+      "id": "#c:carbon_fibers",
+      "required": false
+    },
+    "cakesticklib:carbon_fiber"
+  ]
+}

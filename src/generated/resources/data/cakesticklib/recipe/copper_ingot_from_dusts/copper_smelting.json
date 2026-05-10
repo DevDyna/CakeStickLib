@@ -1,9 +1,9 @@
 {
-  "type": "minecraft:blasting",
+  "type": "minecraft:smelting",
   "category": "misc",
-  "cookingtime": 100,
+  "cookingtime": 200,
   "experience": 0.1,
-  "ingredient": "cakesticklib:copper_dust",
+  "ingredient": "#c:dusts/copper",
   "result": {
     "id": "minecraft:copper_ingot"
   }

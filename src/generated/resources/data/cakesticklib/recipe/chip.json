@@ -2,9 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "G": "cakesticklib:steel_plate",
-    "N": "minecraft:iron_nugget",
-    "Q": "minecraft:quartz"
+    "G": "#c:plates/steel",
+    "N": "#c:nuggets/iron",
+    "Q": "#c:gems/quartz"
   },
   "pattern": [
     " N ",

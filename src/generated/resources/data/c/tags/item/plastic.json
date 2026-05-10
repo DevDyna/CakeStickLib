@@ -1,0 +1,17 @@
+{
+  "values": [
+    "cakesticklib:plastic",
+    {
+      "id": "#c:plastics",
+      "required": false
+    },
+    {
+      "id": "#c:plates/plastic",
+      "required": false
+    },
+    {
+      "id": "#pneumaticcraft:plates/plastic_sheets",
+      "required": false
+    }
+  ]
+}

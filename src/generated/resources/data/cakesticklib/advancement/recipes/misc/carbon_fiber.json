@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "dusts/coal": {
+    "has_dusts/coal": {
       "conditions": {
         "items": [
           {
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "dusts/coal"
+      "has_dusts/coal"
     ]
   ],
   "rewards": {
