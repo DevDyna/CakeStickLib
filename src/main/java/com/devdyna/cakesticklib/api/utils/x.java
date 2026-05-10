@@ -68,6 +68,10 @@ public class x {
         return rl(BuiltInRegistries.ITEM, i);
     }
 
+    public static Identifier rl(TagKey<?> t) {
+        return t.location();
+    }
+
     public static Identifier rl(Block i) {
         return rl(BuiltInRegistries.BLOCK, i);
     }
@@ -78,6 +82,10 @@ public class x {
      */
     public static <T> String path(DefaultedRegistry<T> d, T i) {
         return d.getKey(i).getPath();
+    }
+
+    public static String path(TagKey<?> t) {
+        return rl(t).getPath();
     }
 
     public static String path(Item i) {
