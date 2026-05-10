@@ -1,4 +1,4 @@
-package com.devdyna.cakesticklib.api.recipe;
+package com.devdyna.cakesticklib.api.recipe.recipeOutput;
 
 import java.util.Optional;
 
@@ -10,6 +10,9 @@ import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.ItemStackTemplate;
 
+/**
+ * @param chance must be 0.0 -> 1.0 [ 1.0 == 100% ]
+ */
 public record ChanceOutputItem(ItemStackTemplate item, float chance) {
 
         public static final Codec<ChanceOutputItem> CODEC = RecordCodecBuilder.create(inst -> inst.group(
