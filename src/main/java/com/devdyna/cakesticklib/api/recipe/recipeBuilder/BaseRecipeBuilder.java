@@ -16,6 +16,12 @@ import net.minecraft.world.item.crafting.Recipe;
 
 public abstract class BaseRecipeBuilder {
 
+    // public final HolderLookup.Provider provider;
+    // TODO breaking changes
+    // protected BaseRecipeBuilder(HolderLookup.Provider provider){
+    // this.provider = provider;
+    // }
+
     protected Map<String, Criterion<?>> criteria;
 
     public abstract Recipe<?> createRecipe();
