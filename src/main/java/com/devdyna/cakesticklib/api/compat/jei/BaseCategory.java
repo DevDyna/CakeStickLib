@@ -1,12 +1,9 @@
 package com.devdyna.cakesticklib.api.compat.jei;
 
-import java.awt.Color;
-
 import org.jetbrains.annotations.Nullable;
 
+import com.devdyna.cakesticklib.api.gui.ClientUtils;
 import com.devdyna.cakesticklib.api.primitive.Size;
-import com.devdyna.cakesticklib.api.utils.ColorUtil;
-
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
@@ -24,7 +21,7 @@ import net.minecraft.world.level.ItemLike;
  * A generic recipe category to show hardcoded implementations without a defined
  * dependency
  */
-public abstract class BaseCategory<T> implements IRecipeCategory<T> {
+public abstract class BaseCategory<T> implements IRecipeCategory<T> , ClientUtils {
 
     protected IGuiHelper helper;
 
@@ -42,8 +39,6 @@ public abstract class BaseCategory<T> implements IRecipeCategory<T> {
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, T recipe, IFocusGroup focuses) {
     }
-
-    protected final Color defaultToolTipColor = ColorUtil.color(64, 64, 64);
 
     /**
      * Define the category title

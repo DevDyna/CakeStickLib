@@ -1,6 +1,6 @@
 package com.devdyna.cakesticklib.setup.registry.builders;
 
-import com.devdyna.cakesticklib.api.utils.ColorUtil;
+import com.devdyna.cakesticklib.api.utils.ColorUtils;
 
 import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.network.chat.Component;
@@ -72,7 +72,7 @@ public class CakeStick extends Item {
 
     @Override
     public Component getName(ItemStack stack) {
-        return Component.translatable(getDescriptionId()).withColor(ColorUtil.rgbColor());
+        return Component.translatable(getDescriptionId()).withColor(ColorUtils.rainbow().getRGB());
     }
 
 }

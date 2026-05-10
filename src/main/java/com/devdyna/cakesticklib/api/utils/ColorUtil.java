@@ -6,6 +6,10 @@ import java.awt.Color;
 
 import net.minecraft.world.level.Level;
 
+/**
+ * @deprecated Use {@link ColorUtils} instead.
+ */
+@Deprecated(forRemoval = true)
 public class ColorUtil {
 
     public static List<Color> colorList = List.of(
