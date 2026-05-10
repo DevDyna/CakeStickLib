@@ -42,7 +42,7 @@ public interface RecipeGenerators {
 
         abstract HolderGetter<Item> getItems();
 
-        abstract String getConversionRecipeNameGen(ItemLike product, ItemLike material);
+        abstract String getConversionRecipeNameGen(ItemLike output, ItemLike input);
 
         default String asRecipeID(Item i, String suffix) {
                 return getModName() + ":" + x.path(i) + suffix;
@@ -56,8 +56,8 @@ public interface RecipeGenerators {
                 return "has_" + x.getTagName(tag);
         }
 
-        default String getConversionRecipeName(TagKey<Item> product, ItemLike material) {
-                return x.getTagName(product) + "_from_" + getItemNameGen(material);
+        default String getConversionRecipeName(ItemLike output, TagKey<Item> input) {
+                return getItemNameGen(output) + "_from_" + x.getTagName(input);
         }
 
         default void simpleCooking(RecipeOutput c, Item input, Item output) {
@@ -82,8 +82,8 @@ public interface RecipeGenerators {
                                                 has(input))
                                 .save(c, getModName() + ":"
                                                 + getConversionRecipeName(
-                                                                input,
-                                                                output));
+                                                                output,
+                                                                input));
         }
 
         default void doubleSmelt(RecipeOutput c, ItemLike input, ItemLike output) {
@@ -135,9 +135,9 @@ public interface RecipeGenerators {
                 packUnpack(c, ingot, block, false);
         }
 
-        
         /**
-         * BREAKING CHANGES :<br/><br/>
+         * BREAKING CHANGES :<br/>
+         * <br/>
          * {@code input} and {@code gear} has been switched of position
          */
         @UnstableApi
@@ -343,7 +343,7 @@ public interface RecipeGenerators {
                                 .stonecutting(x.itemIngredient(material, getProvider()), RecipeCategory.BUILDING_BLOCKS,
                                                 result,
                                                 resultCount)
-                                .unlockedBy(getConversionRecipeName(material, result), has(material))
+                                .unlockedBy(x.getTagName(material) + "_from_" + getItemNameGen(result), has(material))
                                 .save(c, extra);
         }
 
