@@ -20,15 +20,15 @@ public class DataBlockTag extends BlockTagsProvider {
         @Override
         protected void addTags(Provider p) {
 
-                tag(LibTags.Blocks.BLOCK_ADVANCED_ALLOY).add(LibBlocks.ADVANCED_ALLOY_BLOCK.get());
-                tag(LibTags.Blocks.BLOCK_STEEL).add(LibBlocks.STEEL_BLOCK.get());
-                tag(LibTags.Blocks.BLOCK_WROUGHT_IRON).add(LibBlocks.WROUGHT_IRON_BLOCK.get());
+                tag(LibTags.Blocks.ADVANCED_ALLOY_BLOCK).add(LibBlocks.ADVANCED_ALLOY_BLOCK.get());
+                tag(LibTags.Blocks.STEEL_BLOCK).add(LibBlocks.STEEL_BLOCK.get());
+                tag(LibTags.Blocks.WROUGHT_IRON_BLOCK).add(LibBlocks.WROUGHT_IRON_BLOCK.get());
                 
                 tag(Tags.Blocks.STORAGE_BLOCKS)
                                 .addTags(
-                                                LibTags.Blocks.BLOCK_WROUGHT_IRON,
-                                                LibTags.Blocks.BLOCK_STEEL,
-                                                LibTags.Blocks.BLOCK_ADVANCED_ALLOY);
+                                                LibTags.Blocks.WROUGHT_IRON_BLOCK,
+                                                LibTags.Blocks.STEEL_BLOCK,
+                                                LibTags.Blocks.WROUGHT_IRON_BLOCK);
         }
 
 }
