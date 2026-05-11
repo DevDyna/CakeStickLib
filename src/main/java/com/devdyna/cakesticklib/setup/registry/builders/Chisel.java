@@ -54,7 +54,7 @@ public class Chisel extends Item {
             if (id == null)
                 return InteractionResult.FAIL;
 
-            var saved = x.get(id);
+            var saved = x.getItem(id);
 
             var recipes = level.recipeAccess().stonecutterRecipes().selectByInput(blockItem);
 

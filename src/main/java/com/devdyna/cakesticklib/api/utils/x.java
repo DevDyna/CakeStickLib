@@ -52,7 +52,7 @@ public class x {
      * @param d <code>BuiltInRegistries.BLOCK</code>
      * @param i <code>Blocks.STONE</code>
      */
-    public static <T> Identifier rl(DefaultedRegistry<T> d, T i) {
+    private static <T> Identifier rl(DefaultedRegistry<T> d, T i) {
         return d.getKey(i);
     }
 
@@ -60,6 +60,7 @@ public class x {
      * @param d <code>BuiltInRegistries.BLOCK</code>
      * @param i <code>Blocks.STONE</code>
      */
+    @Deprecated
     public static <T> Identifier rl(DefaultedRegistry<T> d, T i, String modid) {
         return rl(modid, path(d, i));
     }
@@ -77,71 +78,99 @@ public class x {
     }
 
     /**
-     * @param d <code>BuiltInRegistries.BLOCK</code>
-     * @param i <code>Blocks.STONE</code>
+     * {@code path(?)} -> {@code name(?)}
      */
-    public static <T> String path(DefaultedRegistry<T> d, T i) {
-        return d.getKey(i).getPath();
+    private static <T> String path(DefaultedRegistry<T> d, T i) {
+        return rl(d, i).getPath();
     }
 
-    public static String path(TagKey<?> t) {
+    public static String name(TagKey<?> t) {
         return rl(t).getPath();
     }
 
-    public static String path(Item i) {
+    public static String name(Item i) {
         return path(BuiltInRegistries.ITEM, i);
     }
 
-    public static String path(Fluid i) {
+    public static String name(Fluid i) {
         return path(BuiltInRegistries.FLUID, i);
     }
 
-    public static String path(ItemStack i) {
-        return path(i.getItem());
+    public static String name(ItemStack i) {
+        return name(i.getItem());
     }
 
-    public static String path(Block i) {
+    public static String name(Block i) {
         return path(BuiltInRegistries.BLOCK, i);
     }
 
-    public static String path(BlockState i) {
-        return path(i.getBlock());
+    public static String name(BlockState i) {
+        return name(i.getBlock());
     }
 
-    /**
-     * @param <T>
-     * @param d   <code>BuiltInRegistries.BLOCK</code>
-     * @param i   <code>"stone"</code>
-     */
+    public static String name(ItemStackTemplate i) {
+        return name(i.item().value());
+    }
+
+    public static String name(ItemLike i) {
+        return name(i.asItem());
+    }
+
+    private static <T> String mod(DefaultedRegistry<T> d, T i) {
+        return rl(d, i).getNamespace();
+    }
+
+    public static String mod(TagKey<?> t) {
+        return rl(t).getNamespace();
+    }
+
+    public static String mod(Item i) {
+        return mod(BuiltInRegistries.ITEM, i);
+    }
+
+    public static String mod(Fluid i) {
+        return mod(BuiltInRegistries.FLUID, i);
+    }
+
+    public static String mod(ItemStack i) {
+        return mod(i.getItem());
+    }
+
+    public static String mod(ItemStackTemplate i) {
+        return mod(i.item().value());
+    }
+
+    public static String mod(ItemLike i) {
+        return mod(i.asItem());
+    }
+
+    public static String mod(Block i) {
+        return mod(BuiltInRegistries.BLOCK, i);
+    }
+
+    public static String mod(BlockState i) {
+        return mod(i.getBlock());
+    }
+
+    @Deprecated
     public static <T> T get(DefaultedRegistry<T> d, String modid, String i) {
         return d.getValue(rl(modid, i));
     }
 
-    public static <T> T get(DefaultedRegistry<T> d, Identifier i) {
+    private static <T> T get(DefaultedRegistry<T> d, Identifier i) {
         return d.getValue(i);
     }
 
-    /**
-     * use <code>x.rl(Item)</code>
-     */
-    @Deprecated
-    public static Identifier id(Item item) {
-        return BuiltInRegistries.ITEM.getKey(item);
+    public static Item getItem(Identifier rl) {
+        return get(BuiltInRegistries.ITEM, rl);
     }
 
-    public static String getMod(Item item) {
-        return BuiltInRegistries.ITEM.getKey(item).getNamespace();
-    }
-    public static String getMod(ItemLike item) {
-        return getMod(item.asItem());
+    public static Fluid getFluid(Identifier rl) {
+        return get(BuiltInRegistries.FLUID, rl);
     }
 
-    public static String getTagName(TagKey<?> tag) {
-        return tag.location().getPath().toString();
-    }
-
-    public static Item get(Identifier rl) {
-        return BuiltInRegistries.ITEM.getValue(rl);
+    public static Block getBlock(Identifier rl) {
+        return get(BuiltInRegistries.BLOCK, rl);
     }
 
     // Stack types
@@ -241,6 +270,7 @@ public class x {
     /**
      * This method will create a new itemtag!
      */
+    @Deprecated
     public static Ingredient itemIngredient(Identifier tag) {
         return itemIngredient(TagKey.create(Registries.ITEM, tag));
     }
@@ -324,14 +354,17 @@ public class x {
     // Block types
     // -------------------------------------------------//
 
+    @Deprecated
     public static Block block(DeferredHolder<Block, ?> b) {
         return b.get();
     }
 
+    @Deprecated
     public static BlockState state(DeferredHolder<Block, ?> b) {
         return block(b).defaultBlockState();
     }
 
+    @Deprecated
     public static Block block(BlockState b) {
         return b.getBlock();
     }
@@ -339,6 +372,7 @@ public class x {
     // other
     // -------------------------------------------------//
 
+    @Deprecated
     public static <T> ItemStack stack(DeferredHolder<T, ?> holder) {
         T obj = holder.get();
         if (obj instanceof Item item) {
@@ -350,28 +384,96 @@ public class x {
         }
     }
 
+    @Deprecated
     public static List<FluidStack> getFluids(SizedFluidIngredient i) {
         return getFluids(i.ingredient());
     }
 
+    @Deprecated
     public static List<FluidStack> getFluids(FluidIngredient i) {
         return i.fluids().stream()
                 .map(Holder::value)
                 .map(x::fluid).toList();
     }
 
+    /**
+     * Mainly useful on {@code unlockedBy()} recipebuilder method
+     */
+    public static Fluid[] getFluidsFromIngredient(FluidIngredient f) {
+        return f.fluids().stream()
+                .map(Holder::getKey)
+                .map(ResourceKey::identifier)
+                .map(BuiltInRegistries.FLUID::getValue)
+                .toArray(Fluid[]::new);
+    }
+
+    /**
+     * Mainly useful on {@code unlockedBy()} recipebuilder method
+     */
+    public static Item[] getItemsFromIngredient(Ingredient i) {
+        return i.getValues().stream()
+                .map(Holder::getKey)
+                .map(ResourceKey::identifier)
+                .map(BuiltInRegistries.ITEM::getValue)
+                .toArray(Item[]::new);
+    }
+
+    /**
+     * Don't use on recipe builders!
+     */
+    public static List<FluidStack> getFluidStacksFromIngredient(FluidIngredient f) {
+        return Arrays.asList(getFluidsFromIngredient(f))
+                .stream()
+                .map(s -> x.fluid(s))
+                .toList();
+    }
+
+    /**
+     * Don't use on recipe builders!
+     */
+    public static List<FluidStack> getFluidStacksFromIngredient(SizedFluidIngredient f) {
+        return Arrays.asList(getFluidsFromIngredient(f.ingredient()))
+                .stream()
+                .map(s -> x.fluid(s, f.amount()))
+                .toList();
+    }
+
+    /**
+     * Don't use on recipe builders!
+     */
+    public static List<ItemStack> getItemStacksFromIngredient(Ingredient i) {
+        return Arrays.asList(getItemsFromIngredient(i))
+                .stream()
+                .map(s -> x.item(s))
+                .toList();
+    }
+
+    /**
+     * Don't use on recipe builders!
+     */
+    public static List<ItemStack> getItemStacksFromIngredient(SizedIngredient i) {
+        return Arrays.asList(getItemsFromIngredient(i.ingredient()))
+                .stream()
+                .map(s -> x.item(s, i.count()))
+                .toList();
+    }
+
+    @Deprecated
     public static boolean matchAny(SizedFluidIngredient s, SizedFluidIngredient f) {
         return getFluids(s).stream().anyMatch(i -> f.test(i));
     }
 
+    @Deprecated
     public static boolean matchAny(SizedIngredient s, SizedIngredient f) {
         return getItems(s).stream().anyMatch(i -> f.test(i));
     }
 
+    @Deprecated
     public static List<ItemStack> getItems(SizedIngredient i) {
         return getItems(i.ingredient());
     }
 
+    @Deprecated
     public static List<ItemStack> getItems(Ingredient i) {
         return i.getValues().stream()
                 .map(Holder::value)
@@ -379,7 +481,10 @@ public class x {
     }
 
     public static Block[] toBlocks(DeferredHolder<Block, ?>... blocks) {
-        return Arrays.asList(blocks).stream().map(DeferredHolder::get).toArray(Block[]::new);
+        return Arrays.asList(blocks)
+                .stream()
+                .map(DeferredHolder::get)
+                .toArray(Block[]::new);
     }
 
     public static Item[] toItems(DeferredHolder<Block, ?>... blocks) {
@@ -387,7 +492,10 @@ public class x {
     }
 
     public static Item[] toItems(Block... blocks) {
-        return Arrays.asList(blocks).stream().map(Block::asItem).toArray(Item[]::new);
+        return Arrays.asList(blocks)
+                .stream()
+                .map(Block::asItem)
+                .toArray(Item[]::new);
     }
 
     public static List<Optional<Reference<Block>>> getBlocks(DataMapType<Block, ?> datamap) {
