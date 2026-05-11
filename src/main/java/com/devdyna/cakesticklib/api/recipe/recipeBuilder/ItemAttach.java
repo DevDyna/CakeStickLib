@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.devdyna.cakesticklib.api.utils.x;
 
-import net.minecraft.core.HolderLookup;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStackTemplate;
@@ -49,8 +48,8 @@ public class ItemAttach {
                 return catalyst(x.itemIngredient(catalyst));
             }
 
-            default BUILDER catalyst(TagKey<Item> catalyst, HolderLookup.Provider p) {
-                return catalyst(x.itemIngredient(catalyst, p));
+            default BUILDER catalyst(TagKey<Item> catalyst) {
+                return catalyst(x.itemIngredient(catalyst, getProvider()));
             }
 
         }
@@ -67,8 +66,8 @@ public class ItemAttach {
                 return input(input.get());
             }
 
-            default BUILDER input(TagKey<Item> input, HolderLookup.Provider p) {
-                return input(x.itemIngredient(input, p));
+            default BUILDER input(TagKey<Item> input) {
+                return input(x.itemIngredient(input, getProvider()));
             }
 
         }
@@ -97,8 +96,8 @@ public class ItemAttach {
                 return add(input.get(), c);
             }
 
-            default BUILDER add(TagKey<Item> input, int c, HolderLookup.Provider p) {
-                return add(x.itemIngredient(input, p), c);
+            default BUILDER add(TagKey<Item> input, int c) {
+                return add(x.itemIngredient(input, getProvider()), c);
             }
 
             default BUILDER add(ItemLike input, int c) {
@@ -109,8 +108,8 @@ public class ItemAttach {
                 return add(input.get());
             }
 
-            default BUILDER add(TagKey<Item> input, HolderLookup.Provider p) {
-                return add(x.itemIngredient(input, p));
+            default BUILDER add(TagKey<Item> input) {
+                return add(x.itemIngredient(input, getProvider()));
             }
 
             default BUILDER add(ItemLike input) {
@@ -130,8 +129,8 @@ public class ItemAttach {
                 return add(input.get());
             }
 
-            default BUILDER add(TagKey<Item> input, HolderLookup.Provider p) {
-                return add(x.itemIngredient(input, p));
+            default BUILDER add(TagKey<Item> input) {
+                return add(x.itemIngredient(input, getProvider()));
             }
 
             default BUILDER add(ItemLike input) {
@@ -155,8 +154,8 @@ public class ItemAttach {
                 return input(input.get());
             }
 
-            default BUILDER input(TagKey<Item> input, HolderLookup.Provider p) {
-                return input(x.itemSized(input, p));
+            default BUILDER input(TagKey<Item> input) {
+                return input(x.itemSized(input, getProvider()));
             }
 
             default BUILDER input(Item input, int c) {
@@ -167,8 +166,8 @@ public class ItemAttach {
                 return input(input.get(), c);
             }
 
-            default BUILDER input(TagKey<Item> input, int c, HolderLookup.Provider p) {
-                return input(x.itemSized(input, c, p));
+            default BUILDER input(TagKey<Item> input, int c) {
+                return input(x.itemSized(input, c, getProvider()));
             }
 
         }
@@ -202,28 +201,28 @@ public class ItemAttach {
                 return inputs(right.get(), left.get());
             }
 
-            default BUILDER inputs(TagKey<Item> right, TagKey<Item> left, HolderLookup.Provider p) {
-                return inputs(right, 1, left, 1, p);
+            default BUILDER inputs(TagKey<Item> right, TagKey<Item> left) {
+                return inputs(right, 1, left, 1);
             }
 
-            default BUILDER inputs(TagKey<Item> right, Item left, HolderLookup.Provider p) {
-                return inputs(x.itemIngredient(right, p), x.itemIngredient(left));
+            default BUILDER inputs(TagKey<Item> right, Item left) {
+                return inputs(x.itemIngredient(right, getProvider()), x.itemIngredient(left));
             }
 
-            default BUILDER inputs(Item right, TagKey<Item> left, HolderLookup.Provider p) {
-                return inputs(x.itemIngredient(right), x.itemIngredient(left, p));
+            default BUILDER inputs(Item right, TagKey<Item> left) {
+                return inputs(x.itemIngredient(right), x.itemIngredient(left, getProvider()));
             }
 
-            default BUILDER inputs(TagKey<Item> right, int a, TagKey<Item> left, int b, HolderLookup.Provider p) {
-                return inputs(x.itemIngredient(right, p), a, x.itemIngredient(left, p), b);
+            default BUILDER inputs(TagKey<Item> right, int a, TagKey<Item> left, int b) {
+                return inputs(x.itemIngredient(right, getProvider()), a, x.itemIngredient(left, getProvider()), b);
             }
 
-            default BUILDER inputs(TagKey<Item> right, int a, Item left, int b, HolderLookup.Provider p) {
-                return inputs(x.itemIngredient(right, p), a, x.itemIngredient(left), b);
+            default BUILDER inputs(TagKey<Item> right, int a, Item left, int b) {
+                return inputs(x.itemIngredient(right, getProvider()), a, x.itemIngredient(left), b);
             }
 
-            default BUILDER inputs(Item right, int a, TagKey<Item> left, int b, HolderLookup.Provider p) {
-                return inputs(x.itemIngredient(right), a, x.itemIngredient(left, p), b);
+            default BUILDER inputs(Item right, int a, TagKey<Item> left, int b) {
+                return inputs(x.itemIngredient(right), a, x.itemIngredient(left, getProvider()), b);
             }
 
         }

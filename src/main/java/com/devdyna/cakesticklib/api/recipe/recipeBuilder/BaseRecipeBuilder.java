@@ -7,6 +7,7 @@ import net.minecraft.advancements.AdvancementRequirements;
 import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.criterion.RecipeUnlockedTrigger;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
@@ -16,11 +17,15 @@ import net.minecraft.world.item.crafting.Recipe;
 
 public abstract class BaseRecipeBuilder {
 
-    // public final HolderLookup.Provider provider;
-    // TODO breaking changes
-    // protected BaseRecipeBuilder(HolderLookup.Provider provider){
-    // this.provider = provider;
-    // }
+    protected final HolderLookup.Provider provider;
+
+    protected BaseRecipeBuilder(HolderLookup.Provider provider) {
+        this.provider = provider;
+    }
+
+    public HolderLookup.Provider getProvider() {
+        return provider;
+    }
 
     protected Map<String, Criterion<?>> criteria;
 

@@ -4,7 +4,7 @@ import com.devdyna.cakesticklib.CakeStickLib;
 import com.devdyna.cakesticklib.setup.RecipeRegister;
 import com.devdyna.cakesticklib.setup.common.recipes.hammering.HammeringRecipe;
 import com.devdyna.cakesticklib.setup.common.recipes.oxidation.CopperOxidationRecipe;
-import com.devdyna.cakesticklib.setup.common.recipes.upgrade_application.UpgradeApplication;
+import com.devdyna.cakesticklib.setup.common.recipes.upgrade_application.UpgradeApplicationRecipe;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -32,8 +32,8 @@ public class LibRecipeTypes {
                                 "hammering",
                                 () -> HammeringRecipe.serializer());
 
-                public static final RecipeRegister<UpgradeApplication> UPGRADE_APPLICATION = RecipeRegister.of(
+                public static final RecipeRegister<UpgradeApplicationRecipe> UPGRADE_APPLICATION = RecipeRegister.of(
                                 "upgrade_application",
-                                () -> UpgradeApplication.serializer());
+                                () -> UpgradeApplicationRecipe.serializer());
 
         }

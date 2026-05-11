@@ -25,6 +25,10 @@ public interface RecipeGenerators {
 
         abstract String getModName();
 
+        abstract HolderLookup.Provider getProvider();
+
+        abstract HolderGetter<Item> getItems();
+
         private Criterion<InventoryChangeTrigger.TriggerInstance> has(ItemLike item) {
                 return InventoryChangeTrigger.TriggerInstance.hasItems(item);
         }
@@ -34,41 +38,41 @@ public interface RecipeGenerators {
                                 .hasItems(ItemPredicate.Builder.item().of(getItems(), tag));
         }
 
-        abstract String getHasNameGen(ItemLike i);
+        private String getConversionRecipeName(ItemLike product, ItemLike material) {
+                return x.name(product) + "_from_" + x.name(material);
+        }
 
-        abstract String getItemNameGen(ItemLike i);
+        default String getConversionRecipeName(ItemLike output, TagKey<Item> input) {
+                return x.name(output) + "_from_" + x.name(input);
+        }
 
-        abstract HolderLookup.Provider getProvider();
+        private String getHasName(ItemLike i) {
+                return "has_" + x.name(i);
+        }
 
-        abstract HolderGetter<Item> getItems();
-
-        abstract String getConversionRecipeNameGen(ItemLike output, ItemLike input);
+        default String getHasName(TagKey<Item> tag) {
+                return "has_" + x.name(tag);
+        }
 
         default String asRecipeID(Item i, String suffix) {
-                return getModName() + ":" + x.path(i) + suffix;
+                return getModName() + ":" + x.name(i) + suffix;
         }
 
         default String asRecipeID(Item i) {
                 return asRecipeID(i, "_alt");
         }
 
-        default String getHasName(TagKey<Item> tag) {
-                return "has_" + x.getTagName(tag);
-        }
-
-        default String getConversionRecipeName(ItemLike output, TagKey<Item> input) {
-                return getItemNameGen(output) + "_from_" + x.getTagName(input);
-        }
+        // recipes
 
         default void simpleCooking(RecipeOutput c, Item input, Item output) {
                 SimpleCookingRecipeBuilder
                                 .smelting(x.itemIngredient(input),
                                                 RecipeCategory.MISC,
                                                 CookingBookCategory.MISC, output, 0.1F, 200)
-                                .unlockedBy(getHasNameGen(input),
+                                .unlockedBy(getHasName(input),
                                                 has(input))
                                 .save(c, getModName() + ":"
-                                                + getConversionRecipeNameGen(
+                                                + getConversionRecipeName(
                                                                 output,
                                                                 input));
         }
@@ -91,17 +95,17 @@ public interface RecipeGenerators {
                                 .blasting(x.itemIngredient(input), RecipeCategory.MISC,
                                                 CookingBookCategory.MISC,
                                                 output.asItem(), 0.1F, 100)
-                                .unlockedBy(getHasNameGen(input), has(output))
-                                .save(c, getModName() + ":" + x.path(output.asItem()) + "_from_"
-                                                + x.path(input.asItem())
+                                .unlockedBy(getHasName(input), has(output))
+                                .save(c, getModName() + ":" + x.name(output) + "_from_"
+                                                + x.name(input)
                                                 + "_blasting");
                 SimpleCookingRecipeBuilder
                                 .smelting(x.itemIngredient(input), RecipeCategory.MISC,
                                                 CookingBookCategory.MISC,
                                                 output.asItem(), 0.1F, 200)
-                                .unlockedBy(getHasNameGen(input), has(output))
-                                .save(c, getModName() + ":" + x.path(output.asItem()) + "_from_"
-                                                + x.path(input.asItem())
+                                .unlockedBy(getHasName(input), has(output))
+                                .save(c, getModName() + ":" + x.name(output) + "_from_"
+                                                + x.name(input)
                                                 + "_smelting");
         }
 
@@ -111,23 +115,23 @@ public interface RecipeGenerators {
                                                 CookingBookCategory.MISC,
                                                 output.asItem(), 0.1F, 100)
                                 .unlockedBy(getHasName(input), has(output))
-                                .save(c, getModName() + ":" + x.path(output.asItem()) + "_from_"
-                                                + x.path(input)
+                                .save(c, getModName() + ":" + x.name(output) + "_from_"
+                                                + x.name(input)
                                                 + "_blasting");
                 SimpleCookingRecipeBuilder
                                 .smelting(x.itemIngredient(input, getProvider()), RecipeCategory.MISC,
                                                 CookingBookCategory.MISC,
                                                 output.asItem(), 0.1F, 200)
                                 .unlockedBy(getHasName(input), has(output))
-                                .save(c, getModName() + ":" + x.path(output.asItem()) + "_from_"
-                                                + x.path(input)
+                                .save(c, getModName() + ":" + x.name(output) + "_from_"
+                                                + x.name(input)
                                                 + "_smelting");
         }
 
         default void unpacker(RecipeOutput c, ItemLike input, ItemLike output, int count) {
                 ShapelessRecipeBuilder.shapeless(getItems(), RecipeCategory.MISC, output, count).requires(input)
-                                .unlockedBy(getHasNameGen(input), has(input))
-                                .save(c, getConversionRecipeNameGen(output, input));
+                                .unlockedBy(getHasName(input), has(input))
+                                .save(c, getConversionRecipeName(output, input));
         }
 
         default void nuggetIngotBlock(RecipeOutput c, ItemLike nugget, ItemLike ingot, ItemLike block) {
@@ -147,7 +151,7 @@ public interface RecipeGenerators {
                                 .pattern("# #")
                                 .pattern(" # ")
                                 .define('#', input)
-                                .unlockedBy(getHasNameGen(input), has(input))
+                                .unlockedBy(getHasName(input), has(input))
                                 .save(c);
 
         }
@@ -179,7 +183,7 @@ public interface RecipeGenerators {
         default void twoByTwoPacker(RecipeOutput c, ItemLike i, ItemLike o, String e) {
                 ShapedRecipeBuilder.shaped(getItems(), RecipeCategory.MISC, i, 1).define('#', o).pattern("##")
                                 .pattern("##")
-                                .unlockedBy(getHasNameGen(o), has(o)).save(c, e);
+                                .unlockedBy(getHasName(o), has(o)).save(c, e);
         }
 
         default void plate(RecipeOutput c, TagKey<Item> input, Item output) {
@@ -222,7 +226,7 @@ public interface RecipeGenerators {
                 ShapedRecipeBuilder.shaped(getItems(), RecipeCategory.MISC, output, 3)
                                 .pattern("III")
                                 .define('I', input)
-                                .unlockedBy(getHasNameGen(input),
+                                .unlockedBy(getHasName(input),
                                                 has(input))
                                 .save(c);
 
@@ -235,7 +239,7 @@ public interface RecipeGenerators {
                                 .pattern("SI ")
                                 .define('I', input)
                                 .define('S', Items.STICK)
-                                .unlockedBy(getHasNameGen(input),
+                                .unlockedBy(getHasName(input),
                                                 has(Items.STICK))
                                 .save(c);
 
@@ -248,7 +252,7 @@ public interface RecipeGenerators {
                                 .pattern(" I ")
                                 .define('I', input)
                                 .define('S', Items.STICK)
-                                .unlockedBy(getHasNameGen(input),
+                                .unlockedBy(getHasName(input),
                                                 has(Items.STICK))
                                 .save(c);
 
@@ -258,8 +262,8 @@ public interface RecipeGenerators {
                 ShapelessRecipeBuilder.shapeless(getItems(), RecipeCategory.MISC, unpacked, isSmall ? 4 : 9)
                                 .requires(packed)
 
-                                .unlockedBy(getHasNameGen(packed), has(packed))
-                                .save(c, getModName() + ":" + x.path((Item) unpacked) + "_unpack"
+                                .unlockedBy(getHasName(packed), has(packed))
+                                .save(c, getModName() + ":" + x.name(unpacked) + "_unpack"
                                                 + (isSmall ? "_4" : "_9"));
 
                 simplePacked(c, unpacked.asItem(), packed.asItem(), isSmall);
@@ -278,8 +282,8 @@ public interface RecipeGenerators {
                 if (!isSmall)
                         temp = temp.pattern("###");
 
-                temp.unlockedBy(getHasNameGen(input), has(input))
-                                .save(c, getModName() + ":" + getConversionRecipeNameGen(output,
+                temp.unlockedBy(getHasName(input), has(input))
+                                .save(c, getModName() + ":" + getConversionRecipeName(output,
                                                 input));
 
         }
@@ -287,7 +291,7 @@ public interface RecipeGenerators {
         default void slab(ItemLike slab, ItemLike material, RecipeOutput c) {
                 ShapedRecipeBuilder.shaped(getItems(), RecipeCategory.BUILDING_BLOCKS, slab, 6).define('#', material)
                                 .pattern("###")
-                                .unlockedBy(getHasNameGen(material), has(material))
+                                .unlockedBy(getHasName(material), has(material))
                                 .save(c);
         }
 
@@ -296,26 +300,26 @@ public interface RecipeGenerators {
                                 .pattern("#  ")
                                 .pattern("## ")
                                 .pattern("###")
-                                .unlockedBy(getHasNameGen(material), has(material))
+                                .unlockedBy(getHasName(material), has(material))
                                 .save(c);
         }
 
         default void stonecutter(RecipeOutput c, ItemLike result, ItemLike material, int resultCount) {
                 stonecutter(c, result, material, resultCount,
-                                getModName() + ":" + getConversionRecipeNameGen(result, material)
+                                getModName() + ":" + getConversionRecipeName(result, material)
                                                 + "_stonecutting");
         }
 
         default void stonecutter(RecipeOutput c, ItemLike result, ItemLike material) {
                 stonecutter(c, result, material, 1,
-                                getModName() + ":" + getConversionRecipeNameGen(result, material)
+                                getModName() + ":" + getConversionRecipeName(result, material)
                                                 + "_stonecutting");
         }
 
         default void slab(ItemLike slab, ItemLike material, RecipeOutput c, String extra) {
                 ShapedRecipeBuilder.shaped(getItems(), RecipeCategory.BUILDING_BLOCKS, slab, 6).define('#', material)
                                 .pattern("###")
-                                .unlockedBy(getHasNameGen(material), has(material))
+                                .unlockedBy(getHasName(material), has(material))
                                 .save(c, extra);
         }
 
@@ -324,7 +328,7 @@ public interface RecipeGenerators {
                                 .pattern("  #")
                                 .pattern(" ##")
                                 .pattern("###")
-                                .unlockedBy(getHasNameGen(material), has(material))
+                                .unlockedBy(getHasName(material), has(material))
                                 .save(c, extra);
         }
 
@@ -333,7 +337,7 @@ public interface RecipeGenerators {
                 SingleItemRecipeBuilder
                                 .stonecutting(Ingredient.of(material), RecipeCategory.BUILDING_BLOCKS, result,
                                                 resultCount)
-                                .unlockedBy(getHasNameGen(material), has(material))
+                                .unlockedBy(getHasName(material), has(material))
                                 .save(c, extra);
         }
 
@@ -343,7 +347,7 @@ public interface RecipeGenerators {
                                 .stonecutting(x.itemIngredient(material, getProvider()), RecipeCategory.BUILDING_BLOCKS,
                                                 result,
                                                 resultCount)
-                                .unlockedBy(x.getTagName(material) + "_from_" + getItemNameGen(result), has(material))
+                                .unlockedBy(x.name(material) + "_from_" + x.name(result), has(material))
                                 .save(c, extra);
         }
 
@@ -354,7 +358,7 @@ public interface RecipeGenerators {
 
         default void stonecutter(RecipeOutput c, ItemLike result, TagKey<Item> material) {
                 stonecutter(c, result, material, 1,
-                                getModName() + ":" + getItemNameGen(result) + "_from_stonecutting");
+                                getModName() + ":" + x.name(result) + "_from_stonecutting");
         }
 
         default void stonecutter(RecipeOutput c, ItemLike result, ItemLike material, String extra) {
@@ -366,7 +370,7 @@ public interface RecipeGenerators {
                                 .define('#', material)
                                 .pattern("#")
                                 .pattern("#")
-                                .unlockedBy(getHasNameGen(material), has(material))
+                                .unlockedBy(getHasName(material), has(material))
                                 .save(c);
         }
 
@@ -376,7 +380,7 @@ public interface RecipeGenerators {
                                 .define('#', material)
                                 .pattern("#")
                                 .pattern("#")
-                                .unlockedBy(getHasNameGen(material), has(material))
+                                .unlockedBy(getHasName(material), has(material))
                                 .save(c, extra);
         }
 
@@ -386,7 +390,7 @@ public interface RecipeGenerators {
                                 .define('#', material)
                                 .pattern("##")
                                 .pattern("##")
-                                .unlockedBy(getHasNameGen(material), has(material))
+                                .unlockedBy(getHasName(material), has(material))
                                 .save(c, extra);
         }
 
@@ -395,7 +399,7 @@ public interface RecipeGenerators {
                                 .define('#', material)
                                 .pattern("##")
                                 .pattern("##")
-                                .unlockedBy(getHasNameGen(material), has(material))
+                                .unlockedBy(getHasName(material), has(material))
                                 .save(c);
         }
 
@@ -406,7 +410,7 @@ public interface RecipeGenerators {
                                 .pattern(" # ")
                                 .pattern("#A#")
                                 .pattern(" # ")
-                                .unlockedBy(getHasNameGen(material), has(material))
+                                .unlockedBy(getHasName(material), has(material))
                                 .save(c);
         }
 
@@ -417,7 +421,7 @@ public interface RecipeGenerators {
                                 .pattern(" # ")
                                 .pattern("#A#")
                                 .pattern(" # ")
-                                .unlockedBy(getHasNameGen(material), has(material))
+                                .unlockedBy(getHasName(material), has(material))
                                 .save(c);
         }
 
