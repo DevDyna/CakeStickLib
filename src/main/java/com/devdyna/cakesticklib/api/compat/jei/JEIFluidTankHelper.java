@@ -1,6 +1,5 @@
 package com.devdyna.cakesticklib.api.compat.jei;
 
-
 import java.util.List;
 import java.util.function.BiFunction;
 
@@ -19,7 +18,6 @@ public class JEIFluidTankHelper {
     private float h = 1f;
     private float w = 1f;
 
-
     public JEIFluidTankHelper() {
     }
 
@@ -30,17 +28,18 @@ public class JEIFluidTankHelper {
     }
 
     public JEIFluidTankHelper fluid(SizedFluidIngredient f) {
-        this.fluids = x.getFluids(f);
-        return this;
-    }
-    public JEIFluidTankHelper fluid(FluidStack f) {
-         this.fluids = List.of(f);
+        this.fluids = x.getFluidStacksFromIngredient(f);
         return this;
     }
 
-    public JEIFluidTankHelper scale(float height,float width) {
-         this.w = width;
-         this.h = height;  
+    public JEIFluidTankHelper fluid(FluidStack f) {
+        this.fluids = List.of(f);
+        return this;
+    }
+
+    public JEIFluidTankHelper scale(float height, float width) {
+        this.w = width;
+        this.h = height;
         return this;
     }
 
@@ -49,10 +48,10 @@ public class JEIFluidTankHelper {
     }
 
     public void build(BiFunction<Integer, Integer, IRecipeSlotBuilder> builder) {
-        var height =(int) (Math.min(16, Math.max((int) ((fluids.getFirst().getAmount() + 256) * 0.016), 1))*h);
-        builder.apply((int) (x0* w), y0 - height)
+        var height = (int) (Math.min(16, Math.max((int) ((fluids.getFirst().getAmount() + 256) * 0.016), 1)) * h);
+        builder.apply((int) (x0 * w), y0 - height)
                 .addIngredients(NeoForgeTypes.FLUID_STACK, fluids)
-                .setFluidRenderer(fluids.getFirst().getAmount(), false, (int) (w*16), height);
+                .setFluidRenderer(fluids.getFirst().getAmount(), false, (int) (w * 16), height);
     }
 
 }
