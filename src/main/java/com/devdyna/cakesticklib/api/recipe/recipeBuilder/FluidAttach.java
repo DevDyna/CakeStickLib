@@ -3,7 +3,6 @@ package com.devdyna.cakesticklib.api.recipe.recipeBuilder;
 
 import com.devdyna.cakesticklib.api.utils.x;
 
-import net.minecraft.core.HolderLookup;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.fluids.FluidStackTemplate;
@@ -15,12 +14,12 @@ public class FluidAttach {
 
             abstract BUILDER fluid(SizedFluidIngredient fluid);
 
-            default BUILDER fluid(TagKey<Fluid> fluid, int amount, HolderLookup.Provider p) {
-                return fluid(x.fluidSized(fluid, amount, p));
+            default BUILDER fluid(TagKey<Fluid> fluid, int amount) {
+                return fluid(x.fluidSized(fluid, amount, getProvider()));
             }
 
-            default BUILDER fluid(TagKey<Fluid> fluid, HolderLookup.Provider p) {
-                return fluid(x.fluidSized(fluid, 1000, p));
+            default BUILDER fluid(TagKey<Fluid> fluid) {
+                return fluid(x.fluidSized(fluid, 1000, getProvider()));
             }
 
             default BUILDER fluid(Fluid fluid) {
@@ -37,17 +36,16 @@ public class FluidAttach {
 
             abstract BUILDER fluids(SizedFluidIngredient a, SizedFluidIngredient b);
 
-            default BUILDER fluids(TagKey<Fluid> a, int a_amount, TagKey<Fluid> b, int b_amount,
-                    HolderLookup.Provider p) {
-                return fluids(x.fluidSized(a, a_amount, p), x.fluidSized(b, b_amount, p));
+            default BUILDER fluids(TagKey<Fluid> a, int a_amount, TagKey<Fluid> b, int b_amount) {
+                return fluids(x.fluidSized(a, a_amount, getProvider()), x.fluidSized(b, b_amount, getProvider()));
             }
 
             default BUILDER fluids(Fluid a, int a_amount, Fluid b, int b_amount) {
                 return fluids(x.fluidSized(a, a_amount), x.fluidSized(b, b_amount));
             }
 
-            default BUILDER fluids(TagKey<Fluid> a, TagKey<Fluid> b, HolderLookup.Provider p) {
-                return fluids(x.fluidSized(a, 1000, p), x.fluidSized(b, 1000, p));
+            default BUILDER fluids(TagKey<Fluid> a, TagKey<Fluid> b) {
+                return fluids(x.fluidSized(a, 1000, getProvider()), x.fluidSized(b, 1000, getProvider()));
             }
 
             default BUILDER fluids(Fluid a, Fluid b) {
