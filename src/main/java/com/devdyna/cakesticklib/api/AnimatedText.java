@@ -1,41 +1,45 @@
 package com.devdyna.cakesticklib.api;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
+import com.devdyna.cakesticklib.api.utils.StringUtil;
 import com.devdyna.cakesticklib.api.utils.TimeUtil;
 
-import io.netty.util.internal.UnstableApi;
-import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 
 public class AnimatedText {
 
-    private final List<Integer> bag = new ArrayList<>();
-    private final List<Component> entries;
-    private int progress = 0;
-    private long nextSwitch = 0L;
-    private int currentIndex = 0;
-    private String currentRaw = "";
-    private long switchDelay = 0L;
-    private static final long CHAR_SPEED = 25L;
-    private boolean reversing = false;
-    private long lastTick = 0L;
+    private static final Map<String, AnimatedText> CACHE = new ConcurrentHashMap<>();
     private static final Random RANDOM = new Random();
 
-    // TODO VERIFY BEFORE MERGE
-    @UnstableApi
-    public static Component create(List<String> strings) {
-        return new AnimatedText(strings).tick();
-    }
+    private static final long CHAR_SPEED = 25L;
 
-    public AnimatedText(List<String> entries) {
-        this.entries = entries.stream().map(s -> (Component) Component.literal(s)).toList();
+    private final List<Integer> bag = new ArrayList<>();
+    private final List<String> entries;
+
+    private int progress = 0;
+    private long nextSwitch = 0L;
+    private String currentRaw = "";
+    private long switchDelay = 0L;
+    private boolean reversing = false;
+    private long lastTick = 0L;
+
+    private AnimatedText(List<String> entries) {
+        this.entries = entries;
+
         refillBag();
         pickNext();
     }
 
-    public Component tick() {
+    public static Component create(String id, List<String> entries) {
+        return CACHE
+                .computeIfAbsent(id, k -> new AnimatedText(entries))
+                .tick();
+    }
+
+    private Component tick() {
 
         long now = System.currentTimeMillis();
 
@@ -59,10 +63,8 @@ public class AnimatedText {
             if (!reversing) {
                 if (progress < len)
                     progress++;
-            } else {
-                if (progress > 0)
-                    progress--;
-            }
+            } else if (progress > 0)
+                progress--;
 
             progress = Math.max(0, Math.min(progress, len));
 
@@ -70,41 +72,36 @@ public class AnimatedText {
         }
 
         MutableComponent result = Component.empty();
-        int len = currentRaw.length();
 
-        for (int i = 0; i < progress && i < len; i++)
+        for (int i = 0; i < progress; i++)
             result.append(Component.literal(String.valueOf(currentRaw.charAt(i))));
 
-        if (progress < len)
-            result.append(Component.literal(String.valueOf(randomChar())));
+        if (progress < currentRaw.length())
+            result.append(Component.literal(String.valueOf(StringUtil.randomChar(RANDOM))));
 
-        return result.withStyle(ChatFormatting.GOLD);
+        return result;
     }
 
     private void pickNext() {
-        if (bag.isEmpty())
+        if (bag.isEmpty()) 
             refillBag();
-        currentIndex = bag.remove(0);
-        currentRaw = entries.get(currentIndex).getString();
+
+        currentRaw = entries.get(bag.remove(0));
     }
 
     private void refillBag() {
         bag.clear();
-        for (int i = 0; i < entries.size(); i++)
+
+        for (int i = 0; i < entries.size(); i++) 
             bag.add(i);
 
         Collections.shuffle(bag);
     }
 
     private void randomizeDelay() {
-        switchDelay = (long) ((TimeUtil.ONE_SECOND * 1.5) + RANDOM.nextInt((int) (3.5 * TimeUtil.ONE_SECOND)));
+        switchDelay = (long) ((TimeUtil.ONE_SECOND * 1.5)
+                + RANDOM.nextInt((int) (3.5 * TimeUtil.ONE_SECOND)));
     }
 
-    // TODO API
-    // move to StringUtil
-    private char randomChar() {
-        String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-        return chars.charAt(RANDOM.nextInt(chars.length()));
-    }
-
+    
 }
