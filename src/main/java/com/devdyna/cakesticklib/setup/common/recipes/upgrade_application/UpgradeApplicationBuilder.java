@@ -42,17 +42,18 @@ public class UpgradeApplicationBuilder extends BaseRecipeBuilder
     private int luck;
     private int fluid;
 
-    public UpgradeApplicationBuilder() {
+    public UpgradeApplicationBuilder(HolderLookup.Provider p) {
+        super(p);
         this.criteria = new LinkedHashMap<String, Criterion<?>>();
     }
 
-    public static UpgradeApplicationBuilder of() {
-        return new UpgradeApplicationBuilder();
+    public static UpgradeApplicationBuilder of(HolderLookup.Provider p) {
+        return new UpgradeApplicationBuilder(p);
 
     }
 
     public UpgradeApplicationBuilder unlockedBy() {
-        return unlockedBy(MODULE_ID, InventoryChangeTrigger.TriggerInstance
+        return unlockedBy(x.name(LibItems.STEEL_PLATE.get()), InventoryChangeTrigger.TriggerInstance
                 .hasItems(LibItems.STEEL_PLATE.get()));
     }
 
@@ -104,8 +105,8 @@ public class UpgradeApplicationBuilder extends BaseRecipeBuilder
 
     }
 
-    public UpgradeApplicationBuilder define(Character symbol, TagKey<Item> tag, HolderLookup.Provider p) {
-        return define(symbol, Ingredient.of(p.getOrThrow(tag)));
+    public UpgradeApplicationBuilder define(Character symbol, TagKey<Item> tag) {
+        return define(symbol, x.itemIngredient(tag, getProvider()));
     }
 
     public UpgradeApplicationBuilder define(Character symbol, ItemLike item) {
@@ -123,12 +124,12 @@ public class UpgradeApplicationBuilder extends BaseRecipeBuilder
 
     @Override
     public Identifier getSuffix(String extra) {
-        return x.rl(MODULE_ID, "upgrade_application/" + x.path(result.item().value()).toLowerCase() + extra);
+        return x.rl(MODULE_ID, "upgrade_application/" + x.name(result) + extra);
     }
 
     @Override
     public Recipe<?> createRecipe() {
-        return new UpgradeApplication(ShapedRecipePattern.of(key, row), result,
+        return new UpgradeApplicationRecipe(ShapedRecipePattern.of(key, row), result,
                 UpgradeComponents.builder(speed, energy, luck, fluid));
     }
 
@@ -139,7 +140,7 @@ public class UpgradeApplicationBuilder extends BaseRecipeBuilder
 
     @Override
     public void onRecipeCreation(RecipeOutput c, ResourceKey<Recipe<?>> pId, Recipe<?> created) {
-        buildRecipe(c, ResourceKey.create(Registries.RECIPE, getSuffix("_clear_nbt")), new UpgradeApplication(
+        buildRecipe(c, ResourceKey.create(Registries.RECIPE, getSuffix("_clear_nbt")), new UpgradeApplicationRecipe(
                 ShapedRecipePattern.of(Map.of('U', x.itemIngredient(result.item().value())), List.of("U")), result,
                 UpgradeComponents.builder(speed, energy, luck, fluid)));
     }
