@@ -9,19 +9,19 @@ import net.neoforged.neoforge.fluids.FluidStack;
 
 public class FluidInput {
 
-    public record fluid(FluidStack i) implements RecipeInput {
+    public record simple(FluidStack fluid) implements RecipeInput {
 
-        public static fluid of(FluidStack i) {
-            return new fluid(i);
+        public static simple of(FluidStack f) {
+            return new simple(f);
         }
 
-        public static fluid of(Fluid i) {
-            return new fluid(x.fluid(i));
+        public static simple of(Fluid f) {
+            return new simple(x.fluid(f));
         }
 
         @Override
         public ItemStack getItem(int s) {
-            return i.getFluidType().getBucket(i);
+            return fluid.getFluidType().getBucket(fluid);
         }
 
         @Override
@@ -31,43 +31,43 @@ public class FluidInput {
 
     }
 
-    public record fluidValue(FluidStack i, double value) implements RecipeInput {
+    public record withNumber(FluidStack fluid, double value) implements RecipeInput {
 
-        public static fluidValue of(FluidStack i, double v) {
-            return new fluidValue(i, v);
+        public static withNumber of(FluidStack f, double v) {
+            return new withNumber(f, v);
         }
 
-        public static fluidValue of(Fluid i, double v) {
-            return new fluidValue(x.fluid(i), v);
+        public static withNumber of(Fluid f, double v) {
+            return new withNumber(x.fluid(f), v);
         }
 
-        public static fluidValue of(FluidStack i, int v) {
-            return new fluidValue(i, (double) v);
+        public static withNumber of(FluidStack f, int v) {
+            return new withNumber(f, (double) v);
         }
 
-        public static fluidValue of(Fluid i, int v) {
-            return new fluidValue(x.fluid(i), (double) v);
+        public static withNumber of(Fluid f, int v) {
+            return new withNumber(x.fluid(f), (double) v);
         }
 
-        public static fluidValue of(FluidStack i, long v) {
-            return new fluidValue(i, (double) v);
+        public static withNumber of(FluidStack f, long v) {
+            return new withNumber(f, (double) v);
         }
 
-        public static fluidValue of(Fluid i, long v) {
-            return new fluidValue(x.fluid(i), (double) v);
+        public static withNumber of(Fluid f, long v) {
+            return new withNumber(x.fluid(f), (double) v);
         }
 
-        public static fluidValue of(FluidStack i, float v) {
-            return new fluidValue(i, (double) v);
+        public static withNumber of(FluidStack f, float v) {
+            return new withNumber(f, (double) v);
         }
 
-        public static fluidValue of(Fluid i, float v) {
-            return new fluidValue(x.fluid(i), (double) v);
+        public static withNumber of(Fluid f, float v) {
+            return new withNumber(x.fluid(f), (double) v);
         }
 
         @Override
         public ItemStack getItem(int s) {
-            return i.getFluidType().getBucket(i);
+            return fluid.getFluidType().getBucket(fluid);
         }
 
         @Override
