@@ -65,7 +65,7 @@ public class ItemToolTipped {
 
             if (nbt != null)
                 tip.add(2, Component.translatable(MODULE_ID + ".info.identifier.hold")
-                        .append(Component.translatable(x.get(nbt).getDescriptionId())
+                        .append(Component.translatable(x.getItem(nbt).getDescriptionId())
                                 .withStyle(ChatFormatting.GREEN)));
 
         }

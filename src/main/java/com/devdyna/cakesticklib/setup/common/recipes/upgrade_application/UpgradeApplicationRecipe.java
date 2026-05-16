@@ -16,13 +16,13 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.ShapedRecipe;
 import net.minecraft.world.item.crafting.ShapedRecipePattern;
 
-public class UpgradeApplication extends ShapedRecipe {
+public class UpgradeApplicationRecipe extends ShapedRecipe {
 
     private ShapedRecipePattern pattern;
     private ItemStackTemplate result;
     private UpgradeComponents builder;
 
-    public UpgradeApplication(ShapedRecipePattern pattern,
+    public UpgradeApplicationRecipe(ShapedRecipePattern pattern,
             ItemStackTemplate result, UpgradeComponents builder) {
         super(RecipeBuilder.createCraftingCommonInfo(true),
                 RecipeBuilder.createCraftingBookInfo(RecipeCategory.MISC, "upgrade_application"), pattern, result);
@@ -51,20 +51,20 @@ public class UpgradeApplication extends ShapedRecipe {
         return item;
     }
 
-    public static final RecipeSerializer<UpgradeApplication> serializer() {
+    public static final RecipeSerializer<UpgradeApplicationRecipe> serializer() {
         return new RecipeSerializer<>(CODEC, STREAM_CODEC);
     }
 
-    public static final MapCodec<UpgradeApplication> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
-            ShapedRecipePattern.MAP_CODEC.fieldOf("pattern").forGetter(UpgradeApplication::getPattern),
-            ItemStackTemplate.CODEC.fieldOf("result").forGetter(UpgradeApplication::getResult),
-            UpgradeComponents.CODEC.fieldOf("upgrades").forGetter(UpgradeApplication::getBuilder))
-            .apply(inst, UpgradeApplication::new));
+    public static final MapCodec<UpgradeApplicationRecipe> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
+            ShapedRecipePattern.MAP_CODEC.fieldOf("pattern").forGetter(UpgradeApplicationRecipe::getPattern),
+            ItemStackTemplate.CODEC.fieldOf("result").forGetter(UpgradeApplicationRecipe::getResult),
+            UpgradeComponents.CODEC.fieldOf("upgrades").forGetter(UpgradeApplicationRecipe::getBuilder))
+            .apply(inst, UpgradeApplicationRecipe::new));
 
-    public static final StreamCodec<RegistryFriendlyByteBuf, UpgradeApplication> STREAM_CODEC = StreamCodec.composite(
-            ShapedRecipePattern.STREAM_CODEC, UpgradeApplication::getPattern,
-            ItemStackTemplate.STREAM_CODEC, UpgradeApplication::getResult,
-            UpgradeComponents.STREAM_CODEC, UpgradeApplication::getBuilder,
-            UpgradeApplication::new);
+    public static final StreamCodec<RegistryFriendlyByteBuf, UpgradeApplicationRecipe> STREAM_CODEC = StreamCodec.composite(
+            ShapedRecipePattern.STREAM_CODEC, UpgradeApplicationRecipe::getPattern,
+            ItemStackTemplate.STREAM_CODEC, UpgradeApplicationRecipe::getResult,
+            UpgradeComponents.STREAM_CODEC, UpgradeApplicationRecipe::getBuilder,
+            UpgradeApplicationRecipe::new);
 
 }

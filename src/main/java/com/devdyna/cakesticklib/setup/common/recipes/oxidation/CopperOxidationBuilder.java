@@ -22,17 +22,18 @@ public class CopperOxidationBuilder extends BaseRecipeBuilder {
     private OxidationStatus type;
     private Ingredient catalyst;
 
-    public CopperOxidationBuilder() {
+    public CopperOxidationBuilder(HolderLookup.Provider p) {
+        super(p);
         this.criteria = new LinkedHashMap<String, Criterion<?>>();
     }
 
-    public static CopperOxidationBuilder of() {
-        return new CopperOxidationBuilder();
+    public static CopperOxidationBuilder of(HolderLookup.Provider p) {
+        return new CopperOxidationBuilder(p);
 
     }
 
     public CopperOxidationBuilder unlockedBy() {
-        return unlockedBy(MODULE_ID, InventoryChangeTrigger.TriggerInstance
+        return unlockedBy(x.name(Items.COPPER_INGOT), InventoryChangeTrigger.TriggerInstance
                 .hasItems(Items.COPPER_INGOT));
     }
 
@@ -51,8 +52,8 @@ public class CopperOxidationBuilder extends BaseRecipeBuilder {
         return this;
     }
 
-    public CopperOxidationBuilder catalyst(TagKey<Item> catalyst, HolderLookup.Provider p) {
-        return catalyst(x.itemIngredient(p.getOrThrow(catalyst)));
+    public CopperOxidationBuilder catalyst(TagKey<Item> catalyst) {
+        return catalyst(x.itemIngredient(catalyst,getProvider()));
     }
 
     public CopperOxidationBuilder catalyst(Item catalyst) {
