@@ -8,19 +8,19 @@ import net.minecraft.world.item.crafting.RecipeInput;
 
 public class ItemInput {
 
-    public record item(ItemStack i) implements RecipeInput {
+    public record simple(ItemStack item) implements RecipeInput {
 
-        public static item of(ItemStack i) {
-            return new item(i);
+        public static simple of(ItemStack i) {
+            return new simple(i);
         }
 
-        public static item of(Item i) {
-            return new item(x.item(i));
+        public static simple of(Item i) {
+            return new simple(x.item(i));
         }
 
         @Override
         public ItemStack getItem(int s) {
-            return i;
+            return item;
         }
 
         @Override
@@ -30,43 +30,43 @@ public class ItemInput {
 
     }
 
-    public record itemValue(ItemStack i, double value) implements RecipeInput {
+    public record withNumber(ItemStack item, double value) implements RecipeInput {
 
-        public static itemValue of(ItemStack i, double v) {
-            return new itemValue(i, v);
+        public static withNumber of(ItemStack i, double v) {
+            return new withNumber(i, v);
         }
 
-        public static itemValue of(Item i, double v) {
-            return new itemValue(x.item(i), v);
+        public static withNumber of(Item i, double v) {
+            return new withNumber(x.item(i), v);
         }
 
-        public static itemValue of(ItemStack i, int v) {
-            return new itemValue(i, (double) v);
+        public static withNumber of(ItemStack i, int v) {
+            return new withNumber(i, (double) v);
         }
 
-        public static itemValue of(Item i, int v) {
-            return new itemValue(x.item(i), (double) v);
+        public static withNumber of(Item i, int v) {
+            return new withNumber(x.item(i), (double) v);
         }
 
-        public static itemValue of(ItemStack i, long v) {
-            return new itemValue(i, (double) v);
+        public static withNumber of(ItemStack i, long v) {
+            return new withNumber(i, (double) v);
         }
 
-        public static itemValue of(Item i, long v) {
-            return new itemValue(x.item(i), (double) v);
+        public static withNumber of(Item i, long v) {
+            return new withNumber(x.item(i), (double) v);
         }
 
-        public static itemValue of(ItemStack i, float v) {
-            return new itemValue(i, (double) v);
+        public static withNumber of(ItemStack i, float v) {
+            return new withNumber(i, (double) v);
         }
 
-        public static itemValue of(Item i, float v) {
-            return new itemValue(x.item(i), (double) v);
+        public static withNumber of(Item i, float v) {
+            return new withNumber(x.item(i), (double) v);
         }
 
         @Override
         public ItemStack getItem(int s) {
-            return i;
+            return item;
         }
 
         @Override
