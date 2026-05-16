@@ -33,13 +33,13 @@ public class AnimatedText {
         pickNext();
     }
 
-    public static Component create(String id, List<String> entries) {
+    public static MutableComponent create(String id, List<String> entries) {
         return CACHE
                 .computeIfAbsent(id, k -> new AnimatedText(entries))
                 .tick();
     }
 
-    private Component tick() {
+    private MutableComponent tick() {
 
         long now = System.currentTimeMillis();
 
