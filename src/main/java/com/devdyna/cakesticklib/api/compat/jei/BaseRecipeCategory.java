@@ -100,10 +100,10 @@ public abstract class BaseRecipeCategory<T extends Recipe<?>> extends BaseCatego
     }
 
     /**
-     * Default : 0xA0A0A0
+     * Default : 0xFFA0A0A0
      */
     public int tickColor() {
-        return 0xA0A0A0;
+        return 0xFFA0A0A0;
     }
 
 }
