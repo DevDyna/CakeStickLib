@@ -1,6 +1,8 @@
 package com.devdyna.cakesticklib.api.gui;
 
 import com.devdyna.cakesticklib.CakeStickLib;
+import com.devdyna.cakesticklib.api.primitive.Pos;
+import com.devdyna.cakesticklib.api.primitive.Size;
 import com.devdyna.cakesticklib.api.utils.ColorUtils;
 import java.awt.Color;
 
@@ -85,6 +87,66 @@ public class ImageGui {
         this.modid = rl.getNamespace();
         this.rl = rl.getPath();
         return this;
+    }
+
+    public Identifier getLocation() {
+        return com.devdyna.cakesticklib.api.utils.x.rl(modid, rl);
+    }
+
+    public Size getSpriteSize() {
+        return Size.of(x, y);
+    }
+
+    public Pos getOffsetPos() {
+        return Pos.of(xo, yo);
+    }
+
+    public Size getTextureSize() {
+        return Size.of(tx, ty);
+    }
+
+    public int getPosX() {
+        return x;
+    }
+
+    public int getPosY() {
+        return y;
+    }
+
+    public int getOffsetX() {
+        return xo;
+    }
+
+    public int getOffsetY() {
+        return yo;
+    }
+
+    public int getTextureX() {
+        return tx;
+    }
+
+    public int getTextureY() {
+        return ty;
+    }
+
+    public int getU() {
+        return u;
+    }
+
+    public int getV() {
+        return v;
+    }
+
+    public int getColor() {
+        return color;
+    }
+
+    public String getModid() {
+        return modid;
+    }
+
+    public String getPath() {
+        return rl;
     }
 
     public void render(GuiGraphicsExtractor g) {
