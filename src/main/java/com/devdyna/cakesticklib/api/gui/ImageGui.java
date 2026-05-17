@@ -19,6 +19,7 @@ public class ImageGui {
 
     private int u = 0;
     private int v = 0;
+    private int color = -1;// default
 
     public ImageGui() {
 
@@ -52,6 +53,21 @@ public class ImageGui {
         return this;
     }
 
+    public ImageGui color(int c) {
+        this.color = c;
+        return this;
+    }
+
+    public ImageGui color(int a, int r, int g, int b) {
+        this.color = ColorUtils.argb(a, r, g, b);
+        return this;
+    }
+
+    public ImageGui color(Color c) {
+        this.color = ColorUtils.argb(c);
+        return this;
+    }
+
     public ImageGui rl(String image) {
         this.rl = image;
         return this;
@@ -79,6 +95,8 @@ public class ImageGui {
                 u, v,
                 x, y,
                 tx, ty);
+                tx, ty,
+                color);
 
     }
 
