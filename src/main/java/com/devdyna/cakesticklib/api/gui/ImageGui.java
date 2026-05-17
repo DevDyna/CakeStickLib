@@ -25,6 +25,8 @@ public class ImageGui {
     private int v = 0;
     private int color = -1;// default
 
+    private boolean flag_first_offset = true;
+
     public ImageGui() {
 
     }
@@ -52,8 +54,15 @@ public class ImageGui {
     }
 
     public ImageGui offset(int xo, int yo) {
-        this.xo = xo;
-        this.yo = yo;
+        if (flag_first_offset) {
+            this.xo = xo;
+            this.yo = yo;
+            flag_first_offset = false;
+        } else {
+            this.xo = this.xo + xo;
+            this.yo = this.yo + yo;
+        }
+
         return this;
     }
 
