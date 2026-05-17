@@ -11,7 +11,7 @@ import net.minecraft.network.chat.Component;
 
 public interface ClientUtils {
 
-    final Color defaultToolTipColor = ColorUtils.color(64, 64, 64);
+    final Color defaultToolTipColor = ColorUtils.color(64, 64, 64,255);
 
     default boolean hasShiftDown() {
         return Minecraft.getInstance().hasShiftDown();
