@@ -10,9 +10,9 @@ import net.minecraft.resources.Identifier;
 
 public class ImageGui {
 
-    private int x;
-    private int y;
-    private String rl;
+    private int x = 0;
+    private int y = 0;
+    private String rl = "";
     private String modid = CakeStickLib.MODULE_ID;
     private int xo = 0;
     private int yo = 0;
