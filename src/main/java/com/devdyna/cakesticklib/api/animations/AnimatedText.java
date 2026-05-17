@@ -1,4 +1,4 @@
-package com.devdyna.cakesticklib.api;
+package com.devdyna.cakesticklib.api.animations;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -83,7 +83,7 @@ public class AnimatedText {
     }
 
     private void pickNext() {
-        if (bag.isEmpty()) 
+        if (bag.isEmpty())
             refillBag();
 
         currentRaw = entries.get(bag.remove(0));
@@ -92,7 +92,7 @@ public class AnimatedText {
     private void refillBag() {
         bag.clear();
 
-        for (int i = 0; i < entries.size(); i++) 
+        for (int i = 0; i < entries.size(); i++)
             bag.add(i);
 
         Collections.shuffle(bag);
@@ -103,5 +103,4 @@ public class AnimatedText {
                 + RANDOM.nextInt((int) (3.5 * TimeUtil.ONE_SECOND)));
     }
 
-    
 }
