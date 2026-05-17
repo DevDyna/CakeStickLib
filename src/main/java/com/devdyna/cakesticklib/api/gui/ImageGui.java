@@ -96,7 +96,6 @@ public class ImageGui {
                 yo - 1,
                 u, v,
                 x, y,
-                tx, ty);
                 tx, ty,
                 color);
 
