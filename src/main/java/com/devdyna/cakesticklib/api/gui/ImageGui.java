@@ -1,6 +1,8 @@
 package com.devdyna.cakesticklib.api.gui;
 
 import com.devdyna.cakesticklib.CakeStickLib;
+import com.devdyna.cakesticklib.api.utils.ColorUtils;
+import java.awt.Color;
 
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.renderer.RenderPipelines;
