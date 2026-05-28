@@ -74,7 +74,7 @@ public class CopperOxidationCategory extends BaseRecipeCategory<CopperOxidationR
 
     @Override
     public Identifier setBackGround() {
-        return x.rl(MODULE_ID, "textures/gui/jei/oxidation.png");
+        return x.rl(MODULE_ID, "textures/gui/jei/catalyst.png");
     }
 
     @Override
