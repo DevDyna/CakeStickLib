@@ -85,6 +85,7 @@ public class DataLang extends LanguageProvider {
                 LangUtils.advKey(this, MODULE_ID, "cake_stick", "The cake is(n't) a lie!", "The Cake stick is right!");
 
                 add(MODULE_ID + ".jei.copper_oxidation", "Copper Oxidation Info");
+                add(MODULE_ID + ".jei.strippable", "Block Strippable Info");
 
                 add(MODULE_ID + ".jei.patina_drop", TIP_COLOR + "Drop %s" + TIP_COLOR + " items every scrape");
 
