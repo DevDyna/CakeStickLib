@@ -2,6 +2,8 @@ package com.devdyna.cakesticklib.api.gui;
 
 import javax.annotation.Nullable;
 
+import com.devdyna.cakesticklib.api.utils.x;
+
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.RenderPipelines;
@@ -21,6 +23,8 @@ public abstract class BaseScreen<T extends BaseMenu> extends AbstractContainerSc
         return null;
     }
 
+    public static final Identifier furnace_arrow = x.mcLoc("container/furnace/burn_progress");
+
     protected boolean whenAnimateArrow() {
         return false;
     }
@@ -28,7 +32,6 @@ public abstract class BaseScreen<T extends BaseMenu> extends AbstractContainerSc
     protected int getScaledArrowProgress() {
         return 0;
     }
-
 
     @Override
     public void extractBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float a) {
@@ -40,9 +43,12 @@ public abstract class BaseScreen<T extends BaseMenu> extends AbstractContainerSc
 
     protected void renderArrow(GuiGraphicsExtractor guiGraphics) {
         if (arrow() != null && whenAnimateArrow())
-            guiGraphics.blit(arrow(), getLeftPos() + 73, getTopPos() + 35, 0, 0, getScaledArrowProgress(), 16, 24, 16);
+            guiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED,
+                    arrow(),
+                    24, 16,
+                    0, 0,
+                    getLeftPos() + 73, getTopPos() + 35,
+                    getScaledArrowProgress(), 16);
     }
-
-    
 
 }

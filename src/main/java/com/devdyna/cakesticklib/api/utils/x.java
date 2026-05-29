@@ -499,19 +499,22 @@ public class x {
     }
 
     public static List<Optional<Reference<Block>>> getBlocks(DataMapType<Block, ?> datamap) {
-        return BuiltInRegistries.BLOCK.getDataMap(datamap).entrySet()
-                .stream()
-                .map(Map.Entry::getKey)
-                .map(ResourceKey::identifier)
-                .map(BuiltInRegistries.BLOCK::get).toList();
+        return getFrom(BuiltInRegistries.BLOCK, datamap);
     }
 
     public static List<Optional<Reference<Item>>> getItems(DataMapType<Item, ?> datamap) {
-        return BuiltInRegistries.ITEM.getDataMap(datamap).entrySet()
+        return getFrom(BuiltInRegistries.ITEM, datamap);
+    }
+
+    public static <T> List<Optional<Reference<T>>> getFrom(
+            DefaultedRegistry<T> registry,
+            DataMapType<T, ?> datamap) {
+        return registry.getDataMap(datamap).entrySet()
                 .stream()
                 .map(Map.Entry::getKey)
                 .map(ResourceKey::identifier)
-                .map(BuiltInRegistries.ITEM::get).toList();
+                .map(registry::get)
+                .toList();
     }
 
 }

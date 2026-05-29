@@ -7,6 +7,7 @@ import java.util.List;
 import com.devdyna.cakesticklib.api.utils.x;
 import com.devdyna.cakesticklib.setup.Client;
 import com.devdyna.cakesticklib.setup.compat.jei.categories.CopperOxidationCategory;
+import com.devdyna.cakesticklib.setup.compat.jei.categories.StrippableCategory;
 import com.devdyna.cakesticklib.setup.registry.*;
 
 import mezz.jei.api.IModPlugin;
@@ -43,7 +44,8 @@ public class PluginJEI implements IModPlugin {
 
         r.addRecipeCategories(
 
-                new CopperOxidationCategory(helper)
+                new CopperOxidationCategory(helper),
+                new StrippableCategory(helper)
 
         );
 
@@ -54,6 +56,8 @@ public class PluginJEI implements IModPlugin {
 
         r.addRecipes(CopperOxidationCategory.TYPE,
                 getRecipes(LibRecipeTypes.COPPER_OXIDATION.getType()));
+
+        r.addRecipes(StrippableCategory.TYPE, StrippableCategory.getRecipes());
 
     }
 

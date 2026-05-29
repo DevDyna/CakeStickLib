@@ -11,7 +11,7 @@ import com.devdyna.cakesticklib.setup.registry.builders.IndustrialUpgrade;
 
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.neoforged.neoforge.transfer.item.ItemStackResourceHandler;
+import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
 
 public interface UpgradeInstallable {
 
@@ -19,7 +19,7 @@ public interface UpgradeInstallable {
 
     Level getLevel();
 
-    ItemStackResourceHandler getUpgradeItemStorage();
+    ItemStacksResourceHandler getUpgradeItemStorage();
 
     List<Integer> getUpgradeSlots();
 
