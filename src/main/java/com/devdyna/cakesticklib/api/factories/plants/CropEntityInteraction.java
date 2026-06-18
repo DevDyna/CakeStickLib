@@ -13,7 +13,7 @@ import net.minecraft.world.phys.Vec3;
 
 public interface CropEntityInteraction {
 
-   static List<EntityType<?>> EntityTypeSafe = List.of(EntityType.FOX, EntityType.BEE);
+   static List<EntityType<?>> entityTypeSafe = List.of(EntityType.FOX, EntityType.BEE);
 
    /**
     * By default it dont stuck entity inside
@@ -21,14 +21,14 @@ public interface CropEntityInteraction {
     * <br>
     * To make that you NEED to concat canStuckEntityWhen()
     */
-   boolean HurtWhenInside();
+   boolean hurtWhenInside();
 
-   boolean HurtWhenStep();
+   boolean hurtWhenStep();
 
-   boolean StuckWhenInside();
+   boolean stuckWhenInside();
 
    default boolean stuckCondition(Entity entity) {
-      return entity instanceof LivingEntity && !EntityTypeSafe.contains(entity.getType());
+      return entity instanceof LivingEntity && !entityTypeSafe.contains(entity.getType());
    }
 
    default boolean hurtCondition(Entity entity, Level level) {
@@ -46,14 +46,14 @@ public interface CropEntityInteraction {
    static double hurt = 0.003000000026077032;
 
    default void getEntityInside(BlockState state, ServerLevel level, BlockPos pos, Entity entity) {
-      if (StuckWhenInside())
+      if (stuckWhenInside())
          entity.makeStuckInBlock(state, speedFactor());
-      if (HurtWhenInside())
+      if (hurtWhenInside())
       entity.hurtServer(level, level.damageSources().sweetBerryBush(), 1.0f);
    }
 
    default void getStepEntityOn(ServerLevel level, BlockPos pos, BlockState state, Entity entity) {
-      if (HurtWhenStep())
+      if (hurtWhenStep())
          entity.hurtServer(level, level.damageSources().sweetBerryBush(), 1.0f);
    }
 
