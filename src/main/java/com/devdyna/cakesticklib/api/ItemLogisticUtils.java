@@ -9,36 +9,34 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
 public class ItemLogisticUtils {
-    public static ArrayList<ItemStack> unifyDrops(List<ItemStack> items) {
+
+    public static ArrayList<ItemStack> unifyDrops(List<ItemStack>... itemLists) {
         ArrayList<ItemStack> newItems = new ArrayList<>();
 
-        for (int i = 0; i < items.size(); i++) {
+        for (List<ItemStack> items : itemLists) {
+            for (ItemStack incoming : items) {
 
-            var check = false;
-            int index = -1;
-            for (ItemStack itemStack : newItems) {
-                if (itemStack.getItem() == items.get(i).getItem()) {
-                    if (itemStack.getCount() >= 64)
-                        continue;
-                    index = newItems.indexOf(itemStack);
-                    check = true;
-                    break;
+                boolean found = false;
+
+                for (int i = 0; i < newItems.size(); i++) {
+                    ItemStack existing = newItems.get(i);
+
+                    if (existing.getItem() == incoming.getItem() && existing.getCount() < existing.getMaxStackSize()) {
+
+                        int newCount = Math.min(existing.getMaxStackSize(), existing.getCount() + incoming.getCount());
+
+                        newItems.set(i, new ItemStack(existing.getItem(), newCount));
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (!found) {
+                    newItems.add(new ItemStack(incoming.getItem(), incoming.getCount()));
                 }
             }
-
-            if (check) {
-
-                newItems.set(index,
-                        new ItemStack(newItems.get(index).getItem(),
-                                newItems.get(index).getCount() + 1));
-
-            } else {
-
-                newItems.add(items.get(i));
-
-            }
-
         }
+
         return newItems;
     }
 
@@ -56,5 +54,4 @@ public class ItemLogisticUtils {
         l.addFreshEntity(item);
     }
 
-    
 }
