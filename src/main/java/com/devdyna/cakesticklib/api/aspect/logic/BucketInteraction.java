@@ -47,7 +47,7 @@ public interface BucketInteraction {
         if (level.isClientSide())
             return InteractionResult.SUCCESS;
 
-        if (FluidUtil.interactWithFluidHandler(player, hand, level, blockPos, blockHitResult.getDirection()))
+        if (FluidUtil.interactWithFluidHandler(player, hand, level, blockPos, blockHitResult.getDirection(),null))
             return InteractionResult.SUCCESS;
 
         return InteractionResult.PASS;
