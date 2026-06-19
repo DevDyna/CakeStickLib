@@ -84,8 +84,9 @@ public class VanillaPlants {
             var ctx = Harvestable.Context.of(level, pos, player);
 
             if (harvestable.canHarvest(ctx)) {
+                var items = harvestable.getItemsResult(ctx);// required to prevent to harvest AIR
                 harvestable.replant(ctx);
-                return harvestable.getItemsResult(ctx);
+                return items;
             }
 
         }
