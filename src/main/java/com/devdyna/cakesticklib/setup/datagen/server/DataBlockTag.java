@@ -23,12 +23,14 @@ public class DataBlockTag extends BlockTagsProvider {
                 tag(LibTags.Blocks.ADVANCED_ALLOY_BLOCK).add(LibBlocks.ADVANCED_ALLOY_BLOCK.get());
                 tag(LibTags.Blocks.STEEL_BLOCK).add(LibBlocks.STEEL_BLOCK.get());
                 tag(LibTags.Blocks.WROUGHT_IRON_BLOCK).add(LibBlocks.WROUGHT_IRON_BLOCK.get());
-                
+
                 tag(Tags.Blocks.STORAGE_BLOCKS)
                                 .addTags(
                                                 LibTags.Blocks.WROUGHT_IRON_BLOCK,
                                                 LibTags.Blocks.STEEL_BLOCK,
                                                 LibTags.Blocks.WROUGHT_IRON_BLOCK);
+
+                tag(LibTags.Blocks.HARVESTABLE_BLACKLIST).add();
         }
 
 }
