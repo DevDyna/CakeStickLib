@@ -19,13 +19,13 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.common.CommonHooks;
 
-public class BaseCropMushroom extends BaseShortCropBlock {
+public abstract class BaseCropMushroom extends BaseShortCropBlock {
 
-    protected BaseCropMushroom(Properties properties) {
-        super(properties.sound(SoundType.GRASS));
-        this.registerDefaultState(
-                stateDefinition.any()
-                        .setValue(getAgeProperty(), 0));
+    protected BaseCropMushroom(Properties p) {
+        super(p.sound(SoundType.GRASS));
+        // this.registerDefaultState(
+        //         stateDefinition.any()
+        //                 .setValue(getAgeProperty(), 0));
     }
 
     VoxelShape[] SHAPE_BY_AGE = { Block.box(5.0, 0.0, 5.0, 11.0, 5.0, 11.0), Block.box(5.0, 0.0, 5.0, 11.0, 7.0, 11.0),

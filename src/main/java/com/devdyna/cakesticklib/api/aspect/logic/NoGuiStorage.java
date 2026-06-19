@@ -2,6 +2,8 @@ package com.devdyna.cakesticklib.api.aspect.logic;
 
 import java.util.ArrayList;
 
+import com.devdyna.cakesticklib.api.utils.x;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
@@ -10,6 +12,9 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.neoforged.neoforge.transfer.item.ItemResource;
+import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
+import net.neoforged.neoforge.transfer.transaction.Transaction;
 
 public interface NoGuiStorage {
 
@@ -114,4 +119,36 @@ public interface NoGuiStorage {
                 p.getZ() + 0.5,
                 s.copy()));
     }
+
+    ItemStacksResourceHandler getItemStorage();
+
+    default ItemStack simpleInsertItem(ItemStack stack) {
+
+        var inserted = 0;
+
+        try (Transaction tx = Transaction.openRoot()) {
+            inserted = getItemStorage().insert(0, ItemResource.of(stack), stack.getCount(), tx);
+            tx.commit();
+        }
+
+        return x.item(stack.getItem(), stack.getCount() - inserted);
+    }
+
+    default ItemStack simpleExtractItem() {
+
+        var resource = getItemStorage().getResource(0);
+
+        if (resource.isEmpty())
+            return ItemStack.EMPTY;
+
+        try (Transaction tx = Transaction.openRoot()) {
+
+            var extracted = getItemStorage()
+                    .extract(0, resource, getItemStorage().getAmountAsInt(0), tx);
+            tx.commit();
+
+            return resource.toStack(extracted);
+        }
+    }
+
 }

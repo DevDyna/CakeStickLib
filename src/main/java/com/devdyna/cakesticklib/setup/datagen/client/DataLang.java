@@ -5,6 +5,7 @@ import static com.devdyna.cakesticklib.api.datagen.LangUtils.*;
 
 import java.util.List;
 
+import com.devdyna.cakesticklib.api.compat.jei.JEIAliasesHelper;
 import com.devdyna.cakesticklib.api.datagen.LangUtils;
 import com.devdyna.cakesticklib.setup.registry.*;
 
@@ -20,6 +21,23 @@ public class DataLang extends LanguageProvider {
 
         @Override
         protected void addTranslations() {
+
+
+                //jei aliases
+                add(JEIAliasesHelper.Aliases.BLOCK_BREAKER, "Block Breaker");
+                add(JEIAliasesHelper.Aliases.DRILL, "Drill");
+                add(JEIAliasesHelper.Aliases.MINER, "Miner");
+                add(JEIAliasesHelper.Aliases.TREE_CUTTER, "Tree cutter");
+                add(JEIAliasesHelper.Aliases.TREE_FELLER, "Tree feller");
+                add(JEIAliasesHelper.Aliases.ENTITY_KILLER, "Entity killer");
+                add(JEIAliasesHelper.Aliases.FAKEPLAYER, "FakePlayer");
+                add(JEIAliasesHelper.Aliases.HOPPER, "Hopper");
+                add(JEIAliasesHelper.Aliases.ITEM_COLLECTOR, "Item Collector");
+                add(JEIAliasesHelper.Aliases.ENTITY_MOVER, "Entity Mover");
+                add(JEIAliasesHelper.Aliases.REDSTONE_SENSIBLE, "Redstone Sensible");
+
+
+
 
                 // mainly for Item Tooltips
                 add(MODULE_ID + ".hold.shift", "§8Hold [" + TIP_COLOR + "Shift§8] to see more details");

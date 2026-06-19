@@ -3,6 +3,7 @@ package com.devdyna.cakesticklib.api.recipe.recipeBuilder;
 import java.util.Arrays;
 import java.util.List;
 
+import com.devdyna.cakesticklib.api.recipe.recipeOutput.ChanceOutput;
 import com.devdyna.cakesticklib.api.utils.x;
 
 import net.minecraft.tags.TagKey;
@@ -255,6 +256,8 @@ public class ItemAttach {
             }
         }
 
+        //use ChanceOutput
+        @Deprecated
         public static interface SecondaryOutputItem<BUILDER extends BaseRecipeBuilder> extends BuilderAttach<BUILDER> {
 
             abstract BUILDER secondary(ItemStackTemplate output, float chance);
@@ -309,6 +312,36 @@ public class ItemAttach {
             default BUILDER secondary(DeferredHolder<Item, Item> secondary, int count, float chance) {
                 return secondary(secondary.get(), count, chance);
             }
+        }
+
+        public static interface ItemOutputChance<BUILDER extends BaseRecipeBuilder> extends BuilderAttach<BUILDER> {
+
+            abstract BUILDER output(ChanceOutput.Item output);
+
+            default BUILDER output(ItemStackTemplate output, float chance) {
+                return output(ChanceOutput.Item.of(output, chance));
+            }
+
+            default BUILDER output(Item output, float chance) {
+                return output(x.itemTemplate(output), chance);
+            }
+
+            default BUILDER output(ItemLike output, float chance) {
+                return output(x.itemTemplate(output), chance);
+            }
+
+            default BUILDER output(DeferredHolder<Item, Item> output, float chance) {
+                return output(output.get(), chance);
+            }
+
+            default BUILDER output(Item output, int count, float chance) {
+                return output(x.itemTemplate(output, count), chance);
+            }
+
+            default BUILDER output(DeferredHolder<Item, Item> output, int count, float chance) {
+                return output(output.get(), count, chance);
+            }
+
         }
 
         public static interface ListedOutputItemStackTemplate<BUILDER extends BaseRecipeBuilder>

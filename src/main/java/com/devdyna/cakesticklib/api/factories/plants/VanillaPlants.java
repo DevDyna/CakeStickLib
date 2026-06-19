@@ -9,8 +9,6 @@ import java.util.Set;
 import java.util.function.BiFunction;
 
 import javax.annotation.Nullable;
-
-import com.devdyna.cakesticklib.api.factories.plants.builder.BaseCropBlock;
 import com.devdyna.cakesticklib.setup.Config;
 
 import net.minecraft.core.BlockPos;
@@ -45,6 +43,7 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
  * 
  * Credits : @DevDyna
  */
+
 public class VanillaPlants {
 
     static int treeHarvestingBlockLimit = Config.TREE_CUTTING_LIMIT.get();
@@ -80,54 +79,60 @@ public class VanillaPlants {
         var state = level.getBlockState(pos);
         var block = state.getBlock();
 
+        if (block instanceof Harvestable harvestable) {
 
-        // skip BaseCropBlock plants due it already support Harvestable
-        if (block instanceof BaseCropBlock)
-            return null;
+            var ctx = Harvestable.Context.of(level, pos, player);
+
+            if (harvestable.canHarvest(ctx)) {
+                harvestable.replant(ctx);
+                return harvestable.getItemsResult(ctx);
+            }
+
+        }
 
         if (block instanceof CropBlock crop) {
 
             if (crop.isMaxAge(state)) {
                 // synergy custom crops
-                if (crop instanceof PlantHandler handler) {
-                    level.setBlockAndUpdate(pos, state.setValue(handler.getProperty(), 0));
+                // if (crop instanceof PlantHandler handler) {
+                // level.setBlockAndUpdate(pos, state.setValue(handler.getProperty(), 0));
+                // if (level.isClientSide())
+                // onClientClick(level, player, hand, pos);
+                // else
+                // return Block.getDrops(state, (ServerLevel) level, pos, null);
+
+                // } else {
+
+                try {
+                    // vanilla crops
+                    if (block instanceof BeetrootBlock)
+                        level.setBlockAndUpdate(pos, state.setValue(BeetrootBlock.AGE, 0));
+                    else
+                        level.setBlockAndUpdate(pos, state.setValue(CropBlock.AGE, 0));
+
                     if (level.isClientSide())
                         onClientClick(level, player, hand, pos);
                     else
                         return Block.getDrops(state, (ServerLevel) level, pos, null);
 
-                } else {
+                } catch (Exception e1) {
+                    // crops with different properties
+                    for (IntegerProperty p : allCropProperties) {
 
-                    try {
-                        // vanilla crops
-                        if (block instanceof BeetrootBlock)
-                            level.setBlockAndUpdate(pos, state.setValue(BeetrootBlock.AGE, 0));
-                        else
-                            level.setBlockAndUpdate(pos, state.setValue(CropBlock.AGE, 0));
-
-                        if (level.isClientSide())
-                            onClientClick(level, player, hand, pos);
-                        else
-                            return Block.getDrops(state, (ServerLevel) level, pos, null);
-
-                    } catch (Exception e1) {
-                        // crops with different properties
-                        for (IntegerProperty p : allCropProperties) {
-
-                            if (state.hasProperty(p)) {
-                                try {
-                                    level.setBlockAndUpdate(pos, state.setValue(p, 0));
-                                    if (level.isClientSide())
-                                        onClientClick(level, player, hand, pos);
-                                    else
-                                        return Block.getDrops(state, (ServerLevel) level, pos, null);
-                                } catch (Exception e2) {
-                                }
+                        if (state.hasProperty(p)) {
+                            try {
+                                level.setBlockAndUpdate(pos, state.setValue(p, 0));
+                                if (level.isClientSide())
+                                    onClientClick(level, player, hand, pos);
+                                else
+                                    return Block.getDrops(state, (ServerLevel) level, pos, null);
+                            } catch (Exception e2) {
                             }
                         }
-
                     }
+
                 }
+
             }
         }
 
@@ -172,10 +177,10 @@ public class VanillaPlants {
     }
 
     public static void onClientClick(Level level, Player player, InteractionHand hand, BlockPos pos) {
-       if(player != null && hand != null)
-        player.swing(hand);
-        if(player != null)
-        level.playSound(player, pos, SoundEvents.BONE_MEAL_USE, SoundSource.BLOCKS, 3.0F, 2F);
+        if (player != null && hand != null)
+            player.swing(hand);
+        if (player != null)
+            level.playSound(player, pos, SoundEvents.CROP_BREAK, SoundSource.BLOCKS, 3.0F, 2F);
 
     }
 

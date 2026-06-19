@@ -3,28 +3,20 @@ package com.devdyna.cakesticklib.api.factories.plants.builder;
 import java.util.List;
 
 import com.devdyna.cakesticklib.api.factories.plants.Harvestable;
-import com.devdyna.cakesticklib.api.factories.plants.PlantHandler;
 
-import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
-import net.minecraft.world.phys.BlockHitResult;
 
-public class BaseCropBlock extends CropBlock implements Harvestable, PlantHandler {
+public abstract class BaseCropBlock extends CropBlock implements Harvestable {
 
-    public BaseCropBlock(Properties properties) {
-        super(properties.mapColor(MapColor.PLANT)
+    public BaseCropBlock(Properties p) {
+        super(p.mapColor(MapColor.PLANT)
                 .noCollision()
                 .randomTicks()
                 .instabreak()
@@ -33,59 +25,27 @@ public class BaseCropBlock extends CropBlock implements Harvestable, PlantHandle
     }
 
     @Override
-    protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos,
-            Player player, InteractionHand hand, BlockHitResult hitResult) {
-
-        if (harvestCrop(level, state, pos, player, stack))
-            return InteractionResult.SUCCESS;
-        else
-
-            return super.useItemOn(stack, state, level, pos, player, hand, hitResult);
+    public boolean canHarvest(Harvestable.Context ctx) {
+        return isMaxAge(ctx.state());
     }
 
     @Override
-    public List<ItemStack> getItemResult(Level level, BlockState state, BlockPos pos, Player player, ItemStack tool) {
-        return Block.getDrops(state, (ServerLevel) level, pos, null, player, tool);
+    public List<ItemStack> getItemsResult(Harvestable.Context ctx) {
+
+        if (ctx.level() instanceof ServerLevel server)
+            return Block.getDrops(ctx.state(), server, ctx.pos(), null);
+
+        return List.of();
     }
 
     @Override
-    public int maxAge() {
-        return getMaxAge();
+    public void replant(Harvestable.Context ctx) {
+        simpleAgeResetReplant(ctx);
     }
 
     @Override
-    public boolean canBeHarvested(BlockState state) {
-        return isMaxAge(state);
-    }
-
-    @Override
-    public IntegerProperty getPublicAgeProperty() {
-        return getAgeProperty();
-    }
-
-    @Override
-    public List<ItemStack> itemResult(Level level, BlockPos pos) {
-        return Block.getDrops(level.getBlockState(pos), (ServerLevel) level, pos, null);
-    }
-
-    @Override
-    public void blockReplanted(Level level, BlockPos pos) {
-        level.setBlockAndUpdate(pos, level.getBlockState(pos).setValue(getAgeProperty(), 0));
-    }
-
-    @Override
-    public HarvestMode getMode() {
-        return HarvestMode.BLOCK_REPLANT;
-    }
-
-    @Override
-    public boolean whenCanBeHarvested(Level level, BlockPos pos) {
-        return isMaxAge(level.getBlockState(pos));
-    }
-
-    @Override
-    public IntegerProperty getProperty() {
-        return getAgeProperty();
+    public IntegerProperty getAgeProperty() {
+        return super.getAgeProperty();
     }
 
 }

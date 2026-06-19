@@ -15,11 +15,14 @@ public class ItemStorageBreak {
         var pos = event.getPos();
         var be = level.getBlockEntity(pos);
 
-        if (be instanceof ItemStorageBlock storage)
-            if (storage.dropOnBreak())
-                for (int i = 0; i < storage.getSlots(); i++)
-                    Block.popResource((Level) level, pos, storage.getStackInSlot(i));
-
+        try {
+            if (be instanceof ItemStorageBlock storage)
+                if (storage.dropOnBreak())
+                    for (int i = 0; i < storage.getSlots(); i++)
+                        Block.popResource((Level) level, pos, storage.getStackInSlot(i));
+        } catch (Exception e) {
+            //it must prevent persistent broken storage blocks on break
+        }
     }
 
 }
