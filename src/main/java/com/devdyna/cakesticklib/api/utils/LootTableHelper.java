@@ -21,7 +21,7 @@ public class LootTableHelper {
     /**
      * mainly useful to define valid blocks on Datagen SubLootBlocksProvider
      */
-    public List<Block> getValidBlocks(DeferredRegister.Blocks... blocks) {
+    public static List<Block> getValidBlocks(DeferredRegister.Blocks... blocks) {
         List<Block> result = new ArrayList<>();
         List.of(blocks).forEach(t -> result.addAll(t.getEntries()
                 .stream()
