@@ -29,7 +29,7 @@ public class BaseShortCropBlock extends BaseCropBlock {
     }
 
     @Override
-    protected IntegerProperty getAgeProperty() {
+    public IntegerProperty getAgeProperty() {
         return AGE;
     }
 
