@@ -11,10 +11,10 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 
-public class BaseWildCropBlock extends BushBlock {
+public abstract class BaseWildCropBlock extends BushBlock {
 
-    protected BaseWildCropBlock(Properties properties) {
-        super(properties.mapColor(MapColor.PLANT)
+    protected BaseWildCropBlock(Properties p) {
+        super(p.mapColor(MapColor.PLANT)
                 .noCollision()
                 .randomTicks()
                 .instabreak()

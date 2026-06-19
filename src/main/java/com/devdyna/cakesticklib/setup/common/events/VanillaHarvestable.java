@@ -3,7 +3,6 @@ package com.devdyna.cakesticklib.setup.common.events;
 import java.util.*;
 
 import com.devdyna.cakesticklib.api.factories.plants.*;
-import com.devdyna.cakesticklib.setup.Config;
 
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.ItemStack;
@@ -18,7 +17,7 @@ public class VanillaHarvestable {
         var player = event.getEntity();
         var hand = event.getHand();
 
-        if (!Config.HARVESTABLE_ACTION.get())
+        if (!Harvestable.getConfig())
             return;
 
         List<ItemStack> check = VanillaPlants.checkReplant(level, pos,player,hand);
