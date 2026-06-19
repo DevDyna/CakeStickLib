@@ -1,5 +1,7 @@
 package com.devdyna.cakesticklib.setup.registry;
 
+import static com.devdyna.cakesticklib.CakeStickLib.MODULE_ID;
+
 import com.devdyna.cakesticklib.CakeStickLib;
 import com.devdyna.cakesticklib.api.RegistryUtils;
 
@@ -18,6 +20,9 @@ public class LibTags {
         public class Blocks {
                 public static void register(IEventBus bus) {
                 }
+
+                public static final TagKey<Block> HARVESTABLE_BLACKLIST = RegistryUtils
+                                .tagBlock(MODULE_ID, "harvestable/blacklist");
 
                 //storage_blocks
                 public static final TagKey<Block> STEEL_BLOCK = RegistryUtils
