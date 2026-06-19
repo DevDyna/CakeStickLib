@@ -10,6 +10,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 
@@ -54,5 +55,42 @@ public interface Harvestable {
         public BlockState state(Direction d) {
             return level.getBlockState(pos.relative(d));
         }
+
+        public Block block() {
+            return state().getBlock();
+        }
+
+        public Block block(Direction d) {
+            return state(d).getBlock();
+        }
+
+        public Context modify(BlockPos pos) {
+            return modify(pos, player());
+        }
+
+        public boolean is(BlockPos pos) {
+            return pos().equals(pos);
+        }
+
+        public boolean is(BlockState state) {
+            return is(state.getBlock());
+        }
+
+        public boolean is(Block block) {
+            return state().is(block);
+        }
+
+        public boolean is(Direction dir,Block block) {
+            return state(dir).is(block);
+        }
+
+        public Context modify(Player player) {
+            return modify(pos(), player);
+        }
+
+        public Context modify(BlockPos pos, Player player) {
+            return of(level(), pos, player);
+        }
+
     }
 }
