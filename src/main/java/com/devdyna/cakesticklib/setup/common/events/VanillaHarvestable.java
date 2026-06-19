@@ -3,6 +3,7 @@ package com.devdyna.cakesticklib.setup.common.events;
 import java.util.*;
 
 import com.devdyna.cakesticklib.api.factories.plants.*;
+import com.devdyna.cakesticklib.setup.registry.LibTags;
 
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -26,6 +27,8 @@ public class VanillaHarvestable {
         if (player.isSpectator())
             return;
 
+        if (level.getBlockState(pos).is(LibTags.Blocks.HARVESTABLE_BLACKLIST))
+            return;
 
             //prevent bonemeal usage conflict
         if (!(item.getItem() instanceof BoneMealItem) && hand.equals(InteractionHand.MAIN_HAND)) {
