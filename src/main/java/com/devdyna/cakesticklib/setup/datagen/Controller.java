@@ -3,6 +3,7 @@ package com.devdyna.cakesticklib.setup.datagen;
 import static com.devdyna.cakesticklib.CakeStickLib.MODULE_ID;
 
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
 import com.devdyna.cakesticklib.setup.datagen.client.*;
@@ -12,6 +13,8 @@ import com.devdyna.cakesticklib.setup.datagen.server.DataAdvancement.DataAdvance
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DataGenerator.PackGenerator;
+import net.minecraft.data.loot.LootTableProvider;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
@@ -34,6 +37,11 @@ public class Controller {
         e.createBlockAndItemTags(DataBlockTag::new, DataItemTag::new);
 
         v.addProvider(o -> new DataAdvancement(o, pr, List.of(new DataAdvancementGenerator())));
+
+        v.addProvider(o -> new LootTableProvider(o, Set.of(),
+                List.of(
+                        new LootTableProvider.SubProviderEntry(DataLootBlock::new, LootContextParamSets.BLOCK)),
+                pr));
 
         v.addProvider(o -> new DataRecipe.RecipeRunner(o, pr));
 
