@@ -7,6 +7,7 @@ import com.devdyna.cakesticklib.api.utils.UpgradeComponents.UpgradeType;
 import com.devdyna.cakesticklib.api.utils.x;
 import com.devdyna.cakesticklib.setup.registry.builders.CakeStick;
 import com.devdyna.cakesticklib.setup.registry.builders.Chisel;
+import com.devdyna.cakesticklib.setup.registry.builders.GlassCutter;
 import com.devdyna.cakesticklib.setup.registry.builders.HoneySolution;
 import com.devdyna.cakesticklib.setup.registry.builders.RedstoneAcid;
 import com.devdyna.cakesticklib.setup.registry.*;
@@ -56,6 +57,9 @@ public class ItemToolTipped {
 
             }
         }
+
+        if (item.getItem() instanceof GlassCutter)
+            tip.add(OVER_THE_REGISTRY_ID, Component.translatable(MODULE_ID + ".glass_cutter.tip"));
 
         if (item.getItem() instanceof Chisel)
             tip.add(OVER_THE_REGISTRY_ID, Component.translatable(MODULE_ID + ".info.identifier.desc"));

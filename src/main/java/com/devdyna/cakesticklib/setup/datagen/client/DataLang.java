@@ -22,8 +22,7 @@ public class DataLang extends LanguageProvider {
         @Override
         protected void addTranslations() {
 
-
-                //jei aliases
+                // jei aliases
                 add(JEIAliasesHelper.Aliases.BLOCK_BREAKER, "Block Breaker");
                 add(JEIAliasesHelper.Aliases.DRILL, "Drill");
                 add(JEIAliasesHelper.Aliases.MINER, "Miner");
@@ -35,9 +34,6 @@ public class DataLang extends LanguageProvider {
                 add(JEIAliasesHelper.Aliases.ITEM_COLLECTOR, "Item Collector");
                 add(JEIAliasesHelper.Aliases.ENTITY_MOVER, "Entity Mover");
                 add(JEIAliasesHelper.Aliases.REDSTONE_SENSIBLE, "Redstone Sensible");
-
-
-
 
                 // mainly for Item Tooltips
                 add(MODULE_ID + ".hold.shift", "§8Hold [" + TIP_COLOR + "Shift§8] to see more details");
@@ -98,6 +94,8 @@ public class DataLang extends LanguageProvider {
 
                 add(MODULE_ID + ".redstone_acid.tip", TIP_COLOR + "Oxidize copper blocks");
                 add(MODULE_ID + ".honey_solution.tip", TIP_COLOR + "Wax copper blocks");
+
+                add(MODULE_ID + ".glass_cutter.tip", TIP_COLOR + "Instamine glass blocks");
 
                 add(MODULE_ID + ".cakestick.tip", TIP_COLOR + "Place cake slices");
                 LangUtils.advKey(this, MODULE_ID, "cake_stick", "The cake is(n't) a lie!", "The Cake stick is right!");
