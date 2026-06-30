@@ -90,6 +90,15 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .unlockedBy(getHasName(Tags.Items.INGOTS_IRON), has(Tags.Items.INGOTS_IRON))
                                 .save(output);
 
+                ShapedRecipeBuilder.shaped(items, RecipeCategory.TOOLS, LibItems.GLASS_CUTTER.get())
+                                .pattern("  N")
+                                .pattern(" S ")
+                                .pattern("S  ")
+                                .define('N', Tags.Items.NUGGETS_IRON)
+                                .define('S', Items.STICK)
+                                .unlockedBy(getHasName(Tags.Items.NUGGETS_IRON), has(Tags.Items.NUGGETS_IRON))
+                                .save(output);
+
                 simpleCooking(output, LibTags.Items.FLOUR, Items.BREAD);
 
                 shaped(RecipeCategory.MISC, Items.PAPER, 6)

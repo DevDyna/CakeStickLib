@@ -24,13 +24,19 @@ public class LibTags {
                 public static final TagKey<Block> HARVESTABLE_BLACKLIST = RegistryUtils
                                 .tagBlock(MODULE_ID, "harvestable/blacklist");
 
-                //storage_blocks
+                // storage_blocks
                 public static final TagKey<Block> STEEL_BLOCK = RegistryUtils
                                 .tagBlock("c", "storage_blocks/steel");
+
                 public static final TagKey<Block> ADVANCED_ALLOY_BLOCK = RegistryUtils
                                 .tagBlock("c", "storage_blocks/advanced_alloy");
+
                 public static final TagKey<Block> WROUGHT_IRON_BLOCK = RegistryUtils
                                 .tagBlock("c", "storage_blocks/wrought_iron");
+
+                public static final TagKey<Block> MINEABLE_WITH_GLASS_CUTTER = RegistryUtils
+                                .tagBlock(MODULE_ID, "mineable/glass_cutter");
+
         }
 
         public class Items {

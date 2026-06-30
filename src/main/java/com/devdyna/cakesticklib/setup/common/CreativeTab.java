@@ -15,6 +15,7 @@ public class CreativeTab {
 
         if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
             event.accept(LibItems.CHISEL.get());
+            event.accept(LibItems.GLASS_CUTTER.get());
             event.accept(LibItems.REDSTONE_ACID.get());
             event.accept(LibItems.HONEY_SOLUTION.get());
             event.accept(LibItems.HAMMER.get());
