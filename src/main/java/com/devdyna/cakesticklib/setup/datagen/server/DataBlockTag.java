@@ -32,6 +32,12 @@ public class DataBlockTag extends BlockTagsProvider {
                                                 LibTags.Blocks.WROUGHT_IRON_BLOCK);
 
                 tag(LibTags.Blocks.HARVESTABLE_BLACKLIST).add();
+
+                tag(BlockTags.MINEABLE_WITH_PICKAXE).addTags(
+                                LibTags.Blocks.WROUGHT_IRON_BLOCK,
+                                LibTags.Blocks.STEEL_BLOCK,
+                                LibTags.Blocks.WROUGHT_IRON_BLOCK);
+
                 tag(LibTags.Blocks.MINEABLE_WITH_GLASS_CUTTER)
                                 .addTags(Tags.Blocks.GLASS_BLOCKS, Tags.Blocks.GLASS_PANES);
         }
