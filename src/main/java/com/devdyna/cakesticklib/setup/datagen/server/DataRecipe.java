@@ -81,10 +81,9 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .save(output);
 
                 ShapedRecipeBuilder.shaped(items, RecipeCategory.TOOLS, LibItems.CHISEL.get())
-                                .pattern("  N")
+                                .pattern("  I")
                                 .pattern(" I ")
                                 .pattern("S  ")
-                                .define('N', Tags.Items.NUGGETS_IRON)
                                 .define('S', Items.STICK)
                                 .define('I', Tags.Items.INGOTS_IRON)
                                 .unlockedBy(getHasName(Tags.Items.INGOTS_IRON), has(Tags.Items.INGOTS_IRON))
