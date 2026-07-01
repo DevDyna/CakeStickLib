@@ -45,13 +45,32 @@ public class StringUtil {
     }
 
     private static final String CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
- 
+
     public static char randomChar(Random r) {
         return CHARS.charAt(r.nextInt(CHARS.length()));
     }
 
     public static char randomChar(RandomSource r) {
         return CHARS.charAt(r.nextInt(CHARS.length()));
+    }
+
+    public static String formatToDisplay(String input) {
+        StringBuilder sb = new StringBuilder();
+
+        for (String word : input.split("_")) {
+            if (word.isEmpty()) {
+                continue;
+            }
+
+            if (!sb.isEmpty()) {
+                sb.append(' ');
+            }
+
+            sb.append(Character.toUpperCase(word.charAt(0)))
+                    .append(word.substring(1));
+        }
+
+        return sb.toString();
     }
 
 }
