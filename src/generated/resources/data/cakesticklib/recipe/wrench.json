@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "C": "#c:dusts/carbon",
+    "I": "#c:ingots/iron",
+    "L": "#c:gems/lapis"
+  },
+  "pattern": [
+    " I ",
+    " LI",
+    "C  "
+  ],
+  "result": {
+    "id": "cakesticklib:wrench"
+  }
+}
