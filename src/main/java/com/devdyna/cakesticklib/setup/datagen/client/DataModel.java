@@ -25,6 +25,8 @@ public class DataModel extends ModelProvider {
                 itemModels.generateFlatItem(LibItems.HONEY_SOLUTION.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
                 itemModels.generateFlatItem(LibItems.CHISEL.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
                 itemModels.generateFlatItem(LibItems.GLASS_CUTTER.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+                itemModels.generateFlatItem(LibItems.WRENCH.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+               
                 itemModels.generateFlatItem(LibItems.PATINA.get(), ModelTemplates.FLAT_ITEM);
 
                 itemModels.generateFlatItem(LibItems.SAWDUST.get(), ModelTemplates.FLAT_ITEM);

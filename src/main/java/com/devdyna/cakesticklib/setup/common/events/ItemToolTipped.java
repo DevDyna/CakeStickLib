@@ -10,6 +10,7 @@ import com.devdyna.cakesticklib.setup.registry.builders.Chisel;
 import com.devdyna.cakesticklib.setup.registry.builders.GlassCutter;
 import com.devdyna.cakesticklib.setup.registry.builders.HoneySolution;
 import com.devdyna.cakesticklib.setup.registry.builders.RedstoneAcid;
+import com.devdyna.cakesticklib.setup.registry.builders.Wrench;
 import com.devdyna.cakesticklib.setup.registry.*;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -60,6 +61,9 @@ public class ItemToolTipped {
 
         if (item.getItem() instanceof GlassCutter)
             tip.add(OVER_THE_REGISTRY_ID, Component.translatable(MODULE_ID + ".glass_cutter.tip"));
+
+        if (item.getItem() instanceof Wrench)
+            tip.add(OVER_THE_REGISTRY_ID, Component.translatable(MODULE_ID + ".wrench.tip"));
 
         if (item.getItem() instanceof Chisel)
             tip.add(OVER_THE_REGISTRY_ID, Component.translatable(MODULE_ID + ".info.identifier.desc"));

@@ -98,6 +98,7 @@ public class DataLang extends LanguageProvider {
                 add(MODULE_ID + ".honey_solution.tip", TipColors.ITEM_TOOLTIP + "Wax copper blocks");
 
                 add(MODULE_ID + ".glass_cutter.tip", TipColors.ITEM_TOOLTIP + "Instamine glass blocks");
+                add(MODULE_ID + ".wrench.tip", TipColors.ITEM_TOOLTIP + "Rotate blocks");
 
                 add(MODULE_ID + ".cakestick.tip", TipColors.ITEM_TOOLTIP + "Place cake slices");
                 LangUtils.advKey(this, MODULE_ID, "cake_stick", "The cake is(n't) a lie!", "The Cake stick is right!");

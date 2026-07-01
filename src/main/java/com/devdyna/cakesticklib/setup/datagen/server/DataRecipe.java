@@ -98,6 +98,16 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .unlockedBy(getHasName(Tags.Items.NUGGETS_IRON), has(Tags.Items.NUGGETS_IRON))
                                 .save(output);
 
+                ShapedRecipeBuilder.shaped(items, RecipeCategory.TOOLS, LibItems.WRENCH.get())
+                                .pattern(" I ")
+                                .pattern(" LI")
+                                .pattern("C  ")
+                                .define('I', Tags.Items.INGOTS_IRON)
+                                .define('C', LibTags.Items.CARBON_DUST)
+                                .define('L', Tags.Items.GEMS_LAPIS)
+                                .unlockedBy(getHasName(LibTags.Items.CARBON_DUST), has(LibTags.Items.CARBON_DUST))
+                                .save(output);
+
                 simpleCooking(output, LibTags.Items.FLOUR, Items.BREAD);
 
                 shaped(RecipeCategory.MISC, Items.PAPER, 6)
