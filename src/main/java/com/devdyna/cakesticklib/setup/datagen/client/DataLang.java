@@ -172,6 +172,10 @@ public class DataLang extends LanguageProvider {
                 add(MODULE_ID + ".configuration.max_luck",
                                 "Maximal Luck");
 
+                // extra
+                add("extra.effect.minecraft.glowing",
+                                TipColors.POTION_EFFECT_POSITIVE + "Glowing (00:10)");
+
         }
 
 }

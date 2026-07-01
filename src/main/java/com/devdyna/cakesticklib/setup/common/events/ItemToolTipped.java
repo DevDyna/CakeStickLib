@@ -14,6 +14,7 @@ import com.devdyna.cakesticklib.setup.registry.builders.Wrench;
 import com.devdyna.cakesticklib.setup.registry.*;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.SpectralArrowItem;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 
@@ -83,6 +84,9 @@ public class ItemToolTipped {
 
         if (item.getItem() instanceof HoneySolution)
             tip.add(OVER_THE_REGISTRY_ID, Component.translatable(MODULE_ID + ".honey_solution.tip"));
+
+        if (item.getItem() instanceof SpectralArrowItem)
+            tip.add(OVER_THE_REGISTRY_ID, Component.translatable("extra.effect.minecraft.glowing"));
 
     }
 }
