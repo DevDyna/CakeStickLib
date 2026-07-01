@@ -171,6 +171,10 @@ public class DataItemTag extends ItemTagsProvider {
 
                 tag(LibTags.Items.ELECTRON_TUBES)
                                 .add(LibItems.ELECTRON_TUBE.get());
+
+                tag(Tags.Items.TOOLS_WRENCH)
+                                .add(LibItems.WRENCH.get());
+
         }
 
 }

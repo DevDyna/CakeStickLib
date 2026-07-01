@@ -3,9 +3,11 @@ package com.devdyna.cakesticklib.setup.registry;
 import com.devdyna.cakesticklib.CakeStickLib;
 import com.devdyna.cakesticklib.setup.registry.builders.CakeStick;
 import com.devdyna.cakesticklib.setup.registry.builders.Chisel;
+import com.devdyna.cakesticklib.setup.registry.builders.GlassCutter;
 import com.devdyna.cakesticklib.setup.registry.builders.HoneySolution;
 import com.devdyna.cakesticklib.setup.registry.builders.IndustrialUpgrade;
 import com.devdyna.cakesticklib.setup.registry.builders.RedstoneAcid;
+import com.devdyna.cakesticklib.setup.registry.builders.Wrench;
 
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -75,6 +77,12 @@ public class LibItems {
 
                 public static final DeferredHolder<Item, Item> CHISEL = zItem.registerItem("chisel",
                                 p -> new Chisel(p));
+
+                public static final DeferredHolder<Item, Item> GLASS_CUTTER = zItem.registerItem("glass_cutter",
+                                p -> new GlassCutter(p));
+
+                public static final DeferredHolder<Item, Item> WRENCH = zItem.registerItem("wrench",
+                                p -> new Wrench(p));
 
                 public static final DeferredHolder<Item, Item> PATINA = zSimple.registerSimpleItem("patina");
 

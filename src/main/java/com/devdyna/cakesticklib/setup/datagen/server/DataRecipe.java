@@ -81,13 +81,31 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .save(output);
 
                 ShapedRecipeBuilder.shaped(items, RecipeCategory.TOOLS, LibItems.CHISEL.get())
-                                .pattern("  N")
+                                .pattern("  I")
                                 .pattern(" I ")
                                 .pattern("S  ")
-                                .define('N', Tags.Items.NUGGETS_IRON)
                                 .define('S', Items.STICK)
                                 .define('I', Tags.Items.INGOTS_IRON)
                                 .unlockedBy(getHasName(Tags.Items.INGOTS_IRON), has(Tags.Items.INGOTS_IRON))
+                                .save(output);
+
+                ShapedRecipeBuilder.shaped(items, RecipeCategory.TOOLS, LibItems.GLASS_CUTTER.get())
+                                .pattern("  N")
+                                .pattern(" S ")
+                                .pattern("S  ")
+                                .define('N', Tags.Items.NUGGETS_IRON)
+                                .define('S', Items.STICK)
+                                .unlockedBy(getHasName(Tags.Items.NUGGETS_IRON), has(Tags.Items.NUGGETS_IRON))
+                                .save(output);
+
+                ShapedRecipeBuilder.shaped(items, RecipeCategory.TOOLS, LibItems.WRENCH.get())
+                                .pattern(" I ")
+                                .pattern(" LI")
+                                .pattern("C  ")
+                                .define('I', Tags.Items.INGOTS_IRON)
+                                .define('C', LibTags.Items.CARBON_DUST)
+                                .define('L', Tags.Items.GEMS_LAPIS)
+                                .unlockedBy(getHasName(LibTags.Items.CARBON_DUST), has(LibTags.Items.CARBON_DUST))
                                 .save(output);
 
                 simpleCooking(output, LibTags.Items.FLOUR, Items.BREAD);

@@ -2,15 +2,16 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
+    "C": "#c:dusts/carbon",
     "I": "#c:ingots/iron",
-    "S": "minecraft:stick"
+    "L": "#c:gems/lapis"
   },
   "pattern": [
-    "  I",
     " I ",
-    "S  "
+    " LI",
+    "C  "
   ],
   "result": {
-    "id": "cakesticklib:chisel"
+    "id": "cakesticklib:wrench"
   }
 }

@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.devdyna.cakesticklib.api.compat.jei.JEIAliasesHelper;
 import com.devdyna.cakesticklib.api.datagen.LangUtils;
+import com.devdyna.cakesticklib.api.datagen.LangUtils.TipColors;
 import com.devdyna.cakesticklib.setup.registry.*;
 
 import net.minecraft.data.PackOutput;
@@ -22,8 +23,7 @@ public class DataLang extends LanguageProvider {
         @Override
         protected void addTranslations() {
 
-
-                //jei aliases
+                // jei aliases
                 add(JEIAliasesHelper.Aliases.BLOCK_BREAKER, "Block Breaker");
                 add(JEIAliasesHelper.Aliases.DRILL, "Drill");
                 add(JEIAliasesHelper.Aliases.MINER, "Miner");
@@ -36,18 +36,15 @@ public class DataLang extends LanguageProvider {
                 add(JEIAliasesHelper.Aliases.ENTITY_MOVER, "Entity Mover");
                 add(JEIAliasesHelper.Aliases.REDSTONE_SENSIBLE, "Redstone Sensible");
 
-
-
-
                 // mainly for Item Tooltips
-                add(MODULE_ID + ".hold.shift", "§8Hold [" + TIP_COLOR + "Shift§8] to see more details");
-                add(MODULE_ID + ".item.disabled", TIP_COLOR + "Item-Form unobtainable");
-                add(MODULE_ID + ".item.placeable", TIP_COLOR + "Can be placed");
-                add(MODULE_ID + ".block.rotate_by_click", TIP_COLOR + "Can be rotated with right-click");
-                add(MODULE_ID + ".block.blast_proof", TIP_COLOR + "Blast resistance");
-                add(MODULE_ID + ".item.click.install", TIP_COLOR + "Right click to install");
-                add(MODULE_ID + ".block.safe_building", TIP_COLOR + "Safe for decoration");
-                add(MODULE_ID + ".item.crafting_ingredient", TIP_COLOR + "Crafting Ingredient");
+                add(MODULE_ID + ".hold.shift", "§8Hold [" + TipColors.ITEM_TOOLTIP + "Shift§8] to see more details");
+                add(MODULE_ID + ".item.disabled", TipColors.ITEM_TOOLTIP + "Item-Form unobtainable");
+                add(MODULE_ID + ".item.placeable", TipColors.ITEM_TOOLTIP + "Can be placed");
+                add(MODULE_ID + ".block.rotate_by_click", TipColors.ITEM_TOOLTIP + "Can be rotated with right-click");
+                add(MODULE_ID + ".block.blast_proof", TipColors.ITEM_TOOLTIP + "Blast resistance");
+                add(MODULE_ID + ".item.click.install", TipColors.ITEM_TOOLTIP + "Right click to install");
+                add(MODULE_ID + ".block.safe_building", TipColors.ITEM_TOOLTIP + "Safe for decoration");
+                add(MODULE_ID + ".item.crafting_ingredient", TipColors.ITEM_TOOLTIP + "Crafting Ingredient");
 
                 // mainly for menu or JEI categories
                 add(MODULE_ID + ".ui.dont_consume", "§cNot consume");
@@ -66,10 +63,11 @@ public class DataLang extends LanguageProvider {
                 add(MODULE_ID + ".info.dir", "Dir : ");
                 add(MODULE_ID + ".info.dirs", "Dirs : ");
                 add(MODULE_ID + ".info.identifier.hold",
-                                TIP_COLOR + "Block : ");
+                                TipColors.ITEM_TOOLTIP + "Block : ");
 
                 add(MODULE_ID + ".info.identifier.desc",
-                                TIP_COLOR + "Craft in-world Stonecutter recipes when bound to the result block");
+                                TipColors.ITEM_TOOLTIP
+                                                + "Craft in-world Stonecutter recipes when bound to the result block");
 
                 // setup
 
@@ -96,32 +94,36 @@ public class DataLang extends LanguageProvider {
                                 .map(DeferredRegister.Items::getEntries)
                                 .forEach(c -> c.forEach(i -> addItem(i, named(i, MODULE_ID))));
 
-                add(MODULE_ID + ".redstone_acid.tip", TIP_COLOR + "Oxidize copper blocks");
-                add(MODULE_ID + ".honey_solution.tip", TIP_COLOR + "Wax copper blocks");
+                add(MODULE_ID + ".redstone_acid.tip", TipColors.ITEM_TOOLTIP + "Oxidize copper blocks");
+                add(MODULE_ID + ".honey_solution.tip", TipColors.ITEM_TOOLTIP + "Wax copper blocks");
 
-                add(MODULE_ID + ".cakestick.tip", TIP_COLOR + "Place cake slices");
+                add(MODULE_ID + ".glass_cutter.tip", TipColors.ITEM_TOOLTIP + "Instamine glass blocks");
+                add(MODULE_ID + ".wrench.tip", TipColors.ITEM_TOOLTIP + "Rotate blocks");
+
+                add(MODULE_ID + ".cakestick.tip", TipColors.ITEM_TOOLTIP + "Place cake slices");
                 LangUtils.advKey(this, MODULE_ID, "cake_stick", "The cake is(n't) a lie!", "The Cake stick is right!");
 
                 add(MODULE_ID + ".jei.copper_oxidation", "Copper Oxidation Info");
                 add(MODULE_ID + ".jei.strippable", "Block Strippable Info");
 
-                add(MODULE_ID + ".jei.patina_drop", TIP_COLOR + "Drop %s" + TIP_COLOR + " items every scrape");
+                add(MODULE_ID + ".jei.patina_drop",
+                                TipColors.ITEM_TOOLTIP + "Drop %s" + TipColors.ITEM_TOOLTIP + " items every scrape");
 
                 // upgrades
 
-                add(MODULE_ID + ".upgrades.title", TIP_COLOR + "Upgrade Modifiers");
+                add(MODULE_ID + ".upgrades.title", TipColors.ITEM_TOOLTIP + "Upgrade Modifiers");
 
-                add(MODULE_ID + ".upgrades.modifier.energy", TIP_COLOR + "Energy Usage: %s");
-                add(MODULE_ID + ".upgrades.modifier.speed", TIP_COLOR + "Recipe Speed: %s");
-                add(MODULE_ID + ".upgrades.modifier.luck", TIP_COLOR + "Secondary Output: %s");
-                add(MODULE_ID + ".upgrades.modifier.fluid", TIP_COLOR + "Fluid Usage: %s");
+                add(MODULE_ID + ".upgrades.modifier.energy", TipColors.ITEM_TOOLTIP + "Energy Usage: %s");
+                add(MODULE_ID + ".upgrades.modifier.speed", TipColors.ITEM_TOOLTIP + "Recipe Speed: %s");
+                add(MODULE_ID + ".upgrades.modifier.luck", TipColors.ITEM_TOOLTIP + "Secondary Output: %s");
+                add(MODULE_ID + ".upgrades.modifier.fluid", TipColors.ITEM_TOOLTIP + "Fluid Usage: %s");
 
                 add(MODULE_ID + ".screen.upgrades", "Supported Upgrades:");
 
-                add(MODULE_ID + ".screen.modifier.energy", TIP_COLOR + "Energy Modifier §7[§f§a%s§7]");
-                add(MODULE_ID + ".screen.modifier.speed", TIP_COLOR + "Speed Modifier §7[§f§a%s§7]");
-                add(MODULE_ID + ".screen.modifier.luck", TIP_COLOR + "Luck Modifier §7[§f§a%s§7]");
-                add(MODULE_ID + ".screen.modifier.fluid", TIP_COLOR + "Fluid Modifier §7[§f§a%s§7]");
+                add(MODULE_ID + ".screen.modifier.energy", TipColors.ITEM_TOOLTIP + "Energy Modifier §7[§f§a%s§7]");
+                add(MODULE_ID + ".screen.modifier.speed", TipColors.ITEM_TOOLTIP + "Speed Modifier §7[§f§a%s§7]");
+                add(MODULE_ID + ".screen.modifier.luck", TipColors.ITEM_TOOLTIP + "Luck Modifier §7[§f§a%s§7]");
+                add(MODULE_ID + ".screen.modifier.fluid", TipColors.ITEM_TOOLTIP + "Fluid Modifier §7[§f§a%s§7]");
 
                 // config
                 add(MODULE_ID + ".configuration.events", "General events");
@@ -169,6 +171,10 @@ public class DataLang extends LanguageProvider {
 
                 add(MODULE_ID + ".configuration.max_luck",
                                 "Maximal Luck");
+
+                // extra
+                add("extra.effect.minecraft.glowing",
+                                TipColors.POTION_EFFECT_POSITIVE + "Glowing (00:10)");
 
         }
 

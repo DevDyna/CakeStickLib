@@ -3,6 +3,7 @@ package com.devdyna.cakesticklib.api.utils;
 import java.util.List;
 import java.util.Optional;
 
+import com.devdyna.cakesticklib.api.datagen.LangUtils.TipColors.Modifiers;
 import com.devdyna.cakesticklib.setup.registry.LibComponents;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -107,5 +108,18 @@ public record UpgradeComponents(
             return i;
         }
     }
+
+    public static String getColoredTip(boolean condition, boolean fallback,boolean positivity) {
+        return fallback
+                ? Modifiers.NEUTRAL
+                : (condition
+                        ? (Modifiers.POSITIVE + (positivity ? "+" : ""))
+                        : (Modifiers.NEGATIVE + (positivity ? "" : "+"))
+                        );
+    }
+
+    
+
+    
 
 }

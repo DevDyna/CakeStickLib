@@ -1,12 +1,16 @@
 package com.devdyna.cakesticklib.setup.registry.builders;
 
+import com.devdyna.cakesticklib.api.aspect.logic.ItemResourceDecorated;
 import com.devdyna.cakesticklib.api.utils.x;
 import com.devdyna.cakesticklib.setup.registry.LibComponents;
 
+import net.minecraft.core.BlockPos;
+import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -15,9 +19,10 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.item.crafting.SelectableRecipe.SingleInputEntry;
 import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.item.crafting.StonecutterRecipe;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.EntityBlock;
 
-public class Chisel extends Item {
+public class Chisel extends Item implements ItemResourceDecorated {
 
     public Chisel(Properties properties) {
         super(properties.stacksTo(1).component(LibComponents.IDENTIFIER, null));
@@ -83,31 +88,37 @@ public class Chisel extends Item {
             if (saved instanceof BlockItem bi) {
                 level.setBlockAndUpdate(pos,
                         bi.getBlock().getStateForPlacement(new BlockPlaceContext(c)));
-                if (bi.getBlock() instanceof EntityBlock) {
+
+                if (bi.getBlock() instanceof EntityBlock)
                     level.getBlockEntity(pos).setChanged();
-                }
+
             } else {
                 level.removeBlock(pos, false);
-                level.addFreshEntity(
-                        new ItemEntity(level, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
-                                x.item(saved)));
+                spawnItemDropped(level, player, pos, saved);
             }
 
-            if (result.getCount() > 1) {
-                for (int j = 0; j < result.getCount() - 1; j++) {
-                    level.addFreshEntity(
-                            new ItemEntity(level, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
-                                    x.item(saved)));
-                }
-            }
+            if (result.getCount() > 1)
+                for (int j = 0; j < result.getCount() - 1; j++)
+                    spawnItemDropped(level, player, pos, saved);
 
-            
             level.playSound(player, pos, SoundEvents.UI_STONECUTTER_TAKE_RESULT, SoundSource.BLOCKS, 1f, 1f);
 
             return InteractionResult.SUCCESS;
         }
         return InteractionResult.FAIL;
 
+    }
+
+    public void spawnItemDropped(Level level, Player player, BlockPos pos, Item item) {
+        if (!player.isCreative() && !player.isSpectator())
+            level.addFreshEntity(
+                    new ItemEntity(level, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
+                            x.item(item)));
+    }
+
+    @Override
+    public Identifier getResource(ItemStack stack) {
+        return stack.get(LibComponents.IDENTIFIER);
     }
 
 }

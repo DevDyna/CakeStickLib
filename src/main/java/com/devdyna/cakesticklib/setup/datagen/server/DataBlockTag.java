@@ -8,6 +8,7 @@ import com.devdyna.cakesticklib.setup.registry.*;
 
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.PackOutput;
+import net.minecraft.tags.BlockTags;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 
@@ -23,12 +24,22 @@ public class DataBlockTag extends BlockTagsProvider {
                 tag(LibTags.Blocks.ADVANCED_ALLOY_BLOCK).add(LibBlocks.ADVANCED_ALLOY_BLOCK.get());
                 tag(LibTags.Blocks.STEEL_BLOCK).add(LibBlocks.STEEL_BLOCK.get());
                 tag(LibTags.Blocks.WROUGHT_IRON_BLOCK).add(LibBlocks.WROUGHT_IRON_BLOCK.get());
-                
+
                 tag(Tags.Blocks.STORAGE_BLOCKS)
                                 .addTags(
                                                 LibTags.Blocks.WROUGHT_IRON_BLOCK,
                                                 LibTags.Blocks.STEEL_BLOCK,
                                                 LibTags.Blocks.WROUGHT_IRON_BLOCK);
+
+                tag(LibTags.Blocks.HARVESTABLE_BLACKLIST).add();
+
+                tag(BlockTags.MINEABLE_WITH_PICKAXE).addTags(
+                                LibTags.Blocks.WROUGHT_IRON_BLOCK,
+                                LibTags.Blocks.STEEL_BLOCK,
+                                LibTags.Blocks.WROUGHT_IRON_BLOCK);
+
+                tag(LibTags.Blocks.MINEABLE_WITH_GLASS_CUTTER)
+                                .addTags(Tags.Blocks.GLASS_BLOCKS, Tags.Blocks.GLASS_PANES);
         }
 
 }

@@ -10,7 +10,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.Property;
-
+//TODO REWORK
 public class DirectionUtil {
 
     public static Direction[] ALL = Direction.values();
@@ -80,4 +80,6 @@ public class DirectionUtil {
     public static int indexByStateFacing(BlockState s) {
         return s.getValue(BlockStateProperties.FACING).get3DDataValue();
     }
+
+   
 }

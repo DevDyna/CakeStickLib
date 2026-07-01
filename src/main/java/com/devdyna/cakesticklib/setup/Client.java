@@ -1,7 +1,9 @@
 package com.devdyna.cakesticklib.setup;
 
 import com.devdyna.cakesticklib.CakeStickLib;
+import com.devdyna.cakesticklib.api.client.BlockRenderDecorator;
 import com.devdyna.cakesticklib.api.utils.ModAddonUtil;
+import com.devdyna.cakesticklib.setup.registry.LibItems;
 
 import net.minecraft.world.item.crafting.RecipeMap;
 import net.neoforged.api.distmarker.Dist;
@@ -11,6 +13,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent;
 import net.neoforged.neoforge.client.event.RecipesReceivedEvent;
+import net.neoforged.neoforge.client.event.RegisterItemDecorationsEvent;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 
@@ -20,6 +23,11 @@ public class Client {
 
     public Client(ModContainer container) {
         container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
+    }
+
+    @SubscribeEvent
+    public static void renderItemDecorators(RegisterItemDecorationsEvent r) {
+        r.register(LibItems.CHISEL.get(), new BlockRenderDecorator());
     }
 
     // Recipe collector client-side
