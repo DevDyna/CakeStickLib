@@ -58,8 +58,14 @@ public interface NoGuiStorage {
         return InteractionResult.FAIL;
     }
 
+    /**
+     * return extracted items
+     */
     abstract ItemStack extractItem();
 
+    /**
+     * return remain items
+     */
     abstract ItemStack insertItem(ItemStack stack);
 
     default boolean extractOnly() {
