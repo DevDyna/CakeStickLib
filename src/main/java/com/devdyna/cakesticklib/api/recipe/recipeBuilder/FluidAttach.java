@@ -57,6 +57,7 @@ public class FluidAttach {
     }
 
     public class Any {
+        @Deprecated
         public static interface SimpleFluidAttach<BUILDER extends BaseRecipeBuilder> extends BuilderAttach<BUILDER> {
 
             abstract BUILDER fluid(Fluid fluid, int amount);
