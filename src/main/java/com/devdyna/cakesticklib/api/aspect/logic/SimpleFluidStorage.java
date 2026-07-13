@@ -22,4 +22,21 @@ public interface SimpleFluidStorage {
         return getFluidStorage().getResource(index).toStack(getFluidStorage().getAmountAsInt(index));
     }
 
+    default boolean isTankFull(int index) {
+        return !getFluidStorage().getResource(index).isEmpty()
+                && getFluidStorage()
+                        .getCapacityAsInt(index, getFluidStorage().getResource(index)) <= getFluidStorage()
+                                .getAmountAsInt(index);
+    }
+
+    /**
+     * Override must be required on IO machines!
+     */
+    default boolean isTanksFull() {
+        for (int i = 0; i < getTanks(); i++)
+            if (!isTankFull(i))
+                return false;
+        return true;
+    }
+
 }

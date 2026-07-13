@@ -5,10 +5,9 @@ import net.neoforged.neoforge.transfer.energy.EnergyHandler;
 
 public interface EnergyBlock {
 
-    /**
-     * Something like "new SimpleContainerData(getMaxFE())"
-     */
-    ContainerData getContainerData();
+    default ContainerData getContainerData(){
+        return null;
+    }
 
     EnergyHandler getEnergyStorage();
 
