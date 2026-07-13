@@ -8,6 +8,7 @@ import com.devdyna.cakesticklib.api.utils.x;
 import mezz.jei.api.gui.builder.IRecipeSlotBuilder;
 import mezz.jei.api.neoforge.NeoForgeTypes;
 import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.FluidStackTemplate;
 import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
 
 public class JEIFluidTankHelper {
@@ -35,6 +36,10 @@ public class JEIFluidTankHelper {
     public JEIFluidTankHelper fluid(FluidStack f) {
         this.fluids = List.of(f);
         return this;
+    }
+
+    public JEIFluidTankHelper fluid(FluidStackTemplate f) {
+        return fluid(f.create());
     }
 
     public JEIFluidTankHelper scale(float height, float width) {
