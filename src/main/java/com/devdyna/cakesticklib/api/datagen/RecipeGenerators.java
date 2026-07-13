@@ -64,7 +64,7 @@ public interface RecipeGenerators {
 
         // recipes
 
-        default void simpleCooking(RecipeOutput c, Item input, Item output) {
+        default void simpleCooking(RecipeOutput c, ItemLike input, ItemLike output) {
                 SimpleCookingRecipeBuilder
                                 .smelting(x.itemIngredient(input),
                                                 RecipeCategory.MISC,
@@ -77,7 +77,7 @@ public interface RecipeGenerators {
                                                                 input));
         }
 
-        default void simpleCooking(RecipeOutput c, TagKey<Item> input, Item output) {
+        default void simpleCooking(RecipeOutput c, TagKey<Item> input, ItemLike output) {
                 SimpleCookingRecipeBuilder
                                 .smelting(x.itemIngredient(input, getProvider()),
                                                 RecipeCategory.MISC,
@@ -145,7 +145,7 @@ public interface RecipeGenerators {
          * {@code input} and {@code gear} has been switched of position
          */
         @UnstableApi
-        default void gear(RecipeOutput c, Item input, Item gear) {
+        default void gear(RecipeOutput c, ItemLike input, ItemLike gear) {
                 ShapedRecipeBuilder.shaped(getItems(), RecipeCategory.MISC, gear)
                                 .pattern(" # ")
                                 .pattern("# #")
@@ -157,10 +157,10 @@ public interface RecipeGenerators {
         }
 
         @Deprecated
-        default void gear(RecipeOutput c, Item gear, TagKey<Item> input) {
+        default void gear(RecipeOutput c, ItemLike gear, TagKey<Item> input) {
         }
 
-        default void gear(RecipeOutput c, TagKey<Item> input, Item gear) {
+        default void gear(RecipeOutput c, TagKey<Item> input, ItemLike gear) {
                 ShapedRecipeBuilder.shaped(getItems(), RecipeCategory.MISC, gear)
                                 .pattern(" # ")
                                 .pattern("# #")
@@ -186,7 +186,7 @@ public interface RecipeGenerators {
                                 .unlockedBy(getHasName(o), has(o)).save(c, e);
         }
 
-        default void plate(RecipeOutput c, TagKey<Item> input, Item output) {
+        default void plate(RecipeOutput c, TagKey<Item> input, ItemLike output) {
                 ShapedRecipeBuilder.shaped(getItems(), RecipeCategory.MISC, output, 3)
                                 .pattern("III")
                                 .define('I', input)
@@ -196,7 +196,7 @@ public interface RecipeGenerators {
 
         }
 
-        default void foil(RecipeOutput c, TagKey<Item> input, Item output) {
+        default void foil(RecipeOutput c, TagKey<Item> input, ItemLike output) {
                 ShapedRecipeBuilder.shaped(getItems(), RecipeCategory.MISC, output, 3)
                                 .pattern(" IS")
                                 .pattern(" I ")
@@ -209,7 +209,7 @@ public interface RecipeGenerators {
 
         }
 
-        default void coil(RecipeOutput c, TagKey<Item> input, Item output) {
+        default void coil(RecipeOutput c, TagKey<Item> input, ItemLike output) {
                 ShapedRecipeBuilder.shaped(getItems(), RecipeCategory.MISC, output, 4)
                                 .pattern(" I ")
                                 .pattern("ISI")
@@ -222,7 +222,7 @@ public interface RecipeGenerators {
 
         }
 
-        default void plate(RecipeOutput c, Item input, Item output) {
+        default void plate(RecipeOutput c, ItemLike input, ItemLike output) {
                 ShapedRecipeBuilder.shaped(getItems(), RecipeCategory.MISC, output, 3)
                                 .pattern("III")
                                 .define('I', input)
@@ -232,7 +232,7 @@ public interface RecipeGenerators {
 
         }
 
-        default void foil(RecipeOutput c, Item input, Item output) {
+        default void foil(RecipeOutput c, ItemLike input, ItemLike output) {
                 ShapedRecipeBuilder.shaped(getItems(), RecipeCategory.MISC, output, 3)
                                 .pattern(" IS")
                                 .pattern(" I ")
@@ -245,7 +245,7 @@ public interface RecipeGenerators {
 
         }
 
-        default void coil(RecipeOutput c, Item input, Item output) {
+        default void coil(RecipeOutput c, ItemLike input, ItemLike output) {
                 ShapedRecipeBuilder.shaped(getItems(), RecipeCategory.MISC, output, 4)
                                 .pattern(" I ")
                                 .pattern("ISI")
@@ -270,11 +270,11 @@ public interface RecipeGenerators {
         }
 
         @Deprecated
-        default void simplePacked(RecipeOutput c, Item input, Item output) {
+        default void simplePacked(RecipeOutput c, ItemLike input, ItemLike output) {
                 simplePacked(c, input, output, true);
         }
 
-        default void simplePacked(RecipeOutput c, Item input, Item output, boolean isSmall) {
+        default void simplePacked(RecipeOutput c, ItemLike input, ItemLike output, boolean isSmall) {
                 var temp = ShapedRecipeBuilder.shaped(getItems(), RecipeCategory.MISC, output)
                                 .define('#', input)
                                 .pattern("##" + (!isSmall ? "#" : "")).pattern("##" + (!isSmall ? "#" : ""));
