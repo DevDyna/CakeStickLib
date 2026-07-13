@@ -32,7 +32,8 @@ public interface CropEntityInteraction {
    }
 
    default boolean hurtCondition(Entity entity, Level level) {
-      return !level.isClientSide()
+      return !level.isClientSide() && entity instanceof LivingEntity
+            && !entityTypeSafe.contains(entity.getType())
             && (entity.xOld != entity.getX() || entity.zOld != entity.getZ())
             && Math.abs(entity.getX() - entity.xOld) >= hurt
             || Math.abs(entity.getZ() - entity.zOld) >= hurt;
@@ -47,14 +48,17 @@ public interface CropEntityInteraction {
 
    default void getEntityInside(BlockState state, ServerLevel level, BlockPos pos, Entity entity) {
       if (stuckWhenInside())
-         entity.makeStuckInBlock(state, speedFactor());
+         if (stuckCondition(entity))
+            entity.makeStuckInBlock(state, speedFactor());
       if (hurtWhenInside())
-      entity.hurtServer(level, level.damageSources().sweetBerryBush(), 1.0f);
+         if (hurtCondition(entity, level))
+            entity.hurtServer(level, level.damageSources().sweetBerryBush(), 1.0f);
    }
 
    default void getStepEntityOn(ServerLevel level, BlockPos pos, BlockState state, Entity entity) {
       if (hurtWhenStep())
-         entity.hurtServer(level, level.damageSources().sweetBerryBush(), 1.0f);
+         if (hurtCondition(entity, level))
+            entity.hurtServer(level, level.damageSources().sweetBerryBush(), 1.0f);
    }
 
 }
