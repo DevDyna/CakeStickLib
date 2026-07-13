@@ -55,7 +55,8 @@ public abstract class BaseMenu extends AbstractContainerMenu {
 
         if (blockEntity instanceof EnergyBlock enel) {
             energyData = enel.getContainerData();
-            addDataSlots(energyData);
+            if (enel != null)
+                addDataSlots(energyData);
         }
     }
 
