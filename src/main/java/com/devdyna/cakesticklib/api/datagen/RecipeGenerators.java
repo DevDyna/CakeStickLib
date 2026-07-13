@@ -62,6 +62,14 @@ public interface RecipeGenerators {
                 return asRecipeID(i, "_alt");
         }
 
+        default String asRecipeID(ItemLike i, String suffix) {
+                return getModName() + ":" + x.name(i) + suffix;
+        }
+
+        default String asRecipeID(ItemLike i) {
+                return asRecipeID(i, "_alt");
+        }
+
         // recipes
 
         default void simpleCooking(RecipeOutput c, ItemLike input, ItemLike output) {
