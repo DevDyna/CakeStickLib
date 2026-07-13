@@ -112,6 +112,10 @@ public class x {
         return name(i.item().value());
     }
 
+    public static String name(FluidStackTemplate f) {
+        return name(f.fluid().value());
+    }
+
     public static String name(ItemLike i) {
         return name(i.asItem());
     }
