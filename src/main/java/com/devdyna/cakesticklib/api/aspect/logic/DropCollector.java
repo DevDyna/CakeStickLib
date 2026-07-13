@@ -25,7 +25,7 @@ public interface DropCollector {
             item.setItem(x.item(item.getItem().getItem(), remain));
     }
 
-    default void whenItemFallOnIt(Level level, BlockPos pos, Entity entity) {
+    default void collectItem(Level level, BlockPos pos, Entity entity) {
 
         if (!(entity instanceof ItemEntity item))
             return;
