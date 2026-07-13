@@ -27,7 +27,7 @@ public interface ItemStorageBlock {
     /**
      * Override must be required on IO machines!
      */
-    default boolean isFull() {
+    default boolean isSlotsFull() {
         for (int i = 0; i < getSlots(); i++)
             if (!isSlotFull(i))
                 return false;
