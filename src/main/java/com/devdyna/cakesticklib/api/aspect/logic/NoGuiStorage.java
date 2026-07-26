@@ -204,8 +204,8 @@ public interface NoGuiStorage {
                 extracted = getItemStorage()
                         .extract(i, resource, getItemStorage().getAmountAsInt(i), tx);
                 tx.commit();
-
             }
+            break;
 
         }
 
