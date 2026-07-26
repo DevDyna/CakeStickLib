@@ -129,20 +129,36 @@ public interface NoGuiStorage {
     ItemStacksResourceHandler getItemStorage();
 
     default ItemStack simpleInsertItem(ItemStack stack) {
-
         var inserted = 0;
 
         try (Transaction tx = Transaction.openRoot()) {
-            inserted = getItemStorage().insert(0, ItemResource.of(stack), stack.getCount(), tx);
+            inserted = getItemStorage().insert(ItemResource.of(stack), stack.getCount(), tx);
             tx.commit();
         }
 
         return x.item(stack.getItem(), stack.getCount() - inserted);
     }
 
-    default ItemStack simpleExtractItem() {
+    default ItemStack simpleInsertItem(ItemStack stack, int index) {
 
-        var resource = getItemStorage().getResource(0);
+        var inserted = 0;
+
+        try (Transaction tx = Transaction.openRoot()) {
+            inserted = getItemStorage().insert(index, ItemResource.of(stack), stack.getCount(), tx);
+            tx.commit();
+        }
+
+        return x.item(stack.getItem(), stack.getCount() - inserted);
+    }
+
+    @Deprecated
+    default ItemStack simpleExtractItem() {
+        return simpleExtractItemByIndex(0);
+    }
+
+    default ItemStack simpleExtractItemByIndex(int index) {
+
+        var resource = getItemStorage().getResource(index);
 
         if (resource.isEmpty())
             return ItemStack.EMPTY;
@@ -150,11 +166,50 @@ public interface NoGuiStorage {
         try (Transaction tx = Transaction.openRoot()) {
 
             var extracted = getItemStorage()
-                    .extract(0, resource, getItemStorage().getAmountAsInt(0), tx);
+                    .extract(index, resource, getItemStorage().getAmountAsInt(index), tx);
             tx.commit();
 
             return resource.toStack(extracted);
         }
+    }
+
+    default ItemStack simpleExtractItemByIndex(int index, ItemResource resource) {
+
+        if (resource.isEmpty())
+            return ItemStack.EMPTY;
+
+        try (Transaction tx = Transaction.openRoot()) {
+
+            var extracted = getItemStorage()
+                    .extract(index, resource, getItemStorage().getAmountAsInt(index), tx);
+            tx.commit();
+
+            return resource.toStack(extracted);
+        }
+    }
+
+    default ItemStack simpleExtractItemFromSize() {
+
+        var resource = ItemResource.EMPTY;
+        var extracted = 0;
+
+        for (int i = 0; i < getItemStorage().size(); i++) {
+            resource = getItemStorage().getResource(i);
+
+            if (resource.isEmpty())
+                continue;
+
+            try (Transaction tx = Transaction.openRoot()) {
+
+                extracted = getItemStorage()
+                        .extract(i, resource, getItemStorage().getAmountAsInt(i), tx);
+                tx.commit();
+
+            }
+
+        }
+
+        return resource.toStack(extracted);
     }
 
 }

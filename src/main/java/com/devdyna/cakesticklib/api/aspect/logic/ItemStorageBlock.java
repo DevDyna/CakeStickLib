@@ -34,4 +34,15 @@ public interface ItemStorageBlock {
         return true;
     }
 
+    default boolean isSlotsEmpty(int start,int end) {
+        for (int i = start; i < end; i++)
+            if (!getItemStorage().getResource(i).isEmpty())
+                return false;
+        return true;
+    }
+
+    default boolean isSlotsEmpty() {
+        return isSlotsEmpty(0, getSlots());
+    }
+
 }

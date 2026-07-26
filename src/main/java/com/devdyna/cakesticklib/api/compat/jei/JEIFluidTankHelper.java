@@ -52,16 +52,8 @@ public class JEIFluidTankHelper {
         return new JEIFluidTankHelper();
     }
 
-    @Deprecated
-    public void oldbuild(BiFunction<Integer, Integer, IRecipeSlotBuilder> builder) {
-        var height = (int) (Math.min(16, Math.max((int) ((fluids.getFirst().getAmount() + 256) * 0.016), 1)) * h);
-        builder.apply((int) (x0 * w), y0 - height)
-                .addIngredients(NeoForgeTypes.FLUID_STACK, fluids)
-                .setFluidRenderer(fluids.getFirst().getAmount(), false, (int) (w * 16), height);
-    }
-
     public void build(BiFunction<Integer, Integer, IRecipeSlotBuilder> builder) {
-        var height = (int) (Math.min(16, Math.max((int) ((fluids.getFirst().getAmount() + 256) * 0.016), 1)) * h)+16;
+        var height = (int) (Math.min(16, Math.max((int) ((fluids.getFirst().getAmount() + 256) * 0.016), 1)) * h);
         builder.apply((int) (x0 * w), y0 - height)
                 .addIngredients(NeoForgeTypes.FLUID_STACK, fluids)
                 .setFluidRenderer(fluids.getFirst().getAmount(), false, (int) (w * 16), height);
