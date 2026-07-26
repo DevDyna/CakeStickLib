@@ -79,7 +79,7 @@ publishing {
     }
     repositories {
         maven {
-            url "file://${project.projectDir}/repo"
+            url = uri("${project.projectDir}/repo")
         }
     }
 }
@@ -94,4 +94,8 @@ idea {
         downloadSources = true
         downloadJavadoc = true
     }
+}
+
+java {
+    withSourcesJar()
 }
