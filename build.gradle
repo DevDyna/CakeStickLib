@@ -95,3 +95,7 @@ idea {
         downloadJavadoc = true
     }
 }
+
+java {
+    withSourcesJar()
+}
