@@ -265,6 +265,77 @@ public interface RecipeGenerators {
                                 .save(c);
 
         }
+        default void plate(RecipeOutput c, TagKey<Item> input, ItemLike output,int count) {
+                ShapedRecipeBuilder.shaped(getItems(), RecipeCategory.MISC, output, count)
+                                .pattern("III")
+                                .define('I', input)
+                                .unlockedBy(getHasName(input),
+                                                has(input))
+                                .save(c);
+
+        }
+
+        default void foil(RecipeOutput c, TagKey<Item> input, ItemLike output,int count) {
+                ShapedRecipeBuilder.shaped(getItems(), RecipeCategory.MISC, output, count)
+                                .pattern(" IS")
+                                .pattern(" I ")
+                                .pattern("SI ")
+                                .define('I', input)
+                                .define('S', Items.STICK)
+                                .unlockedBy(getHasName(input),
+                                                has(Items.STICK))
+                                .save(c);
+
+        }
+
+        default void coil(RecipeOutput c, TagKey<Item> input, ItemLike output,int count) {
+                ShapedRecipeBuilder.shaped(getItems(), RecipeCategory.MISC, output, count)
+                                .pattern(" I ")
+                                .pattern("ISI")
+                                .pattern(" I ")
+                                .define('I', input)
+                                .define('S', Items.STICK)
+                                .unlockedBy(getHasName(input),
+                                                has(Items.STICK))
+                                .save(c);
+
+        }
+
+        default void plate(RecipeOutput c, ItemLike input, ItemLike output,int count) {
+                ShapedRecipeBuilder.shaped(getItems(), RecipeCategory.MISC, output, count)
+                                .pattern("III")
+                                .define('I', input)
+                                .unlockedBy(getHasName(input),
+                                                has(input))
+                                .save(c);
+
+        }
+
+        default void foil(RecipeOutput c, ItemLike input, ItemLike output,int count) {
+                ShapedRecipeBuilder.shaped(getItems(), RecipeCategory.MISC, output, count)
+                                .pattern(" IS")
+                                .pattern(" I ")
+                                .pattern("SI ")
+                                .define('I', input)
+                                .define('S', Items.STICK)
+                                .unlockedBy(getHasName(input),
+                                                has(Items.STICK))
+                                .save(c);
+
+        }
+
+        default void coil(RecipeOutput c, ItemLike input, ItemLike output,int count) {
+                ShapedRecipeBuilder.shaped(getItems(), RecipeCategory.MISC, output, count)
+                                .pattern(" I ")
+                                .pattern("ISI")
+                                .pattern(" I ")
+                                .define('I', input)
+                                .define('S', Items.STICK)
+                                .unlockedBy(getHasName(input),
+                                                has(Items.STICK))
+                                .save(c);
+
+        }
 
         default void packUnpack(RecipeOutput c, ItemLike unpacked, ItemLike packed, boolean isSmall) {
                 ShapelessRecipeBuilder.shapeless(getItems(), RecipeCategory.MISC, unpacked, isSmall ? 4 : 9)
@@ -305,6 +376,22 @@ public interface RecipeGenerators {
 
         default void stair(ItemLike stair, ItemLike material, RecipeOutput c) {
                 ShapedRecipeBuilder.shaped(getItems(), RecipeCategory.BUILDING_BLOCKS, stair, 4).define('#', material)
+                                .pattern("#  ")
+                                .pattern("## ")
+                                .pattern("###")
+                                .unlockedBy(getHasName(material), has(material))
+                                .save(c);
+        }
+        default void slab(ItemLike slab, ItemLike material,int count, RecipeOutput c) {
+                ShapedRecipeBuilder.shaped(getItems(), RecipeCategory.BUILDING_BLOCKS, slab, count)
+                .define('#', material)
+                                .pattern("###")
+                                .unlockedBy(getHasName(material), has(material))
+                                .save(c);
+        }
+
+        default void stair(ItemLike stair, ItemLike material,int count, RecipeOutput c) {
+                ShapedRecipeBuilder.shaped(getItems(), RecipeCategory.BUILDING_BLOCKS, stair, count).define('#', material)
                                 .pattern("#  ")
                                 .pattern("## ")
                                 .pattern("###")
@@ -424,6 +511,66 @@ public interface RecipeGenerators {
 
         default void cross(RecipeOutput c, ItemLike result, ItemLike material, TagKey<Item> middle) {
                 ShapedRecipeBuilder.shaped(getItems(), RecipeCategory.BUILDING_BLOCKS, result, 4)
+                                .define('#', material)
+                                .define('A', middle)
+                                .pattern(" # ")
+                                .pattern("#A#")
+                                .pattern(" # ")
+                                .unlockedBy(getHasName(material), has(material))
+                                .save(c);
+        }
+
+        default void pillar(RecipeOutput c, ItemLike result, ItemLike material,int count) {
+                ShapedRecipeBuilder.shaped(getItems(), RecipeCategory.BUILDING_BLOCKS, result, count)
+                                .define('#', material)
+                                .pattern("#")
+                                .pattern("#")
+                                .unlockedBy(getHasName(material), has(material))
+                                .save(c);
+        }
+
+        default void pillar(RecipeOutput c, ItemLike result, ItemLike material,int count,
+                        String extra) {
+                ShapedRecipeBuilder.shaped(getItems(), RecipeCategory.BUILDING_BLOCKS, result, count)
+                                .define('#', material)
+                                .pattern("#")
+                                .pattern("#")
+                                .unlockedBy(getHasName(material), has(material))
+                                .save(c, extra);
+        }
+
+        default void tiles(RecipeOutput c, ItemLike result, ItemLike material,int count,
+                        String extra) {
+                ShapedRecipeBuilder.shaped(getItems(), RecipeCategory.BUILDING_BLOCKS, result, count)
+                                .define('#', material)
+                                .pattern("##")
+                                .pattern("##")
+                                .unlockedBy(getHasName(material), has(material))
+                                .save(c, extra);
+        }
+
+        default void tiles(RecipeOutput c, ItemLike result, ItemLike material,int count) {
+                ShapedRecipeBuilder.shaped(getItems(), RecipeCategory.BUILDING_BLOCKS, result, count)
+                                .define('#', material)
+                                .pattern("##")
+                                .pattern("##")
+                                .unlockedBy(getHasName(material), has(material))
+                                .save(c);
+        }
+
+        default void cross(RecipeOutput c, ItemLike result, ItemLike material, ItemLike middle,int count) {
+                ShapedRecipeBuilder.shaped(getItems(), RecipeCategory.BUILDING_BLOCKS, result, count)
+                                .define('#', material)
+                                .define('A', middle)
+                                .pattern(" # ")
+                                .pattern("#A#")
+                                .pattern(" # ")
+                                .unlockedBy(getHasName(material), has(material))
+                                .save(c);
+        }
+
+        default void cross(RecipeOutput c, ItemLike result, ItemLike material, TagKey<Item> middle,int count) {
+                ShapedRecipeBuilder.shaped(getItems(), RecipeCategory.BUILDING_BLOCKS, result, count)
                                 .define('#', material)
                                 .define('A', middle)
                                 .pattern(" # ")
