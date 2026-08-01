@@ -20,6 +20,7 @@ import net.minecraft.world.item.SpectralArrowItem;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 import com.devdyna.cakesticklib.setup.registry.LibComponents;
+
 //TODO IMP : update
 public class ItemToolTipped {
 
@@ -88,16 +89,12 @@ public class ItemToolTipped {
             tip.add(ToolTipHelper.INDEX, Component.translatable(MODULE_ID + ".honey_solution.tip"));
 
         if (item.getItem() instanceof BlockItem bi && bi.getBlock() instanceof BlockItemKeeper)
-            tip.add(ToolTipHelper.INDEX, Component.translatable(MODULE_ID + ".keep.storage"));
+            if (item.has(LibComponents.ITEM_CONTAINER))
+                if (item.get(LibComponents.ITEM_CONTAINER) != null)
+                    ToolTipHelper.add(tip, MODULE_ID + ".keep.storage");
 
         if (item.getItem() instanceof SpectralArrowItem)
             tip.add(ToolTipHelper.INDEX, Component.translatable("extra.effect.minecraft.glowing"));
-        
-
-  if (item.has(LibComponents.ITEM_CONTAINER))
-            if (item.get(LibComponents.ITEM_CONTAINER) != null) 
-               ToolTipHelper. add(tip, MODULE_ID + ".keep.storage");
-            
 
     }
 }
