@@ -42,12 +42,6 @@ public interface BlockItemKeeper {
         return drops;
     }
 
-    @Deprecated
-    default void placeBlockAndItems(Level level, BlockPos pos, BlockState state, LivingEntity entity,
-            ItemStack stack) {
-        addItemsToBlockPlaced(level, pos, state, entity, stack);
-    }
-
     default void addItemsToBlockPlaced(Level level, BlockPos pos, BlockState state, LivingEntity entity,
             ItemStack stack) {
 
