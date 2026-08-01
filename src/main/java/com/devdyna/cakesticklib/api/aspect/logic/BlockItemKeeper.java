@@ -21,6 +21,7 @@ import net.minecraft.world.level.storage.loot.LootParams.Builder;
 public interface BlockItemKeeper {
 
     abstract List<ItemStack> getDrops(BlockState state, Builder builder);
+
     abstract void setPlacedBy(Level level, BlockPos pos, BlockState state, LivingEntity entity,
             ItemStack stack);
 
@@ -41,7 +42,13 @@ public interface BlockItemKeeper {
         return drops;
     }
 
+    @Deprecated
     default void placeBlockAndItems(Level level, BlockPos pos, BlockState state, LivingEntity entity,
+            ItemStack stack) {
+        addItemsToBlockPlaced(level, pos, state, entity, stack);
+    }
+
+    default void addItemsToBlockPlaced(Level level, BlockPos pos, BlockState state, LivingEntity entity,
             ItemStack stack) {
 
         if (level.isClientSide())
