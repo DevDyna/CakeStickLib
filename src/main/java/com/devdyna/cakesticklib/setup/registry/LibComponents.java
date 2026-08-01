@@ -6,6 +6,7 @@ import com.devdyna.cakesticklib.api.utils.UpgradeComponents;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
+import net.minecraft.world.item.component.CustomData;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -31,6 +32,14 @@ public class LibComponents {
                                         () -> DataComponentType.<Identifier>builder()
                                                         .persistent(Identifier.CODEC)
                                                         .networkSynchronized(Identifier.STREAM_CODEC)
+                                                        .build());
+
+        @SuppressWarnings("deprecation")
+        public static final DeferredHolder<DataComponentType<?>, DataComponentType<CustomData>> ITEM_CONTAINER = zComponents
+                        .register("item_storage",
+                                        () -> DataComponentType.<CustomData>builder()
+                                                        .persistent(CustomData.CODEC)
+                                                        .networkSynchronized(CustomData.STREAM_CODEC)
                                                         .build());
 
 }

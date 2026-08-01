@@ -125,6 +125,8 @@ public class DataLang extends LanguageProvider {
                 add(MODULE_ID + ".screen.modifier.luck", TipColors.ITEM_TOOLTIP + "Luck Modifier §7[§f§a%s§7]");
                 add(MODULE_ID + ".screen.modifier.fluid", TipColors.ITEM_TOOLTIP + "Fluid Modifier §7[§f§a%s§7]");
 
+                 add(MODULE_ID + ".keep.storage", TipColors.LIGHT_GRAY + "Contain some items");
+
                 // config
                 add(MODULE_ID + ".configuration.events", "General events");
 

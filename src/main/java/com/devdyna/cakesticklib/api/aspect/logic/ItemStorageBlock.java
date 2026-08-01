@@ -1,6 +1,7 @@
 package com.devdyna.cakesticklib.api.aspect.logic;
 
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
 
 public interface ItemStorageBlock {
@@ -9,8 +10,10 @@ public interface ItemStorageBlock {
 
     int getSlots();
 
+    BlockState getBlockState();
+
     default boolean dropOnBreak() {
-        return true;
+        return !(getBlockState().getBlock() instanceof BlockItemKeeper);
     }
 
     default ItemStack getStackInSlot(int index) {
@@ -34,7 +37,7 @@ public interface ItemStorageBlock {
         return true;
     }
 
-    default boolean isSlotsEmpty(int start,int end) {
+    default boolean isSlotsEmpty(int start, int end) {
         for (int i = start; i < end; i++)
             if (!getItemStorage().getResource(i).isEmpty())
                 return false;

@@ -2,6 +2,8 @@ package com.devdyna.cakesticklib.setup.common.events;
 
 import static com.devdyna.cakesticklib.CakeStickLib.MODULE_ID;
 
+import com.devdyna.cakesticklib.api.ToolTipHelper;
+import com.devdyna.cakesticklib.api.aspect.logic.BlockItemKeeper;
 import com.devdyna.cakesticklib.api.utils.UpgradeComponents;
 import com.devdyna.cakesticklib.api.utils.UpgradeComponents.UpgradeType;
 import com.devdyna.cakesticklib.api.utils.x;
@@ -11,15 +13,15 @@ import com.devdyna.cakesticklib.setup.registry.builders.GlassCutter;
 import com.devdyna.cakesticklib.setup.registry.builders.HoneySolution;
 import com.devdyna.cakesticklib.setup.registry.builders.RedstoneAcid;
 import com.devdyna.cakesticklib.setup.registry.builders.Wrench;
-import com.devdyna.cakesticklib.setup.registry.*;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.SpectralArrowItem;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
-
+import com.devdyna.cakesticklib.setup.registry.LibComponents;
+//TODO IMP : update
 public class ItemToolTipped {
-    private static final int OVER_THE_REGISTRY_ID = 1;
 
     @SubscribeEvent
     public static void main(ItemTooltipEvent event) {
@@ -28,13 +30,13 @@ public class ItemToolTipped {
         var tip = event.getToolTip();
 
         if (item.getItem() instanceof CakeStick)
-            tip.add(OVER_THE_REGISTRY_ID, Component.translatable(MODULE_ID + ".cakestick.tip"));
+            tip.add(ToolTipHelper.INDEX, Component.translatable(MODULE_ID + ".cakestick.tip"));
 
         if (item.has(LibComponents.UPGRADE_COMPONENTS)) {
             var nbt = item.get(LibComponents.UPGRADE_COMPONENTS);
 
             if (nbt != null && !UpgradeComponents.isEmpty(nbt)) {
-                tip.add(OVER_THE_REGISTRY_ID, Component.translatable(MODULE_ID + ".upgrades.title"));
+                tip.add(ToolTipHelper.INDEX, Component.translatable(MODULE_ID + ".upgrades.title"));
 
                 if (UpgradeComponents.has(nbt, UpgradeType.ENERGY)) {
                     var energy = UpgradeComponents.get(nbt, UpgradeType.ENERGY);
@@ -61,13 +63,13 @@ public class ItemToolTipped {
         }
 
         if (item.getItem() instanceof GlassCutter)
-            tip.add(OVER_THE_REGISTRY_ID, Component.translatable(MODULE_ID + ".glass_cutter.tip"));
+            tip.add(ToolTipHelper.INDEX, Component.translatable(MODULE_ID + ".glass_cutter.tip"));
 
         if (item.getItem() instanceof Wrench)
-            tip.add(OVER_THE_REGISTRY_ID, Component.translatable(MODULE_ID + ".wrench.tip"));
+            tip.add(ToolTipHelper.INDEX, Component.translatable(MODULE_ID + ".wrench.tip"));
 
         if (item.getItem() instanceof Chisel)
-            tip.add(OVER_THE_REGISTRY_ID, Component.translatable(MODULE_ID + ".info.identifier.desc"));
+            tip.add(ToolTipHelper.INDEX, Component.translatable(MODULE_ID + ".info.identifier.desc"));
 
         if (item.has(LibComponents.IDENTIFIER)) {
             var nbt = item.get(LibComponents.IDENTIFIER);
@@ -80,13 +82,22 @@ public class ItemToolTipped {
         }
 
         if (item.getItem() instanceof RedstoneAcid)
-            tip.add(OVER_THE_REGISTRY_ID, Component.translatable(MODULE_ID + ".redstone_acid.tip"));
+            tip.add(ToolTipHelper.INDEX, Component.translatable(MODULE_ID + ".redstone_acid.tip"));
 
         if (item.getItem() instanceof HoneySolution)
-            tip.add(OVER_THE_REGISTRY_ID, Component.translatable(MODULE_ID + ".honey_solution.tip"));
+            tip.add(ToolTipHelper.INDEX, Component.translatable(MODULE_ID + ".honey_solution.tip"));
+
+        if (item.getItem() instanceof BlockItem bi && bi.getBlock() instanceof BlockItemKeeper)
+            tip.add(ToolTipHelper.INDEX, Component.translatable(MODULE_ID + ".keep.storage"));
 
         if (item.getItem() instanceof SpectralArrowItem)
-            tip.add(OVER_THE_REGISTRY_ID, Component.translatable("extra.effect.minecraft.glowing"));
+            tip.add(ToolTipHelper.INDEX, Component.translatable("extra.effect.minecraft.glowing"));
+        
+
+  if (item.has(LibComponents.ITEM_CONTAINER))
+            if (item.get(LibComponents.ITEM_CONTAINER) != null) 
+               ToolTipHelper. add(tip, MODULE_ID + ".keep.storage");
+            
 
     }
 }
