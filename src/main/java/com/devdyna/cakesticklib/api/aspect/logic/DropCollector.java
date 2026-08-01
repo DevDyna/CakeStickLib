@@ -25,24 +25,25 @@ public interface DropCollector {
             item.setItem(x.item(item.getItem().getItem(), remain));
     }
 
-    default void collectItem(Level level, BlockPos pos, Entity entity) {
+    default int collectItem(Level level, BlockPos pos, Entity entity) {
         if (!(entity instanceof ItemEntity item))
-            return;
-        collectItem(level, pos, item);
+            return 0;
+        return collectItem(level, pos, item);
     }
 
-    default void collectItem(Level level, BlockPos pos, ItemEntity entity) {
+    default int collectItem(Level level, BlockPos pos, ItemEntity entity) {
         var remain = collectItem(level, pos, entity.getItem());
         adjustItemEntity(remain, entity);
+        return remain;
     }
 
     default void collectItem(Level level, BlockPos pos, ItemStack... item) {
-        for (ItemStack itemStack : item) 
+        for (ItemStack itemStack : item)
             collectItem(level, pos, itemStack);
     }
 
     default void collectItem(Level level, BlockPos pos, List<ItemStack> item) {
-        for (ItemStack itemStack : item) 
+        for (ItemStack itemStack : item)
             collectItem(level, pos, itemStack);
     }
 
