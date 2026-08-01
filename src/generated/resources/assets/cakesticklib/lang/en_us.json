@@ -55,6 +55,7 @@
   "cakesticklib.jei.copper_oxidation": "Copper Oxidation Info",
   "cakesticklib.jei.patina_drop": "§7Drop %s§7 items every scrape",
   "cakesticklib.jei.strippable": "Block Strippable Info",
+  "cakesticklib.keep.storage": "§7Contain some items",
   "cakesticklib.provider.every_tick": "Generate %s %s every tick",
   "cakesticklib.provider.generic": "Generate %s %s every %d ticks",
   "cakesticklib.redstone_acid.tip": "§7Oxidize copper blocks",
