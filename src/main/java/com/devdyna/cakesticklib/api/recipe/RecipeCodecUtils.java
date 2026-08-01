@@ -6,7 +6,8 @@ import net.neoforged.neoforge.common.crafting.SizedIngredient;
 import net.neoforged.neoforge.fluids.FluidStackTemplate;
 import net.neoforged.neoforge.fluids.crafting.FluidIngredient;
 import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
-
+//TODO BUG : don't work as intended!
+@Deprecated
 public class RecipeCodecUtils {
 
     public static FluidStackTemplate optionalCodec(FluidStackTemplate f) {
