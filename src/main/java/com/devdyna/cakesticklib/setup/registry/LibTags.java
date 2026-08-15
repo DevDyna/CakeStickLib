@@ -44,6 +44,9 @@ public class LibTags {
                 public static void register(IEventBus bus) {
                 }
 
+                public static final TagKey<Item> HARVESTABLE_BLACKLIT = RegistryUtils
+                                .tagItem(MODULE_ID, "harvestable/blacklist");
+
                 // sawdust
                 public static final TagKey<Item> SAWDUST = RegistryUtils.tagItem("c", "dusts/wood");
                 public static final TagKey<Item> SAWDUST2 = RegistryUtils.tagItem("c", "dusts/saw");
