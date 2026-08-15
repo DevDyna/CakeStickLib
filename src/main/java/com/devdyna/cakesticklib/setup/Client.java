@@ -1,8 +1,10 @@
 package com.devdyna.cakesticklib.setup;
 
-import com.devdyna.cakesticklib.CakeStickLib;
-import com.devdyna.cakesticklib.api.client.BlockRenderDecorator;
+import static com.devdyna.cakesticklib.CakeStickLib.MODULE_ID;
+import com.devdyna.cakesticklib.api.client.ItemRenderDecorator;
+import com.devdyna.cakesticklib.api.client.HudRenderable;
 import com.devdyna.cakesticklib.api.utils.ModAddonUtil;
+import com.devdyna.cakesticklib.api.utils.x;
 import com.devdyna.cakesticklib.setup.registry.LibItems;
 
 import net.minecraft.world.item.crafting.RecipeMap;
@@ -13,12 +15,14 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent;
 import net.neoforged.neoforge.client.event.RecipesReceivedEvent;
+import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
 import net.neoforged.neoforge.client.event.RegisterItemDecorationsEvent;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
+import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
 
-@Mod(value = CakeStickLib.MODULE_ID, dist = Dist.CLIENT)
-@EventBusSubscriber(modid = CakeStickLib.MODULE_ID, value = Dist.CLIENT)
+@Mod(value = MODULE_ID, dist = Dist.CLIENT)
+@EventBusSubscriber(modid = MODULE_ID, value = Dist.CLIENT)
 public class Client {
 
     public Client(ModContainer container) {
@@ -27,7 +31,12 @@ public class Client {
 
     @SubscribeEvent
     public static void renderItemDecorators(RegisterItemDecorationsEvent r) {
-        r.register(LibItems.CHISEL.get(), new BlockRenderDecorator());
+        r.register(LibItems.CHISEL.get(), new ItemRenderDecorator());
+    }
+
+    @SubscribeEvent
+    public static void registerOverlays(RegisterGuiLayersEvent event) {
+        event.registerAbove(VanillaGuiLayers.CROSSHAIR, x.rl(MODULE_ID, "hud_tooltip"), HudRenderable.LAYER);
     }
 
     // Recipe collector client-side
