@@ -17,11 +17,11 @@ public class ItemStorageBreak {
 
         try {
             if (be instanceof ItemStorageBlock storage)
-                if (storage.dropOnBreak())
+                if (storage.dropOnBreak(event.getPlayer()))
                     for (int i = 0; i < storage.getSlots(); i++)
                         Block.popResource((Level) level, pos, storage.getStackInSlot(i));
         } catch (Exception e) {
-            //it must prevent persistent broken storage blocks on break
+            // it must prevent persistent broken storage blocks on break
         }
     }
 

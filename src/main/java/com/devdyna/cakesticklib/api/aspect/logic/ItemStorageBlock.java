@@ -1,5 +1,6 @@
 package com.devdyna.cakesticklib.api.aspect.logic;
 
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
@@ -12,6 +13,11 @@ public interface ItemStorageBlock {
 
     BlockState getBlockState();
 
+    default boolean dropOnBreak(Player player) {
+        return dropOnBreak();
+    }
+
+    @Deprecated
     default boolean dropOnBreak() {
         return !(getBlockState().getBlock() instanceof BlockItemKeeper);
     }
