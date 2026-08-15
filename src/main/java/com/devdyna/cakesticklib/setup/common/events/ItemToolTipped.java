@@ -90,7 +90,7 @@ public class ItemToolTipped {
         if (item.getItem() instanceof BlockItem bi && bi.getBlock() instanceof BlockItemKeeper)
             if (item.has(LibComponents.ITEM_CONTAINER))
                 if (item.get(LibComponents.ITEM_CONTAINER) != null)
-                    ToolTipHelper.add(tip, MODULE_ID + ".keep.storage");
+                    ToolTipHelper.add(tip, MODULE_ID + ".keep.storage.contain");
 
         if (item.getItem() instanceof SpectralArrowItem)
             tip.add(ToolTipHelper.INDEX, Component.translatable("extra.effect.minecraft.glowing"));
