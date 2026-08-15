@@ -175,6 +175,9 @@ public class DataItemTag extends ItemTagsProvider {
                 tag(Tags.Items.TOOLS_WRENCH)
                                 .add(LibItems.WRENCH.get());
 
+                tag(LibTags.Items.HARVESTABLE_BLACKLIT)
+                                .add(Items.BONE_MEAL, Items.DEBUG_STICK);
+
         }
 
 }

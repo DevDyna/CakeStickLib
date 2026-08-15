@@ -23,8 +23,6 @@ public class ColorUtils {
     public static final Color WHITE = Color.WHITE;
     public static final Color YELLOW = Color.YELLOW;
 
-    // TODO verify if they respect color names
-
     public static final Color PURPLE = color(128, 0, 128);
     public static final Color VIOLET = color(238, 130, 238);
     public static final Color INDIGO = color(75, 0, 130);

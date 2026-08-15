@@ -11,9 +11,9 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.client.IItemDecorator;
 
-public class BlockRenderDecorator implements IItemDecorator {
+public class ItemRenderDecorator implements IItemDecorator {
 
-    public BlockRenderDecorator() {
+    public ItemRenderDecorator() {
     }
 
     @Override

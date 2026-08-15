@@ -1,6 +1,5 @@
 package com.devdyna.cakesticklib.api.compat.jei;
 
-
 import com.devdyna.cakesticklib.api.primitive.Size;
 import com.devdyna.cakesticklib.api.utils.TimeUtil;
 
@@ -14,8 +13,11 @@ import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
+
 /**
- * A basic implementation of a recipe category without requirements to use methods with <code>RecipeHolder</code> and a configurable timer useful on timered recipes
+ * A basic implementation of a recipe category without requirements to use
+ * methods with <code>RecipeHolder</code> and a configurable timer useful on
+ * timered recipes
  */
 public abstract class BaseRecipeCategory<T extends Recipe<?>> extends BaseCategory<RecipeHolder<T>> {
 
@@ -32,10 +34,11 @@ public abstract class BaseRecipeCategory<T extends Recipe<?>> extends BaseCatego
     }
 
     @Override
-    public void draw(RecipeHolder<T> recipe, IRecipeSlotsView recipeSlotsView, GuiGraphicsExtractor guiGraphics, double mouseX,
+    public void draw(RecipeHolder<T> recipe, IRecipeSlotsView recipeSlotsView, GuiGraphicsExtractor guiGraphics,
+            double mouseX,
             double mouseY) {
         super.draw(recipe, recipeSlotsView, guiGraphics, mouseX, mouseY);
-        if (enableTimerRender())
+        if (enableTimerRender(recipe.value()))
             renderTickDelay(recipe.value(), guiGraphics);
 
         draw(recipe.value(), recipeSlotsView, guiGraphics, mouseX, mouseY);
@@ -57,14 +60,20 @@ public abstract class BaseRecipeCategory<T extends Recipe<?>> extends BaseCatego
             double mouseX, double mouseY) {
     }
 
-    public void drawCentredStringFixed(GuiGraphicsExtractor g, Font font, Component text, int x, int y, int color,Boolean bool) {
+    public void drawCentredStringFixed(GuiGraphicsExtractor g, Font font, Component text, int x, int y, int color,
+            Boolean bool) {
         var f = text.getVisualOrderText();
-        g.text(font, f, x - font.width(f) / 2, y, color,bool);
+        g.text(font, f, x - font.width(f) / 2, y, color, bool);
     }
 
     /**
      * Default : false
      */
+    public boolean enableTimerRender(T recipe) {
+        return enableTimerRender();
+    }
+
+    @Deprecated
     public boolean enableTimerRender() {
         return false;
     }
@@ -72,6 +81,11 @@ public abstract class BaseRecipeCategory<T extends Recipe<?>> extends BaseCatego
     /**
      * Default : true
      */
+    public boolean shortTicks(T recipe) {
+        return shortTicks();
+    }
+
+    @Deprecated
     public boolean shortTicks() {
         return true;
     }
@@ -81,8 +95,8 @@ public abstract class BaseRecipeCategory<T extends Recipe<?>> extends BaseCatego
      */
     public void renderTickDelay(T recipe, GuiGraphicsExtractor guiGraphics) {
         guiGraphics.text(font,
-                Component.literal(TimeUtil.getTimeValue(tickValue(recipe), shortTicks())),
-                tickPos().getX(), tickPos().getY(), tickColor());
+                Component.literal(TimeUtil.getTimeValue(tickValue(recipe), shortTicks(recipe))),
+                tickPos(recipe).getX(), tickPos(recipe).getY(), tickColor(recipe));
     }
 
     /**
@@ -95,6 +109,11 @@ public abstract class BaseRecipeCategory<T extends Recipe<?>> extends BaseCatego
     /**
      * Default : 21 | 14
      */
+    public Size tickPos(T recipe) {
+        return tickPos();
+    }
+
+    @Deprecated
     public Size tickPos() {
         return Size.of(21, 14);
     }
@@ -102,6 +121,11 @@ public abstract class BaseRecipeCategory<T extends Recipe<?>> extends BaseCatego
     /**
      * Default : 0xFFA0A0A0
      */
+    public int tickColor(T recipe) {
+        return tickColor();
+    }
+
+    @Deprecated
     public int tickColor() {
         return 0xFFA0A0A0;
     }

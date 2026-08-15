@@ -6,7 +6,23 @@ import net.neoforged.neoforge.common.crafting.SizedIngredient;
 import net.neoforged.neoforge.fluids.FluidStackTemplate;
 import net.neoforged.neoforge.fluids.crafting.FluidIngredient;
 import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
-//TODO BUG : don't work as intended!
+
+/**
+ * TODO BUG : don't work as intended!
+ * <br/>
+ * <br/>
+ * USE FOR CODECS
+ * <br/>
+ * <br/>
+ * {@code Codec<T>.optionalFieldOf()} AND {@code Optional<T>.ofNullable()}
+ * <br/>
+ * <br/>
+ * USE FOR STREAM CODECS
+ * <br/>
+ * <br/>
+ * {@code StreamCodec<RegistryFriendlyByteBuf,Optional<T>>.apply(ByteBufCodecs::optional)}
+ * AND {@code Optional.ofNullable()}
+ */
 @Deprecated
 public class RecipeCodecUtils {
 

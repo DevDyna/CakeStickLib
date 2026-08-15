@@ -21,7 +21,6 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 import com.devdyna.cakesticklib.setup.registry.LibComponents;
 
-//TODO IMP : update
 public class ItemToolTipped {
 
     @SubscribeEvent

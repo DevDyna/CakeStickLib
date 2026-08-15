@@ -237,7 +237,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .pattern(" R ")
                                 .define('S', LibTags.Items.STEEL_PLATE)
                                 .define('R', LibItems.CONDENSER.get())
-                                .define('B', Tags.Items.GEMS_DIAMOND )
+                                .define('B', Tags.Items.GEMS_DIAMOND)
                                 .define('C', LibItems.CHIP.get())
                                 .unlockedBy(getHasName(LibTags.Items.STEEL_PLATE), has(LibTags.Items.STEEL_PLATE))
                                 .output(LibItems.SPEED_UPGRADE.get())
@@ -481,12 +481,9 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                 return this.items;
         }
 
-     
         @Override
         public String getModName() {
                 return MODULE_ID;
         }
-
-        
 
 }

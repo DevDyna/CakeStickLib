@@ -30,15 +30,18 @@ public class VanillaHarvestable {
         if (level.getBlockState(pos).is(LibTags.Blocks.HARVESTABLE_BLACKLIST))
             return;
 
-            //prevent bonemeal usage conflict
-        if (!(item.getItem() instanceof BoneMealItem) && hand.equals(InteractionHand.MAIN_HAND)) {
-            List<ItemStack> check = VanillaPlants.checkReplant(level, pos, player, hand);
+        if (item.getItem() instanceof BoneMealItem || item.is(LibTags.Items.HARVESTABLE_BLACKLIT))
+            return;
 
-            if (check != null) {
-                check.forEach(i -> player.addItem(i));
-                event.setCanceled(true);
-                event.setCancellationResult(InteractionResult.SUCCESS);
-            }
+        if (!hand.equals(InteractionHand.MAIN_HAND))
+            return;
+
+        List<ItemStack> check = VanillaPlants.checkReplant(level, pos, player, hand);
+
+        if (check != null) {
+            check.forEach(i -> player.addItem(i));
+            event.setCanceled(true);
+            event.setCancellationResult(InteractionResult.SUCCESS);
         }
 
     }
