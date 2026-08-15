@@ -11,6 +11,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.Property;
 //TODO REWORK
+@Deprecated
 public class DirectionUtil {
 
     public static Direction[] ALL = Direction.values();

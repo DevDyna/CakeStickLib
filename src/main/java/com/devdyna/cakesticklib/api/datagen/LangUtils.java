@@ -71,8 +71,6 @@ public class LangUtils {
 
     }
 
-    // TODO REMOVE
-    // replaced by Colors.ITEM_TOOLTIP
     @Deprecated
     public static final String TIP_COLOR = TipColors.ITEM_TOOLTIP;
 
