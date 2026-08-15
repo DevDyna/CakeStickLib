@@ -12,6 +12,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 //TODO BUG : REWORK
+@Deprecated
 public interface Connectable {
 
     abstract Map<Direction, BooleanProperty> PropByDir();
