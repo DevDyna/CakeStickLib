@@ -1,15 +1,19 @@
 package com.devdyna.cakesticklib.setup.common.recipes.oxidation;
 
+import java.util.Optional;
+
 import com.devdyna.cakesticklib.api.recipe.recipeType.BaseRecipeType;
 import com.devdyna.cakesticklib.setup.common.recipes.oxidation.OxidationStatus.OxidationInput;
-import com.devdyna.cakesticklib.setup.registry.*;
+import com.devdyna.cakesticklib.setup.registry.LibRecipeTypes;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
@@ -19,21 +23,37 @@ import net.minecraft.world.level.Level;
 
 public class CopperOxidationRecipe extends BaseRecipeType<OxidationInput> {
 
-    private OxidationStatus type;
-    private Ingredient catalyst;
+    private final OxidationStatus type;
+    private final Ingredient catalyst;
+    private final Ingredient input;
+    private final ItemStackTemplate output;
 
-    public CopperOxidationRecipe(OxidationStatus type, Ingredient catalyst) {
+    public CopperOxidationRecipe(OxidationStatus type, Ingredient catalyst, Ingredient input,
+            ItemStackTemplate output) {
         this.type = type;
         this.catalyst = catalyst;
+        this.input = input;
+        this.output = output;
     }
 
+    @Override
     public boolean matches(OxidationInput r, Level l) {
-        return r.type().equals(type);
+
+        if (!r.type().equals(type))
+            return false;
+
+        if (type == OxidationStatus.CUSTOM)
+            return input != null && input.test(r.getItem(0));
+
+        return true;
     }
 
     @Override
     public ItemStack assemble(OxidationInput i) {
-        return i.getItem(0);
+        if (type == OxidationStatus.CUSTOM)
+            return output.create().copy();
+
+        return i.getItem(0).copy();
     }
 
     public OxidationStatus getOxidationType() {
@@ -42,6 +62,14 @@ public class CopperOxidationRecipe extends BaseRecipeType<OxidationInput> {
 
     public Ingredient getCatalyst() {
         return catalyst;
+    }
+
+    public Ingredient getInput() {
+        return input;
+    }
+
+    public ItemStackTemplate getOutput() {
+        return output;
     }
 
     @Override
@@ -54,16 +82,50 @@ public class CopperOxidationRecipe extends BaseRecipeType<OxidationInput> {
     }
 
     public static final MapCodec<CopperOxidationRecipe> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
-            OxidationStatus.CODEC.fieldOf("step").forGetter(CopperOxidationRecipe::getOxidationType),
-            Ingredient.CODEC.fieldOf("catalyst").forGetter(CopperOxidationRecipe::getCatalyst))
-            .apply(inst, CopperOxidationRecipe::new));
+            OxidationStatus.CODEC
+                    .fieldOf("step")
+                    .forGetter(CopperOxidationRecipe::getOxidationType),
+
+            Ingredient.CODEC
+                    .optionalFieldOf("catalyst")
+                    .forGetter(r -> Optional.ofNullable(r.getCatalyst())),
+
+            Ingredient.CODEC
+                    .optionalFieldOf("input")
+                    .forGetter(r -> Optional.ofNullable(r.getInput())),
+
+            ItemStackTemplate.CODEC
+                    .optionalFieldOf("output")
+                    .forGetter(r -> Optional.ofNullable(r.getOutput()))
+
+    ).apply(inst, (type, catalyst, input, output) -> new CopperOxidationRecipe(
+            type,
+            catalyst.orElse(null),
+            input.orElse(null),
+            output.orElse(null))));
 
     public static final StreamCodec<RegistryFriendlyByteBuf, CopperOxidationRecipe> STREAM_CODEC = StreamCodec
             .composite(
-                    OxidationStatus.STREAM_CODEC, CopperOxidationRecipe::getOxidationType,
-                    Ingredient.CONTENTS_STREAM_CODEC,
-                    CopperOxidationRecipe::getCatalyst,
-                    CopperOxidationRecipe::new);
+                    OxidationStatus.STREAM_CODEC,
+                    CopperOxidationRecipe::getOxidationType,
+
+                    Ingredient.CONTENTS_STREAM_CODEC.apply(
+                            ByteBufCodecs::optional),
+                    r -> Optional.ofNullable(r.getCatalyst()),
+
+                    Ingredient.CONTENTS_STREAM_CODEC.apply(
+                            ByteBufCodecs::optional),
+                    r -> Optional.ofNullable(r.getInput()),
+
+                    ItemStackTemplate.STREAM_CODEC.apply(
+                            ByteBufCodecs::optional),
+                    r -> Optional.ofNullable(r.getOutput()),
+
+                    (type, catalyst, input, output) -> new CopperOxidationRecipe(
+                            type,
+                            catalyst.orElse(null),
+                            input.orElse(null),
+                            output.orElse(null)));
 
     @Override
     public RecipeSerializer<? extends Recipe<OxidationInput>> getSerializer() {
@@ -79,5 +141,4 @@ public class CopperOxidationRecipe extends BaseRecipeType<OxidationInput> {
     public String group() {
         return "copper_oxidation";
     }
-
 }

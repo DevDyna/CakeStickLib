@@ -82,51 +82,86 @@ public class CopperOxidationCategory extends BaseRecipeCategory<CopperOxidationR
 
         super.setRecipe(builder, recipe, focuses);
 
-        Ingredient input = null;
-        Ingredient output = null;
         Ingredient catalyst = recipe.getCatalyst();
 
-        switch (recipe.getOxidationType()) {
-            case OxidationStatus.SCRAPPING:
-                input = mapBlocks(oxidable, DataMapHooks::getNextOxidizedStage);
-                output = x.itemIngredient(oxidable.stream().map(Block::asItem).toList());
-                break;
-
-            case OxidationStatus.OXIDIZING:
-                input = x.itemIngredient(oxidable.stream().map(Block::asItem).toList());
-                output = mapBlocks(oxidable, DataMapHooks::getNextOxidizedStage);
-                break;
-
-            case OxidationStatus.WAXING:
-                input = x.itemIngredient(waxable.stream().map(Block::asItem).toList());
-                output = mapBlocks(waxable, DataMapHooks::getBlockWaxed);
-                break;
-
-            case OxidationStatus.UNWAXING:
-                input = mapBlocks(waxable, DataMapHooks::getBlockWaxed);
-                output = x.itemIngredient(waxable.stream().map(Block::asItem).toList());
-                break;
-        }
-
-        if (input != null)
-            builder.addSlot(RecipeIngredientRole.INPUT, 2, 2)
-                    .add(input);
-
-        if (catalyst != null) {
+        if (catalyst != null)
             builder.addSlot(RecipeIngredientRole.CRAFTING_STATION, 29, 2)
                     .add(catalyst);
 
+        switch (recipe.getOxidationType()) {
+
+            case SCRAPPING -> {
+                builder.addSlot(RecipeIngredientRole.INPUT, 2, 2)
+                        .add(mapBlocks(
+                                oxidable,
+                                DataMapHooks::getNextOxidizedStage));
+
+                builder.addSlot(RecipeIngredientRole.OUTPUT, 59, 2)
+                        .add(x.itemIngredient(
+                                oxidable.stream()
+                                        .map(Block::asItem)
+                                        .toList()));
+
+                // TODO API : add toggleable
+                builder.addSlot(RecipeIngredientRole.OUTPUT, 59, 21)
+                        .add(x.item(LibItems.PATINA.get()))
+                        .addRichTooltipCallback(
+                                (v, t) -> t.add(
+                                        Component.translatable(
+                                                MODULE_ID + ".jei.patina_drop",
+                                                "0-2")));
+            }
+
+            case OXIDIZING -> {
+                builder.addSlot(RecipeIngredientRole.INPUT, 2, 2)
+                        .add(x.itemIngredient(
+                                oxidable.stream()
+                                        .map(Block::asItem)
+                                        .toList()));
+
+                builder.addSlot(RecipeIngredientRole.OUTPUT, 59, 2)
+                        .add(mapBlocks(
+                                oxidable,
+                                DataMapHooks::getNextOxidizedStage));
+            }
+
+            case WAXING -> {
+                builder.addSlot(RecipeIngredientRole.INPUT, 2, 2)
+                        .add(x.itemIngredient(
+                                waxable.stream()
+                                        .map(Block::asItem)
+                                        .toList()));
+
+                builder.addSlot(RecipeIngredientRole.OUTPUT, 59, 2)
+                        .add(mapBlocks(
+                                waxable,
+                                DataMapHooks::getBlockWaxed));
+            }
+
+            case UNWAXING -> {
+                builder.addSlot(RecipeIngredientRole.INPUT, 2, 2)
+                        .add(mapBlocks(
+                                waxable,
+                                DataMapHooks::getBlockWaxed));
+
+                builder.addSlot(RecipeIngredientRole.OUTPUT, 59, 2)
+                        .add(x.itemIngredient(
+                                waxable.stream()
+                                        .map(Block::asItem)
+                                        .toList()));
+            }
+
+            case CUSTOM -> {
+                if (recipe.getInput() != null)
+                    builder.addSlot(RecipeIngredientRole.INPUT, 2, 2)
+                            .add(recipe.getInput());
+
+                if (recipe.getOutput() != null)
+                    builder.addSlot(RecipeIngredientRole.OUTPUT, 59, 2)
+                            .add(recipe.getOutput());
+
+            }
         }
-
-        if (output != null)
-            builder.addSlot(RecipeIngredientRole.OUTPUT, 59, 2)
-                    .add(output);
-
-        if (recipe.getOxidationType().equals(OxidationStatus.SCRAPPING))
-            builder.addSlot(RecipeIngredientRole.OUTPUT, 59, 21)
-                    .add(x.item(LibItems.PATINA.get()))
-                    .addRichTooltipCallback(
-                            (v, t) -> t.add(Component.translatable(MODULE_ID + ".jei.patina_drop", "0-2")));
     }
 
     private Ingredient mapBlocks(List<Block> blocks, Function<Block, Block> f) {
