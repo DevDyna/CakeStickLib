@@ -389,6 +389,12 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                         stonecutter(output, i, LibTags.Items.MOLDS);
                                 });
 
+                // TODO API : scissors
+                // TODO API : add fallback to force replace when fail
+                // TODO API : allow x.rl() on .save(output,?) to override suffix
+                // TODO API : add optional boolean to override suffix without use x.rl()
+                // TODO BUG : cakesticklib hammer is one use only!
+
         }
 
         public static final class RecipeRunner extends RecipeProvider.Runner {
