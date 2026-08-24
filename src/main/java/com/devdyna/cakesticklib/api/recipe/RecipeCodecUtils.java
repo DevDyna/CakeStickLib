@@ -8,7 +8,7 @@ import net.neoforged.neoforge.fluids.crafting.FluidIngredient;
 import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
 
 /**
- * TODO BUG : don't work as intended!
+ * Don't work as intended!
  * <br/>
  * <br/>
  * USE FOR CODECS
