@@ -1,4 +1,4 @@
-package com.devdyna.cakesticklib.setup.common.recipes.hammering;
+package com.devdyna.cakesticklib.setup.common.recipes.tool_durability;
 
 import static com.devdyna.cakesticklib.CakeStickLib.MODULE_ID;
 
@@ -19,79 +19,79 @@ import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 
-public class HammeringBuilder extends BaseRecipeBuilder implements
-        ItemAttach.Output.SimpleOutputItem<HammeringBuilder>,
-        ItemAttach.Input.ListedNoItemCount<HammeringBuilder> {
+public class DurabilityConsumeBuilder extends BaseRecipeBuilder
+        implements ItemAttach.Output.SimpleOutputItem<DurabilityConsumeBuilder>,
+        ItemAttach.Input.ListedNoItemCount<DurabilityConsumeBuilder> {
 
     private List<Ingredient> items = new ArrayList<>();
     private ItemStackTemplate output;
     private InputToolDurability type;
 
-    public HammeringBuilder(HolderLookup.Provider p) {
+    public DurabilityConsumeBuilder(HolderLookup.Provider p) {
         super(p);
         this.criteria = new LinkedHashMap<String, Criterion<?>>();
     }
 
-    public static HammeringBuilder of(HolderLookup.Provider p) {
-        return new HammeringBuilder(p);
-
+    public static DurabilityConsumeBuilder of(HolderLookup.Provider p) {
+        return new DurabilityConsumeBuilder(p);
     }
 
-    public HammeringBuilder unlockedBy() {
-        return unlockedBy(x.name(LibItems.HAMMER.get()), InventoryChangeTrigger.TriggerInstance
-                .hasItems(LibItems.HAMMER.get()));
+    public DurabilityConsumeBuilder unlockedBy() {
+        return unlockedBy(x.name(LibItems.HAMMER.get()),
+                InventoryChangeTrigger.TriggerInstance
+                        .hasItems(LibItems.HAMMER.get()));
     }
 
-    public HammeringBuilder unlockedBy(String name, Criterion<?> criterion) {
+    public DurabilityConsumeBuilder unlockedBy(String name, Criterion<?> criterion) {
         this.criteria.put(name, criterion);
         return this;
     }
 
-    public HammeringBuilder tool(InputToolDurability type) {
+    public DurabilityConsumeBuilder tool(InputToolDurability type) {
         this.type = type;
         return this;
     }
 
-    public HammeringBuilder tool(Ingredient tool) {
+    public DurabilityConsumeBuilder tool(Ingredient tool) {
         return tool(InputToolDurability.of(tool, 1));
     }
 
-    public HammeringBuilder tool(Item tool) {
+    public DurabilityConsumeBuilder tool(Item tool) {
         return tool(InputToolDurability.of(x.itemIngredient(tool), 1));
     }
 
-    public HammeringBuilder tool(Ingredient tool, int d) {
+    public DurabilityConsumeBuilder tool(Ingredient tool, int d) {
         return tool(InputToolDurability.of(tool, d));
     }
 
-    public HammeringBuilder tool(Item tool, int d) {
+    public DurabilityConsumeBuilder tool(Item tool, int d) {
         return tool(InputToolDurability.of(x.itemIngredient(tool), d));
     }
 
     @Override
-    public HammeringBuilder output(ItemStackTemplate output) {
+    public DurabilityConsumeBuilder output(ItemStackTemplate output) {
         this.output = output;
         return this;
     }
 
     @Override
-    public HammeringBuilder add(Ingredient input) {
+    public DurabilityConsumeBuilder add(Ingredient input) {
         this.items.add(input);
         return this;
     }
 
     @Override
     public Identifier getSuffix(String extra) {
-        return x.rl(MODULE_ID, "tool_use/" + x.name(output).toLowerCase() + extra);
+        return x.rl(MODULE_ID, "durability_use/" + x.name(output).toLowerCase() + extra);
     }
 
     @Override
     public Recipe<?> createRecipe() {
-        return new HammeringRecipe(type, items, output);
+        return new DurabilityConsumeRecipe(type, items, output);
     }
 
     @Override
-    public HammeringBuilder getBuilder() {
+    public DurabilityConsumeBuilder getBuilder() {
         return this;
     }
 

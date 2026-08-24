@@ -5,9 +5,10 @@ import static com.devdyna.cakesticklib.CakeStickLib.MODULE_ID;
 import java.util.concurrent.CompletableFuture;
 
 import com.devdyna.cakesticklib.api.datagen.RecipeGenerators;
-import com.devdyna.cakesticklib.setup.common.recipes.hammering.HammeringBuilder;
+import com.devdyna.cakesticklib.setup.common.recipes.item_replace.ReplaceItemBuilder;
 import com.devdyna.cakesticklib.setup.common.recipes.oxidation.CopperOxidationBuilder;
 import com.devdyna.cakesticklib.setup.common.recipes.oxidation.OxidationStatus;
+import com.devdyna.cakesticklib.setup.common.recipes.tool_durability.DurabilityConsumeBuilder;
 import com.devdyna.cakesticklib.setup.common.recipes.upgrade_application.UpgradeApplicationBuilder;
 import com.devdyna.cakesticklib.setup.registry.*;
 
@@ -344,24 +345,44 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
 
                 gem(Items.RESIN_BRICK, Items.RESIN_CLUMP);
 
-                HammeringBuilder.of(registries)
+                DurabilityConsumeBuilder.of(registries)
                                 .tool(LibItems.HAMMER.get())
                                 .add(Items.WHEAT)
                                 .output(LibItems.FLOUR)
                                 .unlockedBy()
                                 .save(output);
 
-                HammeringBuilder.of(registries)
+                DurabilityConsumeBuilder.of(registries)
                                 .tool(LibItems.HAMMER.get())
                                 .add(ItemTags.LOGS)
                                 .output(LibItems.SAWDUST, 4)
                                 .unlockedBy()
                                 .save(output);
 
-                HammeringBuilder.of(registries)
+                DurabilityConsumeBuilder.of(registries)
                                 .tool(LibItems.HAMMER.get())
                                 .add(Tags.Items.GLASS_BLOCKS)
                                 .output(LibItems.GLASS_DUST)
+                                .unlockedBy()
+                                .save(output);
+
+                ReplaceItemBuilder.of(registries)
+                                .replace(Items.ACACIA_CHEST_BOAT, Items.ACACIA_BOAT)
+                                .output(Items.CHEST)
+                                .unlockedBy()
+                                .save(output);
+
+                ReplaceItemBuilder.of(registries)
+                                .add(Items.AMETHYST_SHARD)
+                                .replace(Items.SMALL_AMETHYST_BUD, Items.MEDIUM_AMETHYST_BUD)
+                                .output(Items.GOLD_NUGGET)
+                                .unlockedBy()
+                                .save(output);
+
+                ReplaceItemBuilder.of(registries)
+                                .add(Items.AMETHYST_SHARD)
+                                .replace(Items.MEDIUM_AMETHYST_BUD, Items.LARGE_AMETHYST_BUD)
+                                .output(Items.GOLD_INGOT)
                                 .unlockedBy()
                                 .save(output);
 
@@ -426,14 +447,14 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
 
                 doubleSmelt(output, dust_tag, ingot);
 
-                HammeringBuilder.of(registries)
+                DurabilityConsumeBuilder.of(registries)
                                 .tool(LibItems.HAMMER.get(), 2)
                                 .add(raw)
                                 .output(dust, 2)
                                 .unlockedBy()
                                 .save(output, "_from_raw");
 
-                HammeringBuilder.of(registries)
+                DurabilityConsumeBuilder.of(registries)
                                 .tool(LibItems.HAMMER.get(), 1)
                                 .add(ingot_tag)
                                 .output(dust)
@@ -451,7 +472,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                         TagKey<Item> gem,
                         Item dust) {
 
-                HammeringBuilder.of(registries)
+                DurabilityConsumeBuilder.of(registries)
                                 .tool(LibItems.HAMMER.get(), 1)
                                 .add(gem)
                                 .output(dust)
@@ -464,7 +485,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                         Item gem,
                         Item dust) {
 
-                HammeringBuilder.of(registries)
+                DurabilityConsumeBuilder.of(registries)
                                 .tool(LibItems.HAMMER.get(), 1)
                                 .add(gem)
                                 .output(dust)

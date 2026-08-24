@@ -1,4 +1,4 @@
-package com.devdyna.cakesticklib.setup.common.recipes.hammering;
+package com.devdyna.cakesticklib.setup.common.recipes.tool_durability;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
@@ -34,20 +34,22 @@ public class InputToolDurability {
         return tool;
     }
 
-    public boolean checkTool(CraftingInput input, Level level) {
-    return input.items().stream().anyMatch(stack ->
-        tool.test(stack) &&
-        stack.getDamageValue() + durability < stack.getMaxDamage()
-    );
-}
+    public boolean test(CraftingInput input, Level level) {
+        return input.items().stream()
+                .anyMatch(stack -> tool.test(stack)
+                        && stack.getDamageValue() + durability <= stack.getMaxDamage());
+    }
 
     public boolean isTool(ItemStack input) {
         return tool.test(input);
     }
 
     public ItemStack getRemainItem(ItemStack stack) {
-        ItemStack copy = stack.copy();
-        copy.setDamageValue(copy.getDamageValue() + durability);
+        var copy = stack.copy();
+        var damage = copy.getDamageValue() + durability;
+        if (copy.getMaxDamage() - damage <= 0)
+            return stack.getCraftingRemainder().create();
+        copy.setDamageValue(damage);
         return copy;
     }
 
