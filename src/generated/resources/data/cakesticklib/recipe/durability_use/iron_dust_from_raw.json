@@ -1,0 +1,14 @@
+{
+  "type": "cakesticklib:durability_use",
+  "items": [
+    "#c:raw_materials/iron"
+  ],
+  "mode": {
+    "damage": 2,
+    "tool": "cakesticklib:hammer"
+  },
+  "result": {
+    "count": 2,
+    "id": "cakesticklib:iron_dust"
+  }
+}

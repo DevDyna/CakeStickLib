@@ -1,0 +1,17 @@
+{
+  "type": "cakesticklib:replace_item",
+  "filters": [
+    {
+      "base": "minecraft:medium_amethyst_bud",
+      "result": {
+        "id": "minecraft:large_amethyst_bud"
+      }
+    }
+  ],
+  "items": [
+    "minecraft:amethyst_shard"
+  ],
+  "result": {
+    "id": "minecraft:gold_ingot"
+  }
+}

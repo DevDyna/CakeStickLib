@@ -1,0 +1,13 @@
+{
+  "type": "cakesticklib:durability_use",
+  "items": [
+    "#c:gems/quartz"
+  ],
+  "mode": {
+    "damage": 1,
+    "tool": "cakesticklib:hammer"
+  },
+  "result": {
+    "id": "cakesticklib:quartz_dust"
+  }
+}
