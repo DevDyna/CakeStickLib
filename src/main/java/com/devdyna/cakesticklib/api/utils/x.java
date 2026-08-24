@@ -211,6 +211,10 @@ public class x {
         return new ItemStackTemplate(i, c);
     }
 
+    public static ItemStackTemplate itemTemplate(ItemStack i) {
+        return ItemStackTemplate.fromNonEmptyStack(i);
+    }
+
     public static ItemStackTemplate itemTemplate(DeferredHolder<Item, Item> i, int c) {
         return itemTemplate(i.get(), c);
     }
