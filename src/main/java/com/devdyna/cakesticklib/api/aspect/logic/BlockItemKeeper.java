@@ -25,21 +25,27 @@ public interface BlockItemKeeper {
     abstract void setPlacedBy(Level level, BlockPos pos, BlockState state, LivingEntity entity,
             ItemStack stack);
 
-    default List<ItemStack> getResultDrops(List<ItemStack> l, ItemLike i, BlockState s, Builder b) {
-        var drops = l;
+    default List<ItemStack> getResultDrops(List<ItemStack> items, ItemLike i, BlockState s, Builder b) {
+
+        var entity = b.getOptionalParameter(LootContextParams.THIS_ENTITY);
         var be = b.getParameter(LootContextParams.BLOCK_ENTITY);
 
         if (be instanceof ItemStorageBlock storage && !storage.isSlotsEmpty()) {
+
+            if (entity != null && entity instanceof Player player && be != null)
+                if (storage.dropOnBreak(player))//required check to prevent item duplication
+                    return items;
+
             var item = x.item(i);
             var tag = be.saveCustomOnly(b.getLevel().registryAccess());
             if (!tag.isEmpty())
                 item.set(LibComponents.ITEM_CONTAINER, CustomData.of(tag));
 
-            drops.clear();
-            drops.add(item);
+            items.clear();
+            items.add(item);
         }
 
-        return drops;
+        return items;
     }
 
     default void addItemsToBlockPlaced(Level level, BlockPos pos, BlockState state, LivingEntity entity,
