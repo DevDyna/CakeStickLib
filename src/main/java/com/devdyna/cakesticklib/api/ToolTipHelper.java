@@ -24,4 +24,14 @@ public class ToolTipHelper {
             t.add(INDEX, Component.translatable(s));
     }
 
+    public static void add(List<Component> t, Component... k) {
+        for (Component c : k)
+            t.add(INDEX, c);
+    }
+
+    public static void add(List<Component> t, List<Component> k) {
+        for (Component c : k)
+            t.add(INDEX, c);
+    }
+
 }
