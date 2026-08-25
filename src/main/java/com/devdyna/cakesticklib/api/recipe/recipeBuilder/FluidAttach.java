@@ -26,8 +26,8 @@ public class FluidAttach {
                 return fluid(x.fluidSized(fluid));
             }
 
-            default BUILDER fluid(Fluid fluid, int c) {
-                return fluid(x.fluidSized(fluid, c));
+            default BUILDER fluid(Fluid fluid, int amount) {
+                return fluid(x.fluidSized(fluid, amount));
             }
 
         }
