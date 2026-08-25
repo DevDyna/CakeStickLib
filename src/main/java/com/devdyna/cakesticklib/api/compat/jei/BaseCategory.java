@@ -21,7 +21,7 @@ import net.minecraft.world.level.ItemLike;
  * A generic recipe category to show hardcoded implementations without a defined
  * dependency
  */
-public abstract class BaseCategory<T> implements IRecipeCategory<T> , ClientUtils {
+public abstract class BaseCategory<T> implements IRecipeCategory<T>, ClientUtils {
 
     protected IGuiHelper helper;
 
@@ -59,6 +59,9 @@ public abstract class BaseCategory<T> implements IRecipeCategory<T> , ClientUtil
      */
     public abstract Size setXY();
 
+    /**
+     * This value cannot be null !
+     */
     public abstract Identifier setBackGround();
 
     @Override
