@@ -26,7 +26,7 @@ public interface BuilderAttach<BUILDER extends BaseRecipeBuilder> {
         return unlockedBy(item, item);
     }
 
-    default BUILDER unlockedBy(HolderGetter<Item> items, TagKey<Item> tag) {
+    default BUILDER unlockedBy(TagKey<Item> tag, HolderGetter<Item> items) {
         return unlockedBy(x.name(tag),
                 InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(items, tag)));
     }
