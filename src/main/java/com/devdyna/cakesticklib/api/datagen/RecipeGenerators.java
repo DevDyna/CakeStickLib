@@ -188,6 +188,10 @@ public interface RecipeGenerators {
                                 .save(c);
         }
 
+        default void twoByTwoPacker(RecipeOutput c, ItemLike i, ItemLike o) {
+                twoByTwoPacker(c, i, o, getModName() + getConversionRecipeName(o, i));
+        }
+
         default void twoByTwoPacker(RecipeOutput c, ItemLike i, ItemLike o, String e) {
                 ShapedRecipeBuilder.shaped(getItems(), RecipeCategory.MISC, i, 1).define('#', o).pattern("##")
                                 .pattern("##")
