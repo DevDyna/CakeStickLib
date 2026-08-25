@@ -4,7 +4,11 @@ import com.devdyna.cakesticklib.api.utils.x;
 
 import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.criterion.InventoryChangeTrigger;
+import net.minecraft.advancements.criterion.ItemPredicate;
+import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ItemLike;
 
 public interface BuilderAttach<BUILDER extends BaseRecipeBuilder> {
@@ -20,6 +24,11 @@ public interface BuilderAttach<BUILDER extends BaseRecipeBuilder> {
 
     default BUILDER unlockedBy(ItemLike item) {
         return unlockedBy(item, item);
+    }
+
+    default BUILDER unlockedBy(HolderGetter<Item> items, TagKey<Item> tag) {
+        return unlockedBy(x.name(tag),
+                InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(items, tag)));
     }
 
     default BUILDER unlockedBy(String name, ItemLike... has) {
