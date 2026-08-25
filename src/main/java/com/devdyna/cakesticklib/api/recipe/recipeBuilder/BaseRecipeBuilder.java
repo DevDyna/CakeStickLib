@@ -37,7 +37,7 @@ public abstract class BaseRecipeBuilder {
         save(recipeOutput, "");
     }
 
-    public void save(RecipeOutput o,Identifier extra) {
+    public void save(RecipeOutput o, Identifier extra) {
         save(o, ResourceKey.create(Registries.RECIPE, extra));
     }
 
