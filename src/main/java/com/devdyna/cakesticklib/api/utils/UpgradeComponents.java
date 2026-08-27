@@ -48,6 +48,10 @@ public record UpgradeComponents(
                 c.eject().isEmpty();
     }
 
+    public static final boolean isValid(ItemStack item){
+        return item.has(LibComponents.UPGRADE_COMPONENTS) && !isEmpty(item.get(LibComponents.UPGRADE_COMPONENTS));
+    }
+
     public static final boolean has(UpgradeComponents c, UpgradeType type) {
         return c == null ? false : !getAll(c).get(type.value()).isEmpty();
     }
