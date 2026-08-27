@@ -1,0 +1,13 @@
+{
+  "type": "cakesticklib:durability_use",
+  "items": [
+    "minecraft:resin_brick"
+  ],
+  "mode": {
+    "damage": 1,
+    "tool": "cakesticklib:hammer"
+  },
+  "result": {
+    "id": "minecraft:resin_clump"
+  }
+}

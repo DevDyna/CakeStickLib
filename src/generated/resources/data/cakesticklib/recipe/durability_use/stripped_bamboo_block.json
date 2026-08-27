@@ -1,0 +1,13 @@
+{
+  "type": "cakesticklib:durability_use",
+  "items": [
+    "minecraft:bamboo_block"
+  ],
+  "mode": {
+    "damage": 1,
+    "tool": "#minecraft:axes"
+  },
+  "result": {
+    "id": "minecraft:stripped_bamboo_block"
+  }
+}

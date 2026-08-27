@@ -178,6 +178,18 @@ public class DataItemTag extends ItemTagsProvider {
                 tag(LibTags.Items.HARVESTABLE_BLACKLIT)
                                 .add(Items.BONE_MEAL, Items.DEBUG_STICK);
 
+                tag(LibTags.Items.WRITABLE_BOOKS)
+                                .add(Items.WRITABLE_BOOK, Items.WRITTEN_BOOK);
+
+                tag(LibTags.Items.TURN_INTO_DIRT_PATH)
+                                .add(Items.ROOTED_DIRT, Items.COARSE_DIRT,Items.DIRT,Items.GRASS_BLOCK,Items.PODZOL,Items.MYCELIUM);
+
+                tag(LibTags.Items.TURN_INTO_FARMLAND)
+                                .add(Items.DIRT,Items.GRASS_BLOCK,Items.DIRT_PATH);
+
+                tag(LibTags.Items.TURN_INTO_DIRT)
+                                .add(Items.ROOTED_DIRT,Items.COARSE_DIRT,Items.DIRT_PATH);
+
         }
 
 }

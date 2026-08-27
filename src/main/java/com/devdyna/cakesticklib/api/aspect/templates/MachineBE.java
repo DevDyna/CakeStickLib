@@ -61,13 +61,12 @@ public abstract class MachineBE extends BEStorage {
             this.height = be.getHeight();
         }
 
-        if (this instanceof EnergyBlock be) 
+        if (this instanceof EnergyBlock be)
             this.energyStorage = be.getEnergyStorage();
-        
 
-        if (this instanceof SimpleFluidStorage be) 
+        if (this instanceof SimpleFluidStorage be)
             this.fluid_tank = be.getFluidStorage();
-        
+
     }
 
     /**
@@ -106,41 +105,47 @@ public abstract class MachineBE extends BEStorage {
         level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
     }
 
+    // TODO API : ifPresent to other templates
+
     @Override
     protected void loadAdditional(ValueInput input) {
 
         if (this instanceof AreaOfEffect) {
-            if (input.getInt(HEIGHT).isPresent())
-                height = input.getInt(HEIGHT).get();
-            if (input.getInt(WIDTH).isPresent())
-                width = input.getInt(WIDTH).get();
+            input.getInt(HEIGHT).ifPresent(value -> height = value);
+            input.getInt(WIDTH).ifPresent(value -> width = value);
         }
 
-        if (this instanceof EnergyBlock) 
-            if (input.getInt(ENERGY).isPresent())
+        if (this instanceof EnergyBlock) {
+            input.getInt(ENERGY).ifPresent(fe -> {
+
                 try (var tx = Transaction.openRoot()) {
-                    energyStorage.insert(Math.min(input.getInt(ENERGY).get(), energyStorage.getCapacityAsInt()), tx);
+
+                    energyStorage.extract(energyStorage.getAmountAsInt(), tx);
+                    energyStorage.insert(Math.max(0, Math.min(fe, energyStorage.getCapacityAsInt())), tx);
+
                     tx.commit();
                 }
+            });
+        }
 
-        if(this instanceof SimpleFluidStorage f)
-        f.getFluidStorage().deserialize(input);
+        if (this instanceof SimpleFluidStorage f)
+            f.getFluidStorage().deserialize(input);
 
-        super.loadAdditional(input);
     }
 
     @Override
     protected void saveAdditional(ValueOutput output) {
+
         if (this instanceof AreaOfEffect) {
             output.putInt(HEIGHT, height);
             output.putInt(WIDTH, width);
         }
 
-        if (this instanceof EnergyBlock) 
-            output.putInt("energy", energyStorage.getAmountAsInt());
-        
-        if(this instanceof SimpleFluidStorage f)
-        f.getFluidStorage().serialize(output);
+        if (this instanceof EnergyBlock)
+            output.putInt(ENERGY, energyStorage.getAmountAsInt());
+
+        if (this instanceof SimpleFluidStorage f)
+            f.getFluidStorage().serialize(output);
 
         super.saveAdditional(output);
     }

@@ -69,6 +69,10 @@ public class DataLang extends LanguageProvider {
                                 TipColors.ITEM_TOOLTIP
                                                 + "Craft in-world Stonecutter recipes when bound to the result block");
 
+                // KeepItemStorage
+                add(MODULE_ID + ".keep.storage.contain", TipColors.LIGHT_GRAY + "Contain some items");
+                add(MODULE_ID + ".keep.storage.tip", TipColors.ITEM_TOOLTIP + "Keeps its items when broken");
+
                 // setup
 
                 add(MODULE_ID + ".creative_tab.resources", "Resources");
@@ -117,6 +121,7 @@ public class DataLang extends LanguageProvider {
                 add(MODULE_ID + ".upgrades.modifier.speed", TipColors.ITEM_TOOLTIP + "Recipe Speed: %s");
                 add(MODULE_ID + ".upgrades.modifier.luck", TipColors.ITEM_TOOLTIP + "Secondary Output: %s");
                 add(MODULE_ID + ".upgrades.modifier.fluid", TipColors.ITEM_TOOLTIP + "Fluid Usage: %s");
+                add(MODULE_ID + ".upgrades.modifier.eject", TipColors.ITEM_TOOLTIP + "Ejection to: %s");
 
                 add(MODULE_ID + ".screen.upgrades", "Supported Upgrades:");
 
@@ -124,9 +129,10 @@ public class DataLang extends LanguageProvider {
                 add(MODULE_ID + ".screen.modifier.speed", TipColors.ITEM_TOOLTIP + "Speed Modifier §7[§f§a%s§7]");
                 add(MODULE_ID + ".screen.modifier.luck", TipColors.ITEM_TOOLTIP + "Luck Modifier §7[§f§a%s§7]");
                 add(MODULE_ID + ".screen.modifier.fluid", TipColors.ITEM_TOOLTIP + "Fluid Modifier §7[§f§a%s§7]");
+                add(MODULE_ID + ".screen.modifier.eject", TipColors.ITEM_TOOLTIP + "Eject Modifier §7[§f§a%s§7]");
 
-                 add(MODULE_ID + ".keep.storage.contain", TipColors.LIGHT_GRAY + "Contain some items");
-                 add(MODULE_ID + ".keep.storage.tip", TipColors.ITEM_TOOLTIP + "Keeps its items when broken");
+                add(MODULE_ID + ".item_use.install", "Upgrade installed successfully");
+                add(MODULE_ID + ".item_use.eject", "Eject Modifier Set to ");
 
                 // config
                 add(MODULE_ID + ".configuration.events", "General events");
@@ -178,6 +184,9 @@ public class DataLang extends LanguageProvider {
                 // extra
                 add("extra.effect.minecraft.glowing",
                                 TipColors.POTION_EFFECT_POSITIVE + "Glowing (00:10)");
+
+                add(MODULE_ID + ".jei.recipe.item_replace.remainder", "Replaced with %s");
+                add(MODULE_ID + ".jei.recipe.durability_consume", "Consume %s durability");
 
         }
 

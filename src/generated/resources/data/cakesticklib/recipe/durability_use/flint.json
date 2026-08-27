@@ -1,0 +1,13 @@
+{
+  "type": "cakesticklib:durability_use",
+  "items": [
+    "#c:gravels"
+  ],
+  "mode": {
+    "damage": 10,
+    "tool": "#minecraft:shovels"
+  },
+  "result": {
+    "id": "minecraft:flint"
+  }
+}

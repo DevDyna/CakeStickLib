@@ -1,0 +1,15 @@
+{
+  "type": "cakesticklib:replace_item",
+  "filters": [
+    {
+      "base": "minecraft:cod_bucket",
+      "result": {
+        "id": "minecraft:water_bucket"
+      }
+    }
+  ],
+  "items": [],
+  "result": {
+    "id": "minecraft:cod"
+  }
+}

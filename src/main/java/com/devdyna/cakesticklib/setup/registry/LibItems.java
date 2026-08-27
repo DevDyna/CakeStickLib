@@ -114,6 +114,9 @@ public class LibItems {
 
                 public static final DeferredHolder<Item, IndustrialUpgrade> FLUID_UPGRADE = zUpgrade
                                 .registerItem("fluid_upgrade", p -> new IndustrialUpgrade(p));
+              
+                                public static final DeferredHolder<Item, IndustrialUpgrade> EJECT_UPGRADE = zUpgrade
+                                .registerItem("eject_upgrade", p -> new IndustrialUpgrade(p));
 
                 public static final DeferredHolder<Item, Item> BLANK_MOLD = zSimple.registerSimpleItem("blank_mold");
                 public static final DeferredHolder<Item, Item> CARBON_FIBER = zSimple

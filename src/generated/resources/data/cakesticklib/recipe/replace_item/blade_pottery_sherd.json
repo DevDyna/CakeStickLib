@@ -1,0 +1,18 @@
+{
+  "type": "cakesticklib:replace_item",
+  "filters": [
+    {
+      "base": "minecraft:blade_pottery_sherd",
+      "result": {
+        "id": "minecraft:blade_pottery_sherd"
+      }
+    }
+  ],
+  "items": [
+    "minecraft:brick",
+    "cakesticklib:patina"
+  ],
+  "result": {
+    "id": "minecraft:blade_pottery_sherd"
+  }
+}

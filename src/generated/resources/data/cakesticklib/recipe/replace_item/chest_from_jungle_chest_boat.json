@@ -1,0 +1,15 @@
+{
+  "type": "cakesticklib:replace_item",
+  "filters": [
+    {
+      "base": "minecraft:jungle_chest_boat",
+      "result": {
+        "id": "minecraft:jungle_boat"
+      }
+    }
+  ],
+  "items": [],
+  "result": {
+    "id": "minecraft:chest"
+  }
+}

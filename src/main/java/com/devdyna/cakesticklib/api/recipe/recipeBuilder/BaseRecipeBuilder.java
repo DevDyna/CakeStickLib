@@ -1,6 +1,7 @@
 package com.devdyna.cakesticklib.api.recipe.recipeBuilder;
 
 import java.util.Map;
+import java.util.function.Function;
 
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementRequirements;
@@ -33,12 +34,22 @@ public abstract class BaseRecipeBuilder {
 
     public abstract Identifier getSuffix(String extra);
 
+    protected final static String DEFAULT_EXTRA_RECIPE_ID = "";
+
     public void save(RecipeOutput recipeOutput) {
-        save(recipeOutput, "");
+        save(recipeOutput, DEFAULT_EXTRA_RECIPE_ID);
+    }
+
+    public void save(RecipeOutput o, Identifier extra) {
+        save(o, ResourceKey.create(Registries.RECIPE, extra));
     }
 
     public void save(RecipeOutput o, String extra) {
-        this.save(o, ResourceKey.create(Registries.RECIPE, getSuffix(extra)));
+        save(o, id -> getSuffix(extra));
+    }
+
+    public void save(RecipeOutput o, Function<Identifier, Identifier> extra) {
+        save(o, extra.apply(getSuffix(DEFAULT_EXTRA_RECIPE_ID)));
     }
 
     public void save(RecipeOutput c, ResourceKey<Recipe<?>> pId) {

@@ -141,6 +141,12 @@ public class LibTags {
                 //
                 public static final TagKey<Item> CARBON_FIBER = RegistryUtils.tagItem("c", "carbon_fiber");
                 public static final TagKey<Item> CARBON_FIBER2 = RegistryUtils.tagItem("c", "carbon_fibers");
+               
+                public static final TagKey<Item> WRITABLE_BOOKS = RegistryUtils.tagItem("c", "writable_books");
+                
+                public static final TagKey<Item> TURN_INTO_DIRT_PATH = RegistryUtils.tagItem(MODULE_ID, "turn_into/dirt_path");
+                public static final TagKey<Item> TURN_INTO_FARMLAND = RegistryUtils.tagItem(MODULE_ID, "turn_into/farmland");
+                public static final TagKey<Item> TURN_INTO_DIRT = RegistryUtils.tagItem(MODULE_ID, "turn_into/dirt");
 
         }
 

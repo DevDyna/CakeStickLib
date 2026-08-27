@@ -4,6 +4,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
+import net.neoforged.neoforge.transfer.transaction.Transaction;
 
 public interface ItemStorageBlock {
 
@@ -52,6 +53,15 @@ public interface ItemStorageBlock {
 
     default boolean isSlotsEmpty() {
         return isSlotsEmpty(0, getSlots());
+    }
+
+    default void clear() {
+        if (!isSlotsEmpty())
+            try (var tx = Transaction.openRoot()) {
+                for (int i = 0; i < getSlots(); i++)
+                    getItemStorage().extract(i, getItemStorage().getResource(i), getItemStorage().getAmountAsInt(i),
+                            tx);
+            }
     }
 
 }

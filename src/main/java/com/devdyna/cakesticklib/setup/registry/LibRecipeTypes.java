@@ -2,8 +2,9 @@ package com.devdyna.cakesticklib.setup.registry;
 
 import com.devdyna.cakesticklib.CakeStickLib;
 import com.devdyna.cakesticklib.setup.RecipeRegister;
-import com.devdyna.cakesticklib.setup.common.recipes.hammering.HammeringRecipe;
+import com.devdyna.cakesticklib.setup.common.recipes.item_replace.ReplaceItemRecipe;
 import com.devdyna.cakesticklib.setup.common.recipes.oxidation.CopperOxidationRecipe;
+import com.devdyna.cakesticklib.setup.common.recipes.tool_durability.DurabilityConsumeRecipe;
 import com.devdyna.cakesticklib.setup.common.recipes.upgrade_application.UpgradeApplicationRecipe;
 
 import net.minecraft.core.registries.Registries;
@@ -28,9 +29,13 @@ public class LibRecipeTypes {
                                 "copper_oxidation",
                                 () -> CopperOxidationRecipe.serializer());
 
-                public static final RecipeRegister<HammeringRecipe> HAMMERING = RecipeRegister.of(
-                                "hammering",
-                                () -> HammeringRecipe.serializer());
+                public static final RecipeRegister<DurabilityConsumeRecipe> DURABILITY_USE = RecipeRegister.of(
+                                "durability_use",
+                                () -> DurabilityConsumeRecipe.SERIALIZER);
+
+                public static final RecipeRegister<ReplaceItemRecipe> REPLACING = RecipeRegister.of(
+                                "replace_item",
+                                () -> ReplaceItemRecipe.SERIALIZER);
 
                 public static final RecipeRegister<UpgradeApplicationRecipe> UPGRADE_APPLICATION = RecipeRegister.of(
                                 "upgrade_application",

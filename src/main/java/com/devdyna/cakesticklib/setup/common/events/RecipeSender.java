@@ -12,7 +12,8 @@ public class RecipeSender {
         if (ModAddonUtil.checkMod("jei"))
             event.sendRecipes(
                     LibRecipeTypes.COPPER_OXIDATION.getType(),
-                    LibRecipeTypes.HAMMERING.getType(),
+                    LibRecipeTypes.DURABILITY_USE.getType(),
+                    LibRecipeTypes.REPLACING.getType(),
                     LibRecipeTypes.UPGRADE_APPLICATION.getType(),
                     RecipeType.CRAFTING);
 

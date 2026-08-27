@@ -1,0 +1,15 @@
+{
+  "type": "cakesticklib:replace_item",
+  "filters": [
+    {
+      "base": "minecraft:jack_o_lantern",
+      "result": {
+        "id": "minecraft:torch"
+      }
+    }
+  ],
+  "items": [],
+  "result": {
+    "id": "minecraft:carved_pumpkin"
+  }
+}

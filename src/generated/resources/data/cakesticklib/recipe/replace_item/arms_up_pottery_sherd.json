@@ -1,0 +1,18 @@
+{
+  "type": "cakesticklib:replace_item",
+  "filters": [
+    {
+      "base": "minecraft:arms_up_pottery_sherd",
+      "result": {
+        "id": "minecraft:arms_up_pottery_sherd"
+      }
+    }
+  ],
+  "items": [
+    "minecraft:brick",
+    "cakesticklib:patina"
+  ],
+  "result": {
+    "id": "minecraft:arms_up_pottery_sherd"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "type": "cakesticklib:replace_item",
+  "filters": [
+    {
+      "base": "minecraft:bamboo_chest_raft",
+      "result": {
+        "id": "minecraft:bamboo_raft"
+      }
+    }
+  ],
+  "items": [],
+  "result": {
+    "id": "minecraft:chest"
+  }
+}

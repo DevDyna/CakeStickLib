@@ -1,0 +1,14 @@
+{
+  "type": "cakesticklib:durability_use",
+  "items": [
+    "#minecraft:wool"
+  ],
+  "mode": {
+    "damage": 4,
+    "tool": "minecraft:shears"
+  },
+  "result": {
+    "count": 4,
+    "id": "minecraft:string"
+  }
+}

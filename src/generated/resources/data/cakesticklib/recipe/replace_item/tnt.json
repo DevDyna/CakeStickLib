@@ -1,0 +1,15 @@
+{
+  "type": "cakesticklib:replace_item",
+  "filters": [
+    {
+      "base": "minecraft:tnt_minecart",
+      "result": {
+        "id": "minecraft:minecart"
+      }
+    }
+  ],
+  "items": [],
+  "result": {
+    "id": "minecraft:tnt"
+  }
+}

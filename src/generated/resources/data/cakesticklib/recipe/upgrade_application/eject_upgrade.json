@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "upgrade_application",
+  "key": {
+    "B": "#c:dusts/emerald",
+    "C": "cakesticklib:chip",
+    "R": "cakesticklib:green_battery",
+    "S": "#c:plates/steel"
+  },
+  "pattern": [
+    " B ",
+    "CSC",
+    " R "
+  ],
+  "result": {
+    "components": {
+      "cakesticklib:upgrade_components": {
+        "eject": "north"
+      }
+    },
+    "id": "cakesticklib:eject_upgrade"
+  }
+}

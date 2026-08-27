@@ -3,6 +3,7 @@
     "cakesticklib:speed_upgrade",
     "cakesticklib:energy_upgrade",
     "cakesticklib:luck_upgrade",
-    "cakesticklib:fluid_upgrade"
+    "cakesticklib:fluid_upgrade",
+    "cakesticklib:eject_upgrade"
   ]
 }

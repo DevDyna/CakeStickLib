@@ -4,6 +4,8 @@ import static com.devdyna.cakesticklib.CakeStickLib.MODULE_ID;
 
 import com.devdyna.cakesticklib.api.ToolTipHelper;
 import com.devdyna.cakesticklib.api.aspect.logic.BlockItemKeeper;
+import com.devdyna.cakesticklib.api.datagen.LangUtils.TipColors;
+import com.devdyna.cakesticklib.api.utils.StringUtil;
 import com.devdyna.cakesticklib.api.utils.UpgradeComponents;
 import com.devdyna.cakesticklib.api.utils.UpgradeComponents.UpgradeType;
 import com.devdyna.cakesticklib.api.utils.x;
@@ -14,6 +16,7 @@ import com.devdyna.cakesticklib.setup.registry.builders.HoneySolution;
 import com.devdyna.cakesticklib.setup.registry.builders.RedstoneAcid;
 import com.devdyna.cakesticklib.setup.registry.builders.Wrench;
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.SpectralArrowItem;
@@ -39,24 +42,29 @@ public class ItemToolTipped {
                 tip.add(ToolTipHelper.INDEX, Component.translatable(MODULE_ID + ".upgrades.title"));
 
                 if (UpgradeComponents.has(nbt, UpgradeType.ENERGY)) {
-                    var energy = UpgradeComponents.get(nbt, UpgradeType.ENERGY);
+                    int energy = UpgradeComponents.get(nbt, UpgradeType.ENERGY);
                     tip.add(2, Component.translatable(MODULE_ID + ".upgrades.modifier.energy",
                             (UpgradeComponents.getColoredTip(energy < 0, energy == 0, false) + energy + "%")));
                 }
                 if (UpgradeComponents.has(nbt, UpgradeType.SPEED)) {
-                    var speed = UpgradeComponents.get(nbt, UpgradeType.SPEED);
+                    int speed = UpgradeComponents.get(nbt, UpgradeType.SPEED);
                     tip.add(2, Component.translatable(MODULE_ID + ".upgrades.modifier.speed",
                             (UpgradeComponents.getColoredTip(speed > 0, speed == 0, true) + speed + "%")));
                 }
                 if (UpgradeComponents.has(nbt, UpgradeType.LUCK)) {
-                    var luck = UpgradeComponents.get(nbt, UpgradeType.LUCK);
+                    int luck = UpgradeComponents.get(nbt, UpgradeType.LUCK);
                     tip.add(2, Component.translatable(MODULE_ID + ".upgrades.modifier.luck",
                             (UpgradeComponents.getColoredTip(luck > 0, luck == 0, true) + luck + "%")));
                 }
                 if (UpgradeComponents.has(nbt, UpgradeType.FLUID)) {
-                    var fluid = UpgradeComponents.get(nbt, UpgradeType.FLUID);
+                    int fluid = UpgradeComponents.get(nbt, UpgradeType.FLUID);
                     tip.add(2, Component.translatable(MODULE_ID + ".upgrades.modifier.fluid",
                             (UpgradeComponents.getColoredTip(fluid < 0, fluid == 0, false) + fluid + "%")));
+                }
+                if (UpgradeComponents.has(nbt, UpgradeType.EJECT)) {
+                    Direction eject = UpgradeComponents.get(nbt, UpgradeType.EJECT);
+                    tip.add(2, Component.translatable(MODULE_ID + ".upgrades.modifier.eject",
+                            TipColors.LIGHT_BLUE + StringUtil.nameCapitalized(eject.getName())));
                 }
 
             }
