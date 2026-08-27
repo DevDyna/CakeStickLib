@@ -14,6 +14,7 @@ import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.criterion.InventoryChangeTrigger;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.resources.Identifier;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -56,12 +57,20 @@ public class DurabilityConsumeBuilder extends BaseRecipeBuilder
         return tool(InputToolDurability.of(tool, 1));
     }
 
+    public DurabilityConsumeBuilder tool(TagKey<Item> tool) {
+        return tool(x.itemIngredient(tool, getProvider()));
+    }
+
     public DurabilityConsumeBuilder tool(Item tool) {
         return tool(InputToolDurability.of(x.itemIngredient(tool), 1));
     }
 
     public DurabilityConsumeBuilder tool(Ingredient tool, int d) {
         return tool(InputToolDurability.of(tool, d));
+    }
+
+    public DurabilityConsumeBuilder tool(TagKey<Item> tool, int d) {
+        return tool(x.itemIngredient(tool, getProvider()), d);
     }
 
     public DurabilityConsumeBuilder tool(Item tool, int d) {
