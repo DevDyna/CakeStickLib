@@ -64,7 +64,7 @@ public class ItemToolTipped {
                 if (UpgradeComponents.has(nbt, UpgradeType.EJECT)) {
                     Direction eject = UpgradeComponents.get(nbt, UpgradeType.EJECT);
                     tip.add(2, Component.translatable(MODULE_ID + ".upgrades.modifier.eject",
-                            TipColors.Modifiers.POSITIVE + StringUtil.nameCapitalized(eject.getName())));
+                            TipColors.LIGHT_BLUE + StringUtil.nameCapitalized(eject.getName())));
                 }
 
             }
