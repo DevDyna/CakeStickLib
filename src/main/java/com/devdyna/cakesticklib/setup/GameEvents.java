@@ -20,6 +20,7 @@ public class GameEvents {
                 VanillaHarvestable.class,
                 RecipeSender.class,
                 EnderEyeReturn.class,
+                EjectModifierSetup.class,
                 InstamineDropEvent.class)
                 .forEach(NeoForge.EVENT_BUS::register);
 
