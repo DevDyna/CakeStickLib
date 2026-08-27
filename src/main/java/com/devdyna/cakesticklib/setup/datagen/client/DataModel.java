@@ -3,11 +3,15 @@ package com.devdyna.cakesticklib.setup.datagen.client;
 import static com.devdyna.cakesticklib.CakeStickLib.MODULE_ID;
 
 import com.devdyna.cakesticklib.api.datagen.ModelUtils;
+import com.devdyna.cakesticklib.api.utils.x;
 import com.devdyna.cakesticklib.setup.registry.*;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ModelProvider;
+import net.minecraft.client.data.models.model.ItemModelUtils;
 import net.minecraft.client.data.models.model.ModelTemplates;
+import net.minecraft.client.data.models.model.TextureMapping;
+import net.minecraft.client.data.models.model.TextureSlot;
 import net.minecraft.data.PackOutput;
 
 public class DataModel extends ModelProvider {
@@ -26,7 +30,7 @@ public class DataModel extends ModelProvider {
                 itemModels.generateFlatItem(LibItems.CHISEL.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
                 itemModels.generateFlatItem(LibItems.GLASS_CUTTER.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
                 itemModels.generateFlatItem(LibItems.WRENCH.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
-               
+
                 itemModels.generateFlatItem(LibItems.PATINA.get(), ModelTemplates.FLAT_ITEM);
 
                 itemModels.generateFlatItem(LibItems.SAWDUST.get(), ModelTemplates.FLAT_ITEM);
@@ -61,7 +65,21 @@ public class DataModel extends ModelProvider {
                 ModelUtils.itemSubFolder(LibItems.zGears, "item/gear/", "_gear", itemModels);
                 ModelUtils.itemSubFolder(LibItems.zNuggets, "item/nugget/", "_nugget", itemModels);
 
-                ModelUtils.itemSubFolder(LibItems.zUpgrade, "item/upgrade/", "_upgrade", itemModels);
+                LibItems.zUpgrade.getEntries().forEach(i -> itemModels.itemModelOutput.accept(i.get(),
+                                ItemModelUtils.plainModel(
+                                                ModelTemplates.TWO_LAYERED_ITEM.create(i.get(),
+                                                                new TextureMapping().put(TextureSlot.LAYER0,
+                                                                                x.material(x.mod(i),
+                                                                                                "item/upgrade/base"))
+                                                                                .put(TextureSlot.LAYER1, x.material(
+                                                                                                x.rl(x.mod(i),
+                                                                                                                x.name(i)
+                                                                                                                                .replace("_upgrade",
+                                                                                                                                                ""))
+                                                                                                                .withPrefix("item/upgrade/"))),
+                                                                itemModels.modelOutput))
+
+                ));
 
                 LibBlocks.zBlockItem.getEntries().forEach(b -> blockModels.createTrivialCube(b.get()));
 
