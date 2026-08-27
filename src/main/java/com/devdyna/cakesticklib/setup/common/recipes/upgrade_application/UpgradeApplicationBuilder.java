@@ -16,6 +16,7 @@ import com.devdyna.cakesticklib.setup.registry.LibItems;
 
 import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.criterion.InventoryChangeTrigger;
+import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponentPatch;
 import net.minecraft.core.registries.Registries;
@@ -41,6 +42,7 @@ public class UpgradeApplicationBuilder extends BaseRecipeBuilder
     private int speed;
     private int luck;
     private int fluid;
+    private Direction eject = null;
 
     public UpgradeApplicationBuilder(HolderLookup.Provider p) {
         super(p);
@@ -68,7 +70,7 @@ public class UpgradeApplicationBuilder extends BaseRecipeBuilder
         this.result = new ItemStackTemplate(upgrade.item(), 1,
                 DataComponentPatch.builder()
                         .set(LibComponents.UPGRADE_COMPONENTS.get(), UpgradeComponents
-                                .builder(speed, energy, luck, fluid))
+                                .builder(speed, energy, luck, fluid, eject))
                         .build());
         return this;
     }
@@ -90,6 +92,11 @@ public class UpgradeApplicationBuilder extends BaseRecipeBuilder
 
     public UpgradeApplicationBuilder fluid(int fluid) {
         this.fluid = fluid;
+        return this;
+    }
+
+    public UpgradeApplicationBuilder eject(Direction d) {
+        this.eject = d;
         return this;
     }
 
@@ -130,7 +137,7 @@ public class UpgradeApplicationBuilder extends BaseRecipeBuilder
     @Override
     public Recipe<?> createRecipe() {
         return new UpgradeApplicationRecipe(ShapedRecipePattern.of(key, row), result,
-                UpgradeComponents.builder(speed, energy, luck, fluid));
+                UpgradeComponents.builder(speed, energy, luck, fluid, eject));
     }
 
     @Override
@@ -142,7 +149,7 @@ public class UpgradeApplicationBuilder extends BaseRecipeBuilder
     public void onRecipeCreation(RecipeOutput c, ResourceKey<Recipe<?>> pId, Recipe<?> created) {
         buildRecipe(c, ResourceKey.create(Registries.RECIPE, getSuffix("_clear_nbt")), new UpgradeApplicationRecipe(
                 ShapedRecipePattern.of(Map.of('U', x.itemIngredient(result.item().value())), List.of("U")), result,
-                UpgradeComponents.builder(speed, energy, luck, fluid)));
+                UpgradeComponents.builder(speed, energy, luck, fluid, eject)));
     }
 
 }

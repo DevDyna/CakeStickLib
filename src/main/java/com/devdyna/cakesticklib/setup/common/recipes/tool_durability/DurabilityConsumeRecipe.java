@@ -132,7 +132,7 @@ public class DurabilityConsumeRecipe extends NormalCraftingRecipe {
         return List.of(
                 new ShapelessCraftingRecipeDisplay(
                         ArrayUtils.concat(items.stream().map(Ingredient::display).toList(),
-                                new SlotDisplay.ItemStackSlotDisplay(ItemStackTemplate.fromNonEmptyStack(item))),
+                                 Ingredient.displayForSingleItem(item.typeHolder())),
                         new SlotDisplay.ItemStackSlotDisplay(result),
                         new SlotDisplay.ItemSlotDisplay(Items.CRAFTING_TABLE)));
     }

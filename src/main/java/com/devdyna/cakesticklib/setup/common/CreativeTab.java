@@ -3,6 +3,7 @@ package com.devdyna.cakesticklib.setup.common;
 import com.devdyna.cakesticklib.api.CreativeTabUtils;
 import com.devdyna.cakesticklib.setup.registry.*;
 
+import net.minecraft.core.Direction;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
@@ -21,10 +22,11 @@ public class CreativeTab {
             event.accept(LibItems.HAMMER.get());
             event.accept(LibItems.WRENCH.get());
 
-            event.accept(LibItems.SPEED_UPGRADE.get().set(20, 125, 0, 0));
-            event.accept(LibItems.ENERGY_UPGRADE.get().set(0, -50, 0, 0));
-            event.accept(LibItems.LUCK_UPGRADE.get().set(0, 150, 15, 0));
-            event.accept(LibItems.FLUID_UPGRADE.get().set(0, 150, 0, -20));
+            event.accept(LibItems.SPEED_UPGRADE.get().set(20, 125, 0, 0,null));
+            event.accept(LibItems.ENERGY_UPGRADE.get().set(0, -50, 0, 0,null));
+            event.accept(LibItems.LUCK_UPGRADE.get().set(0, 150, 15, 0,null));
+            event.accept(LibItems.FLUID_UPGRADE.get().set(0, 150, 0, -20,null));
+            event.accept(LibItems.EJECT_UPGRADE.get().set(0, 0, 0, 0,Direction.DOWN));
         }
 
         if (event.getTabKey() == LibCreativeTab.INGREDIENTS.getKey()) {
