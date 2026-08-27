@@ -15,6 +15,7 @@ import com.devdyna.cakesticklib.setup.common.recipes.tool_durability.DurabilityC
 import com.devdyna.cakesticklib.setup.common.recipes.upgrade_application.UpgradeApplicationBuilder;
 import com.devdyna.cakesticklib.setup.registry.*;
 
+import net.minecraft.core.Direction;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.HolderLookup.Provider;
@@ -219,6 +220,19 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
 
                 twoByTwoPacker(output, LibItems.CARBON_FIBER.get(), LibTags.Items.COAL_DUST);
                 twoByTwoPacker(output, LibItems.CARBON_PLATE.get(), LibTags.Items.CARBON_FIBER);
+
+                UpgradeApplicationBuilder.of(registries)
+                                .eject(Direction.NORTH)
+                                .pattern(" B ")
+                                .pattern("CSC")
+                                .pattern(" R ")
+                                .define('S', LibTags.Items.STEEL_PLATE)
+                                .define('R', LibItems.GREEN_BATTERY.get())
+                                .define('B', LibTags.Items.EMERALD_DUST)
+                                .define('C', LibItems.CHIP.get())
+                                .unlockedBy(getHasName(LibTags.Items.STEEL_PLATE), has(LibTags.Items.STEEL_PLATE))
+                                .output(LibItems.EJECT_UPGRADE.get())
+                                .save(output);
 
                 UpgradeApplicationBuilder.of(registries)
                                 .energy(-50)
