@@ -121,7 +121,7 @@ public class DataLang extends LanguageProvider {
                 add(MODULE_ID + ".upgrades.modifier.speed", TipColors.ITEM_TOOLTIP + "Recipe Speed: %s");
                 add(MODULE_ID + ".upgrades.modifier.luck", TipColors.ITEM_TOOLTIP + "Secondary Output: %s");
                 add(MODULE_ID + ".upgrades.modifier.fluid", TipColors.ITEM_TOOLTIP + "Fluid Usage: %s");
-                add(MODULE_ID + ".upgrades.modifier.eject", TipColors.ITEM_TOOLTIP + "Ejection from: %s");
+                add(MODULE_ID + ".upgrades.modifier.eject", TipColors.ITEM_TOOLTIP + "Ejection to: %s");
 
                 add(MODULE_ID + ".screen.upgrades", "Supported Upgrades:");
 
@@ -131,6 +131,7 @@ public class DataLang extends LanguageProvider {
                 add(MODULE_ID + ".screen.modifier.fluid", TipColors.ITEM_TOOLTIP + "Fluid Modifier §7[§f§a%s§7]");
                 add(MODULE_ID + ".screen.modifier.eject", TipColors.ITEM_TOOLTIP + "Eject Modifier §7[§f§a%s§7]");
 
+                add(MODULE_ID + ".item_use.install", "Upgrade installed successfully");
                 add(MODULE_ID + ".item_use.eject", "Eject Modifier Set to ");
 
                 // config
