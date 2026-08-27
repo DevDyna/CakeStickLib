@@ -14,6 +14,8 @@ import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.criterion.InventoryChangeTrigger;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.resources.Identifier;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -56,21 +58,25 @@ public class ReplaceItemBuilder extends BaseRecipeBuilder
                 return this;
         }
 
-        /**
-         * Add AND replace the {@code Ingredient filter} item with the
-         * {@code ItemStackTemplate replace} item on crafting
-         */
         public ReplaceItemBuilder replace(Ingredient filter, ItemStackTemplate replace) {
                 replacements.add(ItemReplacement.of(filter, replace));
                 return this;
         }
 
-        /**
-         * Add AND replace the {@code Ingredient filter} item with the
-         * {@code ItemStackTemplate replace} item on crafting
-         */
+        public ReplaceItemBuilder replace(Ingredient filter, ItemLike replace) {
+                return replace(filter, x.itemTemplate(replace));
+        }
+
+        public ReplaceItemBuilder replace(TagKey<Item> filter, ItemStackTemplate replace) {
+               return replace(x.itemIngredient(filter, getProvider()), replace);
+        }
+
+        public ReplaceItemBuilder replace(TagKey<Item> filter, ItemLike replace) {
+                return replace(x.itemIngredient(filter, getProvider()), replace);
+        }
+
         public ReplaceItemBuilder replace(ItemLike filter, ItemLike replace) {
-                return replace(x.itemIngredient(filter), x.itemTemplate(replace));
+                return replace(x.itemIngredient(filter),replace);
         }
 
         @Override

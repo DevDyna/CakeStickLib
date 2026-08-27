@@ -189,10 +189,16 @@ public class ReplaceItemRecipe extends NormalCraftingRecipe {
                                         .create()
                                         .copy();
 
-                        LoreTweaker.advancedLore(base,
-                                        Component.translatable(MODULE_ID + ".jei.recipe.item_replace.remainder",
-                                                        replace.getHoverName()),
-                                        Style.EMPTY.withColor(ChatFormatting.DARK_PURPLE));
+                        if (base.is(replace.getItem()))
+                                LoreTweaker.advancedLore(base,
+                                                Component.translatable(MODULE_ID + ".ui.dont_consume"),
+                                                Style.EMPTY.withColor(ChatFormatting.RED));
+
+                        else
+                                LoreTweaker.advancedLore(base,
+                                                Component.translatable(MODULE_ID + ".jei.recipe.item_replace.remainder",
+                                                                replace.getHoverName()),
+                                                Style.EMPTY.withColor(ChatFormatting.DARK_PURPLE));
 
                         inputs.add(new SlotDisplay.ItemStackSlotDisplay(
                                         x.itemTemplate(base)));
