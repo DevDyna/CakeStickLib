@@ -17,6 +17,7 @@ import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class ModelUtils {
+
         public static void itemSubFolder(DeferredRegister.Items items, String prefix, String replacer,
                         ItemModelGenerators g) {
                 items.getEntries().forEach(i -> g.itemModelOutput.accept(i.get(),
@@ -24,11 +25,10 @@ public class ModelUtils {
                                                 ModelTemplates.FLAT_ITEM.create(
                                                                 i.get(),
                                                                 new TextureMapping()
-                                                                                .put(TextureSlot.LAYER0, new Material(
-                                                                                                x.rl(i.getId().getNamespace(),
-                                                                                                                i.getId().getPath()
-                                                                                                                                .replace(replacer,
-                                                                                                                                                ""))
+                                                                                .put(TextureSlot.LAYER0, x.material(
+                                                                                                x.rl(x.mod(i), x.name(i)
+                                                                                                                .replace(replacer,
+                                                                                                                                ""))
                                                                                                                 .withPrefix(prefix))),
                                                                 g.modelOutput))
 
@@ -57,8 +57,12 @@ public class ModelUtils {
                 return getGenericTexture(modid, "item/" + b);
         }
 
+        /**
+         * Use x.material(mod,path)
+         */
+        @Deprecated
         public static Material getGenericTexture(String modid, String b) {
-                return new Material(x.rl(modid, b));
+                return x.material(modid, b);
         }
 
 }
