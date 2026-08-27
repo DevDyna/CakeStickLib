@@ -1,0 +1,13 @@
+{
+  "type": "cakesticklib:durability_use",
+  "items": [
+    "#cakesticklib:turn_into/dirt_path"
+  ],
+  "mode": {
+    "damage": 1,
+    "tool": "#minecraft:shovels"
+  },
+  "result": {
+    "id": "minecraft:dirt_path"
+  }
+}

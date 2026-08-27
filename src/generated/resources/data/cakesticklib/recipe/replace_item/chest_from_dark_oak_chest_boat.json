@@ -1,0 +1,15 @@
+{
+  "type": "cakesticklib:replace_item",
+  "filters": [
+    {
+      "base": "minecraft:dark_oak_chest_boat",
+      "result": {
+        "id": "minecraft:dark_oak_boat"
+      }
+    }
+  ],
+  "items": [],
+  "result": {
+    "id": "minecraft:chest"
+  }
+}

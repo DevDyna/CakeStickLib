@@ -1,0 +1,13 @@
+{
+  "type": "cakesticklib:durability_use",
+  "items": [
+    "#cakesticklib:turn_into/farmland"
+  ],
+  "mode": {
+    "damage": 1,
+    "tool": "#minecraft:hoes"
+  },
+  "result": {
+    "id": "minecraft:farmland"
+  }
+}

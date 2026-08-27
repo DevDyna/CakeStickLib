@@ -1,0 +1,15 @@
+{
+  "type": "cakesticklib:replace_item",
+  "filters": [
+    {
+      "base": "minecraft:tropical_fish_bucket",
+      "result": {
+        "id": "minecraft:water_bucket"
+      }
+    }
+  ],
+  "items": [],
+  "result": {
+    "id": "minecraft:tropical_fish"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "cakesticklib:replace_item",
+  "filters": [
+    {
+      "base": "minecraft:soul_campfire",
+      "result": {
+        "id": "minecraft:soul_soil"
+      }
+    }
+  ],
+  "items": [
+    "#minecraft:coals"
+  ],
+  "result": {
+    "id": "minecraft:campfire"
+  }
+}

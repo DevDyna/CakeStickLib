@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "cakesticklib:replace_item/gold_nugget"
+        "recipe": "cakesticklib:replace_item/furnace"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "cakesticklib:replace_item/gold_nugget"
+      "cakesticklib:replace_item/furnace"
     ]
   }
 }

@@ -1,0 +1,17 @@
+{
+  "type": "cakesticklib:replace_item",
+  "filters": [
+    {
+      "base": "minecraft:campfire",
+      "result": {
+        "id": "minecraft:charcoal"
+      }
+    }
+  ],
+  "items": [
+    "#minecraft:soul_fire_base_blocks"
+  ],
+  "result": {
+    "id": "minecraft:soul_campfire"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "cakesticklib:durability_use",
+  "items": [
+    "#c:glass_blocks/cheap"
+  ],
+  "mode": {
+    "damage": 1,
+    "tool": "cakesticklib:redstone_acid"
+  },
+  "result": {
+    "id": "minecraft:glass"
+  }
+}

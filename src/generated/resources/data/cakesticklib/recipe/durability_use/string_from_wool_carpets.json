@@ -1,0 +1,14 @@
+{
+  "type": "cakesticklib:durability_use",
+  "items": [
+    "#minecraft:wool_carpets"
+  ],
+  "mode": {
+    "damage": 3,
+    "tool": "minecraft:shears"
+  },
+  "result": {
+    "count": 2,
+    "id": "minecraft:string"
+  }
+}

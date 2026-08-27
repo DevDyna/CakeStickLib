@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "crafting_table": {
+    "has_clay": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:crafting_table"
+            "items": "minecraft:clay"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "cakesticklib:replace_item/gold_ingot"
+        "recipe": "minecraft:clay_ball"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "crafting_table"
+      "has_clay"
     ]
   ],
   "rewards": {
     "recipes": [
-      "cakesticklib:replace_item/gold_ingot"
+      "minecraft:clay_ball"
     ]
   }
 }

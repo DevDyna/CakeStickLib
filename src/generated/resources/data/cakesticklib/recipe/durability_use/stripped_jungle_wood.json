@@ -1,0 +1,13 @@
+{
+  "type": "cakesticklib:durability_use",
+  "items": [
+    "minecraft:jungle_wood"
+  ],
+  "mode": {
+    "damage": 1,
+    "tool": "#minecraft:axes"
+  },
+  "result": {
+    "id": "minecraft:stripped_jungle_wood"
+  }
+}
