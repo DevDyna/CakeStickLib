@@ -3,6 +3,7 @@ package com.devdyna.cakesticklib.setup.common.recipes.item_replace;
 import static com.devdyna.cakesticklib.CakeStickLib.MODULE_ID;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.devdyna.cakesticklib.api.LoreTweaker;
@@ -171,40 +172,40 @@ public class ReplaceItemRecipe extends NormalCraftingRecipe {
 
                 List<SlotDisplay> inputs = new ArrayList<>();
 
-                for (var ingredient : items)
-                        inputs.add(new SlotDisplay.ItemStackSlotDisplay(
-                                        x.itemTemplate(x.getItemStacksFromIngredient(
-                                                        ingredient)
-                                                        .getFirst()
-                                                        .copy())));
-
                 for (var filter : filters) {
 
-                        var base = x.getItemStacksFromIngredient(
-                                        filter.getBase())
-                                        .getFirst()
-                                        .copy();
+                        List<ItemStack> baseItems = new ArrayList<>();
 
                         var replace = filter.getResult()
                                         .create()
                                         .copy();
 
-                        if (base.is(replace.getItem()))
-                                LoreTweaker.advancedLore(base,
-                                                Component.translatable(MODULE_ID + ".ui.dont_consume"),
-                                                Style.EMPTY.withColor(ChatFormatting.RED));
+                        for (var item : x.getItemStacksFromIngredient(filter.getBase())) {
 
-                        else
-                                LoreTweaker.advancedLore(base,
-                                                Component.translatable(MODULE_ID + ".jei.recipe.item_replace.remainder",
-                                                                replace.getHoverName()),
-                                                Style.EMPTY.withColor(ChatFormatting.DARK_PURPLE));
+                                if (filter.getBase().test(replace))
+                                        LoreTweaker.advancedLore(item,
+                                                        Component.translatable(MODULE_ID + ".ui.dont_consume"),
+                                                        Style.EMPTY.withColor(ChatFormatting.RED));
 
-                        inputs.add(new SlotDisplay.ItemStackSlotDisplay(
-                                        x.itemTemplate(base)));
+                                else
+                                        LoreTweaker.advancedLore(item,
+                                                        Component.translatable(MODULE_ID
+                                                                        + ".jei.recipe.item_replace.remainder",
+                                                                        replace.getHoverName()),
+                                                        Style.EMPTY.withColor(ChatFormatting.DARK_PURPLE));
+
+                                baseItems.add(item);
+                        }
+
+                        inputs.add(new SlotDisplay.Composite(Arrays.asList(baseItems.stream()
+                                        .map(i -> new SlotDisplay.ItemStackSlotDisplay(x.itemTemplate(i)))
+                                        .toArray(SlotDisplay[]::new))));
                 }
 
-                return List.of(new ShapelessCraftingRecipeDisplay(inputs, new SlotDisplay.ItemStackSlotDisplay(result),
+                inputs.addAll(items.stream().map(Ingredient::display).toList());
+
+                return List.of(new ShapelessCraftingRecipeDisplay(inputs,
+                                new SlotDisplay.ItemStackSlotDisplay(result),
                                 new SlotDisplay.ItemSlotDisplay(Items.CRAFTING_TABLE)));
         }
 

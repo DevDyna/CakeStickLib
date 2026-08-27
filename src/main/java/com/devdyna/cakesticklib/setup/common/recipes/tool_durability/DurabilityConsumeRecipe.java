@@ -3,6 +3,7 @@ package com.devdyna.cakesticklib.setup.common.recipes.tool_durability;
 import static com.devdyna.cakesticklib.CakeStickLib.MODULE_ID;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -123,16 +124,24 @@ public class DurabilityConsumeRecipe extends NormalCraftingRecipe {
     @Override
     public List<RecipeDisplay> display() {
 
-        var item = x.getItemStacksFromIngredient(tool.getTool()).getFirst().copy();
+        List<ItemStack> toolItems = new ArrayList<>();
+        //TODO IMP : util method/class
+        for (var item : x.getItemStacksFromIngredient(tool.getTool())) {
+            LoreTweaker.advancedLore(item,
+                    Component.translatable(MODULE_ID + ".jei.recipe.durability_consume", tool.getDurability()),
+                    Style.EMPTY.withColor(ChatFormatting.DARK_PURPLE));
+            toolItems.add(item);
+        }
 
-        LoreTweaker.advancedLore(item,
-                Component.translatable(MODULE_ID + ".jei.recipe.durability_consume", tool.getDurability()),
-                Style.EMPTY.withColor(ChatFormatting.DARK_PURPLE));
+        var display = 
+                toolItems.stream()
+                        .map(i -> new SlotDisplay.ItemStackSlotDisplay(x.itemTemplate(i)))
+                        .toArray(SlotDisplay[]::new);
 
         return List.of(
                 new ShapelessCraftingRecipeDisplay(
                         ArrayUtils.concat(items.stream().map(Ingredient::display).toList(),
-                                 Ingredient.displayForSingleItem(item.typeHolder())),
+                                new SlotDisplay.Composite(Arrays.asList(display))),
                         new SlotDisplay.ItemStackSlotDisplay(result),
                         new SlotDisplay.ItemSlotDisplay(Items.CRAFTING_TABLE)));
     }
