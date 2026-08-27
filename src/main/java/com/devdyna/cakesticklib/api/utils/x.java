@@ -1,5 +1,6 @@
 package com.devdyna.cakesticklib.api.utils;
 
+import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.core.DefaultedRegistry;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Holder.Reference;
@@ -86,6 +87,18 @@ public class x {
 
     public static String name(TagKey<?> t) {
         return rl(t).getPath();
+    }
+
+    public static String name(DeferredHolder<?, ?> t) {
+        return t.getId().getPath();
+    }
+
+    public static String mod(DeferredHolder<?, ?> t) {
+        return t.getId().getNamespace();
+    }
+
+    public static Identifier rl(DeferredHolder<?, ?> t) {
+        return t.getId();
     }
 
     public static String name(Item i) {
@@ -523,6 +536,22 @@ public class x {
                 .map(ResourceKey::identifier)
                 .map(registry::get)
                 .toList();
+    }
+
+    public static Material material(Identifier i) {
+        return material(i, false);
+    }
+
+    public static Material material(String mod, String path) {
+        return material(x.rl(mod, path));
+    }
+
+    public static Material material(Identifier i, boolean traslucent) {
+        return new Material(i, traslucent);
+    }
+
+    public static Material material(String mod, String path, boolean traslucent) {
+        return material(x.rl(mod, path), traslucent);
     }
 
 }
