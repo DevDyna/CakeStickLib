@@ -1,5 +1,8 @@
 package com.devdyna.cakesticklib.api.recipe.recipeInput;
 
+import java.util.Arrays;
+import java.util.List;
+
 import com.devdyna.cakesticklib.api.utils.x;
 
 import net.minecraft.world.item.ItemStack;
@@ -16,7 +19,7 @@ public class FluidInput {
         }
 
         public static simple of(Fluid f) {
-            return new simple(x.fluid(f));
+            return of(x.fluid(f));
         }
 
         @Override
@@ -31,6 +34,59 @@ public class FluidInput {
 
     }
 
+    public record dual(FluidStack first, FluidStack second) implements RecipeInput {
+
+        public static dual of(FluidStack a, FluidStack b) {
+            return new dual(a, b);
+        }
+
+        public static dual of(Fluid a, FluidStack b) {
+            return of(x.fluid(a), b);
+        }
+
+        public static dual of(Fluid a, Fluid b) {
+            return of(a, x.fluid(b));
+        }
+
+        public static dual of(FluidStack a, Fluid b) {
+            return of(a, x.fluid(b));
+        }
+
+        @Override
+        public ItemStack getItem(int s) {
+            return List.of(first, second).get(s).getFluidType().getBucket(List.of(first, second).get(s));
+        }
+
+        @Override
+        public int size() {
+            return 2;
+        }
+
+    }
+
+    public record multiple(FluidStack... fluids) implements RecipeInput {
+
+        public static multiple of(FluidStack... i) {
+            return new multiple(i);
+        }
+
+        public static multiple of(Fluid... i) {
+            return of(Arrays.asList(i).stream().map(x::fluid).toArray(FluidStack[]::new));
+        }
+
+        @Override
+        public ItemStack getItem(int s) {
+            return fluids[s].getFluidType().getBucket(fluids[s]);
+        }
+
+        @Override
+        public int size() {
+            return fluids.length;
+        }
+
+    }
+
+    @Deprecated
     public record withNumber(FluidStack fluid, double value) implements RecipeInput {
 
         public static withNumber of(FluidStack f, double v) {
