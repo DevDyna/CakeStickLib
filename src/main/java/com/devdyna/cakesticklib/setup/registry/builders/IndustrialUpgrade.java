@@ -4,7 +4,7 @@ import com.devdyna.cakesticklib.api.utils.UpgradeComponents;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-@Deprecated
+
 public class IndustrialUpgrade extends Item {
 
     public IndustrialUpgrade(Properties properties) {
