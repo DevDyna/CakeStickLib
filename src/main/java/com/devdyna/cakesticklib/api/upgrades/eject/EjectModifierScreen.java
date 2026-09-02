@@ -163,8 +163,8 @@ public class EjectModifierScreen extends AbstractContainerScreen<EjectModifierMe
                                                 && !(state.isAir() || state.is(Blocks.BARRIER))
                                                                 ? x.item(Items.BARRIER)
                                                                 : x.item(state)),
-                                getLeftPos() + 55,
-                                getTopPos() + 47);
+                                getLeftPos() + 55 ,
+                                getTopPos() + 47+ 10);
 
         }
 
