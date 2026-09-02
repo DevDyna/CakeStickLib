@@ -6,6 +6,12 @@ import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.transfer.fluid.FluidStacksResourceHandler;
 
+/**
+ * A simple Fluid Storage interface (Buffer)
+ * <br/>
+ * <br/>
+ * It doesn't restrict IO , for that you need to use {@link RestrictedFluidStorage}
+ */
 public interface SimpleFluidStorage {
 
     FluidStacksResourceHandler getFluidStorage();

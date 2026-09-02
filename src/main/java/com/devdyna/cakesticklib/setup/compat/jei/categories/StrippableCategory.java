@@ -22,7 +22,6 @@ import net.neoforged.neoforge.registries.datamaps.builtin.NeoForgeDataMaps;
 
 public class StrippableCategory extends BaseCategory<StrippableRecipe> {
 
-    @SuppressWarnings("deprecation")
     public static final List<StrippableRecipe> getRecipes() {
         return x.getBlocks(NeoForgeDataMaps.STRIPPABLES)
                 .stream()

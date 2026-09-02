@@ -2,8 +2,6 @@ package com.devdyna.cakesticklib.api.gui;
 
 import javax.annotation.Nullable;
 
-import com.devdyna.cakesticklib.api.utils.x;
-
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.RenderPipelines;
@@ -23,7 +21,8 @@ public abstract class BaseScreen<T extends BaseMenu> extends AbstractContainerSc
         return null;
     }
 
-    public static final Identifier furnace_arrow = x.mcLoc("container/furnace/burn_progress");
+    // IF IT WORK , DON'T TOUCH IT OR IT WILL BREAK!
+    public static final Identifier furnace_arrow = Identifier.withDefaultNamespace("container/furnace/burn_progress");
 
     protected boolean whenAnimateArrow() {
         return false;

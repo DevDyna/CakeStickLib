@@ -15,7 +15,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
-
+@Deprecated
 public class TickingBE extends BlockEntity {
 
     public final static String WIDTH = "width";

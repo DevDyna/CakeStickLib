@@ -5,9 +5,12 @@ import static com.devdyna.cakesticklib.CakeStickLib.MODULE_ID;
 import com.devdyna.cakesticklib.api.ToolTipHelper;
 import com.devdyna.cakesticklib.api.aspect.logic.BlockItemKeeper;
 import com.devdyna.cakesticklib.api.datagen.LangUtils.TipColors;
+import com.devdyna.cakesticklib.api.upgrades.UpgradeComponents.UpgradeType;
+import com.devdyna.cakesticklib.api.upgrades.modifiers.DirectionalModifier;
+import com.devdyna.cakesticklib.api.upgrades.modifiers.ModifierUtils;
+import com.devdyna.cakesticklib.api.upgrades.modifiers.NumericModifier;
+import com.devdyna.cakesticklib.api.upgrades.modifiers.base.BaseModifier.UseType;
 import com.devdyna.cakesticklib.api.utils.StringUtil;
-import com.devdyna.cakesticklib.api.utils.UpgradeComponents;
-import com.devdyna.cakesticklib.api.utils.UpgradeComponents.UpgradeType;
 import com.devdyna.cakesticklib.api.utils.x;
 import com.devdyna.cakesticklib.setup.registry.builders.CakeStick;
 import com.devdyna.cakesticklib.setup.registry.builders.Chisel;
@@ -16,13 +19,13 @@ import com.devdyna.cakesticklib.setup.registry.builders.HoneySolution;
 import com.devdyna.cakesticklib.setup.registry.builders.RedstoneAcid;
 import com.devdyna.cakesticklib.setup.registry.builders.Wrench;
 import net.minecraft.ChatFormatting;
-import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.SpectralArrowItem;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 import com.devdyna.cakesticklib.setup.registry.LibComponents;
+import com.devdyna.cakesticklib.setup.registry.LibTags;
 
 public class ItemToolTipped {
 
@@ -38,37 +41,44 @@ public class ItemToolTipped {
         if (item.has(LibComponents.UPGRADE_COMPONENTS)) {
             var nbt = item.get(LibComponents.UPGRADE_COMPONENTS);
 
-            if (nbt != null && !UpgradeComponents.isEmpty(nbt)) {
+            if (nbt != null && !ModifierUtils.isEmpty(nbt)) {
                 tip.add(ToolTipHelper.INDEX, Component.translatable(MODULE_ID + ".upgrades.title"));
 
-                if (UpgradeComponents.has(nbt, UpgradeType.ENERGY)) {
-                    int energy = UpgradeComponents.get(nbt, UpgradeType.ENERGY);
+                if (ModifierUtils.has(nbt, UpgradeType.ENERGY)) {
+                    int energy = ((NumericModifier) ModifierUtils.get(nbt, UpgradeType.ENERGY)).value();
                     tip.add(2, Component.translatable(MODULE_ID + ".upgrades.modifier.energy",
-                            (UpgradeComponents.getColoredTip(energy < 0, energy == 0, false) + energy + "%")));
+                            (ModifierUtils.getColoredTip(energy < 0, energy == 0, false) + energy + "%")));
                 }
-                if (UpgradeComponents.has(nbt, UpgradeType.SPEED)) {
-                    int speed = UpgradeComponents.get(nbt, UpgradeType.SPEED);
+                if (ModifierUtils.has(nbt, UpgradeType.SPEED)) {
+                    int speed = ((NumericModifier) ModifierUtils.get(nbt, UpgradeType.SPEED)).value();
                     tip.add(2, Component.translatable(MODULE_ID + ".upgrades.modifier.speed",
-                            (UpgradeComponents.getColoredTip(speed > 0, speed == 0, true) + speed + "%")));
+                            (ModifierUtils.getColoredTip(speed > 0, speed == 0, true) + speed + "%")));
                 }
-                if (UpgradeComponents.has(nbt, UpgradeType.LUCK)) {
-                    int luck = UpgradeComponents.get(nbt, UpgradeType.LUCK);
+                if (ModifierUtils.has(nbt, UpgradeType.LUCK)) {
+                    int luck = ((NumericModifier) ModifierUtils.get(nbt, UpgradeType.LUCK)).value();
                     tip.add(2, Component.translatable(MODULE_ID + ".upgrades.modifier.luck",
-                            (UpgradeComponents.getColoredTip(luck > 0, luck == 0, true) + luck + "%")));
+                            (ModifierUtils.getColoredTip(luck > 0, luck == 0, true) + luck + "%")));
                 }
-                if (UpgradeComponents.has(nbt, UpgradeType.FLUID)) {
-                    int fluid = UpgradeComponents.get(nbt, UpgradeType.FLUID);
+                if (ModifierUtils.has(nbt, UpgradeType.FLUID)) {
+                    int fluid = ((NumericModifier) ModifierUtils.get(nbt, UpgradeType.FLUID)).value();
                     tip.add(2, Component.translatable(MODULE_ID + ".upgrades.modifier.fluid",
-                            (UpgradeComponents.getColoredTip(fluid < 0, fluid == 0, false) + fluid + "%")));
+                            (ModifierUtils.getColoredTip(fluid < 0, fluid == 0, false) + fluid + "%")));
                 }
-                if (UpgradeComponents.has(nbt, UpgradeType.EJECT)) {
-                    Direction eject = UpgradeComponents.get(nbt, UpgradeType.EJECT);
+                if (ModifierUtils.has(nbt, UpgradeType.EJECT)) {
+                    tip.add(2, Component.translatable(MODULE_ID + ".upgrades.modifier.eject.shift"));
+
+                    var eject = ((DirectionalModifier) ModifierUtils.get(nbt, UpgradeType.EJECT));
                     tip.add(2, Component.translatable(MODULE_ID + ".upgrades.modifier.eject",
-                            TipColors.LIGHT_BLUE + StringUtil.nameCapitalized(eject.getName())));
+                            TipColors.GOLD + eject.dir().name(),
+                            (eject.type() == UseType.FLUID ? TipColors.LIGHT_BLUE : TipColors.GREEN)
+                                    + StringUtil.nameCapitalized(eject.type().getId())));
                 }
 
             }
         }
+
+        if (item.is(LibTags.Items.UPGRADES) && !item.has(LibComponents.UPGRADE_COMPONENTS))
+            tip.add(ToolTipHelper.INDEX, Component.translatable(MODULE_ID + ".upgrades.modifier.empty"));
 
         if (item.getItem() instanceof GlassCutter)
             tip.add(ToolTipHelper.INDEX, Component.translatable(MODULE_ID + ".glass_cutter.tip"));

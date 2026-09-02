@@ -47,13 +47,30 @@ public interface BucketInteraction {
         if (level.isClientSide())
             return InteractionResult.SUCCESS;
 
-        if (FluidUtil.interactWithFluidHandler(player, hand, level, blockPos, blockHitResult.getDirection(),null))
+        if (FluidUtil.interactWithFluidHandler(player, hand, level, blockPos, blockHitResult.getDirection(), null))
             return InteractionResult.SUCCESS;
 
         return InteractionResult.PASS;
     }
 
-    // default boolean insertFilter(FluidStack simulated) {
-    //     return true;
-    // }
+    public interface Simple extends BucketInteraction {
+
+        abstract InteractionResult useItemOn(ItemStack itemStack, BlockState state, Level level, BlockPos pos,
+                Player player, InteractionHand hand, BlockHitResult hitResult);
+
+        abstract InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player,
+                BlockHitResult hitResult);
+
+        @Override
+        default InteractionResult executeWhenNotBucket(ItemStack stack, BlockState state, Level level, BlockPos pos,
+                Player player, InteractionHand hand, BlockHitResult hitResult) {
+            return InteractionResult.TRY_WITH_EMPTY_HAND;
+        }
+
+        @Override
+        default InteractionResult executeWhenEmpty(ItemStack stack, BlockState state, Level level, BlockPos pos,
+                Player player, InteractionHand hand, BlockHitResult hitResult) {
+            return useWithoutItem(state, level, pos, player, hitResult);
+        }
+    }
 }

@@ -6,7 +6,7 @@ import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-
+@Deprecated
 public abstract class TickingTankBE extends BETank {
 
     public TickingTankBE(BlockEntityType<?> type, BlockPos pos, BlockState blockState) {

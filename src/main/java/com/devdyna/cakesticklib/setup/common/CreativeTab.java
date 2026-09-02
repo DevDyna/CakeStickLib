@@ -1,12 +1,20 @@
 package com.devdyna.cakesticklib.setup.common;
 
+import java.util.function.Function;
+
 import com.devdyna.cakesticklib.api.CreativeTabUtils;
+import com.devdyna.cakesticklib.api.upgrades.UpgradeComponents;
+import com.devdyna.cakesticklib.api.upgrades.modifiers.base.BaseModifier.UseType;
+import com.devdyna.cakesticklib.api.utils.x;
 import com.devdyna.cakesticklib.setup.registry.*;
 
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 public class CreativeTab {
     @SubscribeEvent
@@ -22,11 +30,13 @@ public class CreativeTab {
             event.accept(LibItems.HAMMER.get());
             event.accept(LibItems.WRENCH.get());
 
-            event.accept(LibItems.SPEED_UPGRADE.get().set(20, 125, 0, 0,null));
-            event.accept(LibItems.ENERGY_UPGRADE.get().set(0, -50, 0, 0,null));
-            event.accept(LibItems.LUCK_UPGRADE.get().set(0, 150, 15, 0,null));
-            event.accept(LibItems.FLUID_UPGRADE.get().set(0, 150, 0, -20,null));
-            event.accept(LibItems.EJECT_UPGRADE.get().set(0, 0, 0, 0,Direction.DOWN));
+           event.accept(upgrade(LibItems.SPEED_UPGRADE, b -> b.speed(20).energy(125).create()));
+            event.accept(upgrade(LibItems.ENERGY_UPGRADE, b -> b.energy(-50).create()));
+            event.accept(upgrade(LibItems.LUCK_UPGRADE, b -> b.luck(15).energy(150).create()));
+            event.accept(upgrade(LibItems.FLUID_UPGRADE, b -> b.fluid(-20).energy(150).create()));
+            event.accept(upgrade(LibItems.EJECT_UPGRADE, b -> b.eject(Direction.DOWN, UseType.ITEM).create()));
+            event.accept(upgrade(LibItems.EJECT_UPGRADE, b -> b.eject(Direction.DOWN, UseType.FLUID).create()));
+
         }
 
         if (event.getTabKey() == LibCreativeTab.INGREDIENTS.getKey()) {
@@ -47,5 +57,12 @@ public class CreativeTab {
 
         }
 
+    }
+
+     private static ItemStack upgrade(DeferredHolder<Item, Item> item,
+            Function<UpgradeComponents.Builder, UpgradeComponents> upgrades) {
+        var stack = x.item(item.get());
+        stack.set(LibComponents.UPGRADE_COMPONENTS, upgrades.apply(UpgradeComponents.Builder.of()));
+        return stack;
     }
 }

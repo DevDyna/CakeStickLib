@@ -1,6 +1,26 @@
 {
   "model": {
-    "type": "minecraft:model",
-    "model": "cakesticklib:item/eject_upgrade"
+    "type": "minecraft:select",
+    "cases": [
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "cakesticklib:eject_upgrade/item"
+        },
+        "when": 1
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "cakesticklib:eject_upgrade/fluid"
+        },
+        "when": 2
+      }
+    ],
+    "fallback": {
+      "type": "minecraft:model",
+      "model": "cakesticklib:eject_upgrade/custom"
+    },
+    "property": "cakesticklib:eject"
   }
 }

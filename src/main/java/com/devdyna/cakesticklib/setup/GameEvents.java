@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.devdyna.cakesticklib.setup.common.*;
 import com.devdyna.cakesticklib.setup.common.events.*;
+import com.devdyna.cakesticklib.setup.common.network.PayloadRegistry;
 
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
@@ -20,11 +21,12 @@ public class GameEvents {
                 VanillaHarvestable.class,
                 RecipeSender.class,
                 EnderEyeReturn.class,
-                EjectModifierSetup.class,
+                ModifierItemEvents.class,
                 InstamineDropEvent.class)
                 .forEach(NeoForge.EVENT_BUS::register);
 
         bus.register(CreativeTab.class);
+        bus.addListener(PayloadRegistry::register);
     }
 
 }

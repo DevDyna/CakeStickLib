@@ -5,7 +5,7 @@ import com.devdyna.cakesticklib.setup.registry.*;
 import net.neoforged.bus.api.IEventBus;
 
 public class RegistryHub {
-    /**
+        /**
          * DON'T OVERRIDE OR IT WILL LOSE ANY RECIPE TYPES AND HANDLERS!
          */
         public static void register(IEventBus bus) {
@@ -16,5 +16,6 @@ public class RegistryHub {
                 LibTags.register(bus);
                 LibCreativeTab.register(bus);
                 LibBlocks.register(bus);
+                LibContainer.register(bus);
         }
 }

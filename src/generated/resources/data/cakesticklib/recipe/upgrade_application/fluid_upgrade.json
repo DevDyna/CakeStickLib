@@ -15,9 +15,13 @@
   ],
   "result": {
     "components": {
-      "cakesticklib:upgrade_components": {
-        "energy": 150,
-        "fluid": -20
+      "cakesticklib:modifiers": {
+        "energy": {
+          "value": 150
+        },
+        "fluid": {
+          "value": -20
+        }
       }
     },
     "id": "cakesticklib:fluid_upgrade"

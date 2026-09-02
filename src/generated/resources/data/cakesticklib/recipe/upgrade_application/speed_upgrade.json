@@ -15,9 +15,13 @@
   ],
   "result": {
     "components": {
-      "cakesticklib:upgrade_components": {
-        "energy": 125,
-        "speed": 20
+      "cakesticklib:modifiers": {
+        "energy": {
+          "value": 125
+        },
+        "speed": {
+          "value": 20
+        }
       }
     },
     "id": "cakesticklib:speed_upgrade"

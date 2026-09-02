@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 import com.devdyna.cakesticklib.api.datagen.RecipeGenerators;
+import com.devdyna.cakesticklib.api.upgrades.modifiers.base.BaseModifier.UseType;
 import com.devdyna.cakesticklib.api.utils.x;
 import com.devdyna.cakesticklib.setup.common.recipes.item_replace.ReplaceItemBuilder;
 import com.devdyna.cakesticklib.setup.common.recipes.oxidation.CopperOxidationBuilder;
@@ -222,12 +223,12 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                 twoByTwoPacker(output, LibItems.CARBON_PLATE.get(), LibTags.Items.CARBON_FIBER);
 
                 UpgradeApplicationBuilder.of(registries)
-                                .eject(Direction.NORTH)
+                                .eject(Direction.NORTH, UseType.ITEM)
                                 .pattern(" B ")
                                 .pattern("CSC")
                                 .pattern(" R ")
                                 .define('S', LibTags.Items.STEEL_PLATE)
-                                .define('R', LibItems.GREEN_BATTERY.get())
+                                .define('R', Items.PISTON)
                                 .define('B', LibTags.Items.EMERALD_DUST)
                                 .define('C', LibItems.CHIP.get())
                                 .unlockedBy(getHasName(LibTags.Items.STEEL_PLATE), has(LibTags.Items.STEEL_PLATE))
@@ -380,6 +381,13 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .tool(LibItems.HAMMER.get())
                                 .add(Tags.Items.GLASS_BLOCKS)
                                 .output(LibItems.GLASS_DUST)
+                                .unlockedBy()
+                                .save(output);
+
+                DurabilityConsumeBuilder.of(registries)
+                                .tool(LibItems.HAMMER.get(), 12)
+                                .add(Tags.Items.ORES_NETHERITE_SCRAP)
+                                .output(Items.NETHERITE_SCRAP, 2)
                                 .unlockedBy()
                                 .save(output);
 
@@ -598,9 +606,10 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .save(output);
 
                 // shapeless(RecipeCategory.MISC, Items.BOOK)
-                //                 .requires(LibTags.Items.WRITABLE_BOOKS)
-                //                 .unlockedBy(getHasName(LibTags.Items.WRITABLE_BOOKS), has(LibTags.Items.WRITABLE_BOOKS))
-                //                 .save(output);
+                // .requires(LibTags.Items.WRITABLE_BOOKS)
+                // .unlockedBy(getHasName(LibTags.Items.WRITABLE_BOOKS),
+                // has(LibTags.Items.WRITABLE_BOOKS))
+                // .save(output);
 
                 shapeless(RecipeCategory.MISC, Items.CLAY_BALL, 4)
                                 .requires(Items.CLAY)

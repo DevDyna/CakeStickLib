@@ -58,6 +58,10 @@ public class SlotBuilder {
         return list;
     }
 
+    public List<Integer> get(ResourceType type) {
+        return list.stream().filter(t->t.equals(type)).map(a->list.indexOf(a)).toList();
+    }
+
     public ResourceType get(int slot) {
         return list.get(slot);
     }

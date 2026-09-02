@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_plates/steel": {
+    "hammer": {
       "conditions": {
         "items": [
           {
-            "items": "#c:plates/steel"
+            "items": "cakesticklib:hammer"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "cakesticklib:upgrade_application/eject_upgrade"
+        "recipe": "cakesticklib:durability_use/netherite_scrap"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_plates/steel"
+      "hammer"
     ]
   ],
   "rewards": {
     "recipes": [
-      "cakesticklib:upgrade_application/eject_upgrade"
+      "cakesticklib:durability_use/netherite_scrap"
     ]
   }
 }

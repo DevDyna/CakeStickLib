@@ -2,9 +2,12 @@ package com.devdyna.cakesticklib.setup;
 
 import static com.devdyna.cakesticklib.CakeStickLib.MODULE_ID;
 import com.devdyna.cakesticklib.api.client.ItemRenderDecorator;
+import com.devdyna.cakesticklib.api.datagen.selectors.EjectTypeProperty;
+import com.devdyna.cakesticklib.api.upgrades.eject.EjectModifierScreen;
 import com.devdyna.cakesticklib.api.client.HudRenderable;
 import com.devdyna.cakesticklib.api.utils.ModAddonUtil;
 import com.devdyna.cakesticklib.api.utils.x;
+import com.devdyna.cakesticklib.setup.registry.LibContainer;
 import com.devdyna.cakesticklib.setup.registry.LibItems;
 
 import net.minecraft.world.item.crafting.RecipeMap;
@@ -17,6 +20,8 @@ import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent;
 import net.neoforged.neoforge.client.event.RecipesReceivedEvent;
 import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
 import net.neoforged.neoforge.client.event.RegisterItemDecorationsEvent;
+import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
+import net.neoforged.neoforge.client.event.RegisterSelectItemModelPropertyEvent;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
@@ -34,10 +39,20 @@ public class Client {
         r.register(LibItems.CHISEL.get(), new ItemRenderDecorator());
     }
 
-    //TODO NYI
+    // TODO NYI
     @SubscribeEvent
     public static void registerOverlays(RegisterGuiLayersEvent event) {
         event.registerAbove(VanillaGuiLayers.CROSSHAIR, x.rl(MODULE_ID, "hud_tooltip"), HudRenderable.LAYER);
+    }
+
+    @SubscribeEvent
+    public static void registerScreens(RegisterMenuScreensEvent event) {
+        event.register(LibContainer.EJECT_MODIFIER.get(), EjectModifierScreen::new);
+    }
+
+    @SubscribeEvent
+    public static void registerSelectProperties( RegisterSelectItemModelPropertyEvent event) {
+        event.register(x.rl(MODULE_ID, "eject"), EjectTypeProperty.TYPE);
     }
 
     // Recipe collector client-side

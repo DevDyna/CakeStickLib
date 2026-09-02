@@ -6,6 +6,12 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
 
+/**
+ * A simple Item Storage interface (Buffer)
+ * <br/>
+ * <br/>
+ * It doesn't restrict IO , for that you need to use {@link MachineItemStorage}
+ */
 public interface ItemStorageBlock {
 
     ItemStacksResourceHandler getItemStorage();

@@ -6,7 +6,7 @@ import com.devdyna.cakesticklib.api.aspect.templates.menu.BlockMenu;
 import com.mojang.serialization.MapCodec;
 
 import net.minecraft.world.level.block.Block;
-
+@Deprecated
 public abstract class BlockStorage extends BlockMenu {
 
     public BlockStorage(Properties p) {

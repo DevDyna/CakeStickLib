@@ -6,6 +6,6 @@ public interface EnvironmentModifier {
     abstract boolean isRequired();
 
     default String failDescKey() {
-        return "";//TODO IMP : when defaul fall on errored jade
+        return "";
     }
 }

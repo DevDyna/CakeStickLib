@@ -9,7 +9,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.devdyna.cakesticklib.api.recipe.recipeBuilder.*;
-import com.devdyna.cakesticklib.api.utils.UpgradeComponents;
+import com.devdyna.cakesticklib.api.upgrades.UpgradeComponents;
+import com.devdyna.cakesticklib.api.upgrades.modifiers.base.BaseModifier.UseType;
 import com.devdyna.cakesticklib.api.utils.x;
 import com.devdyna.cakesticklib.setup.registry.LibComponents;
 import com.devdyna.cakesticklib.setup.registry.LibItems;
@@ -37,16 +38,14 @@ public class UpgradeApplicationBuilder extends BaseRecipeBuilder
     private ItemStackTemplate result;
     private Map<Character, Ingredient> key = new HashMap<>();
     private List<String> row = new ArrayList<>();
+    private boolean disable_clear_recipe = false;
 
-    private int energy;
-    private int speed;
-    private int luck;
-    private int fluid;
-    private Direction eject = null;
+    private UpgradeComponents.Builder builder;
 
     public UpgradeApplicationBuilder(HolderLookup.Provider p) {
         super(p);
         this.criteria = new LinkedHashMap<String, Criterion<?>>();
+        this.builder = UpgradeComponents.Builder.of();
     }
 
     public static UpgradeApplicationBuilder of(HolderLookup.Provider p) {
@@ -69,34 +68,38 @@ public class UpgradeApplicationBuilder extends BaseRecipeBuilder
 
         this.result = new ItemStackTemplate(upgrade.item(), 1,
                 DataComponentPatch.builder()
-                        .set(LibComponents.UPGRADE_COMPONENTS.get(), UpgradeComponents
-                                .builder(speed, energy, luck, fluid, eject))
+                        .set(LibComponents.UPGRADE_COMPONENTS.get(), builder.create())
                         .build());
         return this;
     }
 
-    public UpgradeApplicationBuilder energy(int energy) {
-        this.energy = energy;
+    public UpgradeApplicationBuilder energy(int v) {
+        builder = builder.energy(v);
         return this;
     }
 
-    public UpgradeApplicationBuilder speed(int speed) {
-        this.speed = speed;
+    public UpgradeApplicationBuilder speed(int v) {
+        builder = builder.speed(v);
         return this;
     }
 
-    public UpgradeApplicationBuilder luck(int luck) {
-        this.luck = luck;
+    public UpgradeApplicationBuilder luck(int v) {
+        builder = builder.luck(v);
         return this;
     }
 
-    public UpgradeApplicationBuilder fluid(int fluid) {
-        this.fluid = fluid;
+    public UpgradeApplicationBuilder fluid(int v) {
+        builder = builder.fluid(v);
         return this;
     }
 
-    public UpgradeApplicationBuilder eject(Direction d) {
-        this.eject = d;
+    public UpgradeApplicationBuilder disableClearRecipe() {
+        this.disable_clear_recipe = true;
+        return this;
+    }
+
+    public UpgradeApplicationBuilder eject(Direction d, UseType t) {
+        builder = builder.eject(d, t);
         return this;
     }
 
@@ -131,13 +134,14 @@ public class UpgradeApplicationBuilder extends BaseRecipeBuilder
 
     @Override
     public Identifier getSuffix(String extra) {
-        return x.rl(MODULE_ID, "upgrade_application/" + x.name(result) + extra);
+        return x.rl(MODULE_ID, "upgrade_application/" + x.name(result)
+                + (builder.getEject() != null ? "_" + builder.getEject().type().getId() : "") + extra);
     }
 
     @Override
     public Recipe<?> createRecipe() {
         return new UpgradeApplicationRecipe(ShapedRecipePattern.of(key, row), result,
-                UpgradeComponents.builder(speed, energy, luck, fluid, eject));
+                builder.create());
     }
 
     @Override
@@ -147,9 +151,10 @@ public class UpgradeApplicationBuilder extends BaseRecipeBuilder
 
     @Override
     public void onRecipeCreation(RecipeOutput c, ResourceKey<Recipe<?>> pId, Recipe<?> created) {
-        buildRecipe(c, ResourceKey.create(Registries.RECIPE, getSuffix("_clear_nbt")), new UpgradeApplicationRecipe(
-                ShapedRecipePattern.of(Map.of('U', x.itemIngredient(result.item().value())), List.of("U")), result,
-                UpgradeComponents.builder(speed, energy, luck, fluid, eject)));
+        if (!disable_clear_recipe)
+            buildRecipe(c, ResourceKey.create(Registries.RECIPE, getSuffix("_clear_nbt")), new UpgradeApplicationRecipe(
+                    ShapedRecipePattern.of(Map.of('U', x.itemIngredient(result.item().value())), List.of("U")), result,
+                    builder.create()));
     }
 
 }

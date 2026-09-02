@@ -40,6 +40,7 @@ import net.neoforged.neoforge.transfer.transaction.Transaction;
  * <br/>
  * credit: @DevDyna
  */
+@Deprecated
 public abstract class MachineBE extends BEStorage {
 
     public final static String ENERGY = "energy";
@@ -104,8 +105,6 @@ public abstract class MachineBE extends BEStorage {
         setChanged();
         level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
     }
-
-    // TODO API : ifPresent to other templates
 
     @Override
     protected void loadAdditional(ValueInput input) {

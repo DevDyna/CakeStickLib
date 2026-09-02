@@ -1,11 +1,17 @@
 package com.devdyna.cakesticklib.api;
 
+import com.devdyna.cakesticklib.api.aspect.logic.SimpleFluidStorage;
+
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.transfer.fluid.FluidStacksResourceHandler;
 
 public class FluidStorageTank extends FluidStacksResourceHandler {
+
+    public FluidStorageTank(SimpleFluidStorage be) {
+        this((BlockEntity)be, be.getTanks(), be.getTankCapacity());
+    }
 
     public FluidStorageTank(BlockEntity be, int size, int capacity) {
         super(size, capacity);

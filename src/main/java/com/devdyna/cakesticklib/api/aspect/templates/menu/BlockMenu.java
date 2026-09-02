@@ -13,7 +13,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
-
+@Deprecated
 public abstract class BlockMenu extends Block implements EntityBlock {
 
     public BlockMenu(Properties p) {
