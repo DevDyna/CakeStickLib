@@ -14,7 +14,7 @@ import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-
+@Deprecated
 public abstract class BEMenu extends BlockEntity implements MenuProvider {
 
     public BEMenu(BlockEntityType<?> type, BlockPos pos, BlockState blockState) {

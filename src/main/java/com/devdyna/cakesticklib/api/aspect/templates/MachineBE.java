@@ -40,6 +40,7 @@ import net.neoforged.neoforge.transfer.transaction.Transaction;
  * <br/>
  * credit: @DevDyna
  */
+@Deprecated
 public abstract class MachineBE extends BEStorage {
 
     public final static String ENERGY = "energy";

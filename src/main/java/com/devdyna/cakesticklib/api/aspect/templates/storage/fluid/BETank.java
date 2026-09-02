@@ -17,7 +17,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import net.neoforged.neoforge.transfer.fluid.FluidStacksResourceHandler;
-
+@Deprecated
 public abstract class BETank extends BlockEntity implements SimpleFluidStorage {
 
     public static final int DEFAULT_TANK_STORAGE = 16_000;

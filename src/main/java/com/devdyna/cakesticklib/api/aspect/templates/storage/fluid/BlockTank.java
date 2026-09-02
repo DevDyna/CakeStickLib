@@ -17,7 +17,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.neoforged.neoforge.transfer.fluid.FluidStacksResourceHandler;
-
+@Deprecated
 public abstract class BlockTank extends Block implements BucketInteraction, FluidTooltipWhenEmpty, EntityBlock {
 
     public BlockTank(Properties properties) {
