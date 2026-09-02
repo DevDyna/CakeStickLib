@@ -1,5 +1,8 @@
 package com.devdyna.cakesticklib.api.aspect.logic;
 
+import java.util.List;
+import java.util.stream.IntStream;
+
 import com.devdyna.cakesticklib.api.utils.x;
 
 import net.minecraft.world.item.ItemStack;
@@ -29,6 +32,14 @@ public interface MachineFluidAutomation extends IndexModifier<FluidResource> {
     @Override
     default void set(int index, FluidResource resource, int amount) {
         getFluidStorage().set(index, resource, amount);
+    }
+
+    default List<Integer> getInputTankIndex() {
+        return IntStream.rangeClosed(0, getTanks() - 1).boxed().toList();
+    }
+
+    default List<Integer> getOutputTankIndex() {
+        return IntStream.rangeClosed(0, getTanks() - 1).boxed().toList();
     }
 
 }
