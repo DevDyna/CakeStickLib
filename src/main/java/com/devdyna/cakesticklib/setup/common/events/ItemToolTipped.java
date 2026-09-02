@@ -9,6 +9,7 @@ import com.devdyna.cakesticklib.api.upgrades.UpgradeComponents.UpgradeType;
 import com.devdyna.cakesticklib.api.upgrades.modifiers.DirectionalModifier;
 import com.devdyna.cakesticklib.api.upgrades.modifiers.ModifierUtils;
 import com.devdyna.cakesticklib.api.upgrades.modifiers.NumericModifier;
+import com.devdyna.cakesticklib.api.upgrades.modifiers.base.BaseModifier.UseType;
 import com.devdyna.cakesticklib.api.utils.StringUtil;
 import com.devdyna.cakesticklib.api.utils.x;
 import com.devdyna.cakesticklib.setup.registry.builders.CakeStick;
@@ -36,46 +37,44 @@ public class ItemToolTipped {
         if (item.getItem() instanceof CakeStick)
             tip.add(ToolTipHelper.INDEX, Component.translatable(MODULE_ID + ".cakestick.tip"));
 
-        
-            
-if (item.has(LibComponents.UPGRADE_COMPONENTS)) {
+        if (item.has(LibComponents.UPGRADE_COMPONENTS)) {
             var nbt = item.get(LibComponents.UPGRADE_COMPONENTS);
 
             if (nbt != null && !ModifierUtils.isEmpty(nbt)) {
                 tip.add(ToolTipHelper.INDEX, Component.translatable(MODULE_ID + ".upgrades.title"));
 
                 if (ModifierUtils.has(nbt, UpgradeType.ENERGY)) {
-                    int energy = ((NumericModifier)ModifierUtils.get(nbt, UpgradeType.ENERGY)).value();
+                    int energy = ((NumericModifier) ModifierUtils.get(nbt, UpgradeType.ENERGY)).value();
                     tip.add(2, Component.translatable(MODULE_ID + ".upgrades.modifier.energy",
                             (ModifierUtils.getColoredTip(energy < 0, energy == 0, false) + energy + "%")));
                 }
                 if (ModifierUtils.has(nbt, UpgradeType.SPEED)) {
-                    int speed = ((NumericModifier)ModifierUtils.get(nbt, UpgradeType.SPEED)).value();
+                    int speed = ((NumericModifier) ModifierUtils.get(nbt, UpgradeType.SPEED)).value();
                     tip.add(2, Component.translatable(MODULE_ID + ".upgrades.modifier.speed",
                             (ModifierUtils.getColoredTip(speed > 0, speed == 0, true) + speed + "%")));
                 }
                 if (ModifierUtils.has(nbt, UpgradeType.LUCK)) {
-                    int luck = ((NumericModifier)ModifierUtils.get(nbt, UpgradeType.LUCK)).value();
+                    int luck = ((NumericModifier) ModifierUtils.get(nbt, UpgradeType.LUCK)).value();
                     tip.add(2, Component.translatable(MODULE_ID + ".upgrades.modifier.luck",
                             (ModifierUtils.getColoredTip(luck > 0, luck == 0, true) + luck + "%")));
                 }
                 if (ModifierUtils.has(nbt, UpgradeType.FLUID)) {
-                    int fluid = ((NumericModifier)ModifierUtils.get(nbt, UpgradeType.FLUID)).value();
+                    int fluid = ((NumericModifier) ModifierUtils.get(nbt, UpgradeType.FLUID)).value();
                     tip.add(2, Component.translatable(MODULE_ID + ".upgrades.modifier.fluid",
                             (ModifierUtils.getColoredTip(fluid < 0, fluid == 0, false) + fluid + "%")));
                 }
                 if (ModifierUtils.has(nbt, UpgradeType.EJECT)) {
-                    var eject = ((DirectionalModifier)ModifierUtils.get(nbt, UpgradeType.EJECT));
+                    tip.add(2, Component.translatable(MODULE_ID + ".upgrades.modifier.eject.shift"));
+
+                    var eject = ((DirectionalModifier) ModifierUtils.get(nbt, UpgradeType.EJECT));
                     tip.add(2, Component.translatable(MODULE_ID + ".upgrades.modifier.eject",
-                            TipColors.LIGHT_BLUE + StringUtil.nameCapitalized(eject.dir().name()),TipColors.GOLD + StringUtil.nameCapitalized(eject.type().getId())));
+                             TipColors.GOLD + eject.dir().name(),
+                            (eject.type() == UseType.FLUID ? TipColors.LIGHT_BLUE : TipColors.GREEN)
+                                    + StringUtil.nameCapitalized(eject.type().getId())));
                 }
 
             }
         }
-
-
-
-
 
         if (item.getItem() instanceof GlassCutter)
             tip.add(ToolTipHelper.INDEX, Component.translatable(MODULE_ID + ".glass_cutter.tip"));
