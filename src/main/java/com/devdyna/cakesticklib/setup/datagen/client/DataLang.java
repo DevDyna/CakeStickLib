@@ -142,6 +142,9 @@ public class DataLang extends LanguageProvider {
                 add(MODULE_ID + ".upgrades.modifier.eject.shift",
                                 TipColors.ITALIC + TipColors.GRAY + "<Shift-Right to configure>");
 
+                add(MODULE_ID + ".upgrades.modifier.empty",
+                                TipColors.GRAY + TipColors.ITALIC + "<Put on crafting table to reset>");
+
                 for (var dir : Direction.values())
                         add(MODULE_ID + ".widgets.button." + dir.name(), dir.getName() + " Directional Button");
 

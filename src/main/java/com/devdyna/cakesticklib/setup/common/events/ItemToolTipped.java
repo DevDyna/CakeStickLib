@@ -25,6 +25,7 @@ import net.minecraft.world.item.SpectralArrowItem;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 import com.devdyna.cakesticklib.setup.registry.LibComponents;
+import com.devdyna.cakesticklib.setup.registry.LibTags;
 
 public class ItemToolTipped {
 
@@ -68,13 +69,16 @@ public class ItemToolTipped {
 
                     var eject = ((DirectionalModifier) ModifierUtils.get(nbt, UpgradeType.EJECT));
                     tip.add(2, Component.translatable(MODULE_ID + ".upgrades.modifier.eject",
-                             TipColors.GOLD + eject.dir().name(),
+                            TipColors.GOLD + eject.dir().name(),
                             (eject.type() == UseType.FLUID ? TipColors.LIGHT_BLUE : TipColors.GREEN)
                                     + StringUtil.nameCapitalized(eject.type().getId())));
                 }
 
             }
         }
+
+        if (item.is(LibTags.Items.UPGRADES) && !item.has(LibComponents.UPGRADE_COMPONENTS))
+            tip.add(ToolTipHelper.INDEX, Component.translatable(MODULE_ID + ".upgrades.modifier.empty"));
 
         if (item.getItem() instanceof GlassCutter)
             tip.add(ToolTipHelper.INDEX, Component.translatable(MODULE_ID + ".glass_cutter.tip"));
