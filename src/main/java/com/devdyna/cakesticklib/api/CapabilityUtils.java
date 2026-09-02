@@ -1,8 +1,7 @@
 package com.devdyna.cakesticklib.api;
 
 import com.devdyna.cakesticklib.api.aspect.logic.EnergyBlock;
-import com.devdyna.cakesticklib.api.aspect.logic.MachineFluidAutomation;
-import com.devdyna.cakesticklib.api.aspect.logic.MachineItemAutomation;
+import com.devdyna.cakesticklib.api.aspect.logic.ResourceRestricted;
 import com.devdyna.cakesticklib.api.aspect.logic.SimpleFluidStorage;
 import com.devdyna.cakesticklib.setup.registry.LibHandlers;
 
@@ -17,7 +16,7 @@ public class CapabilityUtils {
                 Capabilities.Fluid.BLOCK,
                 (level, pos, state, be, side) -> {
 
-                    if (be instanceof MachineFluidAutomation m)
+                    if (be instanceof ResourceRestricted.Fluid m)
                         return m.getAutomationFluidStorage();
 
                     if (be instanceof SimpleFluidStorage)
@@ -45,7 +44,7 @@ public class CapabilityUtils {
         e.registerBlock(Capabilities.Item.BLOCK,
                 (level, pos, state, be, side) -> {
 
-                    if (be instanceof MachineItemAutomation m)
+                    if (be instanceof ResourceRestricted.Item m)
                         return m.getAutomationItemStorage();
 
                     return (be != null) ? be.getData(LibHandlers.ITEM_STORAGE) : null;

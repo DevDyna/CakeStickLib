@@ -5,7 +5,7 @@ import java.util.function.Function;
 
 import com.devdyna.cakesticklib.api.aspect.logic.EnergyBlock;
 import com.devdyna.cakesticklib.api.aspect.logic.ItemStorageBlock;
-import com.devdyna.cakesticklib.api.aspect.logic.MachineItemAutomation;
+import com.devdyna.cakesticklib.api.aspect.logic.ResourceRestricted;
 import com.devdyna.cakesticklib.setup.registry.LibComponents;
 
 import net.minecraft.world.Container;
@@ -45,7 +45,7 @@ public abstract class BaseMenu extends AbstractContainerMenu {
             this.container = new SimpleContainer(MACHINE_SLOT);
         }
 
-        if (blockEntity instanceof MachineItemAutomation be) {
+        if (blockEntity instanceof ResourceRestricted.Item be) {
             this.type = BlockMenuType.MACHINE;
             this.MACHINE_SLOT = be.getMachineSlots();
             this.inputSlotIndex = be.getInputSlotIndex();
