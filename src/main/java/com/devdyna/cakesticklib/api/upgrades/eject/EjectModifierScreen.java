@@ -4,11 +4,14 @@ import com.devdyna.cakesticklib.api.gui.buttons.DirectionalItemButton;
 import com.devdyna.cakesticklib.api.upgrades.UpgradeComponents.UpgradeType;
 import com.devdyna.cakesticklib.api.upgrades.modifiers.DirectionalModifier;
 import com.devdyna.cakesticklib.api.upgrades.modifiers.ModifierUtils;
+import com.devdyna.cakesticklib.api.upgrades.modifiers.base.BaseModifier.UseType;
 import com.devdyna.cakesticklib.api.utils.ColorUtils;
 import com.devdyna.cakesticklib.api.utils.x;
-import com.devdyna.cakesticklib.setup.common.network.payloads.EjectPayload;
+import com.devdyna.cakesticklib.setup.common.network.payloads.eject.EjectDirectionPayload;
+import com.devdyna.cakesticklib.setup.common.network.payloads.eject.EjectUseTypePayload;
 
 import net.minecraft.client.gui.GuiGraphicsExtractor;
+import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.core.Direction;
@@ -29,6 +32,9 @@ public class EjectModifierScreen extends AbstractContainerScreen<EjectModifierMe
         private final Map<Direction, DirectionalItemButton> BUTTONS = new EnumMap<>(Direction.class);
         private Direction saved = Direction.NORTH;
 
+        private Button typeButton;
+        private UseType cachedType = UseType.ITEM;
+
         public EjectModifierScreen(EjectModifierMenu menu, Inventory inventory, Component title) {
                 super(menu, inventory, title, 128, 128);
         }
@@ -40,16 +46,30 @@ public class EjectModifierScreen extends AbstractContainerScreen<EjectModifierMe
 
                 BUTTONS.clear();
 
-                saved = ((DirectionalModifier) ModifierUtils.get(
+                var modifier = (DirectionalModifier) ModifierUtils.get(
                                 minecraft.player.getActiveItem(),
-                                UpgradeType.EJECT)).dir();
+                                UpgradeType.EJECT);
 
-                addSynchedButton(Direction.NORTH, getLeftPos() + 35, getTopPos() + 27);
-                addSynchedButton(Direction.SOUTH, getLeftPos() + 76, getTopPos() + 67);
-                addSynchedButton(Direction.EAST, getLeftPos() + 35, getTopPos() + 47);
-                addSynchedButton(Direction.WEST, getLeftPos() + 76, getTopPos() + 47);
-                addSynchedButton(Direction.UP, getLeftPos() + 55, getTopPos() + 27);
-                addSynchedButton(Direction.DOWN, getLeftPos() + 55, getTopPos() + 67);
+                if (modifier == null)
+                        return;
+
+                saved = modifier.dir();
+                cachedType = modifier.type();
+
+                addBundledButtons(0, +10);
+
+                addTypedButton(0, -10);
+
+        }
+
+        private void addBundledButtons(int x, int y) {
+
+                addSynchedButton(Direction.NORTH, getLeftPos() + 35 + x, getTopPos() + 27 + y);
+                addSynchedButton(Direction.SOUTH, getLeftPos() + 76 + x, getTopPos() + 67 + y);
+                addSynchedButton(Direction.EAST, getLeftPos() + 35 + x, getTopPos() + 47 + y);
+                addSynchedButton(Direction.WEST, getLeftPos() + 76 + x, getTopPos() + 47 + y);
+                addSynchedButton(Direction.UP, getLeftPos() + 55 + x, getTopPos() + 27 + y);
+                addSynchedButton(Direction.DOWN, getLeftPos() + 55 + x, getTopPos() + 67 + y);
 
                 if (minecraft == null || minecraft.level == null)
                         return;
@@ -58,16 +78,39 @@ public class EjectModifierScreen extends AbstractContainerScreen<EjectModifierMe
 
                         var button = entry.getValue();
 
-                        var state = minecraft.level.getBlockState(menu.getPos().relative(entry.getKey()));
+                        var state = minecraft.level.getBlockState(
+                                        menu.getPos().relative(entry.getKey()));
 
                         if (state.isAir())
                                 button.setPreviewStack(ItemStack.EMPTY);
                         else
                                 button.setPreviewStack(state.getBlock().asItem().getDefaultInstance());
-
                 }
 
                 updateButtons();
+        }
+
+        private void addTypedButton(int x, int y) {
+
+                typeButton = Button.builder(
+                                Component.literal(cachedType.getId().toUpperCase()),
+                                button -> {
+
+                                        cachedType = cachedType == UseType.ITEM
+                                                        ? UseType.FLUID
+                                                        : UseType.ITEM;
+
+                                        button.setMessage(Component.literal(cachedType.getId().toUpperCase()));
+
+                                        ClientPacketDistributor.sendToServer(
+                                                        new EjectUseTypePayload(menu.containerId, cachedType));
+                                })
+                                .bounds(
+                                                getLeftPos() + 35 + x, getTopPos() + 108 + y,
+                                                58, 20)
+                                .build();
+
+                addRenderableWidget(typeButton);
         }
 
         private void addSynchedButton(Direction dir, int x, int y) {
@@ -81,7 +124,7 @@ public class EjectModifierScreen extends AbstractContainerScreen<EjectModifierMe
                                         saved = dir;
                                         updateButtons();
                                         ClientPacketDistributor
-                                                        .sendToServer(new EjectPayload(menu.containerId, dir));
+                                                        .sendToServer(new EjectDirectionPayload(menu.containerId, dir));
                                 });
 
                 BUTTONS.put(dir, button);
@@ -105,7 +148,7 @@ public class EjectModifierScreen extends AbstractContainerScreen<EjectModifierMe
 
                 graphics.blit(RenderPipelines.GUI_TEXTURED,
                                 x.rl(MODULE_ID, "textures/gui/modifier/buttons/middle.png"),
-                                getLeftPos() + 55, getTopPos() + 47,
+                                getLeftPos() + 55, getTopPos() + 47 + 10,
                                 0, 0,
                                 16, 16,
                                 16, 16);
@@ -128,11 +171,11 @@ public class EjectModifierScreen extends AbstractContainerScreen<EjectModifierMe
         @Override
         protected void extractLabels(GuiGraphicsExtractor graphics, int mouseX, int mouseY) {
 
-                graphics.text(this.font, this.title, 5+2, 5, -12566464, false);
+                graphics.text(this.font, this.title, 5 + 2, 5, -12566464, false);
 
                 graphics.text(this.font,
-                                Component.translatable(MODULE_ID+".eject.gui.dir",saved.name()),
-                                23 + 5, 93 + 2,
+                                Component.translatable(MODULE_ID + ".eject.gui.dir", saved.name()),
+                                23 + 5, 93 + 2 - 74,
                                 ColorUtils.argb(ColorUtils.LIME_GREEN), false);
         }
 
