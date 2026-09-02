@@ -384,6 +384,13 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .save(output);
 
                 DurabilityConsumeBuilder.of(registries)
+                                .tool(LibItems.HAMMER.get(), 12)
+                                .add(Tags.Items.ORES_NETHERITE_SCRAP)
+                                .output(Items.NETHERITE_SCRAP, 2)
+                                .unlockedBy()
+                                .save(output);
+
+                DurabilityConsumeBuilder.of(registries)
                                 .tool(Items.SHEARS, 4)
                                 .add(ItemTags.WOOL)
                                 .output(Items.STRING, 4)
