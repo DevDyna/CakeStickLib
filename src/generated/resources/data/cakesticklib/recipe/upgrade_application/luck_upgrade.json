@@ -15,9 +15,13 @@
   ],
   "result": {
     "components": {
-      "cakesticklib:upgrade_components": {
-        "energy": 150,
-        "luck": 15
+      "cakesticklib:modifiers": {
+        "energy": {
+          "value": 150
+        },
+        "luck": {
+          "value": 15
+        }
       }
     },
     "id": "cakesticklib:luck_upgrade"

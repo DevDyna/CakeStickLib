@@ -5,7 +5,7 @@
   "key": {
     "B": "#c:dusts/emerald",
     "C": "cakesticklib:chip",
-    "R": "cakesticklib:green_battery",
+    "R": "minecraft:piston",
     "S": "#c:plates/steel"
   },
   "pattern": [
@@ -15,8 +15,11 @@
   ],
   "result": {
     "components": {
-      "cakesticklib:upgrade_components": {
-        "eject": "north"
+      "cakesticklib:modifiers": {
+        "eject": {
+          "type": "item",
+          "dir": "north"
+        }
       }
     },
     "id": "cakesticklib:eject_upgrade"

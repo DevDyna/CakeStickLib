@@ -10,8 +10,10 @@
   ],
   "result": {
     "components": {
-      "cakesticklib:upgrade_components": {
-        "energy": -50
+      "cakesticklib:modifiers": {
+        "energy": {
+          "value": -50
+        }
       }
     },
     "id": "cakesticklib:energy_upgrade"

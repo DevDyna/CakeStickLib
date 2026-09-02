@@ -10,8 +10,11 @@
   ],
   "result": {
     "components": {
-      "cakesticklib:upgrade_components": {
-        "eject": "north"
+      "cakesticklib:modifiers": {
+        "eject": {
+          "type": "item",
+          "dir": "north"
+        }
       }
     },
     "id": "cakesticklib:eject_upgrade"

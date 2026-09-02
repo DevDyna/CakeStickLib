@@ -2,6 +2,6 @@
   "parent": "minecraft:item/generated",
   "textures": {
     "layer0": "cakesticklib:item/upgrade/base",
-    "layer1": "cakesticklib:item/upgrade/eject"
+    "layer1": "cakesticklib:item/upgrade/eject/custom"
   }
 }
