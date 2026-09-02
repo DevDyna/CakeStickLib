@@ -133,7 +133,7 @@ public class DataItemTag extends ItemTagsProvider {
                 tag(LibTags.Items.IRON_COIL).add(LibItems.IRON_COIL.get());
 
                 tag(LibTags.Items.UPGRADES)
-                                .add(RegistryUtils.getItems(LibItems.zUpgrade));
+                                .add(RegistryUtils.getItems(LibItems.zUpgrades));
 
                 tag(LibTags.Items.MOLDS)
                                 .add(RegistryUtils.getItems(LibItems.zMolds));

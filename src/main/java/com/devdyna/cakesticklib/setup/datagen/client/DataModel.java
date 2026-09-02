@@ -2,7 +2,11 @@ package com.devdyna.cakesticklib.setup.datagen.client;
 
 import static com.devdyna.cakesticklib.CakeStickLib.MODULE_ID;
 
+import java.util.List;
+import java.util.function.Function;
+
 import com.devdyna.cakesticklib.api.datagen.ModelUtils;
+import com.devdyna.cakesticklib.api.datagen.selectors.EjectTypeProperty;
 import com.devdyna.cakesticklib.api.utils.x;
 import com.devdyna.cakesticklib.setup.registry.*;
 import net.minecraft.client.data.models.BlockModelGenerators;
@@ -13,6 +17,7 @@ import net.minecraft.client.data.models.model.ModelTemplates;
 import net.minecraft.client.data.models.model.TextureMapping;
 import net.minecraft.client.data.models.model.TextureSlot;
 import net.minecraft.data.PackOutput;
+import net.minecraft.world.item.Item;
 
 public class DataModel extends ModelProvider {
 
@@ -65,24 +70,67 @@ public class DataModel extends ModelProvider {
                 ModelUtils.itemSubFolder(LibItems.zGears, "item/gear/", "_gear", itemModels);
                 ModelUtils.itemSubFolder(LibItems.zNuggets, "item/nugget/", "_nugget", itemModels);
 
-                LibItems.zUpgrade.getEntries().forEach(i -> itemModels.itemModelOutput.accept(i.get(),
-                                ItemModelUtils.plainModel(
-                                                ModelTemplates.TWO_LAYERED_ITEM.create(i.get(),
-                                                                new TextureMapping().put(TextureSlot.LAYER0,
-                                                                                x.material(x.mod(i),
-                                                                                                "item/upgrade/base"))
-                                                                                .put(TextureSlot.LAYER1, x.material(
-                                                                                                x.rl(x.mod(i),
-                                                                                                                x.name(i)
-                                                                                                                                .replace("_upgrade",
-                                                                                                                                                ""))
-                                                                                                                .withPrefix("item/upgrade/"))),
-                                                                itemModels.modelOutput))
+                LibItems.zUpgrades.getEntries().stream()
+                                .filter(i -> i != LibItems.EJECT_UPGRADE)// maybe i will rework one day , but not today!
+                                .forEach(i -> itemModels.itemModelOutput.accept(i.get(),
+                                                ItemModelUtils.plainModel(
+                                                                ModelTemplates.TWO_LAYERED_ITEM.create(i.get(),
+                                                                                new TextureMapping().put(
+                                                                                                TextureSlot.LAYER0,
+                                                                                                x.material(x.mod(i),
+                                                                                                                "item/upgrade/base"))
+                                                                                                .put(TextureSlot.LAYER1,
+                                                                                                                x.material(
+                                                                                                                                x.rl(x.mod(i),
+                                                                                                                                                x.name(i)
+                                                                                                                                                                .replace("_upgrade",
+                                                                                                                                                                                ""))
+                                                                                                                                                .withPrefix("item/upgrade/"))),
+                                                                                itemModels.modelOutput))
 
-                ));
+                                ));
 
                 LibBlocks.zBlockItem.getEntries().forEach(b -> blockModels.createTrivialCube(b.get()));
 
+                createEjectUpgrade(itemModels, LibItems.EJECT_UPGRADE.get());
+
+        }
+
+        private void createEjectUpgrade(ItemModelGenerators itemGen, Item stack) {
+
+                Function<String, TextureMapping> template = type -> new TextureMapping()
+                                .put(TextureSlot.LAYER0,
+                                                x.material(x.mod(stack), "item/upgrade/base"))
+                                .put(TextureSlot.LAYER1,
+                                                x.material(
+                                                                x.rl(x.mod(stack),
+                                                                                x.name(stack).replace("_upgrade",
+                                                                                                "/" + type))
+                                                                                .withPrefix("item/upgrade/")));
+
+                itemGen.itemModelOutput.accept(
+                                stack,
+                                ItemModelUtils.select(
+                                                new EjectTypeProperty(),
+                                                ItemModelUtils.plainModel(ModelTemplates.TWO_LAYERED_ITEM.create(
+                                                                x.rl(stack).withSuffix("/custom"),
+                                                                template.apply("custom"),
+                                                                itemGen.modelOutput)),
+                                                List.of(
+                                                                ItemModelUtils.when(1,
+                                                                                ItemModelUtils.plainModel(
+                                                                                                ModelTemplates.TWO_LAYERED_ITEM
+                                                                                                                .create(x.rl(stack)
+                                                                                                                                .withSuffix("/item"),
+                                                                                                                                template.apply("item"),
+                                                                                                                                itemGen.modelOutput))),
+                                                                ItemModelUtils.when(2,
+                                                                                ItemModelUtils.plainModel(
+                                                                                                ModelTemplates.TWO_LAYERED_ITEM
+                                                                                                                .create(x.rl(stack)
+                                                                                                                                .withSuffix("/fluid"),
+                                                                                                                                template.apply("fluid"),
+                                                                                                                                itemGen.modelOutput))))));
         }
 
 }

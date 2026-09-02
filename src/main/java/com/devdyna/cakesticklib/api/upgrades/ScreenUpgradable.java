@@ -1,10 +1,11 @@
-package com.devdyna.cakesticklib.api.gui;
+package com.devdyna.cakesticklib.api.upgrades;
 
 import static com.devdyna.cakesticklib.CakeStickLib.MODULE_ID;
 
 import java.util.*;
-import com.devdyna.cakesticklib.api.utils.UpgradeComponents;
-import com.devdyna.cakesticklib.api.utils.UpgradeComponents.UpgradeType;
+
+import com.devdyna.cakesticklib.api.upgrades.UpgradeComponents.UpgradeType;
+import com.devdyna.cakesticklib.api.upgrades.modifiers.ModifierUtils;
 import com.devdyna.cakesticklib.api.utils.UpgradeSlotBuilder;
 import com.devdyna.cakesticklib.setup.Config;
 
@@ -39,9 +40,9 @@ public interface ScreenUpgradable {
                             getConfigLimits(upgrade))
                     .withStyle(getConfigLimits(upgrade) > getInstalledUpgradesOnSlots(upgrade)
                             ? ChatFormatting.GREEN
-                            : (getConfigLimits(upgrade) < getInstalledUpgradesOnSlots(
-                                    upgrade) ? ChatFormatting.RED
-                                            : ChatFormatting.YELLOW)));
+                            : (getConfigLimits(upgrade) < getInstalledUpgradesOnSlots(upgrade)
+                                    ? ChatFormatting.RED
+                                    : ChatFormatting.YELLOW)));
 
         return result;
     }
@@ -50,7 +51,8 @@ public interface ScreenUpgradable {
         return DEFAULT_UPGRADES;
     }
 
-    public static final List<UpgradeType> DEFAULT_UPGRADES = List.of(UpgradeType.ENERGY, UpgradeType.SPEED);
+    public static final List<UpgradeType> DEFAULT_UPGRADES = List.of(UpgradeType.ENERGY, UpgradeType.SPEED,
+            UpgradeType.EJECT);
 
     default int getConfigLimits(UpgradeType type) {
         return switch (type) {
@@ -58,6 +60,7 @@ public interface ScreenUpgradable {
             case UpgradeType.SPEED -> Config.MACHINE_MAX_SPEED_UPGRADES_TYPE.get();
             case UpgradeType.LUCK -> Config.MACHINE_MAX_LUCK_UPGRADES_TYPE.get();
             case UpgradeType.FLUID -> Config.MACHINE_MAX_FLUID_UPGRADES_TYPE.get();
+            case UpgradeType.EJECT -> 16;
             default -> 0;
         };
     }
@@ -66,7 +69,7 @@ public interface ScreenUpgradable {
         return getSlotBuilder()
                 .toItems()
                 .stream()
-                .filter(item -> UpgradeComponents.has(item, type))
+                .filter(item -> ModifierUtils.has(item, type))
                 .mapToInt(ItemStack::getCount)
                 .sum();
     }

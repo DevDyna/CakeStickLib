@@ -1,7 +1,7 @@
 package com.devdyna.cakesticklib.setup.registry;
 
 import com.devdyna.cakesticklib.CakeStickLib;
-import com.devdyna.cakesticklib.api.utils.UpgradeComponents;
+import com.devdyna.cakesticklib.api.upgrades.UpgradeComponents;
 
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
@@ -21,7 +21,7 @@ public class LibComponents {
                         .createDataComponents(Registries.DATA_COMPONENT_TYPE, CakeStickLib.MODULE_ID);
 
         public static final DeferredHolder<DataComponentType<?>, DataComponentType<UpgradeComponents>> UPGRADE_COMPONENTS = zComponents
-                        .register("upgrade_components",
+                        .register("modifiers",
                                         () -> DataComponentType.<UpgradeComponents>builder()
                                                         .persistent(UpgradeComponents.CODEC)
                                                         .networkSynchronized(UpgradeComponents.STREAM_CODEC)

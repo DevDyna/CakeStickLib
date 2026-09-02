@@ -10,6 +10,7 @@ import com.devdyna.cakesticklib.api.datagen.LangUtils;
 import com.devdyna.cakesticklib.api.datagen.LangUtils.TipColors;
 import com.devdyna.cakesticklib.setup.registry.*;
 
+import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -81,7 +82,7 @@ public class DataLang extends LanguageProvider {
 
                                 LibItems.zItem,
                                 LibItems.zSimple,
-                                LibItems.zUpgrade,
+                                LibItems.zUpgrades,
                                 LibItems.zDusts,
                                 LibItems.zPlates,
                                 LibItems.zPebbles,
@@ -121,7 +122,7 @@ public class DataLang extends LanguageProvider {
                 add(MODULE_ID + ".upgrades.modifier.speed", TipColors.ITEM_TOOLTIP + "Recipe Speed: %s");
                 add(MODULE_ID + ".upgrades.modifier.luck", TipColors.ITEM_TOOLTIP + "Secondary Output: %s");
                 add(MODULE_ID + ".upgrades.modifier.fluid", TipColors.ITEM_TOOLTIP + "Fluid Usage: %s");
-                add(MODULE_ID + ".upgrades.modifier.eject", TipColors.ITEM_TOOLTIP + "Ejection to: %s");
+                add(MODULE_ID + ".upgrades.modifier.eject", TipColors.ITEM_TOOLTIP + "Ejection to: %s (%s)");
 
                 add(MODULE_ID + ".screen.upgrades", "Supported Upgrades:");
 
@@ -132,7 +133,14 @@ public class DataLang extends LanguageProvider {
                 add(MODULE_ID + ".screen.modifier.eject", TipColors.ITEM_TOOLTIP + "Eject Modifier §7[§f§a%s§7]");
 
                 add(MODULE_ID + ".item_use.install", "Upgrade installed successfully");
+
                 add(MODULE_ID + ".item_use.eject", "Eject Modifier Set to ");
+
+                add(MODULE_ID + ".eject.gui.title", "Eject Modifier Settings");
+                add(MODULE_ID + ".eject.gui.dir", "Selected: %s");
+
+                for (var dir : Direction.values())
+                        add(MODULE_ID + ".widgets.button." + dir.name(), dir.getName() + " Directional Button");
 
                 // config
                 add(MODULE_ID + ".configuration.events", "General events");
