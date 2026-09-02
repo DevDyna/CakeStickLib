@@ -11,7 +11,6 @@ public interface HudInfoRenderHandler {
             HitResult hit, ClientLevel level,
             ItemStack item, int widthGui, int heightGui);
 
-    // TODO API : decide if they have a future sense
     @Deprecated
     public interface ItemHudInfo extends HudInfoRenderHandler {
 

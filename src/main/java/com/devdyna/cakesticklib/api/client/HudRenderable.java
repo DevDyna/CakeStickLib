@@ -11,7 +11,6 @@ public class HudRenderable {
 
      public static final GuiLayer LAYER = HudRenderable::render;
 
-     @SuppressWarnings("deprecation")
      public static void render(
                GuiGraphicsExtractor gui,
                DeltaTracker deltaTracker) {

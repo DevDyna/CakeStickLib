@@ -106,8 +106,6 @@ public abstract class MachineBE extends BEStorage {
         level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
     }
 
-    // TODO API : ifPresent to other templates
-
     @Override
     protected void loadAdditional(ValueInput input) {
 

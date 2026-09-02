@@ -34,7 +34,6 @@ public class LibComponents {
                                                         .networkSynchronized(Identifier.STREAM_CODEC)
                                                         .build());
 
-        @SuppressWarnings("deprecation")
         public static final DeferredHolder<DataComponentType<?>, DataComponentType<CustomData>> ITEM_CONTAINER = zComponents
                         .register("item_storage",
                                         () -> DataComponentType.<CustomData>builder()
