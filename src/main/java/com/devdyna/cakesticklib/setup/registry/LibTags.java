@@ -150,10 +150,10 @@ public class LibTags {
                                 "turn_into/farmland");
                 public static final TagKey<Item> TURN_INTO_DIRT = RegistryUtils.tagItem(MODULE_ID, "turn_into/dirt");
 
-                //stones pre-1.17 (overworld)
+                // stones pre-1.17 (overworld)
                 public static final TagKey<Item> LEGACY_STONES = RegistryUtils.tagItem(MODULE_ID, "legacy_stones");
-                //only stones post-1.17
-                public static final TagKey<Item> MODERN_STONES = RegistryUtils.tagItem(MODULE_ID, "legacy_stones");
+                // only stones post-1.17
+                public static final TagKey<Item> MODERN_STONES = RegistryUtils.tagItem(MODULE_ID, "modern_stones");
 
                 public static final TagKey<Item> RECYCLE_COPPER_1 = RegistryUtils.tagItem(MODULE_ID,
                                 "recipe_recycle/copper/1");
@@ -211,6 +211,9 @@ public class LibTags {
                                 "recipe_recycle/gold/8");
                 public static final TagKey<Item> RECYCLE_GOLD_9 = RegistryUtils.tagItem(MODULE_ID,
                                 "recipe_recycle/gold/9");
+
+                // TODO IMP : stones tags? (diorite variants , granite variants , andesite
+                // variants , etc)
 
         }
 
