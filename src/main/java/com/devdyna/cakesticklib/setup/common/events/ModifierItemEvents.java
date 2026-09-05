@@ -92,6 +92,7 @@ public class ModifierItemEvents {
                                                         1.0F, 1.5F);
 
                                         event.setCanceled(true);
+                                        return;
                                 }
 
                 }
