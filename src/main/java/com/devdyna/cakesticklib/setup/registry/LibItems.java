@@ -1,12 +1,10 @@
 package com.devdyna.cakesticklib.setup.registry;
 
-import com.devdyna.cakesticklib.CakeStickLib;
-import com.devdyna.cakesticklib.setup.registry.builders.CakeStick;
-import com.devdyna.cakesticklib.setup.registry.builders.Chisel;
-import com.devdyna.cakesticklib.setup.registry.builders.GlassCutter;
-import com.devdyna.cakesticklib.setup.registry.builders.HoneySolution;
-import com.devdyna.cakesticklib.setup.registry.builders.RedstoneAcid;
-import com.devdyna.cakesticklib.setup.registry.builders.Wrench;
+
+
+import static com.devdyna.cakesticklib.CakeStickLib.MODULE_ID;
+
+import com.devdyna.cakesticklib.setup.registry.builders.*;
 
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -33,37 +31,25 @@ public class LibItems {
                 zGears.register(bus);
                 zNuggets.register(bus);
                 zBlockItem.register(bus);
+                zBucketItems.register(bus);
         }
 
-        public static final DeferredRegister.Items zBlockItem = DeferredRegister
-                        .createItems(CakeStickLib.MODULE_ID);
-        public static final DeferredRegister.Items zSimple = DeferredRegister
-                        .createItems(CakeStickLib.MODULE_ID);
-        public static final DeferredRegister.Items zUpgrades = DeferredRegister
-                        .createItems(CakeStickLib.MODULE_ID);
-        public static final DeferredRegister.Items zItem = DeferredRegister.createItems(CakeStickLib.MODULE_ID);
-        public static final DeferredRegister.Items zDusts = DeferredRegister
-                        .createItems(CakeStickLib.MODULE_ID);
-        public static final DeferredRegister.Items zPlates = DeferredRegister
-                        .createItems(CakeStickLib.MODULE_ID);
-        public static final DeferredRegister.Items zPebbles = DeferredRegister
-                        .createItems(CakeStickLib.MODULE_ID);
-        public static final DeferredRegister.Items zMolds = DeferredRegister
-                        .createItems(CakeStickLib.MODULE_ID);
-        public static final DeferredRegister.Items zIngots = DeferredRegister
-                        .createItems(CakeStickLib.MODULE_ID);
-        public static final DeferredRegister.Items zDeposits = DeferredRegister
-                        .createItems(CakeStickLib.MODULE_ID);
-        public static final DeferredRegister.Items zChunks = DeferredRegister
-                        .createItems(CakeStickLib.MODULE_ID);
-        public static final DeferredRegister.Items zNuggets = DeferredRegister
-                        .createItems(CakeStickLib.MODULE_ID);
-        public static final DeferredRegister.Items zCoils = DeferredRegister
-                        .createItems(CakeStickLib.MODULE_ID);
-        public static final DeferredRegister.Items zFoils = DeferredRegister
-                        .createItems(CakeStickLib.MODULE_ID);
-        public static final DeferredRegister.Items zGears = DeferredRegister
-                        .createItems(CakeStickLib.MODULE_ID);
+        public static final DeferredRegister.Items zBucketItems = DeferredRegister.createItems(MODULE_ID);
+        public static final DeferredRegister.Items zBlockItem = DeferredRegister.createItems(MODULE_ID);
+        public static final DeferredRegister.Items zSimple = DeferredRegister.createItems(MODULE_ID);
+        public static final DeferredRegister.Items zUpgrades = DeferredRegister.createItems(MODULE_ID);
+        public static final DeferredRegister.Items zItem = DeferredRegister.createItems(MODULE_ID);
+        public static final DeferredRegister.Items zDusts = DeferredRegister.createItems(MODULE_ID);
+        public static final DeferredRegister.Items zPlates = DeferredRegister.createItems(MODULE_ID);
+        public static final DeferredRegister.Items zPebbles = DeferredRegister.createItems(MODULE_ID);
+        public static final DeferredRegister.Items zMolds = DeferredRegister.createItems(MODULE_ID);
+        public static final DeferredRegister.Items zIngots = DeferredRegister.createItems(MODULE_ID);
+        public static final DeferredRegister.Items zDeposits = DeferredRegister.createItems(MODULE_ID);
+        public static final DeferredRegister.Items zChunks = DeferredRegister.createItems(MODULE_ID);
+        public static final DeferredRegister.Items zNuggets = DeferredRegister.createItems(MODULE_ID);
+        public static final DeferredRegister.Items zCoils = DeferredRegister.createItems(MODULE_ID);
+        public static final DeferredRegister.Items zFoils = DeferredRegister.createItems(MODULE_ID);
+        public static final DeferredRegister.Items zGears = DeferredRegister.createItems(MODULE_ID);
 
         public static final DeferredItem<Item> CAKE_STICK = zItem.registerItem("cake_stick",
                         p -> new CakeStick(p));
@@ -176,6 +162,16 @@ public class LibItems {
 
         public static final DeferredHolder<Item, Item> MOLD_BLOCK = zMolds
                         .registerSimpleItem("block_mold");
+
+        public static final DeferredHolder<Item, Item> MOLD_NUGGET = zMolds
+                        .registerSimpleItem("nugget_mold");
+
+        public static final DeferredHolder<Item, Item> MOLD_ROD = zMolds
+                        .registerSimpleItem("rod_mold");
+
+        // unused
+        public static final DeferredHolder<Item, Item> MOLD_BAR = zMolds
+                        .registerSimpleItem("bar_mold");
 
         public static final DeferredHolder<Item, Item> ANDESITE_CHUNK = zChunks
                         .registerSimpleItem("andesite_chunk");
