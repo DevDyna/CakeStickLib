@@ -16,6 +16,7 @@ public class ModAddonUtil {
     /**
      * useable on DATAGEN-RECIPES
      */
+    @Deprecated
     public static ICondition hasMod(String s) {
         return new ModLoadedCondition(s);
     }
