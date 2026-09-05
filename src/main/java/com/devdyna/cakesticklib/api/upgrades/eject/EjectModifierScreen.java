@@ -176,7 +176,7 @@ public class EjectModifierScreen extends AbstractContainerScreen<EjectModifierMe
                 graphics.text(this.font,
                                 Component.translatable(MODULE_ID + ".eject.gui.dir", saved.name()),
                                 23 + 5, 93 + 2 - 74,
-                                ColorUtils.argb(ColorUtils.LIME_GREEN), false);
+                                ColorUtils.argb(ColorUtils.GREEN.LIME_GREEN), false);
         }
 
 }
