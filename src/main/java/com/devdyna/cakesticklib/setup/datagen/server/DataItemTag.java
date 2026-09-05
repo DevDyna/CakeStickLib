@@ -182,13 +182,132 @@ public class DataItemTag extends ItemTagsProvider {
                                 .add(Items.WRITABLE_BOOK, Items.WRITTEN_BOOK);
 
                 tag(LibTags.Items.TURN_INTO_DIRT_PATH)
-                                .add(Items.ROOTED_DIRT, Items.COARSE_DIRT,Items.DIRT,Items.GRASS_BLOCK,Items.PODZOL,Items.MYCELIUM);
+                                .add(Items.ROOTED_DIRT, Items.COARSE_DIRT, Items.DIRT, Items.GRASS_BLOCK, Items.PODZOL,
+                                                Items.MYCELIUM);
 
                 tag(LibTags.Items.TURN_INTO_FARMLAND)
-                                .add(Items.DIRT,Items.GRASS_BLOCK,Items.DIRT_PATH);
+                                .add(Items.DIRT, Items.GRASS_BLOCK, Items.DIRT_PATH);
 
                 tag(LibTags.Items.TURN_INTO_DIRT)
-                                .add(Items.ROOTED_DIRT,Items.COARSE_DIRT,Items.DIRT_PATH);
+                                .add(Items.ROOTED_DIRT, Items.COARSE_DIRT, Items.DIRT_PATH);
+
+                tag(LibTags.Items.RECYCLE_COPPER_1).add(
+                                Items.COPPER_SHOVEL,
+                                Items.COPPER_SPEAR)
+                                .addTags(LibTags.Items.COPPER_PLATE,
+                                                LibTags.Items.COPPER_COIL,
+                                                LibTags.Items.COPPER_FOIL,
+                                                LibTags.Items.COPPER_DUST);
+
+                tag(LibTags.Items.RECYCLE_COPPER_2).add(
+                                Items.COPPER_HOE,
+                                Items.COPPER_SWORD,
+                                Items.COPPER_DOOR);
+
+                tag(LibTags.Items.RECYCLE_COPPER_3).add(
+                                Items.COPPER_PICKAXE,
+                                Items.COPPER_AXE);
+
+                tag(LibTags.Items.RECYCLE_COPPER_4).add(
+                                Items.COPPER_BOOTS,
+                                Items.COPPER_TRAPDOOR)
+                                .addTags(LibTags.Items.COPPER_GEAR);
+
+                tag(LibTags.Items.RECYCLE_COPPER_5).add(
+                                Items.COPPER_HELMET);
+
+                tag(LibTags.Items.RECYCLE_COPPER_6).add(
+                                Items.COPPER_HORSE_ARMOR);
+
+                tag(LibTags.Items.RECYCLE_COPPER_7).add(
+                                Items.COPPER_LEGGINGS);
+
+                tag(LibTags.Items.RECYCLE_COPPER_8).add(
+                                Items.COPPER_CHESTPLATE);
+
+                tag(LibTags.Items.RECYCLE_COPPER_9).add(
+                                Items.COPPER_NAUTILUS_ARMOR);
+
+                tag(LibTags.Items.RECYCLE_IRON_1).add(
+                                Items.SHIELD,
+                                Items.IRON_SHOVEL,
+                                Items.IRON_SPEAR)
+                                .addTags(LibTags.Items.IRON_PLATE,
+                                                LibTags.Items.IRON_COIL,
+                                                LibTags.Items.IRON_FOIL,
+                                                LibTags.Items.IRON_DUST);
+
+                tag(LibTags.Items.RECYCLE_IRON_2).add(
+                                Items.IRON_HOE,
+                                Items.SHEARS,
+                                Items.IRON_SWORD,
+                                Items.IRON_DOOR,
+                                Items.HEAVY_WEIGHTED_PRESSURE_PLATE);
+
+                tag(LibTags.Items.RECYCLE_IRON_3).add(
+                                Items.BUCKET,
+                                Items.IRON_PICKAXE,
+                                Items.IRON_AXE);
+
+                tag(LibTags.Items.RECYCLE_IRON_4).add(
+                                Items.IRON_BOOTS,
+                                Items.IRON_TRAPDOOR)
+                                .addTags(LibTags.Items.IRON_GEAR);
+
+                tag(LibTags.Items.RECYCLE_IRON_5).add(
+                                Items.IRON_HELMET);
+
+                tag(LibTags.Items.RECYCLE_IRON_6).add(
+                                Items.IRON_HORSE_ARMOR);
+
+                tag(LibTags.Items.RECYCLE_IRON_7).add(
+                                Items.IRON_LEGGINGS);
+
+                tag(LibTags.Items.RECYCLE_IRON_8).add(
+                                Items.IRON_CHESTPLATE);
+
+                tag(LibTags.Items.RECYCLE_IRON_9).add(
+                                Items.IRON_NAUTILUS_ARMOR);
+
+                tag(LibTags.Items.RECYCLE_GOLD_1).add(
+                                Items.GOLDEN_SHOVEL,
+                                Items.GOLDEN_SPEAR)
+                                .addTags(LibTags.Items.GOLD_PLATE,
+                                                LibTags.Items.GOLD_COIL,
+                                                LibTags.Items.GOLD_FOIL,
+                                                LibTags.Items.GOLD_DUST);
+
+                tag(LibTags.Items.RECYCLE_GOLD_2).add(
+                                Items.GOLDEN_HOE,
+                                Items.GOLDEN_SWORD,
+                                Items.LIGHT_WEIGHTED_PRESSURE_PLATE);
+
+                tag(LibTags.Items.RECYCLE_GOLD_3).add(
+                                Items.GOLDEN_PICKAXE,
+                                Items.GOLDEN_AXE);
+
+                tag(LibTags.Items.RECYCLE_GOLD_4).add(
+                                Items.GOLDEN_BOOTS)
+                                .addTags(LibTags.Items.GOLD_GEAR);
+
+                tag(LibTags.Items.RECYCLE_GOLD_5).add(
+                                Items.GOLDEN_HELMET);
+
+                tag(LibTags.Items.RECYCLE_GOLD_6).add(
+                                Items.GOLDEN_HORSE_ARMOR);
+
+                tag(LibTags.Items.RECYCLE_GOLD_7).add(
+                                Items.GOLDEN_LEGGINGS);
+
+                tag(LibTags.Items.RECYCLE_GOLD_8).add(
+                                Items.GOLDEN_CHESTPLATE);
+
+                tag(LibTags.Items.RECYCLE_GOLD_9).add(
+                                Items.GOLDEN_NAUTILUS_ARMOR);
+
+                tag(LibTags.Items.LEGACY_STONES).add(Items.STONE, Items.DIORITE, Items.ANDESITE, Items.GRANITE);
+
+                tag(LibTags.Items.MODERN_STONES).add(Items.DEEPSLATE, Items.TUFF);
 
         }
 
