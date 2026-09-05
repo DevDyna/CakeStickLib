@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:husbandry/wax_off",
+  "criteria": {
+    "craft_patina": {
+      "conditions": {
+        "items": [
+          {
+            "items": "cakesticklib:patina"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "cakesticklib.advancement.branch.patina.desc"
+    },
+    "icon": {
+      "id": "cakesticklib:patina"
+    },
+    "title": {
+      "translate": "cakesticklib.advancement.branch.patina"
+    }
+  },
+  "requirements": [
+    [
+      "craft_patina"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

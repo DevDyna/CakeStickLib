@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:story/smelt_iron",
+  "criteria": {
+    "craft_wrench": {
+      "conditions": {
+        "items": [
+          {
+            "items": "cakesticklib:wrench"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "cakesticklib.advancement.branch.wrench.desc"
+    },
+    "icon": {
+      "id": "cakesticklib:wrench"
+    },
+    "title": {
+      "translate": "cakesticklib.advancement.branch.wrench"
+    }
+  },
+  "requirements": [
+    [
+      "craft_wrench"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

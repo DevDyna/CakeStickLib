@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:story/smelt_iron",
+  "criteria": {
+    "craft_hammer": {
+      "conditions": {
+        "items": [
+          {
+            "items": "cakesticklib:hammer"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "cakesticklib.advancement.branch.hammer.desc"
+    },
+    "icon": {
+      "id": "cakesticklib:hammer"
+    },
+    "title": {
+      "translate": "cakesticklib.advancement.branch.hammer"
+    }
+  },
+  "requirements": [
+    [
+      "craft_hammer"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

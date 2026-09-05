@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:adventure/root",
+  "criteria": {
+    "craft_upgrades": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#cakesticklib:upgrades"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "cakesticklib.advancement.branch.upgrades.desc"
+    },
+    "frame": "challenge",
+    "icon": {
+      "id": "cakesticklib:energy_upgrade"
+    },
+    "title": {
+      "translate": "cakesticklib.advancement.branch.upgrades"
+    }
+  },
+  "requirements": [
+    [
+      "craft_upgrades"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

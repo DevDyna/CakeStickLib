@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:husbandry/wax_off",
+  "criteria": {
+    "craft_honey_solution": {
+      "conditions": {
+        "items": [
+          {
+            "items": "cakesticklib:honey_solution"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "cakesticklib.advancement.branch.honey_solution.desc"
+    },
+    "icon": {
+      "id": "cakesticklib:honey_solution"
+    },
+    "title": {
+      "translate": "cakesticklib.advancement.branch.honey_solution"
+    }
+  },
+  "requirements": [
+    [
+      "craft_honey_solution"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

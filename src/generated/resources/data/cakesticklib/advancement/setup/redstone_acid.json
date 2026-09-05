@@ -1,0 +1,32 @@
+{
+  "parent": "cakesticklib:setup/patina",
+  "criteria": {
+    "craft_redstone_acid": {
+      "conditions": {
+        "items": [
+          {
+            "items": "cakesticklib:redstone_acid"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "cakesticklib.advancement.branch.redstone_acid.desc"
+    },
+    "icon": {
+      "id": "cakesticklib:redstone_acid"
+    },
+    "title": {
+      "translate": "cakesticklib.advancement.branch.redstone_acid"
+    }
+  },
+  "requirements": [
+    [
+      "craft_redstone_acid"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

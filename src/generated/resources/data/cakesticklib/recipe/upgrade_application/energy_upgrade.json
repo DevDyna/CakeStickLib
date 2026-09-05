@@ -5,7 +5,7 @@
   "key": {
     "B": "#c:dusts/redstone",
     "C": "cakesticklib:chip",
-    "R": "cakesticklib:resistor",
+    "R": "cakesticklib:blue_battery",
     "S": "#c:plates/steel"
   },
   "pattern": [
