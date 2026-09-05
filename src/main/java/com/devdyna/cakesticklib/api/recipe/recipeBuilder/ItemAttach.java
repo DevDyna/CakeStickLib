@@ -41,6 +41,7 @@ public class ItemAttach {
                 return catalyst((Item[]) Arrays.asList(catalyst).stream().map(DeferredHolder::get).toArray());
             }
 
+            @Deprecated
             default BUILDER catalyst(Item... catalyst) {
                 return catalyst(x.itemIngredient(catalyst));
             }
@@ -85,10 +86,12 @@ public class ItemAttach {
                 return add(x.itemSized(input, c));
             }
 
+            @Deprecated
             default BUILDER add(Item input, int c) {
                 return add(x.itemIngredient(input), c);
             }
 
+            @Deprecated
             default BUILDER add(Item input) {
                 return add(x.itemIngredient(input));
             }
@@ -122,6 +125,7 @@ public class ItemAttach {
 
             abstract BUILDER add(Ingredient input);
 
+            @Deprecated
             default BUILDER add(Item input) {
                 return add(x.itemIngredient(input));
             }
@@ -143,7 +147,7 @@ public class ItemAttach {
 
             abstract BUILDER input(SizedIngredient input);
 
-            default BUILDER input(Item input) {
+            default BUILDER input(ItemLike input) {
                 return input(x.itemSized(input));
             }
 
@@ -159,7 +163,7 @@ public class ItemAttach {
                 return input(x.itemSized(input, getProvider()));
             }
 
-            default BUILDER input(Item input, int c) {
+            default BUILDER input(ItemLike input, int c) {
                 return input(x.itemSized(input, c));
             }
 
@@ -206,11 +210,11 @@ public class ItemAttach {
                 return inputs(right, 1, left, 1);
             }
 
-            default BUILDER inputs(TagKey<Item> right, Item left) {
+            default BUILDER inputs(TagKey<Item> right, ItemLike left) {
                 return inputs(x.itemIngredient(right, getProvider()), x.itemIngredient(left));
             }
 
-            default BUILDER inputs(Item right, TagKey<Item> left) {
+            default BUILDER inputs(ItemLike right, TagKey<Item> left) {
                 return inputs(x.itemIngredient(right), x.itemIngredient(left, getProvider()));
             }
 
@@ -222,7 +226,7 @@ public class ItemAttach {
                 return inputs(x.itemIngredient(right, getProvider()), a, x.itemIngredient(left), b);
             }
 
-            default BUILDER inputs(Item right, int a, TagKey<Item> left, int b) {
+            default BUILDER inputs(ItemLike right, int a, TagKey<Item> left, int b) {
                 return inputs(x.itemIngredient(right), a, x.itemIngredient(left, getProvider()), b);
             }
 
@@ -256,7 +260,7 @@ public class ItemAttach {
             }
         }
 
-        //use ChanceOutput
+        // use ChanceOutput
         @Deprecated
         public static interface SecondaryOutputItem<BUILDER extends BaseRecipeBuilder> extends BuilderAttach<BUILDER> {
 
@@ -314,32 +318,34 @@ public class ItemAttach {
             }
         }
 
+        // require to stay with a different name due it could completly override
+        // SimpleOutputItem!
         public static interface ItemOutputChance<BUILDER extends BaseRecipeBuilder> extends BuilderAttach<BUILDER> {
 
-            abstract BUILDER output(ChanceOutput.Item output);
+            abstract BUILDER outputChance(ChanceOutput.Item output);
 
-            default BUILDER output(ItemStackTemplate output, float chance) {
-                return output(ChanceOutput.Item.of(output, chance));
+            default BUILDER outputChance(ItemStackTemplate output, float chance) {
+                return outputChance(ChanceOutput.Item.of(output, chance));
             }
 
-            default BUILDER output(Item output, float chance) {
-                return output(x.itemTemplate(output), chance);
+            default BUILDER outputChance(Item output, float chance) {
+                return outputChance(x.itemTemplate(output), chance);
             }
 
-            default BUILDER output(ItemLike output, float chance) {
-                return output(x.itemTemplate(output), chance);
+            default BUILDER outputChance(ItemLike output, float chance) {
+                return outputChance(x.itemTemplate(output), chance);
             }
 
-            default BUILDER output(DeferredHolder<Item, Item> output, float chance) {
-                return output(output.get(), chance);
+            default BUILDER outputChance(DeferredHolder<Item, Item> output, float chance) {
+                return outputChance(output.get(), chance);
             }
 
-            default BUILDER output(Item output, int count, float chance) {
-                return output(x.itemTemplate(output, count), chance);
+            default BUILDER outputChance(Item output, int count, float chance) {
+                return outputChance(x.itemTemplate(output, count), chance);
             }
 
-            default BUILDER output(DeferredHolder<Item, Item> output, int count, float chance) {
-                return output(output.get(), count, chance);
+            default BUILDER outputChance(DeferredHolder<Item, Item> output, int count, float chance) {
+                return outputChance(output.get(), count, chance);
             }
 
         }
