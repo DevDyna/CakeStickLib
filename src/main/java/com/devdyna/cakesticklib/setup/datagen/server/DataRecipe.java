@@ -379,7 +379,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
 
                 DurabilityConsumeBuilder.of(registries)
                                 .tool(LibItems.HAMMER.get())
-                                .add(Tags.Items.GLASS_BLOCKS)
+                                .add(Tags.Items.GLASS_BLOCKS_CHEAP)
                                 .output(LibItems.GLASS_DUST)
                                 .unlockedBy()
                                 .save(output);
