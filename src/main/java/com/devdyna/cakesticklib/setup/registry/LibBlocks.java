@@ -15,9 +15,11 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 public class LibBlocks {
         public static void register(IEventBus bus) {
                 zBlockItem.register(bus);
+                zBlockFluids.register(bus);
         }
 
-        public static final DeferredRegister.Blocks zBlockItem = DeferredRegister
+        public static final DeferredRegister.Blocks zBlockItem = DeferredRegister.createBlocks(CakeStickLib.MODULE_ID);
+        public static final DeferredRegister.Blocks zBlockFluids = DeferredRegister
                         .createBlocks(CakeStickLib.MODULE_ID);
 
         public static final DeferredHolder<Block, Block> WROUGHT_IRON_BLOCK = registerItemBlock(

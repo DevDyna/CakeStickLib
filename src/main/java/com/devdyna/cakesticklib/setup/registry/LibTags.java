@@ -141,12 +141,76 @@ public class LibTags {
                 //
                 public static final TagKey<Item> CARBON_FIBER = RegistryUtils.tagItem("c", "carbon_fiber");
                 public static final TagKey<Item> CARBON_FIBER2 = RegistryUtils.tagItem("c", "carbon_fibers");
-               
+
                 public static final TagKey<Item> WRITABLE_BOOKS = RegistryUtils.tagItem("c", "writable_books");
-                
-                public static final TagKey<Item> TURN_INTO_DIRT_PATH = RegistryUtils.tagItem(MODULE_ID, "turn_into/dirt_path");
-                public static final TagKey<Item> TURN_INTO_FARMLAND = RegistryUtils.tagItem(MODULE_ID, "turn_into/farmland");
+
+                public static final TagKey<Item> TURN_INTO_DIRT_PATH = RegistryUtils.tagItem(MODULE_ID,
+                                "turn_into/dirt_path");
+                public static final TagKey<Item> TURN_INTO_FARMLAND = RegistryUtils.tagItem(MODULE_ID,
+                                "turn_into/farmland");
                 public static final TagKey<Item> TURN_INTO_DIRT = RegistryUtils.tagItem(MODULE_ID, "turn_into/dirt");
+
+                //stones pre-1.17 (overworld)
+                public static final TagKey<Item> LEGACY_STONES = RegistryUtils.tagItem(MODULE_ID, "legacy_stones");
+                //only stones post-1.17
+                public static final TagKey<Item> MODERN_STONES = RegistryUtils.tagItem(MODULE_ID, "legacy_stones");
+
+                public static final TagKey<Item> RECYCLE_COPPER_1 = RegistryUtils.tagItem(MODULE_ID,
+                                "recipe_recycle/copper/1");
+                public static final TagKey<Item> RECYCLE_COPPER_2 = RegistryUtils.tagItem(MODULE_ID,
+                                "recipe_recycle/copper/2");
+                public static final TagKey<Item> RECYCLE_COPPER_3 = RegistryUtils.tagItem(MODULE_ID,
+                                "recipe_recycle/copper/3");
+                public static final TagKey<Item> RECYCLE_COPPER_4 = RegistryUtils.tagItem(MODULE_ID,
+                                "recipe_recycle/copper/4");
+                public static final TagKey<Item> RECYCLE_COPPER_5 = RegistryUtils.tagItem(MODULE_ID,
+                                "recipe_recycle/copper/5");
+                public static final TagKey<Item> RECYCLE_COPPER_6 = RegistryUtils.tagItem(MODULE_ID,
+                                "recipe_recycle/copper/6");
+                public static final TagKey<Item> RECYCLE_COPPER_7 = RegistryUtils.tagItem(MODULE_ID,
+                                "recipe_recycle/copper/7");
+                public static final TagKey<Item> RECYCLE_COPPER_8 = RegistryUtils.tagItem(MODULE_ID,
+                                "recipe_recycle/copper/8");
+                public static final TagKey<Item> RECYCLE_COPPER_9 = RegistryUtils.tagItem(MODULE_ID,
+                                "recipe_recycle/copper/9");
+
+                public static final TagKey<Item> RECYCLE_IRON_1 = RegistryUtils.tagItem(MODULE_ID,
+                                "recipe_recycle/iron/1");
+                public static final TagKey<Item> RECYCLE_IRON_2 = RegistryUtils.tagItem(MODULE_ID,
+                                "recipe_recycle/iron/2");
+                public static final TagKey<Item> RECYCLE_IRON_3 = RegistryUtils.tagItem(MODULE_ID,
+                                "recipe_recycle/iron/3");
+                public static final TagKey<Item> RECYCLE_IRON_4 = RegistryUtils.tagItem(MODULE_ID,
+                                "recipe_recycle/iron/4");
+                public static final TagKey<Item> RECYCLE_IRON_5 = RegistryUtils.tagItem(MODULE_ID,
+                                "recipe_recycle/iron/5");
+                public static final TagKey<Item> RECYCLE_IRON_6 = RegistryUtils.tagItem(MODULE_ID,
+                                "recipe_recycle/iron/6");
+                public static final TagKey<Item> RECYCLE_IRON_7 = RegistryUtils.tagItem(MODULE_ID,
+                                "recipe_recycle/iron/7");
+                public static final TagKey<Item> RECYCLE_IRON_8 = RegistryUtils.tagItem(MODULE_ID,
+                                "recipe_recycle/iron/8");
+                public static final TagKey<Item> RECYCLE_IRON_9 = RegistryUtils.tagItem(MODULE_ID,
+                                "recipe_recycle/iron/9");
+
+                public static final TagKey<Item> RECYCLE_GOLD_1 = RegistryUtils.tagItem(MODULE_ID,
+                                "recipe_recycle/gold/1");
+                public static final TagKey<Item> RECYCLE_GOLD_2 = RegistryUtils.tagItem(MODULE_ID,
+                                "recipe_recycle/gold/2");
+                public static final TagKey<Item> RECYCLE_GOLD_3 = RegistryUtils.tagItem(MODULE_ID,
+                                "recipe_recycle/gold/3");
+                public static final TagKey<Item> RECYCLE_GOLD_4 = RegistryUtils.tagItem(MODULE_ID,
+                                "recipe_recycle/gold/4");
+                public static final TagKey<Item> RECYCLE_GOLD_5 = RegistryUtils.tagItem(MODULE_ID,
+                                "recipe_recycle/gold/5");
+                public static final TagKey<Item> RECYCLE_GOLD_6 = RegistryUtils.tagItem(MODULE_ID,
+                                "recipe_recycle/gold/6");
+                public static final TagKey<Item> RECYCLE_GOLD_7 = RegistryUtils.tagItem(MODULE_ID,
+                                "recipe_recycle/gold/7");
+                public static final TagKey<Item> RECYCLE_GOLD_8 = RegistryUtils.tagItem(MODULE_ID,
+                                "recipe_recycle/gold/8");
+                public static final TagKey<Item> RECYCLE_GOLD_9 = RegistryUtils.tagItem(MODULE_ID,
+                                "recipe_recycle/gold/9");
 
         }
 

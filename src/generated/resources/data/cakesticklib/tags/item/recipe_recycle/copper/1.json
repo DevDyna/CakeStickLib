@@ -1,0 +1,10 @@
+{
+  "values": [
+    "minecraft:copper_shovel",
+    "minecraft:copper_spear",
+    "#c:plates/copper",
+    "#c:coils/copper",
+    "#c:foils/copper",
+    "#c:dusts/copper"
+  ]
+}

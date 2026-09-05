@@ -17,5 +17,6 @@ public class RegistryHub {
                 LibCreativeTab.register(bus);
                 LibBlocks.register(bus);
                 LibContainer.register(bus);
+                LibFluids.register(bus);
         }
 }

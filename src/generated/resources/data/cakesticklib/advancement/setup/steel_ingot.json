@@ -1,0 +1,32 @@
+{
+  "parent": "cakesticklib:setup/wrought_iron_ingot",
+  "criteria": {
+    "craft_steel_ingot": {
+      "conditions": {
+        "items": [
+          {
+            "items": "cakesticklib:steel_ingot"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "cakesticklib.advancement.branch.steel_ingot.desc"
+    },
+    "icon": {
+      "id": "cakesticklib:steel_ingot"
+    },
+    "title": {
+      "translate": "cakesticklib.advancement.branch.steel_ingot"
+    }
+  },
+  "requirements": [
+    [
+      "craft_steel_ingot"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

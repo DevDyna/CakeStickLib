@@ -5,6 +5,7 @@ import static com.devdyna.cakesticklib.api.datagen.LangUtils.*;
 
 import java.util.List;
 
+import com.devdyna.cakesticklib.api.datagen.LangGenerators;
 import com.devdyna.cakesticklib.api.compat.jei.JEIAliasesHelper;
 import com.devdyna.cakesticklib.api.datagen.LangUtils;
 import com.devdyna.cakesticklib.api.datagen.LangUtils.TipColors;
@@ -15,7 +16,7 @@ import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-public class DataLang extends LanguageProvider {
+public class DataLang extends LanguageProvider implements LangGenerators {
 
         public DataLang(PackOutput o) {
                 super(o, MODULE_ID, "en_us");
@@ -23,6 +24,11 @@ public class DataLang extends LanguageProvider {
 
         @Override
         protected void addTranslations() {
+
+                LibFluids.zFluidTypes.getEntries()
+                                .forEach(f -> addFluid(f.get(), named(f, MODULE_ID).replace(" Type", "")));
+                LibItems.zBucketItems.getEntries().forEach(i -> addItem(i, named(i, MODULE_ID)));
+                LibBlocks.zBlockFluids.getEntries().forEach(b -> addBlock(b, LangUtils.named(b, MODULE_ID)));
 
                 // jei aliases
                 add(JEIAliasesHelper.Aliases.BLOCK_BREAKER, "Block Breaker");
@@ -201,6 +207,36 @@ public class DataLang extends LanguageProvider {
 
                 add(MODULE_ID + ".jei.recipe.item_replace.remainder", "Replaced with %s");
                 add(MODULE_ID + ".jei.recipe.durability_consume", "Consume %s durability");
+
+                LangUtils.advKey(this, MODULE_ID, "wrought_iron_ingot", "One shade of gray",
+                                "Combine some carbon dust with an iron ingot");
+
+                LangUtils.advKey(this, MODULE_ID, "steel_ingot", "Steel!",
+                                "Smelt on a blast furnace a wrought iron ingot");
+
+                LangUtils.advKey(this, MODULE_ID, "chisel", "StoneCutter on a Stick",
+                                "Craft a chisel to craft in-world stonecutting recipes");
+
+                LangUtils.advKey(this, MODULE_ID, "glass_cutter", "Cut off from the origin",
+                                "Craft a glass cutter to insta-mine glass blocks");
+
+                LangUtils.advKey(this, MODULE_ID, "hammer", "It's Hammer Time!",
+                                "Craft an hammer to craft new stuff");
+
+                LangUtils.advKey(this, MODULE_ID, "honey_solution", "Wax Standby",
+                                "Craft an bottle of honey solution to wax stuff more efficiently");
+
+                LangUtils.advKey(this, MODULE_ID, "redstone_acid", "Wax NOT FOUND",
+                                "Craft a bottle of redstone acid to directly oxidize copper blocks");
+
+                LangUtils.advKey(this, MODULE_ID, "patina", "Wax x@M",
+                                "Obtain some patina by scrapping oxidized copper blocks");
+
+                LangUtils.advKey(this, MODULE_ID, "wrench", "You spin me round",
+                                "Craft a wrench to cycle blockstates of clicked blocks");
+
+                LangUtils.advKey(this, MODULE_ID, "upgrades", "Let's mod it!",
+                                "Obtain some upgrades");
 
         }
 

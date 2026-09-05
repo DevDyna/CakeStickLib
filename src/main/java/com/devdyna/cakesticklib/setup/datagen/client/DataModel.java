@@ -28,6 +28,9 @@ public class DataModel extends ModelProvider {
         @Override
         protected void registerModels(BlockModelGenerators blockModels, ItemModelGenerators itemModels) {
 
+                LibItems.zBucketItems.getEntries().forEach(b -> ModelUtils.createBucketItem(itemModels, b.get()));
+                LibBlocks.zBlockFluids.getEntries().forEach(b -> ModelUtils.fluid(blockModels, b.get(), MODULE_ID));
+
                 itemModels.generateFlatItem(LibItems.CAKE_STICK.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
                 itemModels.generateFlatItem(LibItems.HAMMER.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
                 itemModels.generateFlatItem(LibItems.REDSTONE_ACID.get(), ModelTemplates.FLAT_HANDHELD_ITEM);

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:story/smelt_iron",
+  "criteria": {
+    "craft_glass_cutter": {
+      "conditions": {
+        "items": [
+          {
+            "items": "cakesticklib:glass_cutter"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "cakesticklib.advancement.branch.glass_cutter.desc"
+    },
+    "icon": {
+      "id": "cakesticklib:glass_cutter"
+    },
+    "title": {
+      "translate": "cakesticklib.advancement.branch.glass_cutter"
+    }
+  },
+  "requirements": [
+    [
+      "craft_glass_cutter"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

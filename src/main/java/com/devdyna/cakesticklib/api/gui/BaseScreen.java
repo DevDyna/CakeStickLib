@@ -35,7 +35,7 @@ public abstract class BaseScreen<T extends BaseMenu> extends AbstractContainerSc
     @Override
     public void extractBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float a) {
         super.extractBackground(graphics, mouseX, mouseY, a);
-        graphics.blit(RenderPipelines.GUI, background(), getLeftPos(), getTopPos(), 0, 0, this.imageWidth,
+        graphics.blit(RenderPipelines.GUI_TEXTURED, background(), getLeftPos(), getTopPos(), 0, 0, this.imageWidth,
                 this.imageHeight, 256, 256);
         renderArrow(graphics);
     }
@@ -48,6 +48,7 @@ public abstract class BaseScreen<T extends BaseMenu> extends AbstractContainerSc
                     0, 0,
                     getLeftPos() + 73, getTopPos() + 35,
                     getScaledArrowProgress(), 16);
+
     }
 
 }

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:story/smelt_iron",
+  "criteria": {
+    "craft_chisel": {
+      "conditions": {
+        "items": [
+          {
+            "items": "cakesticklib:chisel"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "cakesticklib.advancement.branch.chisel.desc"
+    },
+    "icon": {
+      "id": "cakesticklib:chisel"
+    },
+    "title": {
+      "translate": "cakesticklib.advancement.branch.chisel"
+    }
+  },
+  "requirements": [
+    [
+      "craft_chisel"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

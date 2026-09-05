@@ -4,6 +4,9 @@
     "cakesticklib:foil_mold",
     "cakesticklib:ingot_mold",
     "cakesticklib:plate_mold",
-    "cakesticklib:block_mold"
+    "cakesticklib:block_mold",
+    "cakesticklib:nugget_mold",
+    "cakesticklib:rod_mold",
+    "cakesticklib:bar_mold"
   ]
 }

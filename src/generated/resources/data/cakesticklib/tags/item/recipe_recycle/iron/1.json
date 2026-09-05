@@ -1,0 +1,11 @@
+{
+  "values": [
+    "minecraft:shield",
+    "minecraft:iron_shovel",
+    "minecraft:iron_spear",
+    "#c:plates/iron",
+    "#c:coils/iron",
+    "#c:foils/iron",
+    "#c:dusts/iron"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "values": [
+    "minecraft:golden_shovel",
+    "minecraft:golden_spear",
+    "#c:plates/gold",
+    "#c:coils/gold",
+    "#c:foils/gold",
+    "#c:dusts/gold"
+  ]
+}
