@@ -5,6 +5,7 @@ import static com.devdyna.cakesticklib.api.datagen.LangUtils.*;
 
 import java.util.List;
 
+import com.devdyna.cakesticklib.api.datagen.LangGenerators;
 import com.devdyna.cakesticklib.api.compat.jei.JEIAliasesHelper;
 import com.devdyna.cakesticklib.api.datagen.LangUtils;
 import com.devdyna.cakesticklib.api.datagen.LangUtils.TipColors;
@@ -15,7 +16,7 @@ import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-public class DataLang extends LanguageProvider {
+public class DataLang extends LanguageProvider implements LangGenerators {
 
         public DataLang(PackOutput o) {
                 super(o, MODULE_ID, "en_us");
@@ -23,6 +24,11 @@ public class DataLang extends LanguageProvider {
 
         @Override
         protected void addTranslations() {
+
+                LibFluids.zFluidTypes.getEntries()
+                                .forEach(f -> addFluid(f.get(), named(f, MODULE_ID).replace(" Type", "")));
+                LibItems.zBucketItems.getEntries().forEach(i -> addItem(i, named(i, MODULE_ID)));
+                LibBlocks.zBlockFluids.getEntries().forEach(b -> addBlock(b, LangUtils.named(b, MODULE_ID)));
 
                 // jei aliases
                 add(JEIAliasesHelper.Aliases.BLOCK_BREAKER, "Block Breaker");
