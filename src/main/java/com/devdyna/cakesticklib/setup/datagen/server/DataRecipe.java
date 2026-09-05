@@ -241,7 +241,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .pattern("CSC")
                                 .pattern(" R ")
                                 .define('S', LibTags.Items.STEEL_PLATE)
-                                .define('R', LibItems.RESISTOR.get())
+                                .define('R', LibItems.BLUE_BATTERY.get())
                                 .define('B', Tags.Items.DUSTS_REDSTONE)
                                 .define('C', LibItems.CHIP.get())
                                 .unlockedBy(getHasName(LibTags.Items.STEEL_PLATE), has(LibTags.Items.STEEL_PLATE))
