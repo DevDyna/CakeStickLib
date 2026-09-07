@@ -8,7 +8,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.network.chat.Component;
-
+//TODO remove (replaced by utils/ClientUtils)
+@Deprecated
 public interface ClientUtils {
 
     final Color defaultToolTipColor = ColorUtils.color(64, 64, 64,255);
