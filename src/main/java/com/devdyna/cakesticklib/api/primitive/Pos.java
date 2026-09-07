@@ -6,11 +6,13 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
+
 /**
- * Similar to <code>net.minecraft.core.BlockPos</code> but specialized on element inclusion
+ * Similar to <code>net.minecraft.core.BlockPos</code> but specialized on
+ * element inclusion
  */
 public class Pos {
-    
+
     private int x0;
     private int y0;
     private int x1 = 0;
@@ -48,7 +50,7 @@ public class Pos {
     }
 
     public boolean test(double x, double y) {
-        return test((int)x,(int) y);
+        return test((int) x, (int) y);
     }
 
     @Deprecated
