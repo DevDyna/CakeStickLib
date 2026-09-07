@@ -14,6 +14,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemStackTemplate;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
@@ -552,6 +553,31 @@ public class x {
 
     public static Material material(String mod, String path, boolean traslucent) {
         return material(x.rl(mod, path), traslucent);
+    }
+
+    public static ItemStack asIcon(BlockState s) {
+
+        if (s.isAir() || s.isEmpty())
+            return ItemStack.EMPTY;
+
+        if (s.getBlock().asItem() != null)
+            return asIcon(x.item(s));
+
+        return x.item(Items.BARRIER);
+
+    }
+
+    public static ItemStack asIcon(ItemStack i) {
+
+        if (!i.isEmpty())
+            return i;
+
+        return x.item(Items.BARRIER);
+
+    }
+
+    public static ItemStack asIcon(ItemLike i) {
+        return x.asIcon(x.item(i));
     }
 
 }
