@@ -126,6 +126,8 @@
   "cakesticklib.widgets.button.SOUTH": "south Directional Button",
   "cakesticklib.widgets.button.UP": "up Directional Button",
   "cakesticklib.widgets.button.WEST": "west Directional Button",
+  "cakesticklib.widgets.button.fluid": "§b§lFLUID",
+  "cakesticklib.widgets.button.item": "§e§lITEM",
   "cakesticklib.wrench.tip": "§7Rotate blocks",
   "extra.effect.minecraft.glowing": "§9Glowing (00:10)",
   "fluid_type.cakesticklib.crude_oil_type": "Crude Oil",

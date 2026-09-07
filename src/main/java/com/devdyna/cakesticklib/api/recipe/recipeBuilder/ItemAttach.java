@@ -37,11 +37,12 @@ public class ItemAttach {
                 return catalyst(x.itemIngredient(catalyst));
             }
 
+            @Deprecated
             default BUILDER catalyst(DeferredHolder<Item, Item>... catalyst) {
                 return catalyst((Item[]) Arrays.asList(catalyst).stream().map(DeferredHolder::get).toArray());
             }
 
-            @Deprecated
+            
             default BUILDER catalyst(Item... catalyst) {
                 return catalyst(x.itemIngredient(catalyst));
             }
@@ -64,6 +65,7 @@ public class ItemAttach {
                 return input(x.itemIngredient(input));
             }
 
+            @Deprecated
             default BUILDER input(DeferredHolder<Item, Item> input) {
                 return input(input.get());
             }
@@ -86,16 +88,15 @@ public class ItemAttach {
                 return add(x.itemSized(input, c));
             }
 
-            @Deprecated
             default BUILDER add(Item input, int c) {
                 return add(x.itemIngredient(input), c);
             }
 
-            @Deprecated
             default BUILDER add(Item input) {
                 return add(x.itemIngredient(input));
             }
 
+            @Deprecated
             default BUILDER add(DeferredHolder<Item, Item> input, int c) {
                 return add(input.get(), c);
             }
@@ -108,6 +109,7 @@ public class ItemAttach {
                 return add(x.itemIngredient(input), c);
             }
 
+            @Deprecated
             default BUILDER add(DeferredHolder<Item, Item> input) {
                 return add(input.get());
             }
@@ -125,11 +127,11 @@ public class ItemAttach {
 
             abstract BUILDER add(Ingredient input);
 
-            @Deprecated
             default BUILDER add(Item input) {
                 return add(x.itemIngredient(input));
             }
 
+            @Deprecated
             default BUILDER add(DeferredHolder<Item, Item> input) {
                 return add(input.get());
             }
@@ -155,6 +157,7 @@ public class ItemAttach {
                 return input(x.itemSized(input));
             }
 
+            @Deprecated
             default BUILDER input(DeferredHolder<Item, Item> input) {
                 return input(input.get());
             }
@@ -167,6 +170,7 @@ public class ItemAttach {
                 return input(x.itemSized(input, c));
             }
 
+            @Deprecated
             default BUILDER input(DeferredHolder<Item, Item> input, int c) {
                 return input(input.get(), c);
             }
@@ -198,10 +202,12 @@ public class ItemAttach {
                 return inputs(right, 1, left, 1);
             }
 
+            @Deprecated
             default BUILDER inputs(DeferredHolder<Item, Item> right, int a, DeferredHolder<Item, Item> left, int b) {
                 return inputs(right.get(), a, left.get(), b);
             }
 
+            @Deprecated
             default BUILDER inputs(DeferredHolder<Item, Item> right, DeferredHolder<Item, Item> left) {
                 return inputs(right.get(), left.get());
             }
@@ -247,6 +253,7 @@ public class ItemAttach {
                 return output(x.itemTemplate(output));
             }
 
+            @Deprecated
             default BUILDER output(DeferredHolder<Item, Item> output) {
                 return output(output.get());
             }
@@ -255,6 +262,7 @@ public class ItemAttach {
                 return output(x.itemTemplate(output, count));
             }
 
+            @Deprecated
             default BUILDER output(DeferredHolder<Item, Item> output, int count) {
                 return output(output.get(), count);
             }
@@ -276,6 +284,7 @@ public class ItemAttach {
             /**
              * default chance of success -> 100%
              */
+            @Deprecated
             default BUILDER secondary(DeferredHolder<Item, Item> secondary) {
                 return secondary(secondary.get());
             }
@@ -297,6 +306,7 @@ public class ItemAttach {
             /**
              * default chance of success -> 100%
              */
+            @Deprecated
             default BUILDER secondary(DeferredHolder<Item, Item> secondary, int count) {
                 return secondary(secondary.get(), count);
             }
@@ -305,6 +315,7 @@ public class ItemAttach {
                 return secondary(x.itemTemplate(secondary), chance);
             }
 
+            @Deprecated
             default BUILDER secondary(DeferredHolder<Item, Item> secondary, float chance) {
                 return secondary(secondary.get(), chance);
             }
@@ -313,6 +324,7 @@ public class ItemAttach {
                 return secondary(x.itemTemplate(secondary, count), chance);
             }
 
+            @Deprecated
             default BUILDER secondary(DeferredHolder<Item, Item> secondary, int count, float chance) {
                 return secondary(secondary.get(), count, chance);
             }
@@ -336,6 +348,7 @@ public class ItemAttach {
                 return outputChance(x.itemTemplate(output), chance);
             }
 
+            @Deprecated
             default BUILDER outputChance(DeferredHolder<Item, Item> output, float chance) {
                 return outputChance(output.get(), chance);
             }
@@ -344,6 +357,7 @@ public class ItemAttach {
                 return outputChance(x.itemTemplate(output, count), chance);
             }
 
+            @Deprecated
             default BUILDER outputChance(DeferredHolder<Item, Item> output, int count, float chance) {
                 return outputChance(output.get(), count, chance);
             }
@@ -371,6 +385,7 @@ public class ItemAttach {
                 return output(List.of(output).stream().map(i -> x.itemTemplate(i)).toList());
             }
 
+            @Deprecated
             default BUILDER output(DeferredHolder<Item, Item> output) {
                 return output(output.get());
             }
@@ -379,6 +394,7 @@ public class ItemAttach {
                 return output(x.itemTemplate(output));
             }
 
+            @Deprecated
             default BUILDER output(DeferredHolder<Item, Item>... output) {
                 return output(List.of(output).stream().map(DeferredHolder::get).map(ItemStackTemplate::new).toList());
             }
