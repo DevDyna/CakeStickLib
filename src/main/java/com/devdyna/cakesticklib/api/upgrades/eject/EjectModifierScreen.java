@@ -93,14 +93,16 @@ public class EjectModifierScreen extends AbstractContainerScreen<EjectModifierMe
         private void addTypedButton(int x, int y) {
 
                 typeButton = Button.builder(
-                                Component.literal(cachedType.getId().toUpperCase()),
+                                Component.translatable(
+                                                MODULE_ID + ".widgets.button.desc." + cachedType.name().toLowerCase()),
                                 button -> {
 
                                         cachedType = cachedType == UseType.ITEM
                                                         ? UseType.FLUID
                                                         : UseType.ITEM;
 
-                                        button.setMessage(Component.literal(cachedType.getId().toUpperCase()));
+                                        button.setMessage(Component.translatable(MODULE_ID + ".widgets.button.desc."
+                                                        + cachedType.name().toLowerCase()));
 
                                         ClientPacketDistributor.sendToServer(
                                                         new EjectUseTypePayload(menu.containerId, cachedType));
@@ -163,8 +165,8 @@ public class EjectModifierScreen extends AbstractContainerScreen<EjectModifierMe
                                                 && !(state.isAir() || state.is(Blocks.BARRIER))
                                                                 ? x.item(Items.BARRIER)
                                                                 : x.item(state)),
-                                getLeftPos() + 55 ,
-                                getTopPos() + 47+ 10);
+                                getLeftPos() + 55,
+                                getTopPos() + 47 + 10);
 
         }
 
