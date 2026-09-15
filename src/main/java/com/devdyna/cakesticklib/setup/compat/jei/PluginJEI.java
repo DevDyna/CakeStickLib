@@ -15,6 +15,7 @@ import mezz.jei.api.constants.RecipeTypes;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
+import mezz.jei.api.registration.ISubtypeRegistration;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
@@ -58,6 +59,13 @@ public class PluginJEI implements IModPlugin {
 
         r.addRecipes(StrippableCategory.TYPE, StrippableCategory.getRecipes());
 
+    }
+
+    @Override
+    public void registerItemSubtypes(ISubtypeRegistration r) {
+        r.registerFromDataComponentTypes(
+                LibItems.EJECT_UPGRADE.get(),
+                LibComponents.UPGRADE_COMPONENTS.get());
     }
 
     private <C extends RecipeInput, T extends Recipe<C>> List<RecipeHolder<T>> getRecipes(RecipeType<T> type) {
