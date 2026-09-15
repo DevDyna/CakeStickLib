@@ -120,6 +120,15 @@ public class EjectModifierScreen extends AbstractContainerScreen<EjectModifierMe
                                                         .sendToServer(new EjectDirectionPayload(menu.containerId, dir));
                                 });
 
+                button.defineSprites((graphics, clicked) -> {
+                        if (clicked)
+                                button.draw(graphics, x.rl(MODULE_ID, "textures/gui/modifier/buttons/"+(cachedType == UseType.ITEM ? "item" : "fluid")+".png"));
+
+                        else
+                                button.draw(graphics, x.rl(MODULE_ID, "textures/gui/modifier/buttons/off.png"));
+
+                });
+
                 BUTTONS.put(dir, button);
 
                 addRenderableWidget(button);
