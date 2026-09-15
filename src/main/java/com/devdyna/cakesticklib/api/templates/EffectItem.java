@@ -31,12 +31,15 @@ public class EffectItem extends Item {
     public static class Builder {
 
         private final List<FoodEffect> list = new ArrayList<>();
-        private Properties p = new Properties();
+        private final Properties p;
         private FoodProperties food;
 
-        public Builder properties(Function<Properties, Properties> f) {
-            this.p = f.apply(p);
-            return this;
+        public Builder(Properties p){
+            this.p = p;
+        }
+
+        public static Builder of(Properties p){
+            return new Builder(p);
         }
 
         public Builder food(FoodProperties food) {
