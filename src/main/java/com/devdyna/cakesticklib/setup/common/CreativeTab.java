@@ -34,8 +34,8 @@ public class CreativeTab {
             event.accept(upgrade(LibItems.ENERGY_UPGRADE, b -> b.energy(-50).create()));
             event.accept(upgrade(LibItems.LUCK_UPGRADE, b -> b.luck(15).energy(150).create()));
             event.accept(upgrade(LibItems.FLUID_UPGRADE, b -> b.fluid(-20).energy(150).create()));
-            event.accept(upgrade(LibItems.EJECT_UPGRADE, b -> b.eject(Direction.DOWN, UseType.ITEM).create()));
-            event.accept(upgrade(LibItems.EJECT_UPGRADE, b -> b.eject(Direction.DOWN, UseType.FLUID).create()));
+            event.accept(upgrade(LibItems.EJECT_UPGRADE, b -> b.eject(Direction.NORTH, UseType.ITEM).create()));
+            event.accept(upgrade(LibItems.EJECT_UPGRADE, b -> b.eject(Direction.NORTH, UseType.FLUID).create()));
 
         }
 
