@@ -152,6 +152,7 @@ public class LibTags {
 
                 // stones pre-1.17 (overworld)
                 public static final TagKey<Item> LEGACY_STONES = RegistryUtils.tagItem(MODULE_ID, "legacy_stones");
+                public static final TagKey<Item> LEGACY_STONE_SLABS = RegistryUtils.tagItem(MODULE_ID, "legacy_stone_slabs");
                 // only stones post-1.17
                 public static final TagKey<Item> MODERN_STONES = RegistryUtils.tagItem(MODULE_ID, "modern_stones");
 

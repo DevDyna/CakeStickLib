@@ -2,7 +2,6 @@ package com.devdyna.cakesticklib.api.templates;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
 
 import com.devdyna.cakesticklib.api.utils.ColorUtils;
 
@@ -31,12 +30,15 @@ public class EffectItem extends Item {
     public static class Builder {
 
         private final List<FoodEffect> list = new ArrayList<>();
-        private Properties p = new Properties();
+        private final Properties p;
         private FoodProperties food;
 
-        public Builder properties(Function<Properties, Properties> f) {
-            this.p = f.apply(p);
-            return this;
+        public Builder(Properties p){
+            this.p = p;
+        }
+
+        public static Builder of(Properties p){
+            return new Builder(p);
         }
 
         public Builder food(FoodProperties food) {
