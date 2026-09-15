@@ -9,7 +9,8 @@ import java.util.function.*;
  */
 public class QueueUtil<T> {
 
-    private boolean add_start = true;
+    private int limit = Integer.MAX_VALUE;
+    private boolean ignoreStart = false;
     private Function<Queue<T>, Boolean> loop_when = q -> !q.isEmpty();
     private T start;
     private List<BiFunction<Queue<T>, T, QueueStatus>> chain = List
@@ -24,7 +25,12 @@ public class QueueUtil<T> {
     }
 
     public QueueUtil<T> ignoreStart() {
-        this.add_start = false;
+        this.ignoreStart = true;
+        return this;
+    }
+
+    public QueueUtil<T> limit(int limit) {
+        this.limit = limit;
         return this;
     }
 
@@ -52,14 +58,18 @@ public class QueueUtil<T> {
         Set<T> visited = new HashSet<>();
         Queue<T> queue = new LinkedList<>();
 
-        if (add_start)
+        if (!ignoreStart)
             queue.add(start);
 
-        main: while (loop_when.apply(queue)) {
+        int checked = 0;
+
+        main: while (loop_when.apply(queue) && checked < limit) {
             var v = queue.poll();
 
             if (!visited.add(v))
                 continue;
+
+            checked++;
 
             for (var operation : chain)
                 switch (operation.apply(queue, v)) {
@@ -70,7 +80,6 @@ public class QueueUtil<T> {
                     case QueueStatus.CONTINUE:
                         continue main;
                 }
-
         }
 
         return false;
