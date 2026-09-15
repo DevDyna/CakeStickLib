@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "upgrade_application",
+  "key": {
+    "B": "#c:dusts/emerald",
+    "C": "cakesticklib:chip",
+    "R": "minecraft:piston",
+    "S": "#c:plates/steel"
+  },
+  "pattern": [
+    " R ",
+    "CSC",
+    " B "
+  ],
+  "result": {
+    "components": {
+      "cakesticklib:modifiers": {
+        "eject": {
+          "type": "fluid",
+          "dir": "north"
+        }
+      }
+    },
+    "id": "cakesticklib:eject_upgrade"
+  }
+}

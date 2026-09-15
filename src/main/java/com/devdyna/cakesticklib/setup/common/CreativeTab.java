@@ -30,12 +30,12 @@ public class CreativeTab {
             event.accept(LibItems.HAMMER.get());
             event.accept(LibItems.WRENCH.get());
 
-           event.accept(upgrade(LibItems.SPEED_UPGRADE, b -> b.speed(20).energy(125).create()));
+            event.accept(upgrade(LibItems.SPEED_UPGRADE, b -> b.speed(20).energy(125).create()));
             event.accept(upgrade(LibItems.ENERGY_UPGRADE, b -> b.energy(-50).create()));
             event.accept(upgrade(LibItems.LUCK_UPGRADE, b -> b.luck(15).energy(150).create()));
             event.accept(upgrade(LibItems.FLUID_UPGRADE, b -> b.fluid(-20).energy(150).create()));
-            event.accept(upgrade(LibItems.EJECT_UPGRADE, b -> b.eject(Direction.DOWN, UseType.ITEM).create()));
-            event.accept(upgrade(LibItems.EJECT_UPGRADE, b -> b.eject(Direction.DOWN, UseType.FLUID).create()));
+            event.accept(upgrade(LibItems.EJECT_UPGRADE, b -> b.eject(Direction.NORTH, UseType.ITEM).create()));
+            event.accept(upgrade(LibItems.EJECT_UPGRADE, b -> b.eject(Direction.NORTH, UseType.FLUID).create()));
 
         }
 
@@ -59,7 +59,7 @@ public class CreativeTab {
 
     }
 
-     private static ItemStack upgrade(DeferredHolder<Item, Item> item,
+    private static ItemStack upgrade(DeferredHolder<Item, Item> item,
             Function<UpgradeComponents.Builder, UpgradeComponents> upgrades) {
         var stack = x.item(item.get());
         stack.set(LibComponents.UPGRADE_COMPONENTS, upgrades.apply(UpgradeComponents.Builder.of()));

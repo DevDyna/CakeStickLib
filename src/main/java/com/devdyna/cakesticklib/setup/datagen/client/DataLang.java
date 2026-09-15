@@ -129,7 +129,7 @@ public class DataLang extends LanguageProvider implements LangGenerators {
                 add(MODULE_ID + ".upgrades.modifier.speed", TipColors.ITEM_TOOLTIP + "Recipe Speed: %s");
                 add(MODULE_ID + ".upgrades.modifier.luck", TipColors.ITEM_TOOLTIP + "Secondary Output: %s");
                 add(MODULE_ID + ".upgrades.modifier.fluid", TipColors.ITEM_TOOLTIP + "Fluid Usage: %s");
-                add(MODULE_ID + ".upgrades.modifier.eject", TipColors.ITEM_TOOLTIP + "Ejection to: %s [%s]");
+                add(MODULE_ID + ".upgrades.modifier.eject", TipColors.ITEM_TOOLTIP + "Ejection to: %s §7| Type : %s");
 
                 add(MODULE_ID + ".screen.upgrades", "Supported Upgrades:");
 

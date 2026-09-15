@@ -236,6 +236,20 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .save(output);
 
                 UpgradeApplicationBuilder.of(registries)
+                                .eject(Direction.NORTH, UseType.FLUID)
+                                .pattern(" R ")
+                                .pattern("CSC")
+                                .pattern(" B ")
+                                .define('S', LibTags.Items.STEEL_PLATE)
+                                .define('R', Items.PISTON)
+                                .define('B', LibTags.Items.EMERALD_DUST)
+                                .define('C', LibItems.CHIP.get())
+                                .unlockedBy(getHasName(LibTags.Items.STEEL_PLATE), has(LibTags.Items.STEEL_PLATE))
+                                .disableClearRecipe()
+                                .output(LibItems.EJECT_UPGRADE.get())
+                                .save(output);
+
+                UpgradeApplicationBuilder.of(registries)
                                 .energy(-50)
                                 .pattern(" B ")
                                 .pattern("CSC")

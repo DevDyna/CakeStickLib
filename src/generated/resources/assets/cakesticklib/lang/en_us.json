@@ -112,7 +112,7 @@
   "cakesticklib.screen.upgrades": "Supported Upgrades:",
   "cakesticklib.tank_interact.empty": "Empty",
   "cakesticklib.ui.dont_consume": "§cNot consume",
-  "cakesticklib.upgrades.modifier.eject": "§7Ejection to: %s [%s]",
+  "cakesticklib.upgrades.modifier.eject": "§7Ejection to: %s §7| Type : %s",
   "cakesticklib.upgrades.modifier.eject.shift": "§8§o<Shift-RightClick to configure>",
   "cakesticklib.upgrades.modifier.empty": "§8§o<Put on a crafting grid to reset>",
   "cakesticklib.upgrades.modifier.energy": "§7Energy Usage: %s",
