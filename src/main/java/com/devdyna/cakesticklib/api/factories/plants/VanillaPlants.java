@@ -1,14 +1,12 @@
 package com.devdyna.cakesticklib.api.factories.plants;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
-import java.util.Set;
 import java.util.function.BiFunction;
 
 import javax.annotation.Nullable;
+
+import com.devdyna.cakesticklib.api.primitive.QueueUtil;
 import com.devdyna.cakesticklib.setup.Config;
 
 import net.minecraft.core.BlockPos;
@@ -188,81 +186,79 @@ public class VanillaPlants {
 
     }
 
-    public static List<ItemStack> checkTree(Level level, BlockPos pos) {
-        return checkTree(level, pos, (i, p) -> false);
+    public static List<ItemStack> checkTree(Level level, BlockPos pos, boolean simulate) {
+        return checkTree(level, pos, simulate, (s, p) -> false);
     }
 
-    public static List<ItemStack> checkTree(Level level, BlockPos pos,
+    public static List<ItemStack> checkTree(Level level, BlockPos pos) {
+        return checkTree(level, pos, false);
+    }
+
+    public static List<ItemStack> checkTree(Level level, BlockPos pos, boolean simulate,
             BiFunction<BlockState, BlockPos, Boolean> tool) {
 
         var state = level.getBlockState(pos);
 
-        boolean canProcede = false;
+        var validTree = false;
 
         if (state.is(BlockTags.COMPLETES_FIND_TREE_TUTORIAL))
-            for (Direction dir : Direction.values()) {
+            for (Direction dir : Direction.values())
                 if (level.getBlockState(pos.relative(dir)).is(BlockTags.COMPLETES_FIND_TREE_TUTORIAL)) {
-                    canProcede = true;
+                    validTree = true;
                     break;
                 }
-            }
 
-        if (canProcede) {
+        if (!validTree)
+            return null;
 
-            ArrayList<ItemStack> itemList = new ArrayList<>();
+        List<ItemStack> items = new ArrayList<>();
+        List<SoundEvent> sounds = new ArrayList<>();
 
-            ArrayList<SoundEvent> souldList = new ArrayList<>();
+        sounds.add(state.getSoundType(level, pos, null).getBreakSound());
 
-            souldList.add(state.getSoundType(level, pos, null).getBreakSound());
+        QueueUtil.of(pos)
+                .limit(treeHarvestingBlockLimit)
+                .define((queue, current) -> {
 
-            Queue<BlockPos> queue = new LinkedList<>();
-            Set<BlockPos> visited = new HashSet<>();
+                    for (List<Integer> off : getTreeDirections()) {
+                        var offset = current.offset(off.get(0), off.get(1), off.get(2));
 
-            queue.add(pos);
-            visited.add(pos);
+                        var offstate = level.getBlockState(offset);
 
-            int checkBlocks = 0;
-            boolean toolFlag = false;
+                        if (!offstate.is(BlockTags.COMPLETES_FIND_TREE_TUTORIAL))
+                            continue;
 
-            while (!queue.isEmpty()) {
-                BlockPos currentPos = queue.poll();
+                        Block.getDrops(offstate, (ServerLevel) level, offset, null)
+                                .forEach(items::add);
 
-                for (List<Integer> off : getTreeDirections()) {
-                    BlockPos adjacentPos = currentPos.offset(off.get(0), off.get(1), off.get(2));
-                    BlockState adjacentState = level.getBlockState(adjacentPos);
+                        if (!simulate)
+                            level.setBlockAndUpdate(offset, Blocks.AIR.defaultBlockState());
 
-                    if (adjacentState.is(BlockTags.COMPLETES_FIND_TREE_TUTORIAL) && !visited.contains(adjacentPos)) {
-                        queue.add(adjacentPos);
-                        visited.add(adjacentPos);
-                        level.setBlockAndUpdate(adjacentPos, Blocks.AIR.defaultBlockState());
-                        Block.getDrops(adjacentState, (ServerLevel) level, adjacentPos, null)
-                                .forEach(t -> itemList.add(t));
+                        var sound = offstate.getSoundType(level, offset, null).getBreakSound();
 
-                        toolFlag = tool.apply(adjacentState, adjacentPos);
+                        if (!sounds.contains(sound))
+                            sounds.add(sound);
 
-                        if (!souldList.contains(adjacentState.getSoundType(level, adjacentPos, null).getBreakSound())) {
-                            souldList.add(adjacentState.getSoundType(level, adjacentPos, null).getBreakSound());
-                        }
+                        if (tool.apply(offstate, offset))
+                            return QueueUtil.QueueStatus.SUCCESS;
+
+                        queue.add(offset);
                     }
-                }
-                checkBlocks++;
 
-                if (checkBlocks >= treeHarvestingBlockLimit)
-                    break;
+                    return QueueUtil.QueueStatus.CONTINUE;
+                })
+                .run();
 
-                if (toolFlag)
-                    break;
-            }
+        Block.getDrops(state, (ServerLevel) level, pos, null)
+                .forEach(items::add);
 
+        if (!simulate)
             level.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
-            Block.getDrops(state, (ServerLevel) level, pos, null).forEach(t -> itemList.add(t));
 
-            souldList.forEach(s -> level.playSound(null, pos, s, SoundSource.BLOCKS));
+        if (!simulate)
+            sounds.forEach(sound -> level.playSound(null, pos, sound, SoundSource.BLOCKS));
 
-            return itemList;
-        }
-
-        return null;
+        return items;
     }
 
     public static List<ItemStack> checkBigPlant(Level level, BlockPos pos) {
