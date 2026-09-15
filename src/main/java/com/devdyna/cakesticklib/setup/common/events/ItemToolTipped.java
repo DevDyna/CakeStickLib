@@ -11,7 +11,6 @@ import com.devdyna.cakesticklib.api.upgrades.modifiers.DirectionalModifier;
 import com.devdyna.cakesticklib.api.upgrades.modifiers.ModifierUtils;
 import com.devdyna.cakesticklib.api.upgrades.modifiers.NumericModifier;
 import com.devdyna.cakesticklib.api.upgrades.modifiers.base.BaseModifier.UseType;
-import com.devdyna.cakesticklib.api.utils.StringUtil;
 import com.devdyna.cakesticklib.api.utils.x;
 import com.devdyna.cakesticklib.setup.registry.builders.CakeStick;
 import com.devdyna.cakesticklib.setup.registry.builders.Chisel;
@@ -69,10 +68,12 @@ public class ItemToolTipped {
                     tip.add(2, Component.translatable(MODULE_ID + ".upgrades.modifier.eject.shift"));
 
                     var eject = ((DirectionalModifier) ModifierUtils.get(nbt, UpgradeType.EJECT));
+
                     tip.add(2, Component.translatable(MODULE_ID + ".upgrades.modifier.eject",
                             TipColors.GOLD + eject.dir().name(),
-                            (eject.type() == UseType.FLUID ? TipColors.LIGHT_BLUE : TipColors.GREEN)
-                                    + StringUtil.nameCapitalized(eject.type().getId())));
+                            (eject.type() == UseType.FLUID ? TipColors.LIGHT_BLUE : TipColors.YELLOW)
+                                    + eject.type().name()));
+
                 }
 
             }
