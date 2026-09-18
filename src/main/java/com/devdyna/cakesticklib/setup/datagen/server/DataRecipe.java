@@ -406,21 +406,21 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .save(output);
 
                 DurabilityConsumeBuilder.of(registries)
-                                .tool(Items.SHEARS, 4)
+                                .tool(Tags.Items.TOOLS_SHEAR, 4)
                                 .add(ItemTags.WOOL)
                                 .output(Items.STRING, 4)
                                 .unlockedBy()
                                 .save(output, "_from_wool");
 
                 DurabilityConsumeBuilder.of(registries)
-                                .tool(Items.SHEARS, 3)
+                                .tool(Tags.Items.TOOLS_SHEAR, 3)
                                 .add(ItemTags.WOOL_CARPETS)
                                 .output(Items.STRING, 2)
                                 .unlockedBy()
                                 .save(output, "_from_wool_carpets");
 
                 DurabilityConsumeBuilder.of(registries)
-                                .tool(Items.SHEARS, 12)
+                                .tool(Tags.Items.TOOLS_SHEAR, 12)
                                 .add(Items.DRIED_GHAST)
                                 .output(Items.GHAST_TEAR, 4)
                                 .unlockedBy()
