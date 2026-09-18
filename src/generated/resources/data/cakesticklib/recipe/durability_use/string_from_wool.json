@@ -5,7 +5,7 @@
   ],
   "mode": {
     "damage": 4,
-    "tool": "minecraft:shears"
+    "tool": "#c:tools/shear"
   },
   "result": {
     "count": 4,
