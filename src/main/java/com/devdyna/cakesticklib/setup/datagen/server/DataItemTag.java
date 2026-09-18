@@ -309,8 +309,57 @@ public class DataItemTag extends ItemTagsProvider {
 
                 tag(LibTags.Items.MODERN_STONES).add(Items.DEEPSLATE, Items.TUFF);
 
-                tag(LibTags.Items.LEGACY_STONE_SLABS).add(Items.STONE_SLAB, Items.DIORITE_SLAB, Items.ANDESITE_SLAB,
-                                Items.GRANITE_SLAB);
+                tag(LibTags.Items.VARIANT_ANDESITE)
+                                .add(
+                                                Items.ANDESITE,
+                                                Items.ANDESITE_SLAB,
+                                                Items.ANDESITE_STAIRS,
+                                                Items.ANDESITE_WALL);
+
+                tag(LibTags.Items.VARIANT_DIORITE)
+                                .add(
+                                                Items.DIORITE,
+                                                Items.DIORITE_SLAB,
+                                                Items.DIORITE_STAIRS,
+                                                Items.DIORITE_WALL);
+
+                tag(LibTags.Items.VARIANT_GRANITE)
+                                .add(
+                                                Items.GRANITE,
+                                                Items.GRANITE_SLAB,
+                                                Items.GRANITE_STAIRS,
+                                                Items.GRANITE_WALL);
+
+                tag(LibTags.Items.VARIANT_STONE)
+                                .add(
+                                                Items.STONE,
+                                                Items.STONE_SLAB,
+                                                Items.STONE_STAIRS);
+
+                tag(LibTags.Items.VARIANT_COBBLESTONE)
+                                .add(
+                                                Items.COBBLESTONE,
+                                                Items.COBBLESTONE_SLAB,
+                                                Items.COBBLESTONE_STAIRS,
+                                                Items.COBBLESTONE_WALL);
+
+                tag(LibTags.Items.VARIANT_DEEPSLATE)
+                                .add(
+                                                Items.DEEPSLATE);
+
+                tag(LibTags.Items.VARIANT_COBBLED_DEEPSLATE)
+                                .add(
+                                                Items.COBBLED_DEEPSLATE,
+                                                Items.COBBLED_DEEPSLATE_SLAB,
+                                                Items.COBBLED_DEEPSLATE_STAIRS,
+                                                Items.COBBLED_DEEPSLATE_WALL);
+
+                tag(LibTags.Items.VARIANT_TUFF)
+                                .add(
+                                                Items.TUFF,
+                                                Items.TUFF_SLAB,
+                                                Items.TUFF_STAIRS,
+                                                Items.TUFF_WALL);
 
         }
 

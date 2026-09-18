@@ -103,7 +103,8 @@ public class Client {
         var blazing_fluids = List.of(
                 LibFluids.SULFURIC_ACID,
                 LibFluids.MOLTEN_BLAZING,
-                LibFluids.PLASTIC);
+                LibFluids.PLASTIC,
+                LibFluids.CRUDE_OIL);
 
         molten_fluids.forEach(
                 f -> event.register(
