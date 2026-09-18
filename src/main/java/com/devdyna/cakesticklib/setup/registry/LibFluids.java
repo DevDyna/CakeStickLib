@@ -23,7 +23,8 @@ public class LibFluids {
         public static final DeferredRegister<FluidType> zFluidTypes = DeferredRegister.create(Keys.FLUID_TYPES,
                         MODULE_ID);
 
-        public static final FluidRegister CRUDE_OIL = FluidRegister.heavy("crude_oil", ColorUtils.BLACK.COAL);
+                        
+        public static final FluidRegister CRUDE_OIL = FluidRegister.heavy("crude_oil", ColorUtils.BLACK.OBSIDIAN);
 
         public static final FluidRegister RESIN = FluidRegister.simple("resin", ColorUtils.ORANGE.TOPAZ);
         public static final FluidRegister LATEX = FluidRegister.simple("latex", ColorUtils.WHITE.CALCITE);
