@@ -309,8 +309,6 @@ public class DataItemTag extends ItemTagsProvider {
 
                 tag(LibTags.Items.MODERN_STONES).add(Items.DEEPSLATE, Items.TUFF);
 
-                tag(LibTags.Items.LEGACY_STONE_SLABS).add(Items.STONE_SLAB, Items.DIORITE_SLAB, Items.ANDESITE_SLAB,
-                                Items.GRANITE_SLAB);
 
         }
 
