@@ -53,7 +53,8 @@ public class CreativeTab {
                     LibItems.zGears,
                     LibItems.zMolds,
                     LibItems.zChunks,
-                    LibItems.zDeposits);
+                    LibItems.zDeposits,
+                    LibItems.zBucketItems);
 
         }
 
