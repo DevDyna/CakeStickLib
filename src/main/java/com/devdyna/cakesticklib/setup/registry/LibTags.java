@@ -213,6 +213,22 @@ public class LibTags {
                 public static final TagKey<Item> RECYCLE_GOLD_9 = RegistryUtils.tagItem(MODULE_ID,
                                 "recipe_recycle/gold/9");
 
+                public static final TagKey<Item> VARIANT_COBBLESTONE = RegistryUtils.tagItem("c",
+                                "variants/stone/cobbled");
+                public static final TagKey<Item> VARIANT_COBBLED_DEEPSLATE = RegistryUtils.tagItem("c",
+                                "variants/deepslate/cobbled");
+
+                public static final TagKey<Item> VARIANT_STONE = RegistryUtils.tagItem("c", "variants/stone/plain");
+                public static final TagKey<Item> VARIANT_DIORITE = RegistryUtils.tagItem("c", "variants/diorite/plain");
+                public static final TagKey<Item> VARIANT_ANDESITE = RegistryUtils.tagItem("c",
+                                "variants/andesite/plain");
+                public static final TagKey<Item> VARIANT_GRANITE = RegistryUtils.tagItem("c", "variants/granite/plain");
+                public static final TagKey<Item> VARIANT_TUFF = RegistryUtils.tagItem("c", "variants/tuff/plain");
+                public static final TagKey<Item> VARIANT_DEEPSLATE = RegistryUtils.tagItem("c",
+                                "variants/deepslate/plain");
+
+                // TODO polished / bricks / tiles / smooth tags?
+                // TODO wood variants?
 
         }
 
