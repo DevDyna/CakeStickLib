@@ -155,9 +155,10 @@ public class DataLang extends LanguageProvider implements LangGenerators {
                 for (var dir : Direction.values())
                         add(MODULE_ID + ".widgets.button." + dir.name(), dir.getName() + " Directional Button");
 
-                        for (var v : UseType.values())
-                 add(MODULE_ID + ".widgets.button." + v.name().toLowerCase(),((v == UseType.ITEM) ?TipColors.YELLOW :TipColors.LIGHT_BLUE) + TipColors.BOLD +v.name());
-
+                for (var v : UseType.values())
+                        add(MODULE_ID + ".widgets.button." + v.name().toLowerCase(),
+                                        ((v == UseType.ITEM) ? TipColors.YELLOW : TipColors.LIGHT_BLUE) + TipColors.BOLD
+                                                        + v.name());
 
                 // config
                 add(MODULE_ID + ".configuration.events", "General events");
