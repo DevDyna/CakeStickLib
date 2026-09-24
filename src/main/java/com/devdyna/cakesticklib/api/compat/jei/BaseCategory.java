@@ -2,7 +2,6 @@ package com.devdyna.cakesticklib.api.compat.jei;
 
 import org.jetbrains.annotations.Nullable;
 
-import com.devdyna.cakesticklib.api.gui.ClientUtils;
 import com.devdyna.cakesticklib.api.primitive.Size;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
@@ -21,7 +20,7 @@ import net.minecraft.world.level.ItemLike;
  * A generic recipe category to show hardcoded implementations without a defined
  * dependency
  */
-public abstract class BaseCategory<T> implements IRecipeCategory<T>, ClientUtils {
+public abstract class BaseCategory<T> implements IRecipeCategory<T> {
 
     protected IGuiHelper helper;
 
@@ -95,6 +94,12 @@ public abstract class BaseCategory<T> implements IRecipeCategory<T>, ClientUtils
     public void draw(T recipe, IRecipeSlotsView recipeSlotsView, GuiGraphicsExtractor guiGraphics, double mouseX,
             double mouseY) {
         background(guiGraphics);
+    }
+
+    public void drawCenteredString(GuiGraphicsExtractor pGuiGraphics, Font font, Component text, int x, int y,
+            int color, boolean dropShadow) {
+        var f = text.getVisualOrderText();
+        pGuiGraphics.text(font, f, x - font.width(f) / 2, y, color, dropShadow);
     }
 
 }
