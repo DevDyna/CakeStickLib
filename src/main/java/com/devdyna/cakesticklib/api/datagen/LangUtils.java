@@ -1,5 +1,6 @@
 package com.devdyna.cakesticklib.api.datagen;
 
+import net.minecraft.world.effect.MobEffectCategory;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
@@ -52,11 +53,14 @@ public class LangUtils {
          */
         public static final String ITEM_TOOLTIP = LIGHT_GRAY;
 
-        //spawner
+        // spawner
         public static final String INTERACTION_TOOLTIP = BLUE;
 
+        @Deprecated
         public static final String POTION_EFFECT_NO_EFFECT = LIGHT_GRAY;
+        @Deprecated
         public static final String POTION_EFFECT_POSITIVE = BLUE;
+        @Deprecated
         public static final String POTION_EFFECT_NEGATIVE = RED;
 
         public static final String POTION_APPLIED_TOOLTIP = PURPLE;
@@ -66,6 +70,14 @@ public class LangUtils {
             public static final String POSITIVE = GREEN;
             public static final String NEGATIVE = RED;
             public static final String NEUTRAL = YELLOW;
+
+        }
+
+        public class MobEffectTypes {
+
+            public static final String POSITIVE = "§" + MobEffectCategory.BENEFICIAL.getTooltipFormatting().getChar();
+            public static final String NEGATIVE = "§" + MobEffectCategory.HARMFUL.getTooltipFormatting().getChar();
+            public static final String NEUTRAL = "§" + MobEffectCategory.NEUTRAL.getTooltipFormatting().getChar();
 
         }
 
