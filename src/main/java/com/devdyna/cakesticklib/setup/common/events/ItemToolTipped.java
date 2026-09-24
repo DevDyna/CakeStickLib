@@ -4,8 +4,8 @@ import static com.devdyna.cakesticklib.CakeStickLib.MODULE_ID;
 
 import com.devdyna.cakesticklib.api.ToolTipHelper;
 import com.devdyna.cakesticklib.api.aspect.logic.BlockItemKeeper;
+import com.devdyna.cakesticklib.api.aspect.logic.EffectItem;
 import com.devdyna.cakesticklib.api.datagen.LangUtils.TipColors;
-import com.devdyna.cakesticklib.api.templates.EffectItem;
 import com.devdyna.cakesticklib.api.upgrades.UpgradeComponents.UpgradeType;
 import com.devdyna.cakesticklib.api.upgrades.modifiers.DirectionalModifier;
 import com.devdyna.cakesticklib.api.upgrades.modifiers.ModifierUtils;
