@@ -208,7 +208,7 @@ public class DataLang extends LanguageProvider implements LangGenerators {
 
                 // extra
                 add("extra.effect.minecraft.glowing",
-                                TipColors.POTION_EFFECT_POSITIVE + "Glowing (00:10)");
+                                TipColors.MobEffectTypes.NEUTRAL + "Glowing (00:10)");
 
                 add(MODULE_ID + ".jei.recipe.item_replace.remainder", "Replaced with %s");
                 add(MODULE_ID + ".jei.recipe.durability_consume", "Consume %s durability");
