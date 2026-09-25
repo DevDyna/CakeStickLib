@@ -25,7 +25,7 @@ public interface EffectItem<T extends Item> {
     /**
      * Create an food item with a dedicated tooltip to show mobEffects
      */
-   static class Builder<T extends Item> {
+    static class Builder<T extends Item> {
 
         private final List<FoodEffect> list = new ArrayList<>();
         private final Properties p;
@@ -41,6 +41,14 @@ public interface EffectItem<T extends Item> {
         public static <T extends Item> Builder<T> of(Properties p,
                 BiFunction<Properties, ArrayList<MobEffectInstance>, T> factory) {
             return new Builder<>(p, factory);
+        }
+
+        public Builder(Properties p) {
+            this(p, (i, l) ->(T) new Item(i));
+        }
+
+        public static <T extends Item> Builder<T> of(Properties p) {
+            return new Builder<>(p);
         }
 
         public Builder<T> food(FoodProperties food) {
@@ -111,11 +119,10 @@ public interface EffectItem<T extends Item> {
             var result = Component.empty()
                     .append(effect.getDisplayName());
 
-            if (instance.getAmplifier() > 0) 
+            if (instance.getAmplifier() > 0)
                 result.append(" ")
                         .append(Component.translatable(
                                 "potion.potency." + instance.getAmplifier()));
-            
 
             result.append(" (")
                     .append(MobEffectUtil.formatDuration(
