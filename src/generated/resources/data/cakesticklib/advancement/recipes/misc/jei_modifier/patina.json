@@ -1,32 +1,32 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "copper_ingot": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "cakesticklib:jei_modifier/patina"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "patina": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:copper_ingot"
+            "items": "cakesticklib:patina"
           }
         ]
       },
       "trigger": "minecraft:inventory_changed"
-    },
-    "has_the_recipe": {
-      "conditions": {
-        "recipe": "cakesticklib:copper_oxidation/waxing"
-      },
-      "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
       "has_the_recipe",
-      "copper_ingot"
+      "patina"
     ]
   ],
   "rewards": {
     "recipes": [
-      "cakesticklib:copper_oxidation/waxing"
+      "cakesticklib:jei_modifier/patina"
     ]
   }
 }

@@ -1,0 +1,8 @@
+{
+  "type": "cakesticklib:jei_modifier",
+  "output": {
+    "id": "cakesticklib:patina"
+  },
+  "rich_tooltip_key": "cakesticklib.jei.patina_drop",
+  "target": "neoforge:datamaps/scrapping"
+}

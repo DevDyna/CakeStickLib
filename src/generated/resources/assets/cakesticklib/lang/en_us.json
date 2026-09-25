@@ -95,7 +95,7 @@
   "cakesticklib.jei.alias.tree.cutter": "Tree cutter",
   "cakesticklib.jei.alias.tree.feller": "Tree feller",
   "cakesticklib.jei.copper_oxidation": "Copper Oxidation Info",
-  "cakesticklib.jei.patina_drop": "§7Drop %s§7 items every scrape",
+  "cakesticklib.jei.patina_drop": "§7Drop §f0-2§7 items every scrape",
   "cakesticklib.jei.recipe.durability_consume": "Consume %s durability",
   "cakesticklib.jei.recipe.item_replace.remainder": "Replaced with %s",
   "cakesticklib.jei.strippable": "Block Strippable Info",
