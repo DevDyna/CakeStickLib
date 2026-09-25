@@ -1,7 +1,5 @@
 package com.devdyna.cakesticklib.setup.common.recipes.oxidation;
 
-import static com.devdyna.cakesticklib.CakeStickLib.MODULE_ID;
-
 import java.util.LinkedHashMap;
 
 import com.devdyna.cakesticklib.api.recipe.recipeBuilder.BaseRecipeBuilder;
@@ -9,7 +7,6 @@ import com.devdyna.cakesticklib.api.recipe.recipeBuilder.ItemAttach;
 import com.devdyna.cakesticklib.api.utils.x;
 
 import net.minecraft.advancements.Criterion;
-import net.minecraft.advancements.criterion.InventoryChangeTrigger;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
@@ -38,15 +35,10 @@ public class CopperOxidationBuilder extends BaseRecipeBuilder
     }
 
     public CopperOxidationBuilder unlockedBy() {
-        return unlockedBy(
-                x.name(Items.COPPER_INGOT),
-                InventoryChangeTrigger.TriggerInstance.hasItems(Items.COPPER_INGOT));
+        return unlockedBy(Items.COPPER_INGOT);
     }
 
-    public CopperOxidationBuilder unlockedBy(
-            String name,
-            Criterion<?> criterion) {
-
+    public CopperOxidationBuilder unlockedBy(String name, Criterion<?> criterion) {
         this.criteria.put(name, criterion);
         return this;
     }
@@ -93,8 +85,14 @@ public class CopperOxidationBuilder extends BaseRecipeBuilder
 
     @Override
     public Identifier getSuffix(String extra) {
-        return x.rl(MODULE_ID, "copper_oxidation/" + type.name().toLowerCase()
-                + (type.equals(OxidationStatus.CUSTOM) ? "/" + x.name(output) : "") + extra);
+
+        var id = type.getIdentifier();
+
+        if (type.isCustom())
+            id = id.withSuffix(x.name(output));
+
+        return id.withSuffix(extra);
+
     }
 
     @Override

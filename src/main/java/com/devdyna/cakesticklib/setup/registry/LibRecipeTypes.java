@@ -3,6 +3,7 @@ package com.devdyna.cakesticklib.setup.registry;
 import com.devdyna.cakesticklib.CakeStickLib;
 import com.devdyna.cakesticklib.setup.RecipeRegister;
 import com.devdyna.cakesticklib.setup.common.recipes.item_replace.ReplaceItemRecipe;
+import com.devdyna.cakesticklib.setup.common.recipes.jei_modifier.JeiModiferRecipe;
 import com.devdyna.cakesticklib.setup.common.recipes.oxidation.CopperOxidationRecipe;
 import com.devdyna.cakesticklib.setup.common.recipes.tool_durability.DurabilityConsumeRecipe;
 import com.devdyna.cakesticklib.setup.common.recipes.upgrade_application.UpgradeApplicationRecipe;
@@ -14,31 +15,30 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class LibRecipeTypes {
-                public static void register(IEventBus bus) {
-                        SERIALIZERS.register(bus);
-                        TYPES.register(bus);
-                }
-
-                public static final DeferredRegister<RecipeSerializer<?>> SERIALIZERS = DeferredRegister
-                                .create(Registries.RECIPE_SERIALIZER, CakeStickLib.MODULE_ID);
-                public static final DeferredRegister<RecipeType<?>> TYPES = DeferredRegister.create(
-                                Registries.RECIPE_TYPE,
-                                CakeStickLib.MODULE_ID);
-
-                public static final RecipeRegister<CopperOxidationRecipe> COPPER_OXIDATION = RecipeRegister.of(
-                                "copper_oxidation",
-                                () -> CopperOxidationRecipe.serializer());
-
-                public static final RecipeRegister<DurabilityConsumeRecipe> DURABILITY_USE = RecipeRegister.of(
-                                "durability_use",
-                                () -> DurabilityConsumeRecipe.SERIALIZER);
-
-                public static final RecipeRegister<ReplaceItemRecipe> REPLACING = RecipeRegister.of(
-                                "replace_item",
-                                () -> ReplaceItemRecipe.SERIALIZER);
-
-                public static final RecipeRegister<UpgradeApplicationRecipe> UPGRADE_APPLICATION = RecipeRegister.of(
-                                "upgrade_application",
-                                () -> UpgradeApplicationRecipe.serializer());
-
+        public static void register(IEventBus bus) {
+                SERIALIZERS.register(bus);
+                TYPES.register(bus);
         }
+
+        public static final DeferredRegister<RecipeSerializer<?>> SERIALIZERS = DeferredRegister
+                        .create(Registries.RECIPE_SERIALIZER, CakeStickLib.MODULE_ID);
+
+        public static final DeferredRegister<RecipeType<?>> TYPES = DeferredRegister.create(Registries.RECIPE_TYPE,
+                        CakeStickLib.MODULE_ID);
+
+        public static final RecipeRegister<CopperOxidationRecipe> COPPER_OXIDATION = RecipeRegister.of(
+                        "copper_oxidation", () -> CopperOxidationRecipe.serializer());
+
+        public static final RecipeRegister<DurabilityConsumeRecipe> DURABILITY_USE = RecipeRegister.of(
+                        "durability_use", () -> DurabilityConsumeRecipe.SERIALIZER);
+
+        public static final RecipeRegister<ReplaceItemRecipe> REPLACING = RecipeRegister.of(
+                        "replace_item", () -> ReplaceItemRecipe.SERIALIZER);
+
+        public static final RecipeRegister<UpgradeApplicationRecipe> UPGRADE_APPLICATION = RecipeRegister.of(
+                        "upgrade_application", () -> UpgradeApplicationRecipe.serializer());
+
+        public static final RecipeRegister<JeiModiferRecipe> JEI_MODIFIER = RecipeRegister.of(
+                        "jei_modifier", () -> JeiModiferRecipe.serializer());
+
+}

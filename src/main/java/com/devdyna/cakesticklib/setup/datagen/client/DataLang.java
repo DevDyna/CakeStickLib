@@ -119,7 +119,7 @@ public class DataLang extends LanguageProvider implements LangGenerators {
                 add(MODULE_ID + ".jei.strippable", "Block Strippable Info");
 
                 add(MODULE_ID + ".jei.patina_drop",
-                                TipColors.ITEM_TOOLTIP + "Drop %s" + TipColors.ITEM_TOOLTIP + " items every scrape");
+                                TipColors.ITEM_TOOLTIP + "Drop "+TipColors.WHITE+"0-2" + TipColors.ITEM_TOOLTIP + " items every scrape");
 
                 // upgrades
 

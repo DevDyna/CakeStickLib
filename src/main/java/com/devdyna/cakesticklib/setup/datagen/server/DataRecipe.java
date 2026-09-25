@@ -10,6 +10,7 @@ import com.devdyna.cakesticklib.api.datagen.RecipeGenerators;
 import com.devdyna.cakesticklib.api.upgrades.modifiers.base.BaseModifier.UseType;
 import com.devdyna.cakesticklib.api.utils.x;
 import com.devdyna.cakesticklib.setup.common.recipes.item_replace.ReplaceItemBuilder;
+import com.devdyna.cakesticklib.setup.common.recipes.jei_modifier.JeiModiferRecipeBuilder;
 import com.devdyna.cakesticklib.setup.common.recipes.oxidation.CopperOxidationBuilder;
 import com.devdyna.cakesticklib.setup.common.recipes.oxidation.OxidationStatus;
 import com.devdyna.cakesticklib.setup.common.recipes.tool_durability.DurabilityConsumeBuilder;
@@ -653,6 +654,13 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                         stonecutter(output, i, LibItems.BLANK_MOLD.get());
                                         stonecutter(output, i, LibTags.Items.MOLDS);
                                 });
+
+                JeiModiferRecipeBuilder.of(registries)
+                                .oxidation(OxidationStatus.SCRAPPING)
+                                .output(LibItems.PATINA)
+                                .tooltip(MODULE_ID + ".jei.patina_drop")
+                                .unlockedBy()
+                                .save(output);
 
         }
 
