@@ -3,19 +3,15 @@ package com.devdyna.cakesticklib.api.templates;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.devdyna.cakesticklib.api.utils.ColorUtils;
-
-import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffectUtil;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.component.Consumable;
 import net.minecraft.world.item.consume_effects.ApplyStatusEffectsConsumeEffect;
 
-public class EffectItem extends Item {
+@Deprecated
+public class EffectItem extends Item implements com.devdyna.cakesticklib.api.aspect.logic.EffectItem<EffectItem> {
 
     private List<MobEffectInstance> effects;
 
@@ -24,20 +20,18 @@ public class EffectItem extends Item {
         this.effects = effects;
     }
 
-    /**
-     * Create an food item with a dedicated tooltip to show mobEffects
-     */
+    @Deprecated
     public static class Builder {
 
         private final List<FoodEffect> list = new ArrayList<>();
         private final Properties p;
         private FoodProperties food;
 
-        public Builder(Properties p){
+        public Builder(Properties p) {
             this.p = p;
         }
 
-        public static Builder of(Properties p){
+        public static Builder of(Properties p) {
             return new Builder(p);
         }
 
@@ -71,6 +65,7 @@ public class EffectItem extends Item {
         }
 
         public EffectItem build() {
+
             var consumable = Consumable.builder();
             var potions = new ArrayList<MobEffectInstance>();
 
@@ -111,38 +106,14 @@ public class EffectItem extends Item {
         }
     }
 
+    @Override
     public List<Component> getEffectToolTip() {
+        return defaultEffectTooltip(effects);
+    }
 
-        var list = new ArrayList<Component>();
-
-        for (var instance : effects) {
-
-            var effect = instance.getEffect().value();
-
-            var result = Component.empty()
-                    .append(effect.getDisplayName());
-
-            if (instance.getAmplifier() > 0)
-                result.append(" ")
-                        .append(Component.translatable(
-                                "potion.potency." + instance.getAmplifier()));
-
-            result.append(" (")
-                    .append(MobEffectUtil.formatDuration(instance, 1.0F,
-                            Minecraft.getInstance().level.tickRateManager().tickrate()))
-                    .append(")");
-
-            result.withStyle(style -> style.withColor(switch (effect.getCategory()) {
-                case MobEffectCategory.BENEFICIAL -> ColorUtils.rgb(85, 85, 255);
-                case MobEffectCategory.HARMFUL -> ColorUtils.rgb(255, 85, 85);
-                case MobEffectCategory.NEUTRAL -> ColorUtils.rgb(170, 0, 170);
-            }));
-
-            list.add(result);
-        }
-
-        return list;
-
+    @Override
+    public EffectItem create(Properties p, ArrayList<MobEffectInstance> effects) {
+        return new EffectItem(p, effects);
     }
 
 }

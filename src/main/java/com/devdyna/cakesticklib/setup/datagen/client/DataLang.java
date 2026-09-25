@@ -119,7 +119,7 @@ public class DataLang extends LanguageProvider implements LangGenerators {
                 add(MODULE_ID + ".jei.strippable", "Block Strippable Info");
 
                 add(MODULE_ID + ".jei.patina_drop",
-                                TipColors.ITEM_TOOLTIP + "Drop %s" + TipColors.ITEM_TOOLTIP + " items every scrape");
+                                TipColors.ITEM_TOOLTIP + "Drop "+TipColors.WHITE+"0-2" + TipColors.ITEM_TOOLTIP + " items every scrape");
 
                 // upgrades
 
@@ -155,9 +155,10 @@ public class DataLang extends LanguageProvider implements LangGenerators {
                 for (var dir : Direction.values())
                         add(MODULE_ID + ".widgets.button." + dir.name(), dir.getName() + " Directional Button");
 
-                        for (var v : UseType.values())
-                 add(MODULE_ID + ".widgets.button." + v.name().toLowerCase(),((v == UseType.ITEM) ?TipColors.YELLOW :TipColors.LIGHT_BLUE) + TipColors.BOLD +v.name());
-
+                for (var v : UseType.values())
+                        add(MODULE_ID + ".widgets.button." + v.name().toLowerCase(),
+                                        ((v == UseType.ITEM) ? TipColors.YELLOW : TipColors.LIGHT_BLUE) + TipColors.BOLD
+                                                        + v.name());
 
                 // config
                 add(MODULE_ID + ".configuration.events", "General events");
@@ -208,7 +209,7 @@ public class DataLang extends LanguageProvider implements LangGenerators {
 
                 // extra
                 add("extra.effect.minecraft.glowing",
-                                TipColors.POTION_EFFECT_POSITIVE + "Glowing (00:10)");
+                                TipColors.MobEffectTypes.NEUTRAL + "Glowing (00:10)");
 
                 add(MODULE_ID + ".jei.recipe.item_replace.remainder", "Replaced with %s");
                 add(MODULE_ID + ".jei.recipe.durability_consume", "Consume %s durability");

@@ -60,6 +60,7 @@ public abstract class BaseRecipeCategory<T extends Recipe<?>> extends BaseCatego
             double mouseX, double mouseY) {
     }
 
+    @Deprecated
     public void drawCentredStringFixed(GuiGraphicsExtractor g, Font font, Component text, int x, int y, int color,
             Boolean bool) {
         var f = text.getVisualOrderText();

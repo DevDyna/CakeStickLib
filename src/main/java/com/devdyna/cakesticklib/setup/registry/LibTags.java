@@ -152,7 +152,7 @@ public class LibTags {
 
                 // stones pre-1.17 (overworld)
                 public static final TagKey<Item> LEGACY_STONES = RegistryUtils.tagItem(MODULE_ID, "legacy_stones");
-                public static final TagKey<Item> LEGACY_STONE_SLABS = RegistryUtils.tagItem(MODULE_ID, "legacy_stone_slabs");
+
                 // only stones post-1.17
                 public static final TagKey<Item> MODERN_STONES = RegistryUtils.tagItem(MODULE_ID, "modern_stones");
 
@@ -213,8 +213,22 @@ public class LibTags {
                 public static final TagKey<Item> RECYCLE_GOLD_9 = RegistryUtils.tagItem(MODULE_ID,
                                 "recipe_recycle/gold/9");
 
-                // TODO IMP : stones tags? (diorite variants , granite variants , andesite
-                // variants , etc)
+                public static final TagKey<Item> VARIANT_COBBLESTONE = RegistryUtils.tagItem("c",
+                                "variants/stone/cobbled");
+                public static final TagKey<Item> VARIANT_COBBLED_DEEPSLATE = RegistryUtils.tagItem("c",
+                                "variants/deepslate/cobbled");
+
+                public static final TagKey<Item> VARIANT_STONE = RegistryUtils.tagItem("c", "variants/stone/plain");
+                public static final TagKey<Item> VARIANT_DIORITE = RegistryUtils.tagItem("c", "variants/diorite/plain");
+                public static final TagKey<Item> VARIANT_ANDESITE = RegistryUtils.tagItem("c",
+                                "variants/andesite/plain");
+                public static final TagKey<Item> VARIANT_GRANITE = RegistryUtils.tagItem("c", "variants/granite/plain");
+                public static final TagKey<Item> VARIANT_TUFF = RegistryUtils.tagItem("c", "variants/tuff/plain");
+                public static final TagKey<Item> VARIANT_DEEPSLATE = RegistryUtils.tagItem("c",
+                                "variants/deepslate/plain");
+
+                // TODO polished / bricks / tiles / smooth tags?
+                // TODO wood variants?
 
         }
 

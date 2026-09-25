@@ -10,6 +10,7 @@ import com.devdyna.cakesticklib.api.datagen.RecipeGenerators;
 import com.devdyna.cakesticklib.api.upgrades.modifiers.base.BaseModifier.UseType;
 import com.devdyna.cakesticklib.api.utils.x;
 import com.devdyna.cakesticklib.setup.common.recipes.item_replace.ReplaceItemBuilder;
+import com.devdyna.cakesticklib.setup.common.recipes.jei_modifier.JeiModiferRecipeBuilder;
 import com.devdyna.cakesticklib.setup.common.recipes.oxidation.CopperOxidationBuilder;
 import com.devdyna.cakesticklib.setup.common.recipes.oxidation.OxidationStatus;
 import com.devdyna.cakesticklib.setup.common.recipes.tool_durability.DurabilityConsumeBuilder;
@@ -406,21 +407,21 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .save(output);
 
                 DurabilityConsumeBuilder.of(registries)
-                                .tool(Items.SHEARS, 4)
+                                .tool(Tags.Items.TOOLS_SHEAR, 4)
                                 .add(ItemTags.WOOL)
                                 .output(Items.STRING, 4)
                                 .unlockedBy()
                                 .save(output, "_from_wool");
 
                 DurabilityConsumeBuilder.of(registries)
-                                .tool(Items.SHEARS, 3)
+                                .tool(Tags.Items.TOOLS_SHEAR, 3)
                                 .add(ItemTags.WOOL_CARPETS)
                                 .output(Items.STRING, 2)
                                 .unlockedBy()
                                 .save(output, "_from_wool_carpets");
 
                 DurabilityConsumeBuilder.of(registries)
-                                .tool(Items.SHEARS, 12)
+                                .tool(Tags.Items.TOOLS_SHEAR, 12)
                                 .add(Items.DRIED_GHAST)
                                 .output(Items.GHAST_TEAR, 4)
                                 .unlockedBy()
@@ -653,6 +654,13 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                         stonecutter(output, i, LibItems.BLANK_MOLD.get());
                                         stonecutter(output, i, LibTags.Items.MOLDS);
                                 });
+
+                JeiModiferRecipeBuilder.of(registries)
+                                .oxidation(OxidationStatus.SCRAPPING)
+                                .output(LibItems.PATINA)
+                                .tooltip(MODULE_ID + ".jei.patina_drop")
+                                .unlockedBy()
+                                .save(output);
 
         }
 

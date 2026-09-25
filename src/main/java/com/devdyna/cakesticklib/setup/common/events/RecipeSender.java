@@ -15,6 +15,7 @@ public class RecipeSender {
                     LibRecipeTypes.DURABILITY_USE.getType(),
                     LibRecipeTypes.REPLACING.getType(),
                     LibRecipeTypes.UPGRADE_APPLICATION.getType(),
+                    LibRecipeTypes.JEI_MODIFIER.getType(),
                     RecipeType.CRAFTING);
 
     }

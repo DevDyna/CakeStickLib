@@ -1,7 +1,5 @@
 package com.devdyna.cakesticklib.api;
 
-import java.util.function.ToIntFunction;
-
 import javax.annotation.Nullable;
 import java.awt.Color;
 
@@ -31,6 +29,7 @@ import net.neoforged.neoforge.common.SoundActions;
 import net.neoforged.neoforge.fluids.BaseFlowingFluid;
 import net.neoforged.neoforge.fluids.FluidType;
 import net.neoforged.neoforge.registries.DeferredHolder;
+
 //TODO HEAVILY REWORK
 /**
  * Utility class to create fluids
@@ -46,47 +45,22 @@ public class FluidRegister {
     private BaseFlowingFluid.Properties prop;
     private DeferredHolder<FluidType, ?> type;
 
-    private int lightLevel;
-    private ToIntFunction<BlockState> dynLightLevel;
-    private int viscosityFluid;
-
-    private boolean igniteWhenInside;
     private int color;
 
-    private boolean canSwim;
-
-    private boolean canDrown;
-
-    private boolean canConvertToSource;
-
-    private boolean canPushEntity;
-
-    private int blockLightLevel;
-
-    public FluidRegister(String id, int color, boolean noBucket, boolean ignite, boolean drown, boolean swim,
-            boolean push, boolean convertToSource, int viscosity, int block_light,
-            ToIntFunction<BlockState> light_level) {
+    public FluidRegister(String id, int color, boolean ignite, int lightLevel) {
 
         this.id = id;
         this.color = color;
-        this.viscosityFluid = viscosity;// approx water
-        this.dynLightLevel = light_level;
-        this.blockLightLevel = block_light;
-        this.canDrown = drown;
-        this.canSwim = swim;
-        this.canPushEntity = push;
-        this.canConvertToSource = convertToSource;
-        this.igniteWhenInside = ignite;
 
         this.type = LibFluids.zFluidTypes.register(
                 id + "_type",
                 p -> new FluidType(FluidType.Properties.create()
-                        .lightLevel(blockLightLevel)
-                        .viscosity(viscosityFluid)
-                        .canDrown(canDrown)
-                        .canSwim(canSwim)
-                        .canPushEntity(canPushEntity)
-                        .canConvertToSource(canConvertToSource)
+                        .lightLevel(lightLevel)
+                        .viscosity(1000)
+                        .canDrown(true)
+                        .isWaterLike(true)
+                        .canPushEntity(true)
+                        .canConvertToSource(false)
                         .sound(SoundActions.BUCKET_FILL, SoundEvents.BUCKET_FILL)
                         .sound(SoundActions.BUCKET_EMPTY, SoundEvents.BUCKET_EMPTY))
 
@@ -94,27 +68,27 @@ public class FluidRegister {
 
         this.prop = new BaseFlowingFluid.Properties(this.type, null, null);
 
-        this.fluidsource = LibFluids.zFluids.register(id // + "_source"
-                , p -> new BaseFlowingFluid.Source(this.prop));
+        this.fluidsource = LibFluids.zFluids.register(id, p -> new BaseFlowingFluid.Source(this.prop));
 
         this.fluidflowing = LibFluids.zFluids.register(id + "_flowing",
                 p -> new BaseFlowingFluid.Flowing(this.prop) {
 
                     protected void entityInside(Level level, BlockPos pos, Entity entity,
                             InsideBlockEffectApplier effectApplier) {
-                        if (igniteWhenInside) {
+                        if (ignite) {
                             effectApplier.apply(InsideBlockEffectType.CLEAR_FREEZE);
                             effectApplier.apply(InsideBlockEffectType.LAVA_IGNITE);
                             effectApplier.runAfter(InsideBlockEffectType.LAVA_IGNITE, Entity::lavaHurt);
                         }
+
+                        super.entityInside(level, pos, entity, effectApplier);
                     };
 
                 });
 
-        this.itemBucket = noBucket ? null
-                : LibItems.zBucketItems.registerItem(id + "_bucket",
-                        p -> new BucketItem(this.fluidsource.get(),
-                                p.craftRemainder(Items.BUCKET).stacksTo(1)));
+        this.itemBucket = LibItems.zBucketItems.registerItem(id + "_bucket",
+                p -> new BucketItem(this.fluidsource.get(),
+                        p.craftRemainder(Items.BUCKET).stacksTo(1)));
 
         this.block = LibBlocks.zBlockFluids.registerBlock(
                 id,
@@ -123,17 +97,19 @@ public class FluidRegister {
                                 .strength(100.0F).pushReaction(PushReaction.DESTROY).noLootTable().liquid()
                                 .sound(SoundType.EMPTY)
                                 .liquid()
-                                .lightLevel(dynLightLevel)
-                                .emissiveRendering((s, g, p) -> lightLevel > 0 || dynLightLevel.applyAsInt(s) > 0)) {
+                                .lightLevel(_ -> lightLevel)) {
 
-                    protected void entityInside(BlockState state, Level level, BlockPos pos, Entity entity,
+                    protected void entityInside(BlockState state, Level level, BlockPos pos,
+                            Entity entity,
                             InsideBlockEffectApplier effectApplier, boolean isPrecise) {
 
-                        if (igniteWhenInside) {
+                        if (ignite) {
                             effectApplier.apply(InsideBlockEffectType.CLEAR_FREEZE);
                             effectApplier.apply(InsideBlockEffectType.LAVA_IGNITE);
                             effectApplier.runAfter(InsideBlockEffectType.LAVA_IGNITE, Entity::lavaHurt);
                         }
+
+                        super.entityInside(state, level, pos, entity, effectApplier, isPrecise);
                     };
 
                 });
@@ -143,9 +119,8 @@ public class FluidRegister {
                 this.fluidsource,
                 this.fluidflowing).block(this.block);
 
-        if (!noBucket)
-            sampleProp = sampleProp
-                    .bucket(this.itemBucket);
+        sampleProp = sampleProp
+                .bucket(this.itemBucket);
 
         this.prop = sampleProp;
     }
@@ -166,70 +141,8 @@ public class FluidRegister {
         return itemBucket;
     }
 
-    // public Identifier getStill() {
-    // return still;
-    // }
-
     public DeferredHolder<FluidType, ?> getType() {
         return type;
-    }
-
-    // public FluidRegister setTextures(Identifier still) {
-    // this.still = still;
-    // return this;
-    // }
-
-    // public FluidRegister setStillTexture(Identifier rl) {
-    // this.still = rl;
-    // return this;
-    // }
-
-    /**
-     * dont work
-     */
-    @Deprecated
-    public FluidRegister setLight(int l) {
-        this.lightLevel = l;
-        return this;
-    }
-
-    @Deprecated
-    public FluidRegister setLight(ToIntFunction<BlockState> l) {
-        this.dynLightLevel = l;
-        return this;
-    }
-
-    @Deprecated
-    public FluidRegister swim() {
-        // this.canSwim = true;
-        return this;
-    }
-
-    @Deprecated
-    public FluidRegister convertToSource() {
-        // this.canConvertToSource = true;
-        return this;
-    }
-
-    @Deprecated
-    public FluidRegister drown() {
-        // this.canDrown = true;
-        return this;
-    }
-
-    @Deprecated
-    public FluidRegister pushEntity() {
-        // this.canPushEntity = true;
-        return this;
-    }
-
-    /**
-     * Default value: 1000
-     */
-    @Deprecated
-    public FluidRegister setViscosity(int v) {
-        // this.viscosity = v;
-        return this;
     }
 
     public String getId() {
@@ -245,7 +158,7 @@ public class FluidRegister {
     }
 
     public static FluidRegister simple(String id, int color) {
-        return new FluidRegister(id, color, false, false, false, false, false, false, 1000, 0, s -> 0);
+        return new FluidRegister(id, color, false, 0);
     }
 
     public static FluidRegister simple(String id, Color color) {
@@ -253,7 +166,7 @@ public class FluidRegister {
     }
 
     public static FluidRegister heavy(String id, int color) {
-        return new FluidRegister(id, color, false, false, true, false, true, false, 2500, 0, s -> 0);
+        return new FluidRegister(id, color, false, 0);
     }
 
     public static FluidRegister heavy(String id, Color color) {
@@ -261,7 +174,7 @@ public class FluidRegister {
     }
 
     public static FluidRegister molten(String id, int color) {
-        return new FluidRegister(id, color, false, true, false, false, true, false, 1000, 5, s -> 5);
+        return new FluidRegister(id, color, true, 5);
     }
 
     public static FluidRegister molten(String id, Color color) {
