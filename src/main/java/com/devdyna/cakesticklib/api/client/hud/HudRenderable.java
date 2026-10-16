@@ -1,6 +1,5 @@
-package com.devdyna.cakesticklib.api.client;
+package com.devdyna.cakesticklib.api.client.hud;
 
-import com.devdyna.cakesticklib.api.client.hud.HudInfoRenderHandler;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
