@@ -2,6 +2,8 @@ package com.devdyna.cakesticklib.api.templates;
 
 import javax.annotation.Nullable;
 
+import com.devdyna.cakesticklib.api.aspect.logic.Tickable;
+
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
@@ -21,7 +23,7 @@ public abstract class TickingBlock extends Block implements EntityBlock {
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level l, BlockState s,
             BlockEntityType<T> ty) {
         return (lvl, pos, b, t) -> {
-            if (t instanceof TickingBE be) {
+            if (t instanceof Tickable be) {
 
                 if (l == null)
                     return;
