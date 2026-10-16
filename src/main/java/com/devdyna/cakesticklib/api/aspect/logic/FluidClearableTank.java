@@ -1,5 +1,7 @@
 package com.devdyna.cakesticklib.api.aspect.logic;
 
+import com.devdyna.cakesticklib.api.templates.SynchedBlockEntity;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -16,6 +18,9 @@ public interface FluidClearableTank {
 
         // if (!player.isCrouching())
         // return InteractionResult.FAIL;
+
+        if (level.getBlockEntity(blockPos) instanceof SynchedBlockEntity be)
+            be.update();
 
         if (level.isClientSide())
             return InteractionResult.SUCCESS;
