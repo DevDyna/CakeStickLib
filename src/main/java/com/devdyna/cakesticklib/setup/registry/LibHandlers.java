@@ -9,10 +9,8 @@ import com.devdyna.cakesticklib.api.aspect.logic.*;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.attachment.AttachmentType;
-import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries.Keys;
-import net.neoforged.neoforge.transfer.energy.EnergyHandler;
 import net.neoforged.neoforge.transfer.energy.SimpleEnergyHandler;
 import net.neoforged.neoforge.transfer.fluid.FluidStacksResourceHandler;
 import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
@@ -48,14 +46,7 @@ public class LibHandlers {
         public static final Supplier<AttachmentType<FluidStacksResourceHandler>> FLUID_STORAGE = zHandler.register(
                         "fluid_storage", () -> AttachmentType.serializable(h -> {
                                 if (h instanceof SimpleFluidStorage be)
-                                        return new FluidStorageTank(be) {
-                                                @Override
-                                                public void onContentsChanged(int index,
-                                                                FluidStack previousContents) {
-                                                        if (be instanceof SynchedClient sync)
-                                                                sync.update();
-                                                }
-                                        };
+                                        return new FluidStorageTank(be);
 
                                 if (h instanceof ResourceRestricted.Fluid be)
                                         return be.getAutomationFluidStorage();
@@ -63,20 +54,23 @@ public class LibHandlers {
                                 return null;
                         }).build());
 
-        public static final Supplier<AttachmentType<? extends EnergyHandler>> ENERGY_STORAGE = zHandler.register(
-                        "energy_storage", () -> AttachmentType.serializable(h -> {
-                                if (h instanceof EnergyBlock be)
-                                        return new SimpleEnergyHandler(
+        public static final Supplier<AttachmentType<SimpleEnergyHandler>> ENERGY_STORAGE = zHandler
+                        .register("energy_storage", () -> AttachmentType.serializable(h -> {
+                                if (h instanceof EnergyBlock be) {
+                                        return (SimpleEnergyHandler) new SimpleEnergyHandler(
                                                         be.getMaxEnergy(),
                                                         be.getMaxInsertEnergy(),
                                                         be.getMaxExtractEnergy(),
                                                         be.getBaseEnergyStored()) {
+
                                                 @Override
                                                 protected void onEnergyChanged(int previousAmount) {
-                                                        if (be instanceof SynchedClient sync)
+                                                        if (be instanceof SynchedClient sync) {
                                                                 sync.update();
+                                                        }
                                                 }
                                         };
+                                }
                                 return null;
                         }).build());
 
