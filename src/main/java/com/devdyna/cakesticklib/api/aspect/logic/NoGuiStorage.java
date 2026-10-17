@@ -2,6 +2,7 @@ package com.devdyna.cakesticklib.api.aspect.logic;
 
 import java.util.ArrayList;
 
+import com.devdyna.cakesticklib.api.templates.SynchedBlockEntity;
 import com.devdyna.cakesticklib.api.utils.x;
 
 import net.minecraft.core.BlockPos;
@@ -27,6 +28,9 @@ public interface NoGuiStorage {
             var be = level.getBlockEntity(pos);
 
             if (be instanceof NoGuiStorage storage) {
+
+                if (be instanceof SynchedBlockEntity sync)
+                    sync.update();
 
                 // If holding item -> try insert
                 if (!stack.isEmpty() && !extractOnly() && insertFilter(stack) && requiredToInsert(stack)) {

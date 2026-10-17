@@ -1,7 +1,8 @@
 package com.devdyna.cakesticklib.api.aspect.logic;
 
-
 import static com.devdyna.cakesticklib.CakeStickLib.MODULE_ID;
+
+import com.devdyna.cakesticklib.api.templates.SynchedBlockEntity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -17,7 +18,9 @@ import net.neoforged.neoforge.transfer.fluid.FluidStacksResourceHandler;
 
 /**
  * Warning :
- * <br/><br/> This only support atm SINGLE FLUID TANKS!
+ * <br/>
+ * <br/>
+ * This only support atm SINGLE FLUID TANKS!
  */
 public interface FluidTooltipWhenEmpty {
 
@@ -31,6 +34,9 @@ public interface FluidTooltipWhenEmpty {
     default InteractionResult sendFluidTooltip(ItemStack stack, BlockState state, Level level, BlockPos pos,
             Player player, InteractionHand hand, BlockHitResult hitResult) {
 
+        if (level.getBlockEntity(pos) instanceof SynchedBlockEntity be)
+            be.update();
+
         if (level.isClientSide())
             return InteractionResult.SUCCESS;
 
@@ -42,7 +48,8 @@ public interface FluidTooltipWhenEmpty {
             else
                 player.sendOverlayMessage(
                         Component.literal(
-                                fluid.getFluidType().getDescription().getString() + " : " + tank.getAmountAsInt(0) + "mb"));
+                                fluid.getFluidType().getDescription().getString() + " : " + tank.getAmountAsInt(0)
+                                        + "mb"));
 
             return InteractionResult.SUCCESS;
         }
