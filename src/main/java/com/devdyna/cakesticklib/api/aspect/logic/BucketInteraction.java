@@ -1,7 +1,5 @@
 package com.devdyna.cakesticklib.api.aspect.logic;
 
-import com.devdyna.cakesticklib.api.templates.SynchedBlockEntity;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -32,7 +30,7 @@ public interface BucketInteraction {
             BlockPos blockPos, Player player, InteractionHand hand, BlockHitResult blockHitResult) {
 
         if (level.getBlockEntity(blockPos) != null)
-            if (level.getBlockEntity(blockPos) instanceof SynchedBlockEntity be)
+            if (level.getBlockEntity(blockPos) instanceof SynchedClient be)
                 be.update();
 
         if (item.isEmpty())

@@ -2,8 +2,6 @@ package com.devdyna.cakesticklib.api.aspect.logic;
 
 import static com.devdyna.cakesticklib.CakeStickLib.MODULE_ID;
 
-import com.devdyna.cakesticklib.api.templates.SynchedBlockEntity;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
@@ -34,7 +32,7 @@ public interface FluidTooltipWhenEmpty {
     default InteractionResult sendFluidTooltip(ItemStack stack, BlockState state, Level level, BlockPos pos,
             Player player, InteractionHand hand, BlockHitResult hitResult) {
 
-        if (level.getBlockEntity(pos) instanceof SynchedBlockEntity be)
+        if (level.getBlockEntity(pos) instanceof SynchedClient be)
             be.update();
 
         if (level.isClientSide())
