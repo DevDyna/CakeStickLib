@@ -22,20 +22,7 @@ public abstract class TickingBlock extends Block implements EntityBlock {
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level l, BlockState s,
             BlockEntityType<T> ty) {
-        return (lvl, pos, b, t) -> {
-            if (t instanceof Tickable be) {
-
-                if (l == null)
-                    return;
-
-                be.tickBoth();
-
-                if (l.isClientSide())
-                    be.tickClient();
-                else
-                    be.tickServer();
-            }
-        };
+        return Tickable::compute;
     }
 
 }
