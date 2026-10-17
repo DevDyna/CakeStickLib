@@ -3,6 +3,7 @@ package com.devdyna.cakesticklib.api.aspect.logic;
 import java.util.List;
 import java.util.stream.IntStream;
 
+import com.devdyna.cakesticklib.api.templates.SynchedBlockEntity;
 import com.devdyna.cakesticklib.api.utils.x;
 
 import net.minecraft.world.entity.player.Player;
@@ -16,6 +17,12 @@ import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
 import net.neoforged.neoforge.transfer.transaction.Transaction;
 import net.neoforged.neoforge.transfer.transaction.TransactionContext;
 
+/**
+ * Note : this interfaces doesn't handle updates from SynchedBlockEntities due
+ * the nature of the handlers!<br/>
+ * <br/>
+ * See {@link SynchedClient} and {@link SynchedBlockEntity}
+ */
 public class ResourceRestricted {
 
     public static interface Item extends ItemStorageBlock {
