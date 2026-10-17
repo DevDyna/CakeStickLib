@@ -2,6 +2,8 @@ package com.devdyna.cakesticklib.api.templates;
 
 import java.util.Objects;
 
+import com.devdyna.cakesticklib.api.aspect.logic.*;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
@@ -19,7 +21,7 @@ import net.minecraft.world.level.storage.ValueInput;
 /**
  * Utility BE that will sync packets to clients
  */
-public abstract class SynchedBlockEntity extends BlockEntity {
+public abstract class SynchedBlockEntity extends BlockEntity implements SynchedClient {
 
     public SynchedBlockEntity(BlockEntityType<?> t, BlockPos p, BlockState s) {
         super(t, p, s);
@@ -47,6 +49,7 @@ public abstract class SynchedBlockEntity extends BlockEntity {
         update();
     }
 
+    @Override
     public void update() {
         if (level instanceof ServerLevel server) {
             var chunk = server.getChunkAt(getBlockPos());

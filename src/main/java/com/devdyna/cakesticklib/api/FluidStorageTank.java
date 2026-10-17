@@ -1,6 +1,7 @@
 package com.devdyna.cakesticklib.api;
 
 import com.devdyna.cakesticklib.api.aspect.logic.SimpleFluidStorage;
+import com.devdyna.cakesticklib.api.aspect.logic.SynchedClient;
 
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -10,7 +11,7 @@ import net.neoforged.neoforge.transfer.fluid.FluidStacksResourceHandler;
 public class FluidStorageTank extends FluidStacksResourceHandler {
 
     public FluidStorageTank(SimpleFluidStorage be) {
-        this((BlockEntity)be, be.getTanks(), be.getTankCapacity());
+        this((BlockEntity) be, be.getTanks(), be.getTankCapacity());
     }
 
     public FluidStorageTank(BlockEntity be, int size, int capacity) {
@@ -29,18 +30,22 @@ public class FluidStorageTank extends FluidStacksResourceHandler {
     protected void onContentsChanged(int index, FluidStack previousContents) {
         super.onContentsChanged(index, previousContents);
 
+        //maybe overkill
         if (be == null || be.getLevel() == null)
             return;
 
         be.setChanged();
 
-        if (!be.getLevel().isClientSide()) {
+        if (!be.getLevel().isClientSide()) 
             be.getLevel().sendBlockUpdated(
                     be.getBlockPos(),
                     be.getBlockState(),
                     be.getBlockState(),
                     3);
-        }
+        
+
+        if (be instanceof SynchedClient sync)
+            sync.update();
     }
 
 }
