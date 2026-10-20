@@ -6,6 +6,7 @@ import com.devdyna.cakesticklib.api.utils.x;
 import com.devdyna.cakesticklib.setup.registry.LibComponents;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.ProblemReporter;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -33,19 +34,24 @@ public interface BlockItemKeeper {
         if (be instanceof ItemStorageBlock storage && !storage.isSlotsEmpty()) {
 
             if (entity != null && entity instanceof Player player && be != null)
-                if (storage.dropOnBreak(player))//required check to prevent item duplication
+                if (storage.dropOnBreak(player))// required check to prevent item duplication
                     return items;
 
-            var item = x.item(i);
-            var tag = be.saveCustomOnly(b.getLevel().registryAccess());
-            if (!tag.isEmpty())
-                item.set(LibComponents.ITEM_CONTAINER, CustomData.of(tag));
-
             items.clear();
-            items.add(item);
+            items.add(modifyMainItemDrop(i, be.saveCustomOnly(b.getLevel().registryAccess())));
         }
 
         return items;
+    }
+
+    default ItemStack modifyMainItemDrop(ItemLike i, CompoundTag nbt) {
+
+        var item = x.item(i);
+
+        if (!nbt.isEmpty())
+            item.set(LibComponents.ITEM_CONTAINER, CustomData.of(nbt));
+
+        return item;
     }
 
     default void addItemsToBlockPlaced(Level level, BlockPos pos, BlockState state, LivingEntity entity,
