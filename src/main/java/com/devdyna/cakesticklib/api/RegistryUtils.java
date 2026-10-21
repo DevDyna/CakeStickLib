@@ -1,6 +1,7 @@
 package com.devdyna.cakesticklib.api;
 
 import java.util.*;
+import java.util.concurrent.CompletableFuture;
 import java.util.function.*;
 
 import com.devdyna.cakesticklib.api.utils.x;
@@ -15,6 +16,8 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.BlockEntityType.BlockEntitySupplier;
@@ -22,7 +25,9 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.material.Fluid;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.world.BiomeModifier;
+import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
@@ -125,6 +130,14 @@ public class RegistryUtils {
 
         public static Item[] getItems(DeferredRegister.Items items) {
                 return items.getEntries().stream().map(DeferredHolder::get).toArray(Item[]::new);
+        }
+
+        /**
+         * Register a new flower pot block
+         */
+        public static CompletableFuture<Void> addFlowerPot(FMLCommonSetupEvent e, DeferredHolder<Block, Block> sapling,
+                        DeferredBlock<? extends Block> potted) {
+                return e.enqueueWork(() -> ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(sapling.getId(), potted));
         }
 
 }

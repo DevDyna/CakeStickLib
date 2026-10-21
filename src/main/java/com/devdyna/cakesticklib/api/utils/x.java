@@ -32,6 +32,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.Function;
 import java.util.stream.Stream;
 
 public class x {
@@ -578,6 +579,14 @@ public class x {
 
     public static ItemStack asIcon(ItemLike i) {
         return x.asIcon(x.item(i));
+    }
+
+    public static Block trasmute(Block b, Function<Identifier, Identifier> f) {
+        return x.getBlock(f.apply(x.rl(b)));
+    }
+
+    public static Item trasmute(Item b, Function<Identifier, Identifier> f) {
+        return x.getItem(f.apply(x.rl(b)));
     }
 
 }
