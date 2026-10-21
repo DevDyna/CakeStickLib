@@ -218,6 +218,21 @@ public interface RecipeGenerators {
                                 .unlockedBy(getHasName(o), has(o)).save(c, e);
         }
 
+        
+        default void simplePacked(RecipeOutput c, ItemLike input, ItemLike output, boolean isSmall, int result) {
+                var temp = ShapedRecipeBuilder.shaped(getItems(), RecipeCategory.MISC, output, result)
+                                .define('#', input)
+                                .pattern("##" + (!isSmall ? "#" : "")).pattern("##" + (!isSmall ? "#" : ""));
+
+                if (!isSmall)
+                        temp = temp.pattern("###");
+
+                temp.unlockedBy(getHasName(input), has(input))
+                                .save(c, getModName() + ":" + getConversionRecipeName(output,
+                                                input));
+
+        }
+
         default void plate(RecipeOutput c, TagKey<Item> input, ItemLike output) {
                 ShapedRecipeBuilder.shaped(getItems(), RecipeCategory.MISC, output, 3)
                                 .pattern("III")

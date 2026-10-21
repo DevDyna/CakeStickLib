@@ -45,6 +45,10 @@ public class Ticker {
         return max() - get();
     }
 
+    public float percent() {
+        return (float) get() / max();
+    }
+
     public boolean commit() {
         var check = value >= delay;
         if (check)

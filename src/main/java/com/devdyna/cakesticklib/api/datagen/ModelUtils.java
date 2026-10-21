@@ -39,7 +39,15 @@ public class ModelUtils {
                 ));
         }
 
-        public static void fluid(BlockModelGenerators b, Block fluid, String modid) {
+        public static void vanilla(BlockModelGenerators b, Block fluid) {
+                b.createParticleOnlyBlock(fluid);
+        }
+
+        public static void fluid(BlockModelGenerators b, Block fluid) {
+                fluid(b, fluid, x.mcLoc("block/water_still"));
+        }
+
+        public static void fluid(BlockModelGenerators b, Block fluid, Identifier rl) {
 
                 var model = new ModelTemplate(Optional.empty(), Optional.empty(),
                                 TextureSlot.PARTICLE);
@@ -47,7 +55,7 @@ public class ModelUtils {
                 var location = x.rl(fluid).withPrefix("block/");
 
                 model.create(location, new TextureMapping().put(TextureSlot.PARTICLE,
-                                getBlockTexture(modid, "fluid_source")), b.modelOutput);
+                                x.material(rl)), b.modelOutput);
 
                 b.blockStateOutput.accept(
                                 MultiVariantGenerator.dispatch(fluid, BlockModelGenerators.plainVariant(location)));

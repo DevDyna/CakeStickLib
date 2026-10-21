@@ -46,6 +46,7 @@ public class DataLang extends LanguageProvider implements LangGenerators {
 
                 // mainly for Item Tooltips
                 add(MODULE_ID + ".hold.shift", "§8Hold [" + TipColors.ITEM_TOOLTIP + "Shift§8] to see more details");
+                add(MODULE_ID + ".hold.ctrl", "§8Hold [" + TipColors.ITEM_TOOLTIP + "Control§8] to see more details");
                 add(MODULE_ID + ".item.disabled", TipColors.ITEM_TOOLTIP + "Item-Form unobtainable");
                 add(MODULE_ID + ".item.placeable", TipColors.ITEM_TOOLTIP + "Can be placed");
                 add(MODULE_ID + ".block.rotate_by_click", TipColors.ITEM_TOOLTIP + "Can be rotated with right-click");
@@ -119,7 +120,8 @@ public class DataLang extends LanguageProvider implements LangGenerators {
                 add(MODULE_ID + ".jei.strippable", "Block Strippable Info");
 
                 add(MODULE_ID + ".jei.patina_drop",
-                                TipColors.ITEM_TOOLTIP + "Drop "+TipColors.WHITE+"0-2" + TipColors.ITEM_TOOLTIP + " items every scrape");
+                                TipColors.ITEM_TOOLTIP + "Drop " + TipColors.WHITE + "0-2" + TipColors.ITEM_TOOLTIP
+                                                + " items every scrape");
 
                 // upgrades
 
@@ -243,6 +245,21 @@ public class DataLang extends LanguageProvider implements LangGenerators {
 
                 LangUtils.advKey(this, MODULE_ID, "upgrades", "Let's mod it!",
                                 "Obtain some upgrades");
+
+                // jade related
+                add(MODULE_ID + ".jade.textual_delay.time.left",
+                                TipColors.LIGHT_GRAY + "Crafting" + TipColors.LIGHT_GRAY + " : " + TipColors.WHITE + "%s");
+                add(MODULE_ID + ".jade.textual_delay.time.empty", TipColors.YELLOW + "Waiting");
+                add(MODULE_ID + ".jade.textual_delay.multiplier", "[%sx" + TipColors.LIGHT_GRAY + "] ");
+
+                add("config.jade.plugin_" + MODULE_ID + ".textual_delay", "Textual Progress Recipes Info");
+                add("config.jade.plugin_" + MODULE_ID + ".progressbar_delay", "Progress Bar Recipes Info");
+
+                add(MODULE_ID + ".jade.hold.ctrl", TipColors.ITEM_TOOLTIP + "Hold [" + TipColors.YELLOW + "Control"
+                                + TipColors.ITEM_TOOLTIP + "] to see more details");
+
+                add(MODULE_ID + ".jade.hold.shift", TipColors.ITEM_TOOLTIP + "Hold [" + TipColors.YELLOW + "Shift"
+                                + TipColors.ITEM_TOOLTIP + "] to see more details");
 
         }
 
