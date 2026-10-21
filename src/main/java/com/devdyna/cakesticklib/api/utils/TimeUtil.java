@@ -9,7 +9,6 @@ public class TimeUtil {
         return (System.currentTimeMillis() % tick) < intervalStart;
     }
 
-
     public static String getTimeValue(int duration, int end, boolean shortUnits) {
         return (duration == end ? "no tick delay"
                 : (duration >= 20 ? (duration >= 1200 ? (duration >= 72000
@@ -23,6 +22,10 @@ public class TimeUtil {
 
     public static String getTimeValue(int duration, boolean shortUnits) {
         return getTimeValue(duration, 1, shortUnits);
+    }
+
+    public static String getSimpleTimer(int duration) {
+        return String.format("%02d:%02d", (duration / 20) / 60, (duration / 20) % 60);
     }
 
 }
