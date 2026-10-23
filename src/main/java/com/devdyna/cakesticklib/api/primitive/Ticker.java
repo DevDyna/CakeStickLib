@@ -4,6 +4,20 @@ package com.devdyna.cakesticklib.api.primitive;
 /**
  * 
  * Simple ticking process
+ * 
+ * <p>
+ * <strong>Possible implementation</strong>
+ * 
+ * <pre>
+ * Ticker ticker = Ticker.of(20);
+ *
+ * public void tickServer() {
+ *     if (ticker.commit()) {
+ *         // fire every 20 ticks
+ *     }
+ * }
+ * </pre>
+ * </p>
  */
 public class Ticker {
 
