@@ -1,70 +1,163 @@
+
 package com.devdyna.cakesticklib.api.primitive;
 
 /**
+ * 
  * Simple ticking process
- * <br/>
- * <br/>
- * Use only inside Server-Level!
+ * 
+ * <p>
+ * <strong>Possible implementation</strong>
+ * 
+ * <pre>
+ * Ticker ticker = Ticker.of(20);
+ *
+ * public void tickServer() {
+ *     if (ticker.commit()) {
+ *         // fire every 20 ticks
+ *     }
+ * }
+ * </pre>
+ * </p>
  */
 public class Ticker {
 
-    private int value;
-    private int delay;
-    private int base = 0;
+    protected int value;
+    protected int max;
+    protected int min;
+    protected boolean flag = false;
 
-    public Ticker(int delay) {
-        this.value = base;
-        this.delay = delay;
+    /**
+     * @param min = 0
+     */
+    public Ticker(int max) {
+        this(0, max);
     }
 
-    public static Ticker of(int delay) {
-        return new Ticker(delay);
+    public Ticker(int min, int max) {
+        if (max <= min)
+            throw new IllegalArgumentException("Ticker require max > min not the inverse!");
+
+        this.min = min;
+        this.max = max;
+        this.value = min;
     }
 
-    public void set(int value) {
-        this.value = value;
+    public static Ticker of(int max) {
+        return new Ticker(max);
     }
 
-    public void changeDelay(int d) {
-        this.delay = d;
+    public static Ticker of(int min, int max) {
+        return new Ticker(min, max);
     }
 
-    public int get() {
+    public void invert() {
+        setFlag(!flag);
+    }
+
+    public void setFlag(boolean inverted) {
+
+        this.flag = inverted;
+
+        if (inverted && value == min)
+            value = max;
+        else if (!inverted && value == max)
+            value = min;
+
+    }
+
+    public boolean isInverted() {
+        return flag;
+    }
+
+    public void setValue(int value) {
+        this.value = limit(value);
+    }
+
+    public void setMin(int min) {
+        if (min >= max)
+            throw new IllegalArgumentException("Ticker require max > min not the inverse!");
+
+        this.min = min;
+        this.value = limit(value);
+    }
+
+    public void setMax(int max) {
+        if (max <= min)
+            throw new IllegalArgumentException("Ticker require max > min not the inverse!");
+
+        this.max = max;
+        this.value = limit(value);
+    }
+
+    private int limit(int value) {
+        return Math.max(min, Math.min(max, value));
+    }
+
+    public int value() {
         return value;
     }
 
     public int min() {
-        return base;
+        return min;
     }
 
     public int max() {
-        return delay;
+        return max;
     }
 
     public int diff() {
-        return max() - get();
+        return flag ? value - min : max - value;
     }
 
+    /**
+     * 0.0f -> 1.0f
+     */
     public float percent() {
-        return (float) get() / max();
+        return flag
+                ? (max - (float) value) / ((float) max - min)
+                : (value - (float) min) / ((float) max - min);
     }
 
     public boolean commit() {
-        var check = value >= delay;
-        if (check)
-            value = base;
-        else
+        if (!flag) {
+            if (value >= max) {
+                value = min;
+                return true;
+            }
+
             value++;
+            return false;
+        }
 
-        return check;
+        if (value <= min) {
+            value = max;
+            return true;
+        }
+
+        value--;
+        return false;
     }
 
-    public boolean every(int v) {
-        return v > 0 && value % v == 0;
+    public boolean every(int interval) {
+        return interval > 0 && value % interval == 0;
     }
 
+    public void reset() {
+        value = flag ? max : min;
+    }
+
+    @Deprecated
     public void cancel() {
-        value = base;
+        reset();
     }
 
+    @Deprecated
+    public void changeDelay(int max) {
+        setMax(max);
+    }
+
+    @Deprecated
+    public int get() {
+        return value();
+    }
 }
