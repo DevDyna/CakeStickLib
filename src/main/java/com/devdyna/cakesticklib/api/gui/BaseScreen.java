@@ -2,6 +2,8 @@ package com.devdyna.cakesticklib.api.gui;
 
 import javax.annotation.Nullable;
 
+import com.devdyna.cakesticklib.api.primitive.Pos;
+
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.RenderPipelines;
@@ -35,20 +37,40 @@ public abstract class BaseScreen<T extends BaseMenu> extends AbstractContainerSc
     @Override
     public void extractBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float a) {
         super.extractBackground(graphics, mouseX, mouseY, a);
-        graphics.blit(RenderPipelines.GUI_TEXTURED, background(), getLeftPos(), getTopPos(), 0, 0, this.imageWidth,
-                this.imageHeight, 256, 256);
+        graphics.blit(RenderPipelines.GUI_TEXTURED, background(),
+                getLeftPos(), getTopPos(),
+                0, 0, this.imageWidth, this.imageHeight,
+                256, 256);
         renderArrow(graphics);
     }
 
     protected void renderArrow(GuiGraphicsExtractor guiGraphics) {
         if (arrow() != null && whenAnimateArrow())
-            guiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED,
+            guiGraphics.blit(RenderPipelines.GUI_TEXTURED,
                     arrow(),
-                    24, 16,
+                    this.getLeftPos() + 73, this.getTopPos() + 35,
                     0, 0,
-                    getLeftPos() + 73, getTopPos() + 35,
-                    getScaledArrowProgress(), 16);
+                    getScaledArrowProgress(), 16,
+                    24, 16);
+        // guiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED,
+        // arrow(),
+        // 24, 16,
+        // 0, 0,
+        // getLeftPos() + 73, getTopPos() + 35,
+        // getScaledArrowProgress(), 16);
+        // TODO VERIFY IF IT IS FIXED!
 
+    }
+
+    /**
+     * Mainly used on JEI handling
+     */
+    public Pos getScreenUsage() {
+        return Pos.of(0, 0).setSize(256, 256);
+    }
+
+    public boolean enableScreenUsage(){
+        return true;
     }
 
 }

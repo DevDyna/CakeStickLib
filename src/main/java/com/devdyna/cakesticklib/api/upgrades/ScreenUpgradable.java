@@ -20,17 +20,22 @@ public interface ScreenUpgradable {
     abstract Font getFont();
 
     abstract UpgradeSlotBuilder getSlotBuilder();
+    
+    @Deprecated
+    default void renderToolTips(GuiGraphicsExtractor graphics, int mouseX, int mouseY){
+        renderToolTips(graphics, mouseX, mouseY,true);
+    }
 
-    default void renderToolTips(GuiGraphicsExtractor graphics, int mouseX, int mouseY) {
+    default void renderToolTips(GuiGraphicsExtractor graphics, int mouseX, int mouseY,boolean enableWhen) {
         getSlotBuilder().getAll().forEach((k, v) -> {
             if (v.getItem().isEmpty())
-                if (v.getPos().test(mouseX, mouseY))
+                if (enableWhen && v.getPos().test(mouseX, mouseY))
                     graphics.setComponentTooltipForNextFrame(getFont(), calculateTooltipUpgrades(), mouseX,
                             mouseY);
         });
     }
 
-    private List<Component> calculateTooltipUpgrades() {
+    default List<Component> calculateTooltipUpgrades() {
         List<Component> result = new ArrayList<>();
 
         result.add(Component.translatable(MODULE_ID + ".screen.upgrades"));

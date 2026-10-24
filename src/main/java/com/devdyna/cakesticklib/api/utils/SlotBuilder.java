@@ -30,9 +30,9 @@ public class SlotBuilder {
 
     public SlotBuilder(int slots) {
         List<ResourceType> a = new ArrayList<>();
-            for (int i = 0; i < slots; i++)
-                a.add(ResourceType.NONE);
-            this.list = a;
+        for (int i = 0; i < slots; i++)
+            a.add(ResourceType.NONE);
+        this.list = a;
     }
 
     public static SlotBuilder of(int slots) {
@@ -50,6 +50,12 @@ public class SlotBuilder {
         return this;
     }
 
+    public SlotBuilder setAll(ResourceType type, Integer start, Integer end) {
+        for (int i = start; i < end; i++)
+            list.set(i, type);
+        return this;
+    }
+
     public SlotBuilder setAll(ResourceType type, List<Integer> slots) {
         return setAll(type, slots.toArray(Integer[]::new));
     }
@@ -59,7 +65,7 @@ public class SlotBuilder {
     }
 
     public List<Integer> get(ResourceType type) {
-        return list.stream().filter(t->t.equals(type)).map(a->list.indexOf(a)).toList();
+        return list.stream().filter(t -> t.equals(type)).map(a -> list.indexOf(a)).toList();
     }
 
     public ResourceType get(int slot) {
