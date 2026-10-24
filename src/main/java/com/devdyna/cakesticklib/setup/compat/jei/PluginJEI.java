@@ -2,8 +2,11 @@ package com.devdyna.cakesticklib.setup.compat.jei;
 
 import static com.devdyna.cakesticklib.CakeStickLib.MODULE_ID;
 
+import java.util.Collections;
 import java.util.List;
 
+import com.devdyna.cakesticklib.api.compat.jei.JeiExclusionUtils;
+import com.devdyna.cakesticklib.api.gui.BaseScreen;
 import com.devdyna.cakesticklib.api.utils.x;
 import com.devdyna.cakesticklib.setup.Client;
 import com.devdyna.cakesticklib.setup.compat.jei.categories.*;
@@ -12,10 +15,12 @@ import com.devdyna.cakesticklib.setup.registry.*;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.RecipeTypes;
+import mezz.jei.api.registration.IGuiHandlerRegistration;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
 import mezz.jei.api.registration.ISubtypeRegistration;
+import net.minecraft.client.renderer.Rect2i;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
@@ -66,6 +71,22 @@ public class PluginJEI implements IModPlugin {
         r.registerFromDataComponentTypes(
                 LibItems.EJECT_UPGRADE.get(),
                 LibComponents.UPGRADE_COMPONENTS.get());
+    }
+
+    @Override
+    public void registerGuiHandlers(IGuiHandlerRegistration r) {
+
+        JeiExclusionUtils.addExclusionJEIArea(r, BaseScreen.class, screen -> {
+            var shape = screen.getScreenUsage();
+            return screen.enableScreenUsage()
+                    ? List.of(new Rect2i(
+                            screen.getLeftPos() + shape.getX0(),
+                            screen.getTopPos() + shape.getY0(),
+                            shape.getX1(),
+                            shape.getY1()))
+                    : Collections.emptyList();
+        });
+
     }
 
     private <C extends RecipeInput, T extends Recipe<C>> List<RecipeHolder<T>> getRecipes(RecipeType<T> type) {
