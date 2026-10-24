@@ -2,6 +2,8 @@ package com.devdyna.cakesticklib.api.gui;
 
 import javax.annotation.Nullable;
 
+import com.devdyna.cakesticklib.api.primitive.Pos;
+
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.RenderPipelines;
@@ -48,8 +50,6 @@ public abstract class BaseScreen<T extends BaseMenu> extends AbstractContainerSc
                     arrow(),
                     this.getLeftPos() + 73, this.getTopPos() + 35,
                     0, 0,
-                    getLeftPos() + 73, getTopPos() + 35,
-                    getScaledArrowProgress(), 16);
                     getScaledArrowProgress(), 16,
                     24, 16);
         // guiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED,
@@ -62,6 +62,15 @@ public abstract class BaseScreen<T extends BaseMenu> extends AbstractContainerSc
 
     }
 
+    /**
+     * Mainly used on JEI handling
+     */
+    public Pos getScreenUsage() {
+        return Pos.of(0, 0).setSize(256, 256);
+    }
+
+    public boolean enableScreenUsage(){
+        return true;
     }
 
 }
