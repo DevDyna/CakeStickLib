@@ -37,8 +37,7 @@ public class StrippableCategory extends BaseCategory<StrippableRecipe> implement
                 .map(Optional::get)
                 .map(Reference::value)
                 .map(i -> new StrippableRecipe(i,
-                        BuiltInRegistries.BLOCK.createIntrusiveHolder(i)
-                                .getData(NeoForgeDataMaps.STRIPPABLES).strippedBlock()))
+                        i.builtInRegistryHolder().getData(NeoForgeDataMaps.STRIPPABLES).strippedBlock()))
                 .toList();
     }
 
