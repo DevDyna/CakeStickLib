@@ -3,15 +3,15 @@ package com.devdyna.cakesticklib.api.recipe.recipeInput;
 import java.util.Arrays;
 import java.util.List;
 
+import com.devdyna.cakesticklib.api.recipe.recipeInput.handler.TypeInputHandler;
 import com.devdyna.cakesticklib.api.utils.x;
 
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.RecipeInput;
 import net.minecraft.world.level.ItemLike;
 
 public class ItemInput {
 
-    public record simple(ItemStack item) implements RecipeInput {
+    public record simple(ItemStack item) implements TypeInputHandler {
 
         public static simple of(ItemStack i) {
             return new simple(i);
@@ -33,7 +33,7 @@ public class ItemInput {
 
     }
 
-    public record dual(ItemStack first, ItemStack second) implements RecipeInput {
+    public record dual(ItemStack first, ItemStack second) implements TypeInputHandler {
 
         public static dual of(ItemStack a, ItemStack b) {
             return new dual(a, b);
@@ -63,7 +63,7 @@ public class ItemInput {
 
     }
 
-    public record multiple(ItemStack... items) implements RecipeInput {
+    public record multiple(ItemStack... items) implements TypeInputHandler {
 
         public static multiple of(ItemStack... i) {
             return new multiple(i);
@@ -86,7 +86,7 @@ public class ItemInput {
     }
 
     @Deprecated
-    public record withNumber(ItemStack item, double value) implements RecipeInput {
+    public record withNumber(ItemStack item, double value) implements TypeInputHandler {
 
         public static withNumber of(ItemStack i, double v) {
             return new withNumber(i, v);
@@ -128,6 +128,11 @@ public class ItemInput {
         @Override
         public int size() {
             return 1;
+        }
+
+        @Override
+        public List<Integer> getItemIndexes() {
+            return List.of(0);
         }
 
     }
