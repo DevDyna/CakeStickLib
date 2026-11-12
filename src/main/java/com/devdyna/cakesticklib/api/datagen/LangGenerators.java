@@ -2,6 +2,8 @@ package com.devdyna.cakesticklib.api.datagen;
 
 import java.util.function.Supplier;
 
+import com.devdyna.cakesticklib.api.compat.jei.JEIAliasesHelper;
+
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluid;
@@ -10,6 +12,10 @@ import net.neoforged.neoforge.fluids.FluidType;
 public interface LangGenerators {
 
     abstract void add(String key, String value);
+
+    default void add(JEIAliasesHelper.Alias key, String value){
+        add(key.key(), value);
+    }
 
     abstract void addBlock(Supplier<? extends Block> key, String name);
 

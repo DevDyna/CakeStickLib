@@ -32,17 +32,30 @@ public class DataLang extends LanguageProvider implements LangGenerators {
                 LibBlocks.zBlockFluids.getEntries().forEach(b -> addBlock(b, LangUtils.named(b, MODULE_ID)));
 
                 // jei aliases
-                add(JEIAliasesHelper.Aliases.BLOCK_BREAKER, "Block Breaker");
-                add(JEIAliasesHelper.Aliases.DRILL, "Drill");
-                add(JEIAliasesHelper.Aliases.MINER, "Miner");
-                add(JEIAliasesHelper.Aliases.TREE_CUTTER, "Tree cutter");
-                add(JEIAliasesHelper.Aliases.TREE_FELLER, "Tree feller");
-                add(JEIAliasesHelper.Aliases.ENTITY_KILLER, "Entity killer");
-                add(JEIAliasesHelper.Aliases.FAKEPLAYER, "FakePlayer");
-                add(JEIAliasesHelper.Aliases.HOPPER, "Hopper");
-                add(JEIAliasesHelper.Aliases.ITEM_COLLECTOR, "Item Collector");
-                add(JEIAliasesHelper.Aliases.ENTITY_MOVER, "Entity Mover");
-                add(JEIAliasesHelper.Aliases.REDSTONE_SENSIBLE, "Redstone Sensible");
+                add(JEIAliasesHelper.Alias.HOPPER, "Hopper");
+                add(JEIAliasesHelper.Alias.REDSTONE_SENSIBLE, "Redstone Sensible");
+                add(JEIAliasesHelper.Alias.REDSTONE_TIMER, "Redstone clock");
+                add(JEIAliasesHelper.Alias.REDSTONE_COMPONENT, "Redstone component");
+
+                add(JEIAliasesHelper.Alias.ENTITY_KILLER, "Entity killer");
+                add(JEIAliasesHelper.Alias.ENTITY_FAKEPLAYER, "FakePlayer");
+                add(JEIAliasesHelper.Alias.ENTITY_MOVER, "Entity Mover");
+
+                add(JEIAliasesHelper.Alias.ITEM_COLLECTOR, "Item Collector");
+                add(JEIAliasesHelper.Alias.BLOCK_BREAKER, "Block Breaker");
+                add(JEIAliasesHelper.Alias.TIMER, "Timer");
+                add(JEIAliasesHelper.Alias.ENERGY_GENERATOR, "Energy Generator");
+                add(JEIAliasesHelper.Alias.ITEM_REPAIRER, "Item Repairer");
+                add(JEIAliasesHelper.Alias.TRASH_CAN, "Trash Can");
+                add(JEIAliasesHelper.Alias.FLUID_BUFFER, "Fluid storage buffer");
+                add(JEIAliasesHelper.Alias.ENERGY_BUFFER, "Energy storage buffer");
+                add(JEIAliasesHelper.Alias.ITEM_BUFFER, "Item storage buffer");
+
+                add(JEIAliasesHelper.Alias.TREE_CUTTER, "Tree cutter");
+                add(JEIAliasesHelper.Alias.TREE_FELLER, "Tree feller");
+                add(JEIAliasesHelper.Alias.DRILL, "Drill");
+                add(JEIAliasesHelper.Alias.MINER, "Miner");
+                add(JEIAliasesHelper.Alias.ETHEREAL, "Ethereal");
 
                 // mainly for Item Tooltips
                 add(MODULE_ID + ".hold.shift", "§8Hold [" + TipColors.ITEM_TOOLTIP + "Shift§8] to see more details");

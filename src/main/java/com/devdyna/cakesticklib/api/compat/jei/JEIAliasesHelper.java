@@ -13,7 +13,50 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 
 public class JEIAliasesHelper {
 
-    
+    public static enum Alias {
+
+        // redstone
+        HOPPER(MODULE_ID + ".jei.alias.redstone.hopper"),
+        REDSTONE_SENSIBLE(MODULE_ID + ".jei.alias.redstone.sensible"),
+        REDSTONE_TIMER(MODULE_ID + ".jei.alias.redstone.timer"),
+        REDSTONE_COMPONENT(MODULE_ID + ".jei.alias.redstone.component"),
+
+        // entity related
+        ENTITY_KILLER(MODULE_ID + ".jei.alias.entity.killer"),
+        ENTITY_FAKEPLAYER(MODULE_ID + ".jei.alias.entity.fakeplayer"),
+        ENTITY_MOVER(MODULE_ID + ".jei.alias.entity.mover"),
+
+        // machine related
+        ITEM_COLLECTOR(MODULE_ID + ".jei.alias.item.collector"),
+        BLOCK_BREAKER(MODULE_ID + ".jei.alias.block.break"),
+        TIMER(MODULE_ID + ".jei.alias.timer"),
+        ENERGY_GENERATOR(MODULE_ID + ".jei.alias.generator.energy"),
+        ITEM_REPAIRER(MODULE_ID + ".jei.alias.item.repairer"),
+        TRASH_CAN(MODULE_ID + ".jei.alias.trash_can"),
+        FLUID_BUFFER(MODULE_ID + ".jei.alias.buffer.fluid"),
+        ENERGY_BUFFER(MODULE_ID + ".jei.alias.buffer.energy"),
+        ITEM_BUFFER(MODULE_ID + ".jei.alias.buffer.item"),
+
+        // misc
+        TREE_CUTTER(MODULE_ID + ".jei.alias.tree.cutter"),
+        TREE_FELLER(MODULE_ID + ".jei.alias.tree.feller"),
+        DRILL(MODULE_ID + ".jei.alias.drill"),
+        MINER(MODULE_ID + ".jei.alias.miner"),
+        ETHEREAL(MODULE_ID + ".jei.alias.ethereal_block"),
+
+        ;
+
+        private String k;
+
+        Alias(String k) {
+            this.k = k;
+        }
+
+        public String key() {
+            return k;
+        }
+
+    }
 
     @Deprecated
     public static class Aliases {
