@@ -6,6 +6,7 @@ import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.core.BlockPos;
 import net.neoforged.neoforge.client.gui.GuiLayer;
 
+@SuppressWarnings("deprecation")
 public class HudRenderable {
 
      public static final GuiLayer LAYER = HudRenderable::render;
