@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import com.devdyna.cakesticklib.api.upgrades.modifiers.*;
 import com.devdyna.cakesticklib.api.upgrades.modifiers.base.BaseModifier.UseType;
+import com.devdyna.cakesticklib.api.utils.LogicOperator;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
@@ -55,6 +56,32 @@ public record UpgradeComponents(
 
         public int value() {
             return i;
+        }
+
+        public boolean is(UpgradeType v) {
+            return this == v;
+        }
+
+        public boolean is(LogicOperator p, UpgradeType... v) {
+
+            switch (p) {
+                case OR:
+                    for (var u : v)
+                        if (this.is(u))
+                            return true;
+
+                case AND: {
+                    for (var u : v)
+                        if (!this.is(u))
+                            break;
+                    return true;
+                }
+
+                default:
+                    break;
+            }
+            return false;
+
         }
 
         public static final Codec<UpgradeType> CODEC = Codec.INT.xmap(
