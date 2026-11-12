@@ -135,6 +135,30 @@ public class x {
         return name(i.asItem());
     }
 
+    public static String name(Ingredient i) {
+        var v = i.getValues();
+
+        if (v.isImmediatelyResolvable())
+            return x.name(v.stream().findFirst().get().value());
+
+        if (v.unwrapKey().isPresent())
+            return v.unwrapKey().get().location().getPath();
+
+        return null;
+    }
+
+    public String name(SizedIngredient i) {
+        return name(i.ingredient());
+    }
+
+    public String name(FluidIngredient i) {
+        return x.name(i.fluids().stream().findFirst().get().value());
+    }
+
+    public String name(SizedFluidIngredient i) {
+        return name(i.ingredient());
+    }
+
     private static <T> String mod(DefaultedRegistry<T> d, T i) {
         return rl(d, i).getNamespace();
     }
