@@ -15,6 +15,7 @@ public class Size {
 
   private int x;
   private int y;
+  private Size snapshot = null;
 
   public Size(int x, int y) {
     this.x = x;
@@ -47,16 +48,32 @@ public class Size {
     return x >= s.getX() && y >= s.getY();
   }
 
+  /**
+   * move the Size to a specific offset
+   */
+  public Size move(int x0, int y0) {
+    this.snapshot = this;
+    this.x += x0;
+    this.y += y0;
+    return this;
+  }
 
-public static final Codec<Size> CODEC = RecordCodecBuilder.create(inst -> inst.group(
-            Codec.INT.fieldOf("min").forGetter(Size::getX),
-            Codec.INT.fieldOf("max").forGetter(Size::getY))
-            .apply(inst, Size::new));
+  /**
+   * restore the previous offset iteration
+   */
+  public Size restore() {
+    return this.snapshot;
+  }
 
-    public static final StreamCodec<RegistryFriendlyByteBuf, Size> STREAM_CODEC = StreamCodec
-            .composite(
-                    ByteBufCodecs.INT, Size::getX,
-                    ByteBufCodecs.INT, Size::getY,
-                    Size::new);
+  public static final Codec<Size> CODEC = RecordCodecBuilder.create(inst -> inst.group(
+      Codec.INT.fieldOf("min").forGetter(Size::getX),
+      Codec.INT.fieldOf("max").forGetter(Size::getY))
+      .apply(inst, Size::new));
+
+  public static final StreamCodec<RegistryFriendlyByteBuf, Size> STREAM_CODEC = StreamCodec
+      .composite(
+          ByteBufCodecs.INT, Size::getX,
+          ByteBufCodecs.INT, Size::getY,
+          Size::new);
 
 }
