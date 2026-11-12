@@ -273,6 +273,9 @@ public class DataLang extends LanguageProvider implements LangGenerators {
                 add(MODULE_ID + ".screen.modifier.overflow.eject",
                                 TipColors.RED + "Eject Modifier already maxed");
 
+                add(MODULE_ID + ".gui.tip.scroll.up", TipColors.GRAY + TipColors.ITALIC + "<Scroll up>");
+                add(MODULE_ID + ".gui.tip.scroll.down", TipColors.GRAY + TipColors.ITALIC + "<Scroll down>");
+
         }
 
 }
