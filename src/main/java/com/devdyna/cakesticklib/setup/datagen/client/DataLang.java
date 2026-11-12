@@ -248,7 +248,8 @@ public class DataLang extends LanguageProvider implements LangGenerators {
 
                 // jade related
                 add(MODULE_ID + ".jade.textual_delay.time.left",
-                                TipColors.LIGHT_GRAY + "Crafting" + TipColors.LIGHT_GRAY + " : " + TipColors.WHITE + "%s");
+                                TipColors.LIGHT_GRAY + "Crafting" + TipColors.LIGHT_GRAY + " : " + TipColors.WHITE
+                                                + "%s");
                 add(MODULE_ID + ".jade.textual_delay.time.empty", TipColors.YELLOW + "Waiting");
                 add(MODULE_ID + ".jade.textual_delay.multiplier", "[%sx" + TipColors.LIGHT_GRAY + "] ");
 
@@ -260,6 +261,17 @@ public class DataLang extends LanguageProvider implements LangGenerators {
 
                 add(MODULE_ID + ".jade.hold.shift", TipColors.ITEM_TOOLTIP + "Hold [" + TipColors.YELLOW + "Shift"
                                 + TipColors.ITEM_TOOLTIP + "] to see more details");
+
+                add(MODULE_ID + ".screen.modifier.overflow.energy",
+                                TipColors.RED + "Energy Modifier already maxed");
+                add(MODULE_ID + ".screen.modifier.overflow.speed",
+                                TipColors.RED + "Speed Modifier already maxed");
+                add(MODULE_ID + ".screen.modifier.overflow.luck",
+                                TipColors.RED + "Luck Modifier already maxed");
+                add(MODULE_ID + ".screen.modifier.overflow.fluid",
+                                TipColors.RED + "Fluid Modifier already maxed");
+                add(MODULE_ID + ".screen.modifier.overflow.eject",
+                                TipColors.RED + "Eject Modifier already maxed");
 
         }
 
