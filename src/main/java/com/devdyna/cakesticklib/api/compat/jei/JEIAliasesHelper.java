@@ -13,6 +13,9 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 
 public class JEIAliasesHelper {
 
+    
+
+    @Deprecated
     public static class Aliases {
         public static final String BLOCK_BREAKER = MODULE_ID + ".jei.alias.block.break";
         public static final String DRILL = MODULE_ID + ".jei.alias.drill";
