@@ -11,7 +11,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Inventory;
 
-public abstract class BaseScreen<T extends BaseMenu> extends AbstractContainerScreen<T> implements ClientUtils {
+public abstract class BaseScreen<T extends BaseMenu> extends AbstractContainerScreen<T> {
 
     public BaseScreen(T menu, Inventory playerInventory, Component title) {
         super(menu, playerInventory, title);
