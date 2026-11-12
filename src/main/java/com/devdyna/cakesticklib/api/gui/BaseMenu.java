@@ -6,6 +6,9 @@ import java.util.function.Function;
 import com.devdyna.cakesticklib.api.aspect.logic.EnergyBlock;
 import com.devdyna.cakesticklib.api.aspect.logic.ItemStorageBlock;
 import com.devdyna.cakesticklib.api.aspect.logic.ResourceRestricted;
+import com.devdyna.cakesticklib.api.primitive.Range;
+import com.devdyna.cakesticklib.api.utils.SlotBuilder;
+import com.devdyna.cakesticklib.api.utils.SlotBuilder.ResourceType;
 import com.devdyna.cakesticklib.setup.registry.LibComponents;
 
 import net.minecraft.world.Container;
@@ -24,6 +27,11 @@ import net.neoforged.neoforge.transfer.item.ResourceHandlerSlot;
 
 public abstract class BaseMenu extends AbstractContainerMenu {
 
+    public abstract BlockEntity getBlockEntity();
+
+    public abstract Level getLevel();
+
+    @Deprecated
     public enum BlockMenuType {
         CONTAINER,
         MACHINE;
@@ -149,73 +157,32 @@ public abstract class BaseMenu extends AbstractContainerMenu {
                 beSlot, id, 4, x, y);
     }
 
-    // not work properly
-    @Override
-    public ItemStack quickMoveStack(Player player, int index) {
-        ItemStack movedStack = ItemStack.EMPTY;
-        Slot slot = this.slots.get(index);
+    protected void addMachineSlot(ItemStacksResourceHandler h, int index, int limit, int x, int y) {
+        addMachineSlot(_ -> true, h, index, limit, x, y);
+    }
 
-        if (slot != null && slot.hasItem()) {
-            ItemStack rawStack = slot.getItem();
-            movedStack = rawStack.copy();
-
-            if (outputSlotIndex != null && outputSlotIndex.contains(index)) {
-                if (!this.moveItemStackTo(rawStack, MACHINE_SLOT + 1, this.slots.size(), true)) {
-                    return ItemStack.EMPTY;
-                }
-                slot.onQuickCraft(rawStack, movedStack);
+    protected void addMachineInputSlot(ItemStacksResourceHandler h, int id, int limit, int x, int y) {
+        addSlot(new ResourceHandlerSlot(h, h::set, id, x, y) {
+            @Override
+            public boolean mayPlace(ItemStack stack) {
+                return true;
             }
 
-            else if (index >= MACHINE_SLOT + 1) {
-                boolean movedToInput = false;
-
-                if (inputSlotIndex != null && !inputSlotIndex.isEmpty()) {
-                    for (int inputIndex : inputSlotIndex) {
-                        if (this.moveItemStackTo(rawStack, inputIndex, inputIndex + 1, false)) {
-                            movedToInput = true;
-                            break;
-                        }
-                    }
-                }
-
-                if (!movedToInput) {
-                    int invStart = MACHINE_SLOT + 1;
-                    int invEnd = invStart + 27;
-                    int hotbarStart = invEnd;
-                    int hotbarEnd = this.slots.size();
-
-                    if (index >= invStart && index < invEnd) {
-                        if (!this.moveItemStackTo(rawStack, hotbarStart, hotbarEnd, false)) {
-                            return ItemStack.EMPTY;
-                        }
-                    } else if (index >= hotbarStart) {
-                        if (!this.moveItemStackTo(rawStack, invStart, invEnd, false)) {
-                            return ItemStack.EMPTY;
-                        }
-                    }
-                }
+            @Override
+            public boolean mayPickup(Player playerIn) {
+                return true;
             }
 
-            else if (inputSlotIndex != null && inputSlotIndex.contains(index)) {
-                if (!this.moveItemStackTo(rawStack, MACHINE_SLOT + 1, this.slots.size(), false)) {
-                    return ItemStack.EMPTY;
-                }
+            @Override
+            public int getMaxStackSize() {
+                return limit;
             }
 
-            if (rawStack.isEmpty()) {
-                slot.setByPlayer(ItemStack.EMPTY);
-            } else {
-                slot.setChanged();
+            @Override
+            public int getMaxStackSize(ItemStack i) {
+                return limit;
             }
-
-            if (rawStack.getCount() == movedStack.getCount()) {
-                return ItemStack.EMPTY;
-            }
-
-            slot.onTake(player, rawStack);
-        }
-
-        return movedStack;
+        });
     }
 
     @Override
@@ -223,24 +190,97 @@ public abstract class BaseMenu extends AbstractContainerMenu {
         return container.stillValid(player);
     }
 
-    // @Override
-    // public boolean stillValid(Player player) {
-    // return ContainerLevelAccess.create(getLevel(),
-    // getBlockEntity().getBlockPos())
-    // .evaluate((lvl, pos) -> {
-    // for (Block b : getValidBlock()) {
-    // if (lvl.getBlockState(pos).is(b)) {
-    // return player.canInteractWithBlock(pos, 4.0);
-    // }
-    // }
-    // return false;
-    // }, true);
-    // }
+    /**
+     * 0-26 inventory
+     * 27-35 hotbar
+     * 36+ machine (SlotBuilder)
+     */
 
-    // public abstract Block[] getValidBlock();
+    public Range hotbarIndexes() {
+        return Range.of(27, 35);
+    }
 
-    public abstract BlockEntity getBlockEntity();
+    public Range invIndexes() {
+        return Range.of(0, 26);
+    }
 
-    public abstract Level getLevel();
+    // <?> -> player
+    private ItemStack moveToInventory(ItemStack item, Slot slot, Player player) {
+        var copy = item.copy();
+
+        // <?> -> inv
+        if (moveItemStackTo(item, invIndexes().min(), invIndexes().max() + 1, false)) {
+            slot.onTake(player, item);
+            return copy;
+        }
+
+        // <?> -> hotbar
+        if (moveItemStackTo(item, hotbarIndexes().min(), hotbarIndexes().max() + 1, false)) {
+            slot.onTake(player, item);
+            return copy;
+        }
+
+        return ItemStack.EMPTY;
+    }
+
+    // TODO verify if it work correctly
+    @Override
+    public ItemStack quickMoveStack(Player player, int index) {
+
+        if (index < 0 || index >= this.slots.size())
+            return ItemStack.EMPTY;
+
+        var slot = this.slots.get(index);
+
+        if (!slot.hasItem())
+            return ItemStack.EMPTY;
+
+        var item = slot.getItem();
+
+        // player inv -> <?>
+        if (index >= invIndexes().min() && index <= hotbarIndexes().max()) {
+            var copy = item.copy();
+
+            // player -> machine
+            if (getSlots() != null)
+                for (var i = 0; i < getSlots().get().size(); i++) {
+                    if (getSlots().get(i).equals(ResourceType.INPUT) || getSlots().get(i).equals(ResourceType.BUFFER))
+                        if (moveItemStackTo(item, hotbarIndexes().max() + i + 1, hotbarIndexes().max() + 2 + i, true)) {
+                            slot.onTake(player, item);
+                            return copy;
+                        }
+                }
+
+            // inv -> hotbar
+            if (index >= invIndexes().min() && index <= invIndexes().max()) {
+                if (moveItemStackTo(item, hotbarIndexes().min(), hotbarIndexes().max() + 1, true)) {
+                    slot.onTake(player, item);
+                    return copy;
+                }
+            }
+
+            // hotbar -> inv
+            if (index >= hotbarIndexes().min() && index <= hotbarIndexes().max()) {
+                if (moveItemStackTo(item, invIndexes().min(), invIndexes().max() + 1, true)) {
+                    slot.onTake(player, item);
+                    return copy;
+                }
+            }
+        }
+
+        // machine -> <?>
+        if (index >= hotbarIndexes().max() + 1) {
+            if (getSlots() != null)
+                if (!getSlots().get(index - hotbarIndexes().max() + 1).equals(SlotBuilder.ResourceType.NONE))
+                    return moveToInventory(item, slot, player);
+        }
+
+        return ItemStack.EMPTY;
+
+    }
+
+    public SlotBuilder getSlots() {
+        return null;
+    };
 
 }
