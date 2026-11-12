@@ -66,6 +66,8 @@
   "cakesticklib.eject.gui.dir": "Selected: %s",
   "cakesticklib.eject.gui.title": "Eject Modifier Settings",
   "cakesticklib.glass_cutter.tip": "§7Instamine glass blocks",
+  "cakesticklib.gui.tip.scroll.down": "§8§o<Scroll down>",
+  "cakesticklib.gui.tip.scroll.up": "§8§o<Scroll up>",
   "cakesticklib.hold.ctrl": "§8Hold [§7Control§8] to see more details",
   "cakesticklib.hold.shift": "§8Hold [§7Shift§8] to see more details",
   "cakesticklib.honey_solution.tip": "§7Wax copper blocks",
