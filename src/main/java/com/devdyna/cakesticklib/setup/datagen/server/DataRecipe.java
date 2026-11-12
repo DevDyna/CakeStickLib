@@ -381,21 +381,21 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                 DurabilityConsumeBuilder.of(registries)
                                 .tool(LibItems.HAMMER.get())
                                 .add(Items.WHEAT)
-                                .output(LibItems.FLOUR)
+                                .output(LibItems.FLOUR.get())
                                 .unlockedBy()
                                 .save(output);
 
                 DurabilityConsumeBuilder.of(registries)
                                 .tool(LibItems.HAMMER.get())
                                 .add(ItemTags.LOGS)
-                                .output(LibItems.SAWDUST, 4)
+                                .output(LibItems.SAWDUST.get(), 4)
                                 .unlockedBy()
                                 .save(output);
 
                 DurabilityConsumeBuilder.of(registries)
                                 .tool(LibItems.HAMMER.get())
                                 .add(Tags.Items.GLASS_BLOCKS_CHEAP)
-                                .output(LibItems.GLASS_DUST)
+                                .output(LibItems.GLASS_DUST.get())
                                 .unlockedBy()
                                 .save(output);
 
@@ -598,7 +598,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .forEach(sherd -> ReplaceItemBuilder.of(registries)
                                                 .replace(sherd, sherd)
                                                 .add(Items.BRICK)
-                                                .add(LibItems.PATINA)
+                                                .add(LibItems.PATINA.get())
                                                 .output(sherd)
                                                 .unlockedBy()
                                                 .save(output));
@@ -657,7 +657,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
 
                 JeiModiferRecipeBuilder.of(registries)
                                 .oxidation(OxidationStatus.SCRAPPING)
-                                .output(LibItems.PATINA)
+                                .output(LibItems.PATINA.get())
                                 .tooltip(MODULE_ID + ".jei.patina_drop")
                                 .unlockedBy()
                                 .save(output);

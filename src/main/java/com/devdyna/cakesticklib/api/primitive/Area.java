@@ -28,19 +28,19 @@ public class Area {
     }
 
     public int getMinXZ() {
-        return xz.getMin();
+        return xz.min();
     }
 
     public int getMaxXZ() {
-        return xz.getMax();
+        return xz.max();
     }
 
     public int getMinY() {
-        return y.getMin();
+        return y.min();
     }
 
     public int getMaxY() {
-        return y.getMax();
+        return y.max();
     }
 
     public boolean test(int xz, int y) {

@@ -33,11 +33,23 @@ public class Range {
         this(min, max, BiBool.of());
     }
 
+    @Deprecated
     public int getMin() {
         return min;
     }
 
+    @Deprecated
     public int getMax() {
+        return max;
+    }
+
+    
+    public int min() {
+        return min;
+    }
+
+    
+    public int max() {
         return max;
     }
 

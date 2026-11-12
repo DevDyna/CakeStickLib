@@ -3,6 +3,8 @@ package com.devdyna.cakesticklib.api.utils;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.devdyna.cakesticklib.api.primitive.Range;
+
 public class SlotBuilder {
 
     public enum ResourceType {
@@ -50,8 +52,15 @@ public class SlotBuilder {
         return this;
     }
 
+    @Deprecated
     public SlotBuilder setAll(ResourceType type, Integer start, Integer end) {
         for (int i = start; i < end; i++)
+            list.set(i, type);
+        return this;
+    }
+
+    public SlotBuilder setAll(ResourceType type, Range range) {
+        for (var i = range.min(); i < range.max(); i++)
             list.set(i, type);
         return this;
     }

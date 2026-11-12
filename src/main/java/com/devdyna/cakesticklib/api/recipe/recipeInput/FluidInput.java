@@ -3,16 +3,16 @@ package com.devdyna.cakesticklib.api.recipe.recipeInput;
 import java.util.Arrays;
 import java.util.List;
 
+import com.devdyna.cakesticklib.api.recipe.recipeInput.handler.TypeInputHandler;
 import com.devdyna.cakesticklib.api.utils.x;
 
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.RecipeInput;
 import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.fluids.FluidStack;
 
 public class FluidInput {
 
-    public record simple(FluidStack fluid) implements RecipeInput {
+    public record simple(FluidStack fluid) implements TypeInputHandler {
 
         public static simple of(FluidStack f) {
             return new simple(f);
@@ -32,9 +32,14 @@ public class FluidInput {
             return 1;
         }
 
+        @Override
+        public List<Integer> getItemIndexes() {
+            return List.of();
+        }
+
     }
 
-    public record dual(FluidStack first, FluidStack second) implements RecipeInput {
+    public record dual(FluidStack first, FluidStack second) implements TypeInputHandler {
 
         public static dual of(FluidStack a, FluidStack b) {
             return new dual(a, b);
@@ -62,9 +67,14 @@ public class FluidInput {
             return 2;
         }
 
+        @Override
+        public List<Integer> getItemIndexes() {
+            return List.of();
+        }
+
     }
 
-    public record multiple(FluidStack... fluids) implements RecipeInput {
+    public record multiple(FluidStack... fluids) implements TypeInputHandler {
 
         public static multiple of(FluidStack... i) {
             return new multiple(i);
@@ -84,10 +94,20 @@ public class FluidInput {
             return fluids.length;
         }
 
+        @Override
+        public List<Integer> getFluidIndexes() {
+            return getIndexesBySize();
+        }
+
+        @Override
+        public List<Integer> getItemIndexes() {
+            return List.of();
+        }
+
     }
 
     @Deprecated
-    public record withNumber(FluidStack fluid, double value) implements RecipeInput {
+    public record withNumber(FluidStack fluid, double value) implements TypeInputHandler {
 
         public static withNumber of(FluidStack f, double v) {
             return new withNumber(f, v);
@@ -129,6 +149,16 @@ public class FluidInput {
         @Override
         public int size() {
             return 1;
+        }
+
+        @Override
+        public List<Integer> getFluidIndexes() {
+            return List.of(0);
+        }
+
+        @Override
+        public List<Integer> getItemIndexes() {
+            return List.of();
         }
 
     }

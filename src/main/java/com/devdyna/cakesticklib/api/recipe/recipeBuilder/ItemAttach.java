@@ -182,7 +182,7 @@ public class ItemAttach {
         }
 
         public static interface DoubleItemCounted<BUILDER extends BaseRecipeBuilder>
-                extends ItemCounted<BUILDER> {
+                extends BuilderAttach<BUILDER> {
 
             abstract BUILDER inputs(SizedIngredient right, SizedIngredient left);
 

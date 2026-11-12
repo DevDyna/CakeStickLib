@@ -5,6 +5,8 @@ import net.neoforged.neoforge.transfer.energy.EnergyHandler;
 
 public interface EnergyBlock {
 
+    //TODO verify if can be deprecated
+    // @Deprecated
     default ContainerData getContainerData(){
         return null;
     }

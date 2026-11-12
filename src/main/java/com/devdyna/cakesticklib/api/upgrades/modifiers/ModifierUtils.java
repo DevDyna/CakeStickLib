@@ -33,7 +33,7 @@ public class ModifierUtils {
         return has(i.get(LibComponents.UPGRADE_COMPONENTS), type);
     }
 
-      public static final <T extends BaseModifier> T get(UpgradeComponents c, UpgradeType type) {
+    public static final <T extends BaseModifier> T get(UpgradeComponents c, UpgradeType type) {
         return (T) switch (type) {
             case SPEED -> c.speed().orElse(null);
             case ENERGY -> c.energy().orElse(null);
@@ -52,8 +52,8 @@ public class ModifierUtils {
         return List.of(c.speed(), c.energy(), c.luck(), c.fluid_usage(), c.eject());
     }
 
-
-    public static final UpgradeComponents create(int speed, int energy, int luck, int fluid, DirectionalModifier eject) {
+    public static final UpgradeComponents create(int speed, int energy, int luck, int fluid,
+            DirectionalModifier eject) {
         return new UpgradeComponents(
                 speed == 0 ? Optional.empty() : Optional.of(NumericModifier.of(speed)),
                 energy == 0 ? Optional.empty() : Optional.of(NumericModifier.of(energy)),
@@ -110,7 +110,6 @@ public class ModifierUtils {
         };
     }
 
-
     public static String getColoredTip(boolean condition, boolean fallback, boolean positivity) {
         return fallback
                 ? Modifiers.NEUTRAL
@@ -119,6 +118,4 @@ public class ModifierUtils {
                         : (Modifiers.NEGATIVE + (positivity ? "" : "+")));
     }
 
-
-   
 }

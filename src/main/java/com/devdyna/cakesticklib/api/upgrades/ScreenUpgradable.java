@@ -4,8 +4,12 @@ import static com.devdyna.cakesticklib.CakeStickLib.MODULE_ID;
 
 import java.util.*;
 
+import com.devdyna.cakesticklib.api.datagen.LangUtils.TipColors;
 import com.devdyna.cakesticklib.api.upgrades.UpgradeComponents.UpgradeType;
+import com.devdyna.cakesticklib.api.upgrades.modifiers.DirectionalModifier;
 import com.devdyna.cakesticklib.api.upgrades.modifiers.ModifierUtils;
+import com.devdyna.cakesticklib.api.upgrades.modifiers.NumericModifier;
+import com.devdyna.cakesticklib.api.utils.LogicOperator;
 import com.devdyna.cakesticklib.api.utils.UpgradeSlotBuilder;
 import com.devdyna.cakesticklib.setup.Config;
 
@@ -13,6 +17,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 
 public interface ScreenUpgradable {
@@ -20,19 +25,70 @@ public interface ScreenUpgradable {
     abstract Font getFont();
 
     abstract UpgradeSlotBuilder getSlotBuilder();
-    
-    @Deprecated
-    default void renderToolTips(GuiGraphicsExtractor graphics, int mouseX, int mouseY){
-        renderToolTips(graphics, mouseX, mouseY,true);
+
+    default boolean hideStatsWhenHoldUpgrade() {
+        return false;
     }
 
-    default void renderToolTips(GuiGraphicsExtractor graphics, int mouseX, int mouseY,boolean enableWhen) {
+    abstract <T extends AbstractContainerMenu> T getMenu();
+
+    @Deprecated
+    default void renderToolTips(GuiGraphicsExtractor graphics, int mouseX, int mouseY) {
+        renderToolTips(graphics, mouseX, mouseY, true);
+    }
+
+    default void renderToolTips(GuiGraphicsExtractor graphics, int mouseX, int mouseY, boolean enableWhen) {
+
         getSlotBuilder().getAll().forEach((k, v) -> {
-            if (v.getItem().isEmpty())
-                if (enableWhen && v.getPos().test(mouseX, mouseY))
-                    graphics.setComponentTooltipForNextFrame(getFont(), calculateTooltipUpgrades(), mouseX,
-                            mouseY);
+            if (enableWhen)
+                if (v.getPos().test(mouseX, mouseY))
+                    if (v.getItem().isEmpty())
+                        graphics.setComponentTooltipForNextFrame(getFont(), (((hideStatsWhenHoldUpgrade()
+                                ? (getItem().isEmpty() || !ModifierUtils.itemValid(getItem().get()))
+                                : true)) ? calculateTooltipUpgrades() : calculateTooltipStatsHolder()), mouseX, mouseY);
+
         });
+    }
+
+    private Optional<ItemStack> getItem() {
+        return Optional.ofNullable(getMenu().getCarried());
+    }
+
+    default boolean defineOverflow(UpgradeType upgrade) {
+        return getConfigLimits(upgrade) < getInstalledUpgradesOnSlots(upgrade) + Math.min(4, getItem().get().count());
+    }
+
+    default String getStatsValue(UpgradeType upgrade) {
+        var item = getItem().get();
+        var modifier = ModifierUtils.get(item, upgrade);
+        return (modifier instanceof DirectionalModifier)
+                ? TipColors.GREEN + "+" + item.count() + " Eject"// TODO rework
+                : ModifierUtils.getColoredTip(
+                        (whenInvertColorStats(upgrade))
+                                ? (((NumericModifier) modifier).value() > 0)
+                                : (((NumericModifier) modifier).value() < 0),
+                        ((NumericModifier) modifier).value() == 0, whenInvertColorStats(upgrade))
+                        + ((NumericModifier) modifier).value() * Math.min(4, item.count()) + "%";
+    }
+
+    default boolean whenInvertColorStats(UpgradeType u) {
+        return u.is(LogicOperator.OR, UpgradeType.LUCK, UpgradeType.SPEED);
+    }
+
+    default List<Component> calculateTooltipStatsHolder() {
+        var item = getItem().get();
+        List<Component> result = new ArrayList<>();
+
+        for (var upgrade : validUpgrades())
+            if (ModifierUtils.has(item, upgrade))
+                result.add(defineOverflow(upgrade)
+                        ? Component
+                                .translatable(MODULE_ID + ".screen.modifier.overflow." + upgrade.name().toLowerCase())
+                        : Component
+                                .translatable(MODULE_ID + ".screen.modifier." + upgrade.name().toLowerCase(),
+                                        getStatsValue(upgrade)));
+        return result;
+
     }
 
     default List<Component> calculateTooltipUpgrades() {
