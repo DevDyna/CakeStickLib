@@ -345,7 +345,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
 
                 packUnpack(output, LibItems.SILICON_SHARD.get(), LibItems.RAW_SILICON.get(), false);
 
-                ingot(Tags.Items.RAW_MATERIALS_IRON,
+                ingotProcessing(output, Tags.Items.RAW_MATERIALS_IRON,
                                 Items.IRON_INGOT, Tags.Items.INGOTS_IRON,
                                 LibItems.IRON_DUST.get(), LibTags.Items.IRON_DUST,
                                 LibItems.IRON_PLATE.get(), LibTags.Items.IRON_PLATE,
@@ -353,7 +353,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 LibItems.IRON_FOIL.get(), LibTags.Items.IRON_FOIL,
                                 LibItems.IRON_COIL.get(), LibTags.Items.IRON_COIL);
 
-                ingot(Tags.Items.RAW_MATERIALS_GOLD,
+                ingotProcessing(output, Tags.Items.RAW_MATERIALS_GOLD,
                                 Items.GOLD_INGOT, Tags.Items.INGOTS_GOLD,
                                 LibItems.GOLD_DUST.get(), LibTags.Items.GOLD_DUST,
                                 LibItems.GOLD_PLATE.get(), LibTags.Items.GOLD_PLATE,
@@ -361,7 +361,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 LibItems.GOLD_FOIL.get(), LibTags.Items.GOLD_FOIL,
                                 LibItems.GOLD_COIL.get(), LibTags.Items.GOLD_COIL);
 
-                ingot(Tags.Items.RAW_MATERIALS_COPPER,
+                ingotProcessing(output, Tags.Items.RAW_MATERIALS_COPPER,
                                 Items.COPPER_INGOT, Tags.Items.INGOTS_COPPER,
                                 LibItems.COPPER_DUST.get(), LibTags.Items.COPPER_DUST,
                                 LibItems.COPPER_PLATE.get(), LibTags.Items.COPPER_PLATE,
@@ -369,14 +369,14 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 LibItems.COPPER_FOIL.get(), LibTags.Items.COPPER_FOIL,
                                 LibItems.COPPER_COIL.get(), LibTags.Items.COPPER_COIL);
 
-                gem(Tags.Items.GEMS_AMETHYST, LibItems.AMETHYST_DUST.get());
-                gem(ItemTags.COALS, LibItems.CARBON_DUST.get());
-                gem(Tags.Items.GEMS_DIAMOND, LibItems.DIAMOND_DUST.get());
-                gem(Tags.Items.GEMS_EMERALD, LibItems.EMERALD_DUST.get());
-                gem(Tags.Items.GEMS_LAPIS, LibItems.LAPIS_DUST.get());
-                gem(Tags.Items.GEMS_QUARTZ, LibItems.QUARTZ_DUST.get());
+                gemHammering(output, Tags.Items.GEMS_AMETHYST, LibItems.AMETHYST_DUST.get());
+                gemHammering(output, ItemTags.COALS, LibItems.CARBON_DUST.get());
+                gemHammering(output, Tags.Items.GEMS_DIAMOND, LibItems.DIAMOND_DUST.get());
+                gemHammering(output, Tags.Items.GEMS_EMERALD, LibItems.EMERALD_DUST.get());
+                gemHammering(output, Tags.Items.GEMS_LAPIS, LibItems.LAPIS_DUST.get());
+                gemHammering(output, Tags.Items.GEMS_QUARTZ, LibItems.QUARTZ_DUST.get());
 
-                gem(Items.RESIN_BRICK, Items.RESIN_CLUMP);
+                gemHammering(output, Items.RESIN_BRICK, Items.RESIN_CLUMP);
 
                 DurabilityConsumeBuilder.of(registries)
                                 .tool(LibItems.HAMMER.get())
@@ -692,64 +692,6 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                 public String getName() {
                         return "CakeStickLib";
                 }
-        }
-
-        public void ingot(
-                        TagKey<Item> raw,
-                        Item ingot, TagKey<Item> ingot_tag,
-                        Item dust, TagKey<Item> dust_tag,
-                        Item plate, TagKey<Item> plate_tag,
-                        Item gear, TagKey<Item> gear_tag,
-                        Item foil, TagKey<Item> foil_tag,
-                        Item coil, TagKey<Item> coil_tag) {
-
-                doubleSmelt(output, dust_tag, ingot);
-
-                DurabilityConsumeBuilder.of(registries)
-                                .tool(LibItems.HAMMER.get(), 2)
-                                .add(raw)
-                                .output(dust, 2)
-                                .unlockedBy()
-                                .save(output, "_from_raw");
-
-                DurabilityConsumeBuilder.of(registries)
-                                .tool(LibItems.HAMMER.get(), 1)
-                                .add(ingot_tag)
-                                .output(dust)
-                                .unlockedBy()
-                                .save(output, "_from_ingot");
-
-                gear(output, ingot_tag, gear);
-                foil(output, plate_tag, foil);
-                plate(output, ingot_tag, plate);
-                coil(output, foil_tag, coil);
-
-        }
-
-        public void gem(
-                        TagKey<Item> gem,
-                        Item dust) {
-
-                DurabilityConsumeBuilder.of(registries)
-                                .tool(LibItems.HAMMER.get(), 1)
-                                .add(gem)
-                                .output(dust)
-                                .unlockedBy()
-                                .save(output);
-
-        }
-
-        public void gem(
-                        Item gem,
-                        Item dust) {
-
-                DurabilityConsumeBuilder.of(registries)
-                                .tool(LibItems.HAMMER.get(), 1)
-                                .add(gem)
-                                .output(dust)
-                                .unlockedBy()
-                                .save(output);
-
         }
 
         public String getHasNameGen(ItemLike i) {

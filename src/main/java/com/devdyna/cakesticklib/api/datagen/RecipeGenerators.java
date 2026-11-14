@@ -3,6 +3,8 @@ package com.devdyna.cakesticklib.api.datagen;
 import java.util.function.Function;
 
 import com.devdyna.cakesticklib.api.utils.x;
+import com.devdyna.cakesticklib.setup.common.recipes.tool_durability.DurabilityConsumeBuilder;
+import com.devdyna.cakesticklib.setup.registry.LibItems;
 
 import io.netty.util.internal.UnstableApi;
 import net.minecraft.advancements.Criterion;
@@ -218,7 +220,6 @@ public interface RecipeGenerators {
                                 .unlockedBy(getHasName(o), has(o)).save(c, e);
         }
 
-        
         default void simplePacked(RecipeOutput c, ItemLike input, ItemLike output, boolean isSmall, int result) {
                 var temp = ShapedRecipeBuilder.shaped(getItems(), RecipeCategory.MISC, output, result)
                                 .define('#', input)
@@ -620,6 +621,63 @@ public interface RecipeGenerators {
                                 .pattern(" # ")
                                 .unlockedBy(getHasName(material), has(material))
                                 .save(c);
+        }
+
+        default void ingotProcessing(RecipeOutput c, TagKey<Item> raw,
+                        Item ingot, TagKey<Item> ingot_tag,
+                        Item dust, TagKey<Item> dust_tag,
+                        Item plate, TagKey<Item> plate_tag,
+                        Item gear, TagKey<Item> gear_tag,
+                        Item foil, TagKey<Item> foil_tag,
+                        Item coil, TagKey<Item> coil_tag) {
+
+                doubleSmelt(c, dust_tag, ingot);
+
+                DurabilityConsumeBuilder.of(getProvider())
+                                .tool(LibItems.HAMMER.get(), 2)
+                                .add(raw)
+                                .output(dust, 2)
+                                .unlockedBy()
+                                .save(c, "_from_raw");
+
+                DurabilityConsumeBuilder.of(getProvider())
+                                .tool(LibItems.HAMMER.get(), 1)
+                                .add(ingot_tag)
+                                .output(dust)
+                                .unlockedBy()
+                                .save(c, "_from_ingot");
+
+                gear(c, ingot_tag, gear);
+                foil(c, plate_tag, foil);
+                plate(c, ingot_tag, plate);
+                coil(c, foil_tag, coil);
+
+        }
+
+        default void gemHammering(RecipeOutput c,
+                        TagKey<Item> gem,
+                        Item dust) {
+
+                DurabilityConsumeBuilder.of(getProvider())
+                                .tool(LibItems.HAMMER.get(), 1)
+                                .add(gem)
+                                .output(dust)
+                                .unlockedBy()
+                                .save(c);
+
+        }
+
+        default void gemHammering(RecipeOutput c,
+                        Item gem,
+                        Item dust) {
+
+                DurabilityConsumeBuilder.of(getProvider())
+                                .tool(LibItems.HAMMER.get(), 1)
+                                .add(gem)
+                                .output(dust)
+                                .unlockedBy()
+                                .save(c);
+
         }
 
 }
