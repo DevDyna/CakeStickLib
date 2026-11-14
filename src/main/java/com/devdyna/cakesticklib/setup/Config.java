@@ -1,14 +1,13 @@
 package com.devdyna.cakesticklib.setup;
 
+import com.devdyna.cakesticklib.api.ConfigUtils;
 import com.devdyna.cakesticklib.api.utils.ModAddonUtil;
-import com.devdyna.cakesticklib.api.utils.StringUtil;
 
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.neoforge.common.ModConfigSpec.*;
 
-@SuppressWarnings("unused")
 public class Config {
 
         public static BooleanValue HARVESTABLE_ACTION;
@@ -18,145 +17,92 @@ public class Config {
         public static BooleanValue REDSTONE_ACID_EVENT;
         public static BooleanValue HONEY_SOLUTION_EVENT;
 
-        public static IntValue MACHINE_MAX_SPEED_UPGRADES_TYPE;// 4
-        public static IntValue MACHINE_MAX_ENERGY_UPGRADES_TYPE;// max
-        public static IntValue MACHINE_MAX_LUCK_UPGRADES_TYPE;// max
-        public static IntValue MACHINE_MAX_FLUID_UPGRADES_TYPE;// max
+        public static IntValue MACHINE_MAX_SPEED_UPGRADES_TYPE;
+        public static IntValue MACHINE_MAX_ENERGY_UPGRADES_TYPE;
+        public static IntValue MACHINE_MAX_LUCK_UPGRADES_TYPE;
+        public static IntValue MACHINE_MAX_FLUID_UPGRADES_TYPE;
 
-        public static IntValue MACHINE_MINIMAL_TICK_DELAY;// 1
-        public static IntValue MACHINE_MINIMAL_FE_COST;// 0
-        public static IntValue MACHINE_MINIMAL_FLUID_COST;// 0
-        public static IntValue MACHINE_MAXIMAL_LUCK;// 100
+        public static IntValue MACHINE_MINIMAL_TICK_DELAY;
+        public static IntValue MACHINE_MINIMAL_FE_COST;
+        public static IntValue MACHINE_MINIMAL_FLUID_COST;
+        public static IntValue MACHINE_MAXIMAL_LUCK;
 
         private static final ModConfigSpec.Builder qCOMMON = new ModConfigSpec.Builder();
 
         public static void register(ModContainer c) {
+                gameplay();
+                upgrades();
+                c.registerConfig(ModConfig.Type.COMMON, qCOMMON.build());
+        }
 
-                qCOMMON.comment("Machine Upgrades").push("upgrades");
-
-                MACHINE_MAX_SPEED_UPGRADES_TYPE = number("Max Speed Increaser Upgrade Types usable foreach machine",
-                                "max_speed_upgrades", 4, 0, 16);
-
-                MACHINE_MAX_ENERGY_UPGRADES_TYPE = number(
-                                "Max Energy Efficiency Upgrade Types usable foreach machine",
-                                "max_energy_upgrades", 16, 0, 16);
-
-                MACHINE_MAX_LUCK_UPGRADES_TYPE = number(
-                                "Max Secondary Output Increaser Upgrade Types usable foreach machine",
-                                "max_luck_upgrades", 4, 0, 16);
-
-                MACHINE_MAX_FLUID_UPGRADES_TYPE = number("Max Fluid Efficiency Upgrade Types usable foreach machine",
-                                "max_fluid_upgrades", 4, 0, 16);
-
-                MACHINE_MINIMAL_TICK_DELAY = number("Minimal tick delay based on upgrade installed",
-                                "min_tick_rate", 1);
-
-                MACHINE_MINIMAL_FE_COST = number("Minimal Energy cost based on upgrade installed",
-                                "min_fe_cost", 5);
-
-                MACHINE_MINIMAL_FLUID_COST = number("Minimal Fluid cost based on upgrade installed",
-                                "min_mb_cost", 1);
-                MACHINE_MAXIMAL_LUCK = number("Maximal Secondary Chance based on upgrade installed",
-                                "max_luck", 100);
-
-                qCOMMON.pop();
-
+        public static void gameplay() {
                 qCOMMON.comment("Gameplay Additions").push("events");
 
-                HARVESTABLE_ACTION = bool(
+                HARVESTABLE_ACTION = ConfigUtils.bool(qCOMMON,
                                 "Player can right-click on crops to collect intend of breaking" +
                                                 "\nIf detected Farmers Delight it will turn off by default",
                                 "harvestable_action",
                                 !ModAddonUtil.checkMod("farmersdelight"));
 
-                TREE_CUTTING_LIMIT = number(
+                TREE_CUTTING_LIMIT = ConfigUtils.num(qCOMMON,
                                 "Max number of harvestable blocks foreach interaction",
                                 "tree_cutting_limit", 2048);
 
-                ENDER_EYE_RETURN_EVENT = bool("End Portal Frame can be interacted to remove Eye of Ender",
+                ENDER_EYE_RETURN_EVENT = ConfigUtils.bool(qCOMMON,
+                                "End Portal Frame can be interacted to remove Eye of Ender",
                                 "ender_eye_return", true);
 
-                PATINA_DROP_EVENT = bool("Patina will drop when scrapped any oxidized copper block",
+                PATINA_DROP_EVENT = ConfigUtils.bool(qCOMMON,
+                                "Patina will drop when scrapped any oxidized copper block",
                                 "patina_drop", true);
 
-                REDSTONE_ACID_EVENT = bool(
+                REDSTONE_ACID_EVENT = ConfigUtils.bool(qCOMMON,
                                 "Redstone Acid can be used to increase a stage of oxidation at the copper block clicked",
                                 "redstone_acid_oxide", true);
 
-                HONEY_SOLUTION_EVENT = bool("Honey Solution can be used to wax copper blocks clicked",
+                HONEY_SOLUTION_EVENT = ConfigUtils.bool(qCOMMON,
+                                "Honey Solution can be used to wax copper blocks clicked",
                                 "honey_solution_wax", true);
 
+
                 qCOMMON.pop();
-
-                c.registerConfig(ModConfig.Type.COMMON, qCOMMON.build());
         }
 
-        private static BooleanValue bool(String c, String k, boolean b) {
-                return qCOMMON
-                                .comment(c)
-                                .define(k, b);
-        }
+        public static void upgrades() {
+                qCOMMON.comment("Machine Upgrades").push("upgrades");
 
-        /**
-         * default = false
-         */
-        private static BooleanValue bool(String c, String k) {
-                return bool(c, k, false);
-        }
+                MACHINE_MAX_SPEED_UPGRADES_TYPE = ConfigUtils.num(qCOMMON,
+                                "Max Speed Increaser Upgrade Types usable foreach machine",
+                                "max_speed_upgrades", 4, 0, 16);
 
-        private static IntValue number(String c, String k, int d, int min, int max) {
-                return qCOMMON
-                                .comment(c)
-                                .defineInRange(k, d, (d < min ? d : min), (d > max ? d : max));
-        }
+                MACHINE_MAX_ENERGY_UPGRADES_TYPE = ConfigUtils.num(qCOMMON,
+                                "Max Energy Efficiency Upgrade Types usable foreach machine",
+                                "max_energy_upgrades", 16, 0, 16);
 
-        private static DoubleValue numberFloat(String c, String k, double d, double min, double max) {
-                return qCOMMON
-                                .comment(c)
-                                .defineInRange(k, d, (d < min ? d : min), (d > max ? d : max));
-        }
+                MACHINE_MAX_LUCK_UPGRADES_TYPE = ConfigUtils.num(qCOMMON,
+                                "Max Secondary Output Increaser Upgrade Types usable foreach machine",
+                                "max_luck_upgrades", 4, 0, 16);
 
-        /**
-         * min = 0<br/>
-         * <br/>
-         * max = Double.MAX_VALUE
-         */
+                MACHINE_MAX_FLUID_UPGRADES_TYPE = ConfigUtils.num(qCOMMON,
+                                "Max Fluid Efficiency Upgrade Types usable foreach machine",
+                                "max_fluid_upgrades", 4, 0, 16);
 
-        private static DoubleValue numberFloat(String c, String k, double d) {
-                return numberFloat(c, k, d, 0, Integer.MAX_VALUE);
-        }
+                MACHINE_MINIMAL_TICK_DELAY = ConfigUtils.num(qCOMMON,
+                                "Minimal tick delay based on upgrade installed",
+                                "min_tick_rate", 1);
 
-        /**
-         * max = Double.MAX_VALUE
-         */
-        private static DoubleValue numberFloat(String c, String k, double d, double min) {
-                return numberFloat(c, k, d, min, Integer.MAX_VALUE);
-        }
+                MACHINE_MINIMAL_FE_COST = ConfigUtils.num(qCOMMON,
+                                "Minimal Energy cost based on upgrade installed",
+                                "min_fe_cost", 5);
 
-        /**
-         * min = 1<br/>
-         * <br/>
-         * max = Integer.MAX_VALUE
-         */
-        private static IntValue number(String c, String k, int d) {
-                return number(c, k, d, 1, Integer.MAX_VALUE);
-        }
+                MACHINE_MINIMAL_FLUID_COST = ConfigUtils.num(qCOMMON,
+                                "Minimal Fluid cost based on upgrade installed",
+                                "min_mb_cost", 1);
+                MACHINE_MAXIMAL_LUCK = ConfigUtils.num(qCOMMON,
+                                "Maximal Secondary Chance based on upgrade installed",
+                                "max_luck", 100);
 
-        /**
-         * max = Integer.MAX_VALUE
-         */
-        private static IntValue number(String c, String k, int d, int min) {
-                return number(c, k, d, min, Integer.MAX_VALUE);
-        }
-
-        protected class decor {
-                protected static void complex(String s) {
-                        qCOMMON.comment(StringUtil.nameCapitalized(s));
-                }
-
-                protected static void simple(String s) {
-                        qCOMMON.comment(s);
-                }
+                qCOMMON.pop();
         }
 
 }
