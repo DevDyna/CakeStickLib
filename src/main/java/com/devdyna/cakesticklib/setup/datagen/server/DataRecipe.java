@@ -596,7 +596,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 Items.SKULL_POTTERY_SHERD,
                                 Items.SNORT_POTTERY_SHERD)
                                 .forEach(sherd -> ReplaceItemBuilder.of(registries)
-                                                .replace(sherd, sherd)
+                                                .keep(sherd)
                                                 .add(Items.BRICK)
                                                 .add(LibItems.PATINA.get())
                                                 .output(sherd)
