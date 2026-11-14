@@ -1,15 +1,13 @@
 package com.devdyna.cakesticklib.setup.datagen.client;
 
 import static com.devdyna.cakesticklib.CakeStickLib.MODULE_ID;
-import static com.devdyna.cakesticklib.api.datagen.LangUtils.*;
-
 import java.util.List;
 
 import com.devdyna.cakesticklib.api.datagen.LangGenerators;
 import com.devdyna.cakesticklib.api.compat.jei.JEIAliasesHelper;
-import com.devdyna.cakesticklib.api.datagen.LangUtils;
 import com.devdyna.cakesticklib.api.datagen.LangUtils.TipColors;
 import com.devdyna.cakesticklib.api.upgrades.modifiers.base.BaseModifier.UseType;
+import com.devdyna.cakesticklib.setup.Config;
 import com.devdyna.cakesticklib.setup.registry.*;
 
 import net.minecraft.core.Direction;
@@ -27,9 +25,9 @@ public class DataLang extends LanguageProvider implements LangGenerators {
         protected void addTranslations() {
 
                 LibFluids.zFluidTypes.getEntries()
-                                .forEach(f -> addFluid(f.get(), named(f, MODULE_ID).replace(" Type", "")));
-                LibItems.zBucketItems.getEntries().forEach(i -> addItem(i, named(i, MODULE_ID)));
-                LibBlocks.zBlockFluids.getEntries().forEach(b -> addBlock(b, LangUtils.named(b, MODULE_ID)));
+                                .forEach(f -> addFluid(f.get(), named(f).replace(" Type", "")));
+                LibItems.zBucketItems.getEntries().forEach(i -> addItem(i, named(i)));
+                LibBlocks.zBlockFluids.getEntries().forEach(b -> addBlock(b, named(b)));
 
                 // jei aliases
                 add(JEIAliasesHelper.Alias.HOPPER, "Hopper");
@@ -118,7 +116,7 @@ public class DataLang extends LanguageProvider implements LangGenerators {
                                 LibItems.zBlockItem)
                                 .stream()
                                 .map(DeferredRegister.Items::getEntries)
-                                .forEach(c -> c.forEach(i -> addItem(i, named(i, MODULE_ID))));
+                                .forEach(c -> c.forEach(i -> addItem(i, named(i))));
 
                 add(MODULE_ID + ".redstone_acid.tip", TipColors.ITEM_TOOLTIP + "Oxidize copper blocks");
                 add(MODULE_ID + ".honey_solution.tip", TipColors.ITEM_TOOLTIP + "Wax copper blocks");
@@ -127,7 +125,7 @@ public class DataLang extends LanguageProvider implements LangGenerators {
                 add(MODULE_ID + ".wrench.tip", TipColors.ITEM_TOOLTIP + "Rotate blocks");
 
                 add(MODULE_ID + ".cakestick.tip", TipColors.ITEM_TOOLTIP + "Place cake slices");
-                LangUtils.advKey(this, MODULE_ID, "cake_stick", "The cake is(n't) a lie!", "The Cake stick is right!");
+                advKey("cake_stick", "The cake is(n't) a lie!", "The Cake stick is right!");
 
                 add(MODULE_ID + ".jei.copper_oxidation", "Copper Oxidation Info");
                 add(MODULE_ID + ".jei.strippable", "Block Strippable Info");
@@ -176,51 +174,25 @@ public class DataLang extends LanguageProvider implements LangGenerators {
                                                         + v.name());
 
                 // config
-                add(MODULE_ID + ".configuration.events", "General events");
+                addConfigTitle("events", "Gameplay Additions");
+                addConfigTitle("upgrades", "Machine Upgrades");
 
-                add(MODULE_ID + ".configuration.harvestable_action",
-                                "Harvestable Action");
+                addConfigKey(Config.HARVESTABLE_ACTION, "Harvestable Action");
+                addConfigKey(Config.TREE_CUTTING_LIMIT, "Tree Cutting Limit");
+                addConfigKey(Config.ENDER_EYE_RETURN_EVENT, "Eye of Ender Event");
+                addConfigKey(Config.PATINA_DROP_EVENT, "Patina drop");
+                addConfigKey(Config.REDSTONE_ACID_EVENT, "Redstone Acid use");
+                addConfigKey(Config.HONEY_SOLUTION_EVENT, "Honey Solution use");
 
-                add(MODULE_ID + ".configuration.tree_cutting_limit",
-                                "Tree Cutting Limit");
+                addConfigKey(Config.MACHINE_MAX_SPEED_UPGRADES_TYPE, "Max Speed Modifiers");
+                addConfigKey(Config.MACHINE_MAX_ENERGY_UPGRADES_TYPE, "Max Energy Modifiers");
+                addConfigKey(Config.MACHINE_MAX_LUCK_UPGRADES_TYPE, "Max Luck Modifiers");
+                addConfigKey(Config.MACHINE_MAX_FLUID_UPGRADES_TYPE, "Max Fluid Modifiers");
 
-                add(MODULE_ID + ".configuration.ender_eye_return",
-                                "Eye of Ender Event");
-
-                add(MODULE_ID + ".configuration.patina_drop",
-                                "Patina drop");
-
-                add(MODULE_ID + ".configuration.redstone_acid_oxide",
-                                "Redstone Acid use");
-
-                add(MODULE_ID + ".configuration.honey_solution_wax",
-                                "Honey Solution use");
-
-                add(MODULE_ID + ".configuration.upgrades", "Machine Upgrades");
-
-                add(MODULE_ID + ".configuration.max_speed_upgrades",
-                                "Max Speed Modifiers");
-
-                add(MODULE_ID + ".configuration.max_energy_upgrades",
-                                "Max Energy Modifiers");
-
-                add(MODULE_ID + ".configuration.max_luck_upgrades",
-                                "Max Luck Modifiers");
-
-                add(MODULE_ID + ".configuration.max_fluid_upgrades",
-                                "Max Fluid Modifiers");
-
-                add(MODULE_ID + ".configuration.min_tick_rate",
-                                "Minimal Tick Rate");
-
-                add(MODULE_ID + ".configuration.min_fe_cost",
-                                "Minimal FE Cost");
-
-                add(MODULE_ID + ".configuration.min_mb_cost",
-                                "Minimal MB Cost");
-
-                add(MODULE_ID + ".configuration.max_luck",
-                                "Maximal Luck");
+                addConfigKey(Config.MACHINE_MINIMAL_TICK_DELAY, "Minimal Tick Rate");
+                addConfigKey(Config.MACHINE_MINIMAL_FE_COST, "Minimal FE Cost");
+                addConfigKey(Config.MACHINE_MINIMAL_FLUID_COST, "Minimal MB Cost");
+                addConfigKey(Config.MACHINE_MAXIMAL_LUCK, "Maximal Luck");
 
                 // extra
                 add("extra.effect.minecraft.glowing",
@@ -229,35 +201,27 @@ public class DataLang extends LanguageProvider implements LangGenerators {
                 add(MODULE_ID + ".jei.recipe.item_replace.remainder", "Replaced with %s");
                 add(MODULE_ID + ".jei.recipe.durability_consume", "Consume %s durability");
 
-                LangUtils.advKey(this, MODULE_ID, "wrought_iron_ingot", "One shade of gray",
-                                "Combine some carbon dust with an iron ingot");
-
-                LangUtils.advKey(this, MODULE_ID, "steel_ingot", "Steel!",
-                                "Smelt on a blast furnace a wrought iron ingot");
-
-                LangUtils.advKey(this, MODULE_ID, "chisel", "StoneCutter on a Stick",
-                                "Craft a chisel to craft in-world stonecutting recipes");
-
-                LangUtils.advKey(this, MODULE_ID, "glass_cutter", "Cut off from the origin",
-                                "Craft a glass cutter to insta-mine glass blocks");
-
-                LangUtils.advKey(this, MODULE_ID, "hammer", "It's Hammer Time!",
-                                "Craft an hammer to craft new stuff");
-
-                LangUtils.advKey(this, MODULE_ID, "honey_solution", "Wax Standby",
+                advKey("wrought_iron_ingot", "One shade of gray", "Combine some carbon dust with an iron ingot");
+               
+                advKey("steel_ingot", "Steel!", "Smelt on a blast furnace a wrought iron ingot");
+               
+                advKey("chisel", "StoneCutter on a Stick", "Craft a chisel to craft in-world stonecutting recipes");
+               
+                advKey("glass_cutter", "Cut off from the origin", "Craft a glass cutter to insta-mine glass blocks");
+                
+                advKey("hammer", "It's Hammer Time!", "Craft an hammer to craft new stuff");
+               
+                advKey("honey_solution", "Wax Standby",
                                 "Craft an bottle of honey solution to wax stuff more efficiently");
 
-                LangUtils.advKey(this, MODULE_ID, "redstone_acid", "Wax NOT FOUND",
+                advKey("redstone_acid", "Wax NOT FOUND",
                                 "Craft a bottle of redstone acid to directly oxidize copper blocks");
 
-                LangUtils.advKey(this, MODULE_ID, "patina", "Wax x@M",
-                                "Obtain some patina by scrapping oxidized copper blocks");
+                advKey("patina", "Wax x@M", "Obtain some patina by scrapping oxidized copper blocks");
 
-                LangUtils.advKey(this, MODULE_ID, "wrench", "You spin me round",
-                                "Craft a wrench to cycle blockstates of clicked blocks");
+                advKey("wrench", "You spin me round", "Craft a wrench to cycle blockstates of clicked blocks");
 
-                LangUtils.advKey(this, MODULE_ID, "upgrades", "Let's mod it!",
-                                "Obtain some upgrades");
+                advKey("upgrades", "Let's mod it!", "Obtain some upgrades");
 
                 // jade related
                 add(MODULE_ID + ".jade.textual_delay.time.left",
