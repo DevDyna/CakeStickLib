@@ -1,10 +1,9 @@
 package com.devdyna.cakesticklib.setup.registry;
 
-
-
 import static com.devdyna.cakesticklib.CakeStickLib.MODULE_ID;
 
 import com.devdyna.cakesticklib.setup.registry.builders.*;
+import com.devdyna.cakesticklib.setup.registry.builders.dynamite.DynamiteItem;
 
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -112,6 +111,9 @@ public class LibItems {
                         p -> p.pickaxe(ToolMaterial.IRON, 6.0F, -3.1F)
                                         .durability(1024)
                                         .repairable(Items.IRON_INGOT));
+
+        public static final DeferredHolder<Item, Item> DYNAMITE = zItem.registerItem("dynamite",
+                        p -> new DynamiteItem(p.stacksTo(16).useCooldown(0.25f)));
 
         public static final DeferredHolder<Item, Item> RESISTOR = zSimple.registerSimpleItem("resistor");
 

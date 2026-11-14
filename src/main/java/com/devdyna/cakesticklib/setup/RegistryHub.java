@@ -18,5 +18,6 @@ public class RegistryHub {
                 LibBlocks.register(bus);
                 LibContainer.register(bus);
                 LibFluids.register(bus);
+                LibEntities.register(bus);
         }
 }

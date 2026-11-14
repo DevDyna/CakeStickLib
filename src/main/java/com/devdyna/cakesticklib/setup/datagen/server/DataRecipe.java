@@ -674,6 +674,14 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .unlockedBy()
                                 .save(output);
 
+                ShapedRecipeBuilder.shaped(items, RecipeCategory.FOOD, LibItems.DYNAMITE.get(), 2)
+                                .pattern("S")
+                                .pattern("G")
+                                .define('S', Tags.Items.STRINGS)
+                                .define('G', Tags.Items.GUNPOWDERS)
+                                .unlockedBy(getHasName(Tags.Items.GUNPOWDERS), has(Tags.Items.GUNPOWDERS))
+                                .save(output);
+
         }
 
         public static final class RecipeRunner extends RecipeProvider.Runner {
