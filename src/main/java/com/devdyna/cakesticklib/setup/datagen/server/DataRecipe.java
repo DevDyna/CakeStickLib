@@ -501,7 +501,6 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .add(Tags.Items.GLASS_BLOCKS_CHEAP)
                                 .output(Items.GLASS, 1)
                                 .unlockedBy()
-                                .save(output,"_from_redstone_acid");
                                 .save(output, "_from_redstone_acid");
 
                 DurabilityConsumeBuilder.of(registries)
