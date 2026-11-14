@@ -19,6 +19,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.level.ItemLike;
 
 public class DurabilityConsumeBuilder extends BaseRecipeBuilder
         implements ItemAttach.Output.SimpleOutputItem<DurabilityConsumeBuilder>,
@@ -61,7 +62,7 @@ public class DurabilityConsumeBuilder extends BaseRecipeBuilder
         return tool(x.itemIngredient(tool, getProvider()));
     }
 
-    public DurabilityConsumeBuilder tool(Item tool) {
+    public DurabilityConsumeBuilder tool(ItemLike tool) {
         return tool(InputToolDurability.of(x.itemIngredient(tool), 1));
     }
 
@@ -73,7 +74,7 @@ public class DurabilityConsumeBuilder extends BaseRecipeBuilder
         return tool(x.itemIngredient(tool, getProvider()), d);
     }
 
-    public DurabilityConsumeBuilder tool(Item tool, int d) {
+    public DurabilityConsumeBuilder tool(ItemLike tool, int d) {
         return tool(InputToolDurability.of(x.itemIngredient(tool), d));
     }
 
