@@ -502,13 +502,14 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .output(Items.GLASS, 1)
                                 .unlockedBy()
                                 .save(output,"_from_redstone_acid");
+                                .save(output, "_from_redstone_acid");
 
                 DurabilityConsumeBuilder.of(registries)
                                 .tool(LibItems.REDSTONE_ACID.get(), 1)
                                 .add(Tags.Items.GLASS_PANES)
                                 .output(Items.GLASS_PANE, 1)
                                 .unlockedBy()
-                                .save(output,"_from_redstone_acid");
+                                .save(output, "_from_redstone_acid");
 
                 DurabilityConsumeBuilder.of(registries)
                                 .tool(ItemTags.SHOVELS, 10)
