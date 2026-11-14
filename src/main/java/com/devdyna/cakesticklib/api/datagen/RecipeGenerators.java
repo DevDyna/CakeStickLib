@@ -654,30 +654,22 @@ public interface RecipeGenerators {
 
         }
 
-        default void gemHammering(RecipeOutput c,
-                        TagKey<Item> gem,
-                        Item dust) {
-
+        default void gemHammering(RecipeOutput c,   TagKey<Item> gem,ItemLike dust) {
                 DurabilityConsumeBuilder.of(getProvider())
                                 .tool(LibItems.HAMMER.get(), 1)
                                 .add(gem)
                                 .output(dust)
                                 .unlockedBy()
                                 .save(c);
-
         }
 
-        default void gemHammering(RecipeOutput c,
-                        Item gem,
-                        Item dust) {
-
+        default void gemHammering(RecipeOutput c, ItemLike gem, ItemLike dust) {
                 DurabilityConsumeBuilder.of(getProvider())
                                 .tool(LibItems.HAMMER.get(), 1)
                                 .add(gem)
                                 .output(dust)
                                 .unlockedBy()
                                 .save(c);
-
         }
 
 }
