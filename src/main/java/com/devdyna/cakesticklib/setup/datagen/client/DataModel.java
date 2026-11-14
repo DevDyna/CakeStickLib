@@ -33,8 +33,8 @@ public class DataModel extends ModelProvider {
 
                 itemModels.generateFlatItem(LibItems.CAKE_STICK.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
                 itemModels.generateFlatItem(LibItems.HAMMER.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
-                itemModels.generateFlatItem(LibItems.REDSTONE_ACID.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
-                itemModels.generateFlatItem(LibItems.HONEY_SOLUTION.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+                itemModels.generateFlatItem(LibItems.REDSTONE_ACID.get(), ModelTemplates.FLAT_HANDHELD_ROD_ITEM);
+                itemModels.generateFlatItem(LibItems.HONEY_SOLUTION.get(), ModelTemplates.FLAT_HANDHELD_ROD_ITEM);
                 itemModels.generateFlatItem(LibItems.CHISEL.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
                 itemModels.generateFlatItem(LibItems.GLASS_CUTTER.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
                 itemModels.generateFlatItem(LibItems.WRENCH.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
