@@ -385,7 +385,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                 hammering(output, Tags.Items.GEMS_LAPIS, LibItems.LAPIS_DUST.get());
                 hammering(output, Tags.Items.GEMS_QUARTZ, LibItems.QUARTZ_DUST.get());
 
-                gemHammering(output, Items.RESIN_BRICK, Items.RESIN_CLUMP);
+                hammering(output, Items.RESIN_BRICK, Items.RESIN_CLUMP);
 
                 var glasses = List.of(
                                 Items.GLASS,
