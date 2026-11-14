@@ -86,6 +86,7 @@ public class LangUtils {
     @Deprecated
     public static final String TIP_COLOR = TipColors.ITEM_TOOLTIP;
 
+    @Deprecated
     public static String named(DeferredHolder<?, ?> b, String modid) {
 
         StringBuilder result = new StringBuilder();
@@ -100,6 +101,7 @@ public class LangUtils {
         return result.toString().trim();
     }
 
+    @Deprecated
     public static void advKey(LanguageProvider l, String modid, String k, String title, String desc) {
         l.add(modid + ".advancement.branch." + k, title);
         l.add(modid + ".advancement.branch." + k + ".desc", desc);
