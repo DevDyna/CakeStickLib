@@ -16,6 +16,7 @@ public class Config {
         public static BooleanValue PATINA_DROP_EVENT;
         public static BooleanValue REDSTONE_ACID_EVENT;
         public static BooleanValue HONEY_SOLUTION_EVENT;
+        public static BooleanValue CREATIVE_TAB_UNIFIED;
 
         public static IntValue MACHINE_MAX_SPEED_UPGRADES_TYPE;
         public static IntValue MACHINE_MAX_ENERGY_UPGRADES_TYPE;
@@ -64,6 +65,9 @@ public class Config {
                                 "Honey Solution can be used to wax copper blocks clicked",
                                 "honey_solution_wax", true);
 
+                CREATIVE_TAB_UNIFIED = ConfigUtils.bool(qCOMMON,
+                                "Unify all lib items to a single creative tab instead of spread across other tabs",
+                                "creative_tab_unified", false);
 
                 qCOMMON.pop();
         }
