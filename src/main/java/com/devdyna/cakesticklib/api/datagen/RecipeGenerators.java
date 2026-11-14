@@ -654,22 +654,54 @@ public interface RecipeGenerators {
 
         }
 
-        default void gemHammering(RecipeOutput c,   TagKey<Item> gem,ItemLike dust) {
+        default void simpleToolConsume(RecipeOutput c, ItemLike tool, TagKey<Item> input, ItemLike output, int damage) {
                 DurabilityConsumeBuilder.of(getProvider())
-                                .tool(LibItems.HAMMER.get(), 1)
-                                .add(gem)
-                                .output(dust)
+                                .tool(tool, damage)
+                                .add(input)
+                                .output(output)
                                 .unlockedBy()
                                 .save(c);
         }
 
-        default void gemHammering(RecipeOutput c, ItemLike gem, ItemLike dust) {
+        default void simpleToolConsume(RecipeOutput c, ItemLike tool, ItemLike input, ItemLike output, int damage) {
                 DurabilityConsumeBuilder.of(getProvider())
-                                .tool(LibItems.HAMMER.get(), 1)
-                                .add(gem)
-                                .output(dust)
+                                .tool(tool, damage)
+                                .add(input)
+                                .output(output)
                                 .unlockedBy()
                                 .save(c);
+        }
+
+        default void hammering(RecipeOutput c, TagKey<Item> input, ItemLike output) {
+                hammering(c, input, output, 1);
+        }
+
+        default void hammering(RecipeOutput c, ItemLike input, ItemLike output) {
+                hammering(c, input, output, 1);
+        }
+
+        default void hammering(RecipeOutput c, TagKey<Item> input, ItemLike output, int damage) {
+                simpleToolConsume(c, LibItems.HAMMER.get(), input, output, damage);
+        }
+
+        default void hammering(RecipeOutput c, ItemLike input, ItemLike output, int damage) {
+                simpleToolConsume(c, LibItems.HAMMER.get(), input, output, damage);
+        }
+
+        default void sawing(RecipeOutput c, TagKey<Item> input, ItemLike output) {
+                hammering(c, input, output, 1);
+        }
+
+        default void sawing(RecipeOutput c, ItemLike input, ItemLike output) {
+                hammering(c, input, output, 1);
+        }
+
+        default void sawing(RecipeOutput c, TagKey<Item> input, ItemLike output, int damage) {
+                simpleToolConsume(c, LibItems.SAW.get(), input, output, damage);
+        }
+
+        default void sawing(RecipeOutput c, ItemLike input, ItemLike output, int damage) {
+                simpleToolConsume(c, LibItems.SAW.get(), input, output, damage);
         }
 
 }

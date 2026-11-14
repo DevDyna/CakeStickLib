@@ -378,12 +378,12 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 LibItems.COPPER_FOIL.get(), LibTags.Items.COPPER_FOIL,
                                 LibItems.COPPER_COIL.get(), LibTags.Items.COPPER_COIL);
 
-                gemHammering(output, Tags.Items.GEMS_AMETHYST, LibItems.AMETHYST_DUST.get());
-                gemHammering(output, ItemTags.COALS, LibItems.CARBON_DUST.get());
-                gemHammering(output, Tags.Items.GEMS_DIAMOND, LibItems.DIAMOND_DUST.get());
-                gemHammering(output, Tags.Items.GEMS_EMERALD, LibItems.EMERALD_DUST.get());
-                gemHammering(output, Tags.Items.GEMS_LAPIS, LibItems.LAPIS_DUST.get());
-                gemHammering(output, Tags.Items.GEMS_QUARTZ, LibItems.QUARTZ_DUST.get());
+                hammering(output, Tags.Items.GEMS_AMETHYST, LibItems.AMETHYST_DUST.get());
+                hammering(output, ItemTags.COALS, LibItems.CARBON_DUST.get());
+                hammering(output, Tags.Items.GEMS_DIAMOND, LibItems.DIAMOND_DUST.get());
+                hammering(output, Tags.Items.GEMS_EMERALD, LibItems.EMERALD_DUST.get());
+                hammering(output, Tags.Items.GEMS_LAPIS, LibItems.LAPIS_DUST.get());
+                hammering(output, Tags.Items.GEMS_QUARTZ, LibItems.QUARTZ_DUST.get());
 
                 gemHammering(output, Items.RESIN_BRICK, Items.RESIN_CLUMP);
 
