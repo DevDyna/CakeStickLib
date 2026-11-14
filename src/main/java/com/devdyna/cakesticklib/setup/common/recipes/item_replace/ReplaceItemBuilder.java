@@ -79,6 +79,10 @@ public class ReplaceItemBuilder extends BaseRecipeBuilder
                 return replace(x.itemIngredient(filter),replace);
         }
 
+        public ReplaceItemBuilder keep(ItemLike item) {
+                return replace(x.itemIngredient(item),item);
+        }
+
         @Override
         public ReplaceItemBuilder output(ItemStackTemplate output) {
                 this.output = output;
