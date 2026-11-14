@@ -593,7 +593,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                         for (var j = 0; j < i; j++)
                                 temp.add(LibTags.Items.TURN_INTO_MUD);
 
-                        temp.output(Items.MUD,i).unlockedBy().save(output,"_"+i+"x");
+                        temp.output(Items.MUD, i).unlockedBy().save(output, "_" + i + "x");
 
                 }
 
