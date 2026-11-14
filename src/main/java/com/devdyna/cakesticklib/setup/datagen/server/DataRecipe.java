@@ -220,6 +220,15 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .unlockedBy(getHasName(Items.IRON_INGOT), has(Items.IRON_INGOT))
                                 .save(output);
 
+                shaped(RecipeCategory.MISC, LibItems.SAW.get())
+                                .pattern("IIS")
+                                .pattern(" IS")
+                                .pattern("  S")
+                                .define('S', Items.STICK)
+                                .define('I', Tags.Items.INGOTS_IRON)
+                                .unlockedBy(getHasName(Items.IRON_INGOT), has(Items.IRON_INGOT))
+                                .save(output);
+
                 twoByTwoPacker(output, LibItems.CARBON_FIBER.get(), LibTags.Items.COAL_DUST);
                 twoByTwoPacker(output, LibItems.CARBON_PLATE.get(), LibTags.Items.CARBON_FIBER);
 
@@ -377,6 +386,52 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                 gemHammering(output, Tags.Items.GEMS_QUARTZ, LibItems.QUARTZ_DUST.get());
 
                 gemHammering(output, Items.RESIN_BRICK, Items.RESIN_CLUMP);
+
+                var glasses = List.of(
+                                Items.GLASS,
+                                Items.WHITE_STAINED_GLASS,
+                                Items.ORANGE_STAINED_GLASS,
+                                Items.MAGENTA_STAINED_GLASS,
+                                Items.LIGHT_BLUE_STAINED_GLASS,
+                                Items.YELLOW_STAINED_GLASS,
+                                Items.LIME_STAINED_GLASS,
+                                Items.PINK_STAINED_GLASS,
+                                Items.GRAY_STAINED_GLASS,
+                                Items.LIGHT_GRAY_STAINED_GLASS,
+                                Items.CYAN_STAINED_GLASS,
+                                Items.PURPLE_STAINED_GLASS,
+                                Items.BLUE_STAINED_GLASS,
+                                Items.BROWN_STAINED_GLASS,
+                                Items.GREEN_STAINED_GLASS,
+                                Items.RED_STAINED_GLASS,
+                                Items.BLACK_STAINED_GLASS);
+
+                var panels = List.of(
+                                Items.GLASS_PANE,
+                                Items.WHITE_STAINED_GLASS_PANE,
+                                Items.ORANGE_STAINED_GLASS_PANE,
+                                Items.MAGENTA_STAINED_GLASS_PANE,
+                                Items.LIGHT_BLUE_STAINED_GLASS_PANE,
+                                Items.YELLOW_STAINED_GLASS_PANE,
+                                Items.LIME_STAINED_GLASS_PANE,
+                                Items.PINK_STAINED_GLASS_PANE,
+                                Items.GRAY_STAINED_GLASS_PANE,
+                                Items.LIGHT_GRAY_STAINED_GLASS_PANE,
+                                Items.CYAN_STAINED_GLASS_PANE,
+                                Items.PURPLE_STAINED_GLASS_PANE,
+                                Items.BLUE_STAINED_GLASS_PANE,
+                                Items.BROWN_STAINED_GLASS_PANE,
+                                Items.GREEN_STAINED_GLASS_PANE,
+                                Items.RED_STAINED_GLASS_PANE,
+                                Items.BLACK_STAINED_GLASS_PANE);
+
+                for (var i = 0; i < glasses.size(); i++)
+                        DurabilityConsumeBuilder.of(registries)
+                                        .tool(LibItems.SAW.get(), 2)
+                                        .add(glasses.get(i))
+                                        .output(panels.get(i), 4)
+                                        .unlockedBy()
+                                        .save(output);
 
                 DurabilityConsumeBuilder.of(registries)
                                 .tool(LibItems.HAMMER.get())
