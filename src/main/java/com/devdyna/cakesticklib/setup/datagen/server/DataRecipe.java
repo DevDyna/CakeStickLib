@@ -529,6 +529,18 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .unlockedBy()
                                 .save(output);
 
+                for (var i = 1; i < 9; i++) {
+
+                        var temp = ReplaceItemBuilder.of(registries)
+                                        .keep(Items.WATER_BUCKET);
+
+                        for (var j = 0; j < i; j++)
+                                temp.add(LibTags.Items.TURN_INTO_MUD);
+
+                        temp.output(Items.MUD,i).unlockedBy().save(output,"_"+i+"x");
+
+                }
+
                 ReplaceItemBuilder.of(registries)
                                 .replace(Items.CAMPFIRE, Items.CHARCOAL)
                                 .add(ItemTags.SOUL_FIRE_BASE_BLOCKS)

@@ -150,6 +150,8 @@ public class LibTags {
                                 "turn_into/farmland");
                 public static final TagKey<Item> TURN_INTO_DIRT = RegistryUtils.tagItem(MODULE_ID, "turn_into/dirt");
 
+                public static final TagKey<Item> TURN_INTO_MUD = RegistryUtils.tagItem(MODULE_ID,   "turn_into/mud");
+
                 // stones pre-1.17 (overworld)
                 public static final TagKey<Item> LEGACY_STONES = RegistryUtils.tagItem(MODULE_ID, "legacy_stones");
 
@@ -229,6 +231,9 @@ public class LibTags {
 
                 // TODO polished / bricks / tiles / smooth tags?
                 // TODO wood variants?
+
+
+                
 
         }
 

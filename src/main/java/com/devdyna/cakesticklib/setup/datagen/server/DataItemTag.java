@@ -191,6 +191,9 @@ public class DataItemTag extends ItemTagsProvider {
                 tag(LibTags.Items.TURN_INTO_DIRT)
                                 .add(Items.ROOTED_DIRT, Items.COARSE_DIRT, Items.DIRT_PATH);
 
+                tag(LibTags.Items.TURN_INTO_MUD)
+                                .add(Items.COARSE_DIRT, Items.DIRT, Items.ROOTED_DIRT);
+
                 tag(LibTags.Items.RECYCLE_COPPER_1).add(
                                 Items.COPPER_SHOVEL,
                                 Items.COPPER_SPEAR)
@@ -360,6 +363,9 @@ public class DataItemTag extends ItemTagsProvider {
                                                 Items.TUFF_SLAB,
                                                 Items.TUFF_STAIRS,
                                                 Items.TUFF_WALL);
+
+                // tag(ItemTags.PICKAXES).add(LibItems.HAMMER.get());
+                // tag(ItemTags.AXES).add(LibItems.SAW.get());
 
         }
 
