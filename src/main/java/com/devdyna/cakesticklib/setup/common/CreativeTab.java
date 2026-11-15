@@ -50,12 +50,10 @@ public class CreativeTab {
             event.accept(LibItems.GLASS_CUTTER.get());
             event.accept(LibItems.REDSTONE_ACID.get());
             event.accept(LibItems.HONEY_SOLUTION.get());
-            event.accept(LibItems.COLOR_MIXTURE.get());
             event.accept(LibItems.HAMMER.get());
             event.accept(LibItems.SAW.get());
             event.accept(LibItems.WRENCH.get());
             event.accept(LibItems.DYNAMITE.get());
-            event.accept(LibItems.TOOLBOX.get());
 
             event.accept(upgrade(LibItems.SPEED_UPGRADE, b -> b.speed(20).energy(125).create()));
             event.accept(upgrade(LibItems.ENERGY_UPGRADE, b -> b.energy(-50).create()));
