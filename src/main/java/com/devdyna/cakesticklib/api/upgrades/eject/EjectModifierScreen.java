@@ -157,8 +157,6 @@ public class EjectModifierScreen extends AbstractContainerScreen<EjectModifierMe
                                 93, 16,
                                 93, 16);
 
-              
-
                 graphics.blit(RenderPipelines.GUI_TEXTURED,
                                 x.rl(MODULE_ID, "textures/gui/modifier/buttons/middle.png"),
                                 getLeftPos() + 30 + 20 + 5, getTopPos() + 67,
