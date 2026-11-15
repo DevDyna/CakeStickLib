@@ -51,6 +51,7 @@ public class CreativeTab {
             event.accept(LibItems.SAW.get());
             event.accept(LibItems.WRENCH.get());
             event.accept(LibItems.DYNAMITE.get());
+            event.accept(LibItems.WOODEN_CROOK.get());
 
             event.accept(upgrade(LibItems.SPEED_UPGRADE, b -> b.speed(20).energy(125).create()));
             event.accept(upgrade(LibItems.ENERGY_UPGRADE, b -> b.energy(-50).create()));
