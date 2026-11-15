@@ -113,7 +113,7 @@ public class LibItems {
                                         .repairable(Items.IRON_INGOT));
 
         public static final DeferredHolder<Item, Item> SAW = zItem.registerSimpleItem("saw",
-                        p -> p.axe(ToolMaterial.IRON, 6.0F, -3.1F)
+                        p -> p.axe(ToolMaterial.IRON, 5.0F, -3.1F)
                                         .durability(1024)
                                         .repairable(Items.IRON_INGOT));
 
