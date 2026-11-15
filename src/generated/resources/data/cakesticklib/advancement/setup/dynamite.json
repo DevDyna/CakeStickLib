@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:adventure/root",
+  "criteria": {
+    "craft_dynamite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "cakesticklib:dynamite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "cakesticklib.advancement.branch.dynamite.desc"
+    },
+    "icon": {
+      "id": "cakesticklib:dynamite"
+    },
+    "title": {
+      "translate": "cakesticklib.advancement.branch.dynamite"
+    }
+  },
+  "requirements": [
+    [
+      "craft_dynamite"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

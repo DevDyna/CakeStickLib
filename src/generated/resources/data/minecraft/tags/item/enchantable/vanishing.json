@@ -1,0 +1,8 @@
+{
+  "values": [
+    "cakesticklib:redstone_acid",
+    "cakesticklib:honey_solution",
+    "#cakesticklib:tools/crafting",
+    "#cakesticklib:tools/leaves_drop_increase"
+  ]
+}
