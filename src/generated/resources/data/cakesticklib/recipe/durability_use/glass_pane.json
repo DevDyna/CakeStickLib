@@ -1,13 +1,14 @@
 {
   "type": "cakesticklib:durability_use",
   "items": [
-    "#c:glass_panes"
+    "minecraft:glass"
   ],
   "mode": {
-    "damage": 1,
-    "tool": "cakesticklib:redstone_acid"
+    "damage": 2,
+    "tool": "cakesticklib:saw"
   },
   "result": {
+    "count": 4,
     "id": "minecraft:glass_pane"
   }
 }

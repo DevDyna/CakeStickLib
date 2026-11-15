@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "I": "#c:ingots/iron",
+    "S": "minecraft:stick"
+  },
+  "pattern": [
+    "IIS",
+    " IS",
+    "  S"
+  ],
+  "result": {
+    "id": "cakesticklib:saw"
+  }
+}
