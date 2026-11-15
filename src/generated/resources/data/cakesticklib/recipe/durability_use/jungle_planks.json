@@ -1,0 +1,14 @@
+{
+  "type": "cakesticklib:durability_use",
+  "items": [
+    "#minecraft:jungle_logs"
+  ],
+  "mode": {
+    "damage": 4,
+    "tool": "cakesticklib:saw"
+  },
+  "result": {
+    "count": 6,
+    "id": "minecraft:jungle_planks"
+  }
+}

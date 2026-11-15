@@ -1,0 +1,14 @@
+{
+  "type": "cakesticklib:durability_use",
+  "items": [
+    "#minecraft:cherry_logs"
+  ],
+  "mode": {
+    "damage": 4,
+    "tool": "cakesticklib:saw"
+  },
+  "result": {
+    "count": 6,
+    "id": "minecraft:cherry_planks"
+  }
+}
