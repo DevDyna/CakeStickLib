@@ -122,7 +122,8 @@ public class EjectModifierScreen extends AbstractContainerScreen<EjectModifierMe
 
                 button.defineSprites((graphics, clicked) -> {
                         if (clicked)
-                                button.draw(graphics, x.rl(MODULE_ID, "textures/gui/modifier/buttons/"+(cachedType == UseType.ITEM ? "item" : "fluid")+".png"));
+                                button.draw(graphics, x.rl(MODULE_ID, "textures/gui/modifier/buttons/"
+                                                + (cachedType == UseType.ITEM ? "item" : "fluid") + ".png"));
 
                         else
                                 button.draw(graphics, x.rl(MODULE_ID, "textures/gui/modifier/buttons/off.png"));
@@ -143,26 +144,20 @@ public class EjectModifierScreen extends AbstractContainerScreen<EjectModifierMe
         public void extractBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTick) {
 
                 graphics.blit(RenderPipelines.GUI_TEXTURED, x.rl(MODULE_ID,
-                                "textures/gui/modifier/eject.png"),
+                                "textures/gui/simple.png"),
                                 this.getLeftPos(), this.getTopPos(),
                                 0.0F, 0.0F,
                                 128, 128,
                                 128, 128);
 
-                // graphics.blit(RenderPipelines.GUI_TEXTURED, x.rl(MODULE_ID,
-                // "textures/item/upgrade/base.png"),
-                // this.getLeftPos(), this.getTopPos(),
-                // 0.0F, 0.0F,
-                // 128, 128,
-                // 128, 128, 0x40FFFFFF);
+                graphics.blit(RenderPipelines.GUI_TEXTURED, x.rl(MODULE_ID,
+                                "textures/gui/modifier/terminal.png"),
+                                this.getLeftPos() + 7, this.getTopPos() + 17,
+                                0.0F, 0.0F,
+                                93, 16,
+                                93, 16);
 
-                // graphics.blit(RenderPipelines.GUI_TEXTURED,
-                // x.rl(MODULE_ID, "textures/item/upgrade/eject/"
-                // + (cachedType == UseType.ITEM ? "item" : "fluid") + ".png"),
-                // this.getLeftPos(), this.getTopPos(),
-                // 0.0F, 0.0F,
-                // 128, 128,
-                // 128, 128, 0x40FFFFFF);
+              
 
                 graphics.blit(RenderPipelines.GUI_TEXTURED,
                                 x.rl(MODULE_ID, "textures/gui/modifier/buttons/middle.png"),
