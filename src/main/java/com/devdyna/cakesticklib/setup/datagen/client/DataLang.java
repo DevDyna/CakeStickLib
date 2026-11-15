@@ -123,6 +123,7 @@ public class DataLang extends LanguageProvider implements LangGenerators {
                                 .map(DeferredRegister.Items::getEntries)
                                 .forEach(c -> c.forEach(i -> addItem(i, named(i))));
 
+                add(MODULE_ID + ".wooden_crook.tip", TipColors.ITEM_TOOLTIP + "Increase the chance to obtain saplings");
                 add(MODULE_ID + ".dynamite.tip", TipColors.ITEM_TOOLTIP + "Mining friendly explosive");
                 add(MODULE_ID + ".redstone_acid.tip", TipColors.ITEM_TOOLTIP + "Oxidize copper blocks");
                 add(MODULE_ID + ".honey_solution.tip", TipColors.ITEM_TOOLTIP + "Wax copper blocks");
