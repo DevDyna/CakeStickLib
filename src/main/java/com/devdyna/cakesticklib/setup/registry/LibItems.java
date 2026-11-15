@@ -118,6 +118,11 @@ public class LibItems {
                                         .durability(1024)
                                         .repairable(LibTags.Items.IRON_PLATE));
 
+        public static final DeferredHolder<Item, Item> WOODEN_CROOK = zItem.registerSimpleItem("wooden_crook",
+                        p -> p.hoe(ToolMaterial.DIAMOND, 1.0F, -2.1F)
+                                        .durability(1024)
+                                        .repairable(ItemTags.PLANKS));
+
         public static final DeferredHolder<Item, Item> DYNAMITE = zItem.registerItem("dynamite",
                         p -> new DynamiteItem(
                                         p.useCooldown(0.25f)
