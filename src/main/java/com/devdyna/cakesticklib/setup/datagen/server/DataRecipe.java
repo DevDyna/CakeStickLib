@@ -741,7 +741,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .unlockedBy()
                                 .save(output);
 
-                ShapedRecipeBuilder.shaped(items, RecipeCategory.FOOD, LibItems.DYNAMITE.get(), 2)
+                ShapedRecipeBuilder.shaped(items, RecipeCategory.TOOLS, LibItems.DYNAMITE.get(), 2)
                                 .pattern("S")
                                 .pattern("G")
                                 .define('S', Tags.Items.STRINGS)
