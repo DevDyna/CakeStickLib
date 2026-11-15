@@ -118,7 +118,10 @@ public class LibItems {
                                         .repairable(Items.IRON_INGOT));
 
         public static final DeferredHolder<Item, Item> DYNAMITE = zItem.registerItem("dynamite",
-                        p -> new DynamiteItem(p.stacksTo(16).useCooldown(0.25f)));
+                        p -> new DynamiteItem(
+                                        p.useCooldown(0.25f)
+                                                        .component(LibComponents.EXPLOSION_RANGE, 5)
+                                                        .component(LibComponents.EXPLOSION_DELAY, 40)));
 
         public static final DeferredHolder<Item, Item> RESISTOR = zSimple.registerSimpleItem("resistor");
 
