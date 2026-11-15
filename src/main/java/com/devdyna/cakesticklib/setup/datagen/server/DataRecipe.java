@@ -523,6 +523,25 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .unlockedBy()
                                 .save(output);
 
+                //TODO wood recycle and tags?
+
+                Map.of(ItemTags.OAK_LOGS, Items.OAK_PLANKS,
+                                ItemTags.SPRUCE_LOGS, Items.SPRUCE_PLANKS,
+                                ItemTags.BIRCH_LOGS, Items.BIRCH_PLANKS,
+                                ItemTags.JUNGLE_LOGS, Items.JUNGLE_PLANKS,
+                                ItemTags.ACACIA_LOGS, Items.ACACIA_PLANKS,
+                                ItemTags.DARK_OAK_LOGS, Items.DARK_OAK_PLANKS,
+                                ItemTags.MANGROVE_LOGS, Items.MANGROVE_PLANKS,
+                                ItemTags.CHERRY_LOGS, Items.CHERRY_PLANKS,
+                                ItemTags.PALE_OAK_LOGS, Items.PALE_OAK_PLANKS,
+                                ItemTags.BAMBOO_BLOCKS, Items.BAMBOO_PLANKS)
+                                .forEach((log, plank) -> DurabilityConsumeBuilder.of(registries)
+                                                .tool(LibItems.SAW.get(), 4)
+                                                .add(log)
+                                                .output(plank, 6)
+                                                .unlockedBy()
+                                                .save(output));
+
                 Map.ofEntries(
                                 Map.entry(Items.OAK_LOG, Items.STRIPPED_OAK_LOG),
                                 Map.entry(Items.SPRUCE_LOG, Items.STRIPPED_SPRUCE_LOG),
