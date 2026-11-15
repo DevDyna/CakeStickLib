@@ -28,85 +28,85 @@ public class Config {
         public static IntValue MACHINE_MINIMAL_FLUID_COST;
         public static IntValue MACHINE_MAXIMAL_LUCK;
 
-        private static final ModConfigSpec.Builder qCOMMON = new ModConfigSpec.Builder();
+        private static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
 
         public static void register(ModContainer c) {
                 gameplay();
                 upgrades();
-                c.registerConfig(ModConfig.Type.COMMON, qCOMMON.build());
+                c.registerConfig(ModConfig.Type.SERVER, BUILDER.build());
         }
 
         public static void gameplay() {
-                qCOMMON.comment("Gameplay Additions").push("events");
+                BUILDER.comment("Gameplay Additions").push("events");
 
-                HARVESTABLE_ACTION = ConfigUtils.bool(qCOMMON,
+                HARVESTABLE_ACTION = ConfigUtils.bool(BUILDER,
                                 "Player can right-click on crops to collect intend of breaking" +
                                                 "\nIf detected Farmers Delight it will turn off by default",
                                 "harvestable_action",
                                 !ModAddonUtil.checkMod("farmersdelight"));
 
-                TREE_CUTTING_LIMIT = ConfigUtils.num(qCOMMON,
+                TREE_CUTTING_LIMIT = ConfigUtils.num(BUILDER,
                                 "Max number of harvestable blocks foreach interaction",
                                 "tree_cutting_limit", 2048);
 
-                ENDER_EYE_RETURN_EVENT = ConfigUtils.bool(qCOMMON,
+                ENDER_EYE_RETURN_EVENT = ConfigUtils.bool(BUILDER,
                                 "End Portal Frame can be interacted to remove Eye of Ender",
                                 "ender_eye_return", true);
 
-                PATINA_DROP_EVENT = ConfigUtils.bool(qCOMMON,
+                PATINA_DROP_EVENT = ConfigUtils.bool(BUILDER,
                                 "Patina will drop when scrapped any oxidized copper block",
                                 "patina_drop", true);
 
-                REDSTONE_ACID_EVENT = ConfigUtils.bool(qCOMMON,
+                REDSTONE_ACID_EVENT = ConfigUtils.bool(BUILDER,
                                 "Redstone Acid can be used to increase a stage of oxidation at the copper block clicked",
                                 "redstone_acid_oxide", true);
 
-                HONEY_SOLUTION_EVENT = ConfigUtils.bool(qCOMMON,
+                HONEY_SOLUTION_EVENT = ConfigUtils.bool(BUILDER,
                                 "Honey Solution can be used to wax copper blocks clicked",
                                 "honey_solution_wax", true);
 
-                CREATIVE_TAB_UNIFIED = ConfigUtils.bool(qCOMMON,
+                CREATIVE_TAB_UNIFIED = ConfigUtils.bool(BUILDER,
                                 "Unify all lib items to a single creative tab instead of spread across other tabs",
                                 "creative_tab_unified", false);
 
-                qCOMMON.pop();
+                BUILDER.pop();
         }
 
         public static void upgrades() {
-                qCOMMON.comment("Machine Upgrades").push("upgrades");
+                BUILDER.comment("Machine Upgrades").push("upgrades");
 
-                MACHINE_MAX_SPEED_UPGRADES_TYPE = ConfigUtils.num(qCOMMON,
+                MACHINE_MAX_SPEED_UPGRADES_TYPE = ConfigUtils.num(BUILDER,
                                 "Max Speed Increaser Upgrade Types usable foreach machine",
                                 "max_speed_upgrades", 4, 0, 16);
 
-                MACHINE_MAX_ENERGY_UPGRADES_TYPE = ConfigUtils.num(qCOMMON,
+                MACHINE_MAX_ENERGY_UPGRADES_TYPE = ConfigUtils.num(BUILDER,
                                 "Max Energy Efficiency Upgrade Types usable foreach machine",
                                 "max_energy_upgrades", 16, 0, 16);
 
-                MACHINE_MAX_LUCK_UPGRADES_TYPE = ConfigUtils.num(qCOMMON,
+                MACHINE_MAX_LUCK_UPGRADES_TYPE = ConfigUtils.num(BUILDER,
                                 "Max Secondary Output Increaser Upgrade Types usable foreach machine",
                                 "max_luck_upgrades", 4, 0, 16);
 
-                MACHINE_MAX_FLUID_UPGRADES_TYPE = ConfigUtils.num(qCOMMON,
+                MACHINE_MAX_FLUID_UPGRADES_TYPE = ConfigUtils.num(BUILDER,
                                 "Max Fluid Efficiency Upgrade Types usable foreach machine",
                                 "max_fluid_upgrades", 4, 0, 16);
 
-                MACHINE_MINIMAL_TICK_DELAY = ConfigUtils.num(qCOMMON,
+                MACHINE_MINIMAL_TICK_DELAY = ConfigUtils.num(BUILDER,
                                 "Minimal tick delay based on upgrade installed",
                                 "min_tick_rate", 1);
 
-                MACHINE_MINIMAL_FE_COST = ConfigUtils.num(qCOMMON,
+                MACHINE_MINIMAL_FE_COST = ConfigUtils.num(BUILDER,
                                 "Minimal Energy cost based on upgrade installed",
                                 "min_fe_cost", 5);
 
-                MACHINE_MINIMAL_FLUID_COST = ConfigUtils.num(qCOMMON,
+                MACHINE_MINIMAL_FLUID_COST = ConfigUtils.num(BUILDER,
                                 "Minimal Fluid cost based on upgrade installed",
                                 "min_mb_cost", 1);
-                MACHINE_MAXIMAL_LUCK = ConfigUtils.num(qCOMMON,
+                MACHINE_MAXIMAL_LUCK = ConfigUtils.num(BUILDER,
                                 "Maximal Secondary Chance based on upgrade installed",
                                 "max_luck", 100);
 
-                qCOMMON.pop();
+                BUILDER.pop();
         }
 
 }
