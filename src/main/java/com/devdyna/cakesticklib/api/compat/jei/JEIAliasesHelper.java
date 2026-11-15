@@ -43,6 +43,8 @@ public class JEIAliasesHelper {
         DRILL(MODULE_ID + ".jei.alias.drill"),
         MINER(MODULE_ID + ".jei.alias.miner"),
         ETHEREAL(MODULE_ID + ".jei.alias.ethereal_block"),
+        MINING_TOOL(MODULE_ID + ".jei.alias.mining.tool"),
+        TNT_LIKE(MODULE_ID + ".jei.alias.tnt_like"),
 
         ;
 
@@ -82,5 +84,11 @@ public class JEIAliasesHelper {
                 .map(DeferredHolder::get).map(x::item)
                 .forEach(e -> Arrays.asList(alias).forEach(a -> r.addAlias(e, a)));
 
+    }
+
+    public static void addAlias(IIngredientAliasRegistration r,
+            List<DeferredHolder<? extends ItemLike, ? extends ItemLike>> i,
+            Alias... alias) {
+        addAlias(r, i, Arrays.asList(alias).stream().map(Alias::key).toArray(String[]::new));
     }
 }
