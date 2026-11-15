@@ -29,6 +29,8 @@ public class DataLang extends LanguageProvider implements LangGenerators {
                 LibItems.zBucketItems.getEntries().forEach(i -> addItem(i, named(i)));
                 LibBlocks.zBlockFluids.getEntries().forEach(b -> addBlock(b, named(b)));
 
+                LibEntities.zEntities.getEntries().forEach(e -> addEntityType(e, named(e)));
+
                 // jei aliases
                 add(JEIAliasesHelper.Alias.HOPPER, "Hopper");
                 add(JEIAliasesHelper.Alias.REDSTONE_SENSIBLE, "Redstone Sensible");
@@ -89,6 +91,10 @@ public class DataLang extends LanguageProvider implements LangGenerators {
                                 TipColors.ITEM_TOOLTIP
                                                 + "Craft in-world Stonecutter recipes when bound to the result block");
 
+                add(MODULE_ID + ".explosive.stats", TipColors.ITEM_TOOLTIP + "When Throw to the Ground:");
+                add(MODULE_ID + ".explosive.range", " %s Blocks of range");
+                add(MODULE_ID + ".explosive.delay", " %s Ticks of Delay to explode");
+
                 // KeepItemStorage
                 add(MODULE_ID + ".keep.storage.contain", TipColors.LIGHT_GRAY + "Contain some items");
                 add(MODULE_ID + ".keep.storage.tip", TipColors.ITEM_TOOLTIP + "Keeps its items when broken");
@@ -117,6 +123,7 @@ public class DataLang extends LanguageProvider implements LangGenerators {
                                 .map(DeferredRegister.Items::getEntries)
                                 .forEach(c -> c.forEach(i -> addItem(i, named(i))));
 
+                add(MODULE_ID + ".dynamite.tip", TipColors.ITEM_TOOLTIP + "Mining friendly explosive");
                 add(MODULE_ID + ".redstone_acid.tip", TipColors.ITEM_TOOLTIP + "Oxidize copper blocks");
                 add(MODULE_ID + ".honey_solution.tip", TipColors.ITEM_TOOLTIP + "Wax copper blocks");
 
@@ -201,15 +208,15 @@ public class DataLang extends LanguageProvider implements LangGenerators {
                 add(MODULE_ID + ".jei.recipe.durability_consume", "Consume %s durability");
 
                 advKey("wrought_iron_ingot", "One shade of gray", "Combine some carbon dust with an iron ingot");
-               
+
                 advKey("steel_ingot", "Steel!", "Smelt on a blast furnace a wrought iron ingot");
-               
+
                 advKey("chisel", "StoneCutter on a Stick", "Craft a chisel to craft in-world stonecutting recipes");
-               
+
                 advKey("glass_cutter", "Cut off from the origin", "Craft a glass cutter to insta-mine glass blocks");
-                
+
                 advKey("hammer", "It's Hammer Time!", "Craft an hammer to craft new stuff");
-               
+
                 advKey("honey_solution", "Wax Standby",
                                 "Craft an bottle of honey solution to wax stuff more efficiently");
 

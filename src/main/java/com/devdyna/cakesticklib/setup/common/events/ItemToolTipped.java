@@ -18,6 +18,8 @@ import com.devdyna.cakesticklib.setup.registry.builders.GlassCutter;
 import com.devdyna.cakesticklib.setup.registry.builders.HoneySolution;
 import com.devdyna.cakesticklib.setup.registry.builders.RedstoneAcid;
 import com.devdyna.cakesticklib.setup.registry.builders.Wrench;
+import com.devdyna.cakesticklib.setup.registry.builders.dynamite.DynamiteItem;
+
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.BlockItem;
@@ -25,6 +27,7 @@ import net.minecraft.world.item.SpectralArrowItem;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 import com.devdyna.cakesticklib.setup.registry.LibComponents;
+import com.devdyna.cakesticklib.setup.registry.LibItems;
 import com.devdyna.cakesticklib.setup.registry.LibTags;
 
 public class ItemToolTipped {
@@ -119,6 +122,14 @@ public class ItemToolTipped {
 
         if (item.getItem() instanceof EffectItem effect)
             ToolTipHelper.add(tip, effect.getEffectToolTip());
+
+        if (item.has(LibComponents.EXPLOSION_DELAY)
+                || item.has(LibComponents.EXPLOSION_RANGE)
+                || item.is(LibItems.DYNAMITE))
+            DynamiteItem.createExplosiveTooltip(tip, item);
+
+        if (item.is(LibItems.DYNAMITE))
+            tip.add(ToolTipHelper.INDEX, Component.translatable(MODULE_ID + ".dynamite.tip"));
 
     }
 }
