@@ -16,6 +16,8 @@ public class Config {
         public static BooleanValue PATINA_DROP_EVENT;
         public static BooleanValue REDSTONE_ACID_EVENT;
         public static BooleanValue HONEY_SOLUTION_EVENT;
+        public static BooleanValue CROOK_DROP_EVENT;
+        public static BooleanValue MINED_RETURN_CRAFT_EVENT;
 
         public static IntValue MACHINE_MAX_SPEED_UPGRADES_TYPE;
         public static IntValue MACHINE_MAX_ENERGY_UPGRADES_TYPE;
@@ -63,6 +65,13 @@ public class Config {
                 HONEY_SOLUTION_EVENT = ConfigUtils.bool(BUILDER,
                                 "Honey Solution can be used to wax copper blocks clicked",
                                 "honey_solution_wax", true);
+
+                CROOK_DROP_EVENT = ConfigUtils.bool(BUILDER,
+                                "Leaves drop more items when broken with a crook item",
+                                "crook_drop_event", true);
+                MINED_RETURN_CRAFT_EVENT = ConfigUtils.bool(BUILDER,
+                                "Mined blocks with specific tools will return the result",
+                                "mined_return_craft_event", true);
 
                 BUILDER.pop();
         }
