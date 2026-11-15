@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 import com.devdyna.cakesticklib.api.datagen.RecipeGenerators;
+import com.devdyna.cakesticklib.api.primitive.BigMap;
 import com.devdyna.cakesticklib.api.upgrades.modifiers.base.BaseModifier.UseType;
 import com.devdyna.cakesticklib.api.utils.x;
 import com.devdyna.cakesticklib.setup.common.recipes.item_replace.ReplaceItemBuilder;
@@ -17,15 +18,13 @@ import com.devdyna.cakesticklib.setup.common.recipes.tool_durability.DurabilityC
 import com.devdyna.cakesticklib.setup.common.recipes.upgrade_application.UpgradeApplicationBuilder;
 import com.devdyna.cakesticklib.setup.registry.*;
 
-import net.minecraft.core.Direction;
-import net.minecraft.core.HolderGetter;
-import net.minecraft.core.HolderLookup;
+import net.minecraft.core.*;
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -433,6 +432,13 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                         .save(output);
 
                 DurabilityConsumeBuilder.of(registries)
+                                .tool(LibItems.SAW.get(), 2)
+                                .add(ItemTags.PLANKS)
+                                .output(Items.STICK, 4)
+                                .unlockedBy()
+                                .save(output);
+
+                DurabilityConsumeBuilder.of(registries)
                                 .tool(LibItems.HAMMER.get())
                                 .add(Items.WHEAT)
                                 .output(LibItems.FLOUR.get())
@@ -523,9 +529,9 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .unlockedBy()
                                 .save(output);
 
-                //TODO wood recycle and tags?
+                // TODO wood recycle and tags?
 
-                Map.of(ItemTags.OAK_LOGS, Items.OAK_PLANKS,
+                BigMap.<TagKey<Item>, Item>of(ItemTags.OAK_LOGS, Items.OAK_PLANKS,
                                 ItemTags.SPRUCE_LOGS, Items.SPRUCE_PLANKS,
                                 ItemTags.BIRCH_LOGS, Items.BIRCH_PLANKS,
                                 ItemTags.JUNGLE_LOGS, Items.JUNGLE_PLANKS,
@@ -540,36 +546,36 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .forEach((log, plank) -> DurabilityConsumeBuilder.of(registries)
                                                 .tool(LibItems.SAW.get(), 4)
                                                 .add(log)
-                                                .output(plank, 6)
+                                                .output(plank, (plank == Items.BAMBOO_PLANKS ? 2 : 3) * 2)
                                                 .unlockedBy()
                                                 .save(output));
 
-                Map.ofEntries(
-                                Map.entry(Items.OAK_LOG, Items.STRIPPED_OAK_LOG),
-                                Map.entry(Items.SPRUCE_LOG, Items.STRIPPED_SPRUCE_LOG),
-                                Map.entry(Items.BIRCH_LOG, Items.STRIPPED_BIRCH_LOG),
-                                Map.entry(Items.JUNGLE_LOG, Items.STRIPPED_JUNGLE_LOG),
-                                Map.entry(Items.ACACIA_LOG, Items.STRIPPED_ACACIA_LOG),
-                                Map.entry(Items.DARK_OAK_LOG, Items.STRIPPED_DARK_OAK_LOG),
-                                Map.entry(Items.MANGROVE_LOG, Items.STRIPPED_MANGROVE_LOG),
-                                Map.entry(Items.CHERRY_LOG, Items.STRIPPED_CHERRY_LOG),
-                                Map.entry(Items.PALE_OAK_LOG, Items.STRIPPED_PALE_OAK_LOG),
-                                Map.entry(Items.BAMBOO_BLOCK, Items.STRIPPED_BAMBOO_BLOCK),
+                BigMap.<Item, Item>of(
+                                Items.OAK_LOG, Items.STRIPPED_OAK_LOG,
+                                Items.SPRUCE_LOG, Items.STRIPPED_SPRUCE_LOG,
+                                Items.BIRCH_LOG, Items.STRIPPED_BIRCH_LOG,
+                                Items.JUNGLE_LOG, Items.STRIPPED_JUNGLE_LOG,
+                                Items.ACACIA_LOG, Items.STRIPPED_ACACIA_LOG,
+                                Items.DARK_OAK_LOG, Items.STRIPPED_DARK_OAK_LOG,
+                                Items.MANGROVE_LOG, Items.STRIPPED_MANGROVE_LOG,
+                                Items.CHERRY_LOG, Items.STRIPPED_CHERRY_LOG,
+                                Items.PALE_OAK_LOG, Items.STRIPPED_PALE_OAK_LOG,
+                                Items.BAMBOO_BLOCK, Items.STRIPPED_BAMBOO_BLOCK,
 
-                                Map.entry(Items.OAK_WOOD, Items.STRIPPED_OAK_WOOD),
-                                Map.entry(Items.SPRUCE_WOOD, Items.STRIPPED_SPRUCE_WOOD),
-                                Map.entry(Items.BIRCH_WOOD, Items.STRIPPED_BIRCH_WOOD),
-                                Map.entry(Items.JUNGLE_WOOD, Items.STRIPPED_JUNGLE_WOOD),
-                                Map.entry(Items.ACACIA_WOOD, Items.STRIPPED_ACACIA_WOOD),
-                                Map.entry(Items.DARK_OAK_WOOD, Items.STRIPPED_DARK_OAK_WOOD),
-                                Map.entry(Items.MANGROVE_WOOD, Items.STRIPPED_MANGROVE_WOOD),
-                                Map.entry(Items.CHERRY_WOOD, Items.STRIPPED_CHERRY_WOOD),
-                                Map.entry(Items.PALE_OAK_WOOD, Items.STRIPPED_PALE_OAK_WOOD),
+                                Items.OAK_WOOD, Items.STRIPPED_OAK_WOOD,
+                                Items.SPRUCE_WOOD, Items.STRIPPED_SPRUCE_WOOD,
+                                Items.BIRCH_WOOD, Items.STRIPPED_BIRCH_WOOD,
+                                Items.JUNGLE_WOOD, Items.STRIPPED_JUNGLE_WOOD,
+                                Items.ACACIA_WOOD, Items.STRIPPED_ACACIA_WOOD,
+                                Items.DARK_OAK_WOOD, Items.STRIPPED_DARK_OAK_WOOD,
+                                Items.MANGROVE_WOOD, Items.STRIPPED_MANGROVE_WOOD,
+                                Items.CHERRY_WOOD, Items.STRIPPED_CHERRY_WOOD,
+                                Items.PALE_OAK_WOOD, Items.STRIPPED_PALE_OAK_WOOD,
 
-                                Map.entry(Items.CRIMSON_STEM, Items.STRIPPED_CRIMSON_STEM),
-                                Map.entry(Items.CRIMSON_HYPHAE, Items.STRIPPED_CRIMSON_HYPHAE),
-                                Map.entry(Items.WARPED_STEM, Items.STRIPPED_WARPED_STEM),
-                                Map.entry(Items.WARPED_HYPHAE, Items.STRIPPED_WARPED_HYPHAE))
+                                Items.CRIMSON_STEM, Items.STRIPPED_CRIMSON_STEM,
+                                Items.CRIMSON_HYPHAE, Items.STRIPPED_CRIMSON_HYPHAE,
+                                Items.WARPED_STEM, Items.STRIPPED_WARPED_STEM,
+                                Items.WARPED_HYPHAE, Items.STRIPPED_WARPED_HYPHAE)
                                 .forEach((log, stripped) -> DurabilityConsumeBuilder.of(registries)
                                                 .tool(ItemTags.AXES, 1)
                                                 .add(log)
@@ -583,6 +589,25 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .output(Items.FARMLAND)
                                 .unlockedBy()
                                 .save(output);
+
+                BigMap.<Item, Item>of(
+                                Items.OAK_LEAVES, Items.OAK_SAPLING,
+                                Items.SPRUCE_LEAVES, Items.SPRUCE_SAPLING,
+                                Items.BIRCH_LEAVES, Items.BIRCH_SAPLING,
+                                Items.JUNGLE_LEAVES, Items.JUNGLE_SAPLING,
+                                Items.ACACIA_LEAVES, Items.ACACIA_SAPLING,
+                                Items.DARK_OAK_LEAVES, Items.DARK_OAK_SAPLING,
+                                Items.MANGROVE_LEAVES, Items.MANGROVE_PROPAGULE,
+                                Items.CHERRY_LEAVES, Items.CHERRY_SAPLING,
+                                Items.AZALEA_LEAVES, Items.AZALEA,
+                                Items.FLOWERING_AZALEA_LEAVES, Items.FLOWERING_AZALEA,
+                                Items.PALE_OAK_LEAVES, Items.PALE_OAK_SAPLING)
+                                .forEach((leaves, sapling) -> DurabilityConsumeBuilder.of(registries)
+                                                .tool(LibItems.WOODEN_CROOK.get(), 4)
+                                                .add(leaves)
+                                                .output(sapling)
+                                                .unlockedBy()
+                                                .save(output));
 
                 DurabilityConsumeBuilder.of(registries)
                                 .tool(ItemTags.SHOVELS, 1)
