@@ -686,12 +686,6 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .unlockedBy()
                                 .save(output);
 
-                // shapeless(RecipeCategory.MISC, Items.BOOK)
-                // .requires(LibTags.Items.WRITABLE_BOOKS)
-                // .unlockedBy(getHasName(LibTags.Items.WRITABLE_BOOKS),
-                // has(LibTags.Items.WRITABLE_BOOKS))
-                // .save(output);
-
                 shapeless(RecipeCategory.MISC, Items.CLAY_BALL, 4)
                                 .requires(Items.CLAY)
                                 .unlockedBy(getHasName(Items.CLAY), has(Items.CLAY))
