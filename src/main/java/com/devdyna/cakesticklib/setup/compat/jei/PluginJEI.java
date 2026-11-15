@@ -5,7 +5,9 @@ import static com.devdyna.cakesticklib.CakeStickLib.MODULE_ID;
 import java.util.Collections;
 import java.util.List;
 
+import com.devdyna.cakesticklib.api.compat.jei.JEIAliasesHelper;
 import com.devdyna.cakesticklib.api.compat.jei.JeiExclusionUtils;
+import com.devdyna.cakesticklib.api.compat.jei.JEIAliasesHelper.Alias;
 import com.devdyna.cakesticklib.api.gui.BaseScreen;
 import com.devdyna.cakesticklib.api.utils.x;
 import com.devdyna.cakesticklib.setup.Client;
@@ -16,6 +18,7 @@ import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.RecipeTypes;
 import mezz.jei.api.registration.IGuiHandlerRegistration;
+import mezz.jei.api.registration.IIngredientAliasRegistration;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
@@ -87,6 +90,13 @@ public class PluginJEI implements IModPlugin {
                     : Collections.emptyList();
         });
 
+    }
+
+    @Override
+    public void registerIngredientAliases(IIngredientAliasRegistration r) {
+
+        JEIAliasesHelper.addAlias(r, List.of(LibItems.DYNAMITE),
+                Alias.TNT_LIKE, Alias.MINING_TOOL);
     }
 
     private <C extends RecipeInput, T extends Recipe<C>> List<RecipeHolder<T>> getRecipes(RecipeType<T> type) {

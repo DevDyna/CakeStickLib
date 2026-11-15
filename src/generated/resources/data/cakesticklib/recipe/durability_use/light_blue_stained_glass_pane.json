@@ -1,0 +1,14 @@
+{
+  "type": "cakesticklib:durability_use",
+  "items": [
+    "minecraft:light_blue_stained_glass"
+  ],
+  "mode": {
+    "damage": 2,
+    "tool": "cakesticklib:saw"
+  },
+  "result": {
+    "count": 4,
+    "id": "minecraft:light_blue_stained_glass_pane"
+  }
+}

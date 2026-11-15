@@ -22,6 +22,7 @@ public class GameEvents {
                 RecipeSender.class,
                 EnderEyeReturn.class,
                 ModifierItemEvents.class,
+                ToolMineTweaks.class,
                 InstamineDropEvent.class)
                 .forEach(NeoForge.EVENT_BUS::register);
 

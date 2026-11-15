@@ -2,9 +2,11 @@ package com.devdyna.cakesticklib.setup.registry;
 
 import com.devdyna.cakesticklib.CakeStickLib;
 import com.devdyna.cakesticklib.api.upgrades.UpgradeComponents;
+import com.mojang.serialization.Codec;
 
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.component.CustomData;
 import net.neoforged.bus.api.IEventBus;
@@ -40,6 +42,20 @@ public class LibComponents {
                                         () -> DataComponentType.<CustomData>builder()
                                                         .persistent(CustomData.CODEC)
                                                         .networkSynchronized(CustomData.STREAM_CODEC)
+                                                        .build());
+
+        public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> EXPLOSION_RANGE = zComponents
+                        .register("explosion_range",
+                                        () -> DataComponentType.<Integer>builder()
+                                                        .persistent(Codec.INT)
+                                                        .networkSynchronized(ByteBufCodecs.INT)
+                                                        .build());
+
+        public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> EXPLOSION_DELAY = zComponents
+                        .register("explosion_delay",
+                                        () -> DataComponentType.<Integer>builder()
+                                                        .persistent(Codec.INT)
+                                                        .networkSynchronized(ByteBufCodecs.INT)
                                                         .build());
 
 }

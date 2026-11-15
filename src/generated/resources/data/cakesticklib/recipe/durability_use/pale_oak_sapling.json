@@ -1,0 +1,13 @@
+{
+  "type": "cakesticklib:durability_use",
+  "items": [
+    "minecraft:pale_oak_leaves"
+  ],
+  "mode": {
+    "damage": 4,
+    "tool": "cakesticklib:wooden_crook"
+  },
+  "result": {
+    "id": "minecraft:pale_oak_sapling"
+  }
+}

@@ -4,7 +4,8 @@
   "package": "com.devdyna.cakesticklib.setup.mixin",
   "compatibilityLevel": "JAVA_25",
   "mixins": [
-   "SingleItemRecipeMixin"
+   "SingleItemRecipeMixin",
+   "LanguageProviderAccessor"
   ],
   "client": [],
   "server": []

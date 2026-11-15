@@ -12,8 +12,13 @@ import net.minecraft.advancements.AdvancementRequirements;
 import net.minecraft.advancements.AdvancementType;
 import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.criterion.InventoryChangeTrigger;
+import net.minecraft.advancements.criterion.ItemPredicate;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ItemLike;
 
 //TODO API : unify with RecipeGenerator when possible
@@ -154,6 +159,15 @@ public interface AdvancementGenerator {
 
         default Criterion<InventoryChangeTrigger.TriggerInstance> has(ItemLike item) {
                 return InventoryChangeTrigger.TriggerInstance.hasItems(item);
+        }
+
+        default Criterion<InventoryChangeTrigger.TriggerInstance> has(ItemPredicate item) {
+                return InventoryChangeTrigger.TriggerInstance.hasItems(item);
+        }
+
+        default Criterion<InventoryChangeTrigger.TriggerInstance> has(HolderLookup.Provider p, TagKey<Item> tag) {
+                return InventoryChangeTrigger.TriggerInstance
+                                .hasItems(ItemPredicate.Builder.item().of(p.lookupOrThrow(Registries.ITEM), tag));
         }
 
         default String getCraftItem(String i) {

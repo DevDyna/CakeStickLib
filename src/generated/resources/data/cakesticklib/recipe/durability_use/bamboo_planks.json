@@ -1,0 +1,14 @@
+{
+  "type": "cakesticklib:durability_use",
+  "items": [
+    "#minecraft:bamboo_blocks"
+  ],
+  "mode": {
+    "damage": 4,
+    "tool": "cakesticklib:saw"
+  },
+  "result": {
+    "count": 4,
+    "id": "minecraft:bamboo_planks"
+  }
+}

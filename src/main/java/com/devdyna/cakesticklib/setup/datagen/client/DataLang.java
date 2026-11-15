@@ -1,15 +1,13 @@
 package com.devdyna.cakesticklib.setup.datagen.client;
 
 import static com.devdyna.cakesticklib.CakeStickLib.MODULE_ID;
-import static com.devdyna.cakesticklib.api.datagen.LangUtils.*;
-
 import java.util.List;
 
 import com.devdyna.cakesticklib.api.datagen.LangGenerators;
 import com.devdyna.cakesticklib.api.compat.jei.JEIAliasesHelper;
-import com.devdyna.cakesticklib.api.datagen.LangUtils;
 import com.devdyna.cakesticklib.api.datagen.LangUtils.TipColors;
 import com.devdyna.cakesticklib.api.upgrades.modifiers.base.BaseModifier.UseType;
+import com.devdyna.cakesticklib.setup.Config;
 import com.devdyna.cakesticklib.setup.registry.*;
 
 import net.minecraft.core.Direction;
@@ -26,23 +24,41 @@ public class DataLang extends LanguageProvider implements LangGenerators {
         @Override
         protected void addTranslations() {
 
+                //core
                 LibFluids.zFluidTypes.getEntries()
-                                .forEach(f -> addFluid(f.get(), named(f, MODULE_ID).replace(" Type", "")));
-                LibItems.zBucketItems.getEntries().forEach(i -> addItem(i, named(i, MODULE_ID)));
-                LibBlocks.zBlockFluids.getEntries().forEach(b -> addBlock(b, LangUtils.named(b, MODULE_ID)));
+                                .forEach(f -> addFluid(f.get(), named(f).replace(" Type", "")));
+                LibItems.zBucketItems.getEntries().forEach(i -> addItem(i, named(i)));
+                LibBlocks.zBlockFluids.getEntries().forEach(b -> addBlock(b, named(b)));
+
+                LibEntities.zEntities.getEntries().forEach(e -> addEntityType(e, named(e)));
 
                 // jei aliases
-                add(JEIAliasesHelper.Aliases.BLOCK_BREAKER, "Block Breaker");
-                add(JEIAliasesHelper.Aliases.DRILL, "Drill");
-                add(JEIAliasesHelper.Aliases.MINER, "Miner");
-                add(JEIAliasesHelper.Aliases.TREE_CUTTER, "Tree cutter");
-                add(JEIAliasesHelper.Aliases.TREE_FELLER, "Tree feller");
-                add(JEIAliasesHelper.Aliases.ENTITY_KILLER, "Entity killer");
-                add(JEIAliasesHelper.Aliases.FAKEPLAYER, "FakePlayer");
-                add(JEIAliasesHelper.Aliases.HOPPER, "Hopper");
-                add(JEIAliasesHelper.Aliases.ITEM_COLLECTOR, "Item Collector");
-                add(JEIAliasesHelper.Aliases.ENTITY_MOVER, "Entity Mover");
-                add(JEIAliasesHelper.Aliases.REDSTONE_SENSIBLE, "Redstone Sensible");
+                add(JEIAliasesHelper.Alias.HOPPER, "Hopper");
+                add(JEIAliasesHelper.Alias.REDSTONE_SENSIBLE, "Redstone Sensible");
+                add(JEIAliasesHelper.Alias.REDSTONE_TIMER, "Redstone clock");
+                add(JEIAliasesHelper.Alias.REDSTONE_COMPONENT, "Redstone component");
+
+                add(JEIAliasesHelper.Alias.ENTITY_KILLER, "Entity killer");
+                add(JEIAliasesHelper.Alias.ENTITY_FAKEPLAYER, "FakePlayer");
+                add(JEIAliasesHelper.Alias.ENTITY_MOVER, "Entity Mover");
+
+                add(JEIAliasesHelper.Alias.ITEM_COLLECTOR, "Item Collector");
+                add(JEIAliasesHelper.Alias.BLOCK_BREAKER, "Block Breaker");
+                add(JEIAliasesHelper.Alias.TIMER, "Timer");
+                add(JEIAliasesHelper.Alias.ENERGY_GENERATOR, "Energy Generator");
+                add(JEIAliasesHelper.Alias.ITEM_REPAIRER, "Item Repairer");
+                add(JEIAliasesHelper.Alias.TRASH_CAN, "Trash Can");
+                add(JEIAliasesHelper.Alias.FLUID_BUFFER, "Fluid storage buffer");
+                add(JEIAliasesHelper.Alias.ENERGY_BUFFER, "Energy storage buffer");
+                add(JEIAliasesHelper.Alias.ITEM_BUFFER, "Item storage buffer");
+
+                add(JEIAliasesHelper.Alias.TREE_CUTTER, "Tree cutter");
+                add(JEIAliasesHelper.Alias.TREE_FELLER, "Tree feller");
+                add(JEIAliasesHelper.Alias.DRILL, "Drill");
+                add(JEIAliasesHelper.Alias.MINER, "Miner");
+                add(JEIAliasesHelper.Alias.ETHEREAL, "Ethereal");
+                add(JEIAliasesHelper.Alias.MINING_TOOL, "Mining tool");
+                add(JEIAliasesHelper.Alias.TNT_LIKE, "TNT like");
 
                 // mainly for Item Tooltips
                 add(MODULE_ID + ".hold.shift", "§8Hold [" + TipColors.ITEM_TOOLTIP + "Shift§8] to see more details");
@@ -78,6 +94,10 @@ public class DataLang extends LanguageProvider implements LangGenerators {
                                 TipColors.ITEM_TOOLTIP
                                                 + "Craft in-world Stonecutter recipes when bound to the result block");
 
+                add(MODULE_ID + ".explosive.stats", TipColors.ITEM_TOOLTIP + "When Throw to the Ground:");
+                add(MODULE_ID + ".explosive.range", " %s Blocks of range");
+                add(MODULE_ID + ".explosive.delay", " %s Ticks of Delay to explode");
+
                 // KeepItemStorage
                 add(MODULE_ID + ".keep.storage.contain", TipColors.LIGHT_GRAY + "Contain some items");
                 add(MODULE_ID + ".keep.storage.tip", TipColors.ITEM_TOOLTIP + "Keeps its items when broken");
@@ -87,7 +107,6 @@ public class DataLang extends LanguageProvider implements LangGenerators {
                 add(MODULE_ID + ".creative_tab.resources", "Resources");
 
                 List.of(
-
                                 LibItems.zItem,
                                 LibItems.zSimple,
                                 LibItems.zUpgrades,
@@ -105,8 +124,10 @@ public class DataLang extends LanguageProvider implements LangGenerators {
                                 LibItems.zBlockItem)
                                 .stream()
                                 .map(DeferredRegister.Items::getEntries)
-                                .forEach(c -> c.forEach(i -> addItem(i, named(i, MODULE_ID))));
+                                .forEach(c -> c.forEach(i -> addItem(i, named(i))));
 
+                add(MODULE_ID + ".wooden_crook.tip", TipColors.ITEM_TOOLTIP + "Increase the chance to obtain saplings");
+                add(MODULE_ID + ".dynamite.tip", TipColors.ITEM_TOOLTIP + "Mining friendly explosive");
                 add(MODULE_ID + ".redstone_acid.tip", TipColors.ITEM_TOOLTIP + "Oxidize copper blocks");
                 add(MODULE_ID + ".honey_solution.tip", TipColors.ITEM_TOOLTIP + "Wax copper blocks");
 
@@ -114,7 +135,6 @@ public class DataLang extends LanguageProvider implements LangGenerators {
                 add(MODULE_ID + ".wrench.tip", TipColors.ITEM_TOOLTIP + "Rotate blocks");
 
                 add(MODULE_ID + ".cakestick.tip", TipColors.ITEM_TOOLTIP + "Place cake slices");
-                LangUtils.advKey(this, MODULE_ID, "cake_stick", "The cake is(n't) a lie!", "The Cake stick is right!");
 
                 add(MODULE_ID + ".jei.copper_oxidation", "Copper Oxidation Info");
                 add(MODULE_ID + ".jei.strippable", "Block Strippable Info");
@@ -163,51 +183,27 @@ public class DataLang extends LanguageProvider implements LangGenerators {
                                                         + v.name());
 
                 // config
-                add(MODULE_ID + ".configuration.events", "General events");
+                addConfigTitle("events", "Gameplay Additions");
+                addConfigTitle("upgrades", "Machine Upgrades");
 
-                add(MODULE_ID + ".configuration.harvestable_action",
-                                "Harvestable Action");
+                addConfigKey(Config.HARVESTABLE_ACTION, "Harvestable Action");
+                addConfigKey(Config.TREE_CUTTING_LIMIT, "Tree Cutting Limit");
+                addConfigKey(Config.ENDER_EYE_RETURN_EVENT, "Eye of Ender Event");
+                addConfigKey(Config.PATINA_DROP_EVENT, "Patina drop");
+                addConfigKey(Config.REDSTONE_ACID_EVENT, "Redstone Acid use");
+                addConfigKey(Config.HONEY_SOLUTION_EVENT, "Honey Solution use");
+                addConfigKey(Config.CROOK_DROP_EVENT, "Crook Item Event");
+                addConfigKey(Config.MINED_RETURN_CRAFT_EVENT, "Tool In-World Crafting Event");
 
-                add(MODULE_ID + ".configuration.tree_cutting_limit",
-                                "Tree Cutting Limit");
+                addConfigKey(Config.MACHINE_MAX_SPEED_UPGRADES_TYPE, "Max Speed Modifiers");
+                addConfigKey(Config.MACHINE_MAX_ENERGY_UPGRADES_TYPE, "Max Energy Modifiers");
+                addConfigKey(Config.MACHINE_MAX_LUCK_UPGRADES_TYPE, "Max Luck Modifiers");
+                addConfigKey(Config.MACHINE_MAX_FLUID_UPGRADES_TYPE, "Max Fluid Modifiers");
 
-                add(MODULE_ID + ".configuration.ender_eye_return",
-                                "Eye of Ender Event");
-
-                add(MODULE_ID + ".configuration.patina_drop",
-                                "Patina drop");
-
-                add(MODULE_ID + ".configuration.redstone_acid_oxide",
-                                "Redstone Acid use");
-
-                add(MODULE_ID + ".configuration.honey_solution_wax",
-                                "Honey Solution use");
-
-                add(MODULE_ID + ".configuration.upgrades", "Machine Upgrades");
-
-                add(MODULE_ID + ".configuration.max_speed_upgrades",
-                                "Max Speed Modifiers");
-
-                add(MODULE_ID + ".configuration.max_energy_upgrades",
-                                "Max Energy Modifiers");
-
-                add(MODULE_ID + ".configuration.max_luck_upgrades",
-                                "Max Luck Modifiers");
-
-                add(MODULE_ID + ".configuration.max_fluid_upgrades",
-                                "Max Fluid Modifiers");
-
-                add(MODULE_ID + ".configuration.min_tick_rate",
-                                "Minimal Tick Rate");
-
-                add(MODULE_ID + ".configuration.min_fe_cost",
-                                "Minimal FE Cost");
-
-                add(MODULE_ID + ".configuration.min_mb_cost",
-                                "Minimal MB Cost");
-
-                add(MODULE_ID + ".configuration.max_luck",
-                                "Maximal Luck");
+                addConfigKey(Config.MACHINE_MINIMAL_TICK_DELAY, "Minimal Tick Rate");
+                addConfigKey(Config.MACHINE_MINIMAL_FE_COST, "Minimal FE Cost");
+                addConfigKey(Config.MACHINE_MINIMAL_FLUID_COST, "Minimal MB Cost");
+                addConfigKey(Config.MACHINE_MAXIMAL_LUCK, "Maximal Luck");
 
                 // extra
                 add("extra.effect.minecraft.glowing",
@@ -216,36 +212,7 @@ public class DataLang extends LanguageProvider implements LangGenerators {
                 add(MODULE_ID + ".jei.recipe.item_replace.remainder", "Replaced with %s");
                 add(MODULE_ID + ".jei.recipe.durability_consume", "Consume %s durability");
 
-                LangUtils.advKey(this, MODULE_ID, "wrought_iron_ingot", "One shade of gray",
-                                "Combine some carbon dust with an iron ingot");
-
-                LangUtils.advKey(this, MODULE_ID, "steel_ingot", "Steel!",
-                                "Smelt on a blast furnace a wrought iron ingot");
-
-                LangUtils.advKey(this, MODULE_ID, "chisel", "StoneCutter on a Stick",
-                                "Craft a chisel to craft in-world stonecutting recipes");
-
-                LangUtils.advKey(this, MODULE_ID, "glass_cutter", "Cut off from the origin",
-                                "Craft a glass cutter to insta-mine glass blocks");
-
-                LangUtils.advKey(this, MODULE_ID, "hammer", "It's Hammer Time!",
-                                "Craft an hammer to craft new stuff");
-
-                LangUtils.advKey(this, MODULE_ID, "honey_solution", "Wax Standby",
-                                "Craft an bottle of honey solution to wax stuff more efficiently");
-
-                LangUtils.advKey(this, MODULE_ID, "redstone_acid", "Wax NOT FOUND",
-                                "Craft a bottle of redstone acid to directly oxidize copper blocks");
-
-                LangUtils.advKey(this, MODULE_ID, "patina", "Wax x@M",
-                                "Obtain some patina by scrapping oxidized copper blocks");
-
-                LangUtils.advKey(this, MODULE_ID, "wrench", "You spin me round",
-                                "Craft a wrench to cycle blockstates of clicked blocks");
-
-                LangUtils.advKey(this, MODULE_ID, "upgrades", "Let's mod it!",
-                                "Obtain some upgrades");
-
+               
                 // jade related
                 add(MODULE_ID + ".jade.textual_delay.time.left",
                                 TipColors.LIGHT_GRAY + "Crafting" + TipColors.LIGHT_GRAY + " : " + TipColors.WHITE
@@ -275,6 +242,33 @@ public class DataLang extends LanguageProvider implements LangGenerators {
 
                 add(MODULE_ID + ".gui.tip.scroll.up", TipColors.GRAY + TipColors.ITALIC + "<Scroll up>");
                 add(MODULE_ID + ".gui.tip.scroll.down", TipColors.GRAY + TipColors.ITALIC + "<Scroll down>");
+
+
+                //advancements
+
+                //TODO IMP : same as config?
+                advKey("cake_stick", "The cake is(n't) a lie!", "The Cake stick is right!");
+                 advKey("wrought_iron_ingot", "One shade of gray", "Combine some carbon dust with an iron ingot");
+                advKey("steel_ingot", "Steel!", "Smelt on a blast furnace a wrought iron ingot");
+                advKey("chisel", "StoneCutter on a Stick", "Craft a chisel to craft in-world stonecutting recipes");
+                advKey("glass_cutter", "Cut off from the origin", "Craft a glass cutter to insta-mine glass blocks");
+                advKey("hammer", "It's Hammer Time!", "Craft an hammer to craft new stuff");
+                advKey("honey_solution", "Wax Standby",
+                                "Craft an bottle of honey solution to wax stuff more efficiently");
+                advKey("redstone_acid", "Wax NOT FOUND",
+                                "Craft a bottle of redstone acid to directly oxidize copper blocks");
+                advKey("patina", "Wax x@M", "Obtain some patina by scrapping oxidized copper blocks");
+                advKey("wrench", "You spin me round", "Craft a wrench to cycle blockstates of clicked blocks");
+                advKey("upgrades", "Let's mod it!", "Obtain some upgrades");
+                advKey("_oil", "Oil Oil Ear?!", "Craft a coil , a foil and a gear...");
+               
+                advKey("saw", "Cut in half", "Craft a saw");
+                advKey("dynamite", "Kaboom?", "Craft some dynamites");
+               
+                advKey("wooden_crook", "Ex Nihilo mentioned!", "Craft a wooden crook to increase your sapling drop rate");
+
+
+
 
         }
 

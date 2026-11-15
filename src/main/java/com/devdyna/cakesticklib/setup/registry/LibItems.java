@@ -1,11 +1,11 @@
 package com.devdyna.cakesticklib.setup.registry;
 
-
-
 import static com.devdyna.cakesticklib.CakeStickLib.MODULE_ID;
 
 import com.devdyna.cakesticklib.setup.registry.builders.*;
+import com.devdyna.cakesticklib.setup.registry.builders.dynamite.DynamiteItem;
 
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.ToolMaterial;
@@ -112,6 +112,22 @@ public class LibItems {
                         p -> p.pickaxe(ToolMaterial.IRON, 6.0F, -3.1F)
                                         .durability(1024)
                                         .repairable(Items.IRON_INGOT));
+
+        public static final DeferredHolder<Item, Item> SAW = zItem.registerSimpleItem("saw",
+                        p -> p.axe(ToolMaterial.IRON, 5.0F, -3.1F)
+                                        .durability(1024)
+                                        .repairable(LibTags.Items.IRON_PLATE));
+
+        public static final DeferredHolder<Item, Item> WOODEN_CROOK = zItem.registerSimpleItem("wooden_crook",
+                        p -> p.hoe(ToolMaterial.DIAMOND, 1.0F, -2.1F)
+                                        .durability(1024)
+                                        .repairable(ItemTags.PLANKS));
+
+        public static final DeferredHolder<Item, Item> DYNAMITE = zItem.registerItem("dynamite",
+                        p -> new DynamiteItem(
+                                        p.useCooldown(0.25f)
+                                                        .component(LibComponents.EXPLOSION_RANGE, 5)
+                                                        .component(LibComponents.EXPLOSION_DELAY, 40)));
 
         public static final DeferredHolder<Item, Item> RESISTOR = zSimple.registerSimpleItem("resistor");
 

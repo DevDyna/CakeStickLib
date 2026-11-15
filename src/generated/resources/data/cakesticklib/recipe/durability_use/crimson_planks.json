@@ -1,0 +1,14 @@
+{
+  "type": "cakesticklib:durability_use",
+  "items": [
+    "#minecraft:crimson_stems"
+  ],
+  "mode": {
+    "damage": 4,
+    "tool": "cakesticklib:saw"
+  },
+  "result": {
+    "count": 6,
+    "id": "minecraft:crimson_planks"
+  }
+}

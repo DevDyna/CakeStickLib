@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "G": "#c:gunpowders",
+    "S": "#c:strings"
+  },
+  "pattern": [
+    "S",
+    "G"
+  ],
+  "result": {
+    "count": 2,
+    "id": "cakesticklib:dynamite"
+  }
+}

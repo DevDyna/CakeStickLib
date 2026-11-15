@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 import com.devdyna.cakesticklib.api.datagen.RecipeGenerators;
+import com.devdyna.cakesticklib.api.primitive.BigMap;
 import com.devdyna.cakesticklib.api.upgrades.modifiers.base.BaseModifier.UseType;
 import com.devdyna.cakesticklib.api.utils.x;
 import com.devdyna.cakesticklib.setup.common.recipes.item_replace.ReplaceItemBuilder;
@@ -17,16 +18,13 @@ import com.devdyna.cakesticklib.setup.common.recipes.tool_durability.DurabilityC
 import com.devdyna.cakesticklib.setup.common.recipes.upgrade_application.UpgradeApplicationBuilder;
 import com.devdyna.cakesticklib.setup.registry.*;
 
-import net.minecraft.core.Direction;
-import net.minecraft.core.HolderGetter;
-import net.minecraft.core.HolderLookup;
+import net.minecraft.core.*;
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -220,6 +218,15 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .unlockedBy(getHasName(Items.IRON_INGOT), has(Items.IRON_INGOT))
                                 .save(output);
 
+                shaped(RecipeCategory.MISC, LibItems.SAW.get())
+                                .pattern("PS")
+                                .pattern("PS")
+                                .pattern("SS")
+                                .define('S', Items.STICK)
+                                .define('P', LibTags.Items.IRON_PLATE)
+                                .unlockedBy(getHasName(LibTags.Items.IRON_PLATE), has(LibTags.Items.IRON_PLATE))
+                                .save(output);
+
                 twoByTwoPacker(output, LibItems.CARBON_FIBER.get(), LibTags.Items.COAL_DUST);
                 twoByTwoPacker(output, LibItems.CARBON_PLATE.get(), LibTags.Items.CARBON_FIBER);
 
@@ -345,7 +352,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
 
                 packUnpack(output, LibItems.SILICON_SHARD.get(), LibItems.RAW_SILICON.get(), false);
 
-                ingot(Tags.Items.RAW_MATERIALS_IRON,
+                ingotProcessing(output, Tags.Items.RAW_MATERIALS_IRON,
                                 Items.IRON_INGOT, Tags.Items.INGOTS_IRON,
                                 LibItems.IRON_DUST.get(), LibTags.Items.IRON_DUST,
                                 LibItems.IRON_PLATE.get(), LibTags.Items.IRON_PLATE,
@@ -353,7 +360,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 LibItems.IRON_FOIL.get(), LibTags.Items.IRON_FOIL,
                                 LibItems.IRON_COIL.get(), LibTags.Items.IRON_COIL);
 
-                ingot(Tags.Items.RAW_MATERIALS_GOLD,
+                ingotProcessing(output, Tags.Items.RAW_MATERIALS_GOLD,
                                 Items.GOLD_INGOT, Tags.Items.INGOTS_GOLD,
                                 LibItems.GOLD_DUST.get(), LibTags.Items.GOLD_DUST,
                                 LibItems.GOLD_PLATE.get(), LibTags.Items.GOLD_PLATE,
@@ -361,7 +368,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 LibItems.GOLD_FOIL.get(), LibTags.Items.GOLD_FOIL,
                                 LibItems.GOLD_COIL.get(), LibTags.Items.GOLD_COIL);
 
-                ingot(Tags.Items.RAW_MATERIALS_COPPER,
+                ingotProcessing(output, Tags.Items.RAW_MATERIALS_COPPER,
                                 Items.COPPER_INGOT, Tags.Items.INGOTS_COPPER,
                                 LibItems.COPPER_DUST.get(), LibTags.Items.COPPER_DUST,
                                 LibItems.COPPER_PLATE.get(), LibTags.Items.COPPER_PLATE,
@@ -369,14 +376,67 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 LibItems.COPPER_FOIL.get(), LibTags.Items.COPPER_FOIL,
                                 LibItems.COPPER_COIL.get(), LibTags.Items.COPPER_COIL);
 
-                gem(Tags.Items.GEMS_AMETHYST, LibItems.AMETHYST_DUST.get());
-                gem(ItemTags.COALS, LibItems.CARBON_DUST.get());
-                gem(Tags.Items.GEMS_DIAMOND, LibItems.DIAMOND_DUST.get());
-                gem(Tags.Items.GEMS_EMERALD, LibItems.EMERALD_DUST.get());
-                gem(Tags.Items.GEMS_LAPIS, LibItems.LAPIS_DUST.get());
-                gem(Tags.Items.GEMS_QUARTZ, LibItems.QUARTZ_DUST.get());
+                hammering(output, Tags.Items.GEMS_AMETHYST, LibItems.AMETHYST_DUST.get());
+                hammering(output, ItemTags.COALS, LibItems.CARBON_DUST.get());
+                hammering(output, Tags.Items.GEMS_DIAMOND, LibItems.DIAMOND_DUST.get());
+                hammering(output, Tags.Items.GEMS_EMERALD, LibItems.EMERALD_DUST.get());
+                hammering(output, Tags.Items.GEMS_LAPIS, LibItems.LAPIS_DUST.get());
+                hammering(output, Tags.Items.GEMS_QUARTZ, LibItems.QUARTZ_DUST.get());
 
-                gem(Items.RESIN_BRICK, Items.RESIN_CLUMP);
+                hammering(output, Items.RESIN_BRICK, Items.RESIN_CLUMP);
+
+                var glasses = List.of(
+                                Items.GLASS,
+                                Items.WHITE_STAINED_GLASS,
+                                Items.ORANGE_STAINED_GLASS,
+                                Items.MAGENTA_STAINED_GLASS,
+                                Items.LIGHT_BLUE_STAINED_GLASS,
+                                Items.YELLOW_STAINED_GLASS,
+                                Items.LIME_STAINED_GLASS,
+                                Items.PINK_STAINED_GLASS,
+                                Items.GRAY_STAINED_GLASS,
+                                Items.LIGHT_GRAY_STAINED_GLASS,
+                                Items.CYAN_STAINED_GLASS,
+                                Items.PURPLE_STAINED_GLASS,
+                                Items.BLUE_STAINED_GLASS,
+                                Items.BROWN_STAINED_GLASS,
+                                Items.GREEN_STAINED_GLASS,
+                                Items.RED_STAINED_GLASS,
+                                Items.BLACK_STAINED_GLASS);
+
+                var panels = List.of(
+                                Items.GLASS_PANE,
+                                Items.WHITE_STAINED_GLASS_PANE,
+                                Items.ORANGE_STAINED_GLASS_PANE,
+                                Items.MAGENTA_STAINED_GLASS_PANE,
+                                Items.LIGHT_BLUE_STAINED_GLASS_PANE,
+                                Items.YELLOW_STAINED_GLASS_PANE,
+                                Items.LIME_STAINED_GLASS_PANE,
+                                Items.PINK_STAINED_GLASS_PANE,
+                                Items.GRAY_STAINED_GLASS_PANE,
+                                Items.LIGHT_GRAY_STAINED_GLASS_PANE,
+                                Items.CYAN_STAINED_GLASS_PANE,
+                                Items.PURPLE_STAINED_GLASS_PANE,
+                                Items.BLUE_STAINED_GLASS_PANE,
+                                Items.BROWN_STAINED_GLASS_PANE,
+                                Items.GREEN_STAINED_GLASS_PANE,
+                                Items.RED_STAINED_GLASS_PANE,
+                                Items.BLACK_STAINED_GLASS_PANE);
+
+                for (var i = 0; i < glasses.size(); i++)
+                        DurabilityConsumeBuilder.of(registries)
+                                        .tool(LibItems.SAW.get(), 2)
+                                        .add(glasses.get(i))
+                                        .output(panels.get(i), 4)
+                                        .unlockedBy()
+                                        .save(output);
+
+                DurabilityConsumeBuilder.of(registries)
+                                .tool(LibItems.SAW.get(), 2)
+                                .add(ItemTags.PLANKS)
+                                .output(Items.STICK, 4)
+                                .unlockedBy()
+                                .save(output);
 
                 DurabilityConsumeBuilder.of(registries)
                                 .tool(LibItems.HAMMER.get())
@@ -446,14 +506,14 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .add(Tags.Items.GLASS_BLOCKS_CHEAP)
                                 .output(Items.GLASS, 1)
                                 .unlockedBy()
-                                .save(output);
+                                .save(output, "_from_redstone_acid");
 
                 DurabilityConsumeBuilder.of(registries)
                                 .tool(LibItems.REDSTONE_ACID.get(), 1)
                                 .add(Tags.Items.GLASS_PANES)
                                 .output(Items.GLASS_PANE, 1)
                                 .unlockedBy()
-                                .save(output);
+                                .save(output, "_from_redstone_acid");
 
                 DurabilityConsumeBuilder.of(registries)
                                 .tool(ItemTags.SHOVELS, 10)
@@ -469,32 +529,53 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .unlockedBy()
                                 .save(output);
 
-                Map.ofEntries(
-                                Map.entry(Items.OAK_LOG, Items.STRIPPED_OAK_LOG),
-                                Map.entry(Items.SPRUCE_LOG, Items.STRIPPED_SPRUCE_LOG),
-                                Map.entry(Items.BIRCH_LOG, Items.STRIPPED_BIRCH_LOG),
-                                Map.entry(Items.JUNGLE_LOG, Items.STRIPPED_JUNGLE_LOG),
-                                Map.entry(Items.ACACIA_LOG, Items.STRIPPED_ACACIA_LOG),
-                                Map.entry(Items.DARK_OAK_LOG, Items.STRIPPED_DARK_OAK_LOG),
-                                Map.entry(Items.MANGROVE_LOG, Items.STRIPPED_MANGROVE_LOG),
-                                Map.entry(Items.CHERRY_LOG, Items.STRIPPED_CHERRY_LOG),
-                                Map.entry(Items.PALE_OAK_LOG, Items.STRIPPED_PALE_OAK_LOG),
-                                Map.entry(Items.BAMBOO_BLOCK, Items.STRIPPED_BAMBOO_BLOCK),
+                // TODO wood recycle and tags?
 
-                                Map.entry(Items.OAK_WOOD, Items.STRIPPED_OAK_WOOD),
-                                Map.entry(Items.SPRUCE_WOOD, Items.STRIPPED_SPRUCE_WOOD),
-                                Map.entry(Items.BIRCH_WOOD, Items.STRIPPED_BIRCH_WOOD),
-                                Map.entry(Items.JUNGLE_WOOD, Items.STRIPPED_JUNGLE_WOOD),
-                                Map.entry(Items.ACACIA_WOOD, Items.STRIPPED_ACACIA_WOOD),
-                                Map.entry(Items.DARK_OAK_WOOD, Items.STRIPPED_DARK_OAK_WOOD),
-                                Map.entry(Items.MANGROVE_WOOD, Items.STRIPPED_MANGROVE_WOOD),
-                                Map.entry(Items.CHERRY_WOOD, Items.STRIPPED_CHERRY_WOOD),
-                                Map.entry(Items.PALE_OAK_WOOD, Items.STRIPPED_PALE_OAK_WOOD),
+                BigMap.<TagKey<Item>, Item>of(ItemTags.OAK_LOGS, Items.OAK_PLANKS,
+                                ItemTags.SPRUCE_LOGS, Items.SPRUCE_PLANKS,
+                                ItemTags.BIRCH_LOGS, Items.BIRCH_PLANKS,
+                                ItemTags.JUNGLE_LOGS, Items.JUNGLE_PLANKS,
+                                ItemTags.ACACIA_LOGS, Items.ACACIA_PLANKS,
+                                ItemTags.DARK_OAK_LOGS, Items.DARK_OAK_PLANKS,
+                                ItemTags.MANGROVE_LOGS, Items.MANGROVE_PLANKS,
+                                ItemTags.CHERRY_LOGS, Items.CHERRY_PLANKS,
+                                ItemTags.PALE_OAK_LOGS, Items.PALE_OAK_PLANKS,
+                                ItemTags.CRIMSON_STEMS, Items.CRIMSON_PLANKS,
+                                ItemTags.WARPED_STEMS, Items.WARPED_PLANKS,
+                                ItemTags.BAMBOO_BLOCKS, Items.BAMBOO_PLANKS)
+                                .forEach((log, plank) -> DurabilityConsumeBuilder.of(registries)
+                                                .tool(LibItems.SAW.get(), 4)
+                                                .add(log)
+                                                .output(plank, (plank == Items.BAMBOO_PLANKS ? 2 : 3) * 2)
+                                                .unlockedBy()
+                                                .save(output));
 
-                                Map.entry(Items.CRIMSON_STEM, Items.STRIPPED_CRIMSON_STEM),
-                                Map.entry(Items.CRIMSON_HYPHAE, Items.STRIPPED_CRIMSON_HYPHAE),
-                                Map.entry(Items.WARPED_STEM, Items.STRIPPED_WARPED_STEM),
-                                Map.entry(Items.WARPED_HYPHAE, Items.STRIPPED_WARPED_HYPHAE))
+                BigMap.<Item, Item>of(
+                                Items.OAK_LOG, Items.STRIPPED_OAK_LOG,
+                                Items.SPRUCE_LOG, Items.STRIPPED_SPRUCE_LOG,
+                                Items.BIRCH_LOG, Items.STRIPPED_BIRCH_LOG,
+                                Items.JUNGLE_LOG, Items.STRIPPED_JUNGLE_LOG,
+                                Items.ACACIA_LOG, Items.STRIPPED_ACACIA_LOG,
+                                Items.DARK_OAK_LOG, Items.STRIPPED_DARK_OAK_LOG,
+                                Items.MANGROVE_LOG, Items.STRIPPED_MANGROVE_LOG,
+                                Items.CHERRY_LOG, Items.STRIPPED_CHERRY_LOG,
+                                Items.PALE_OAK_LOG, Items.STRIPPED_PALE_OAK_LOG,
+                                Items.BAMBOO_BLOCK, Items.STRIPPED_BAMBOO_BLOCK,
+
+                                Items.OAK_WOOD, Items.STRIPPED_OAK_WOOD,
+                                Items.SPRUCE_WOOD, Items.STRIPPED_SPRUCE_WOOD,
+                                Items.BIRCH_WOOD, Items.STRIPPED_BIRCH_WOOD,
+                                Items.JUNGLE_WOOD, Items.STRIPPED_JUNGLE_WOOD,
+                                Items.ACACIA_WOOD, Items.STRIPPED_ACACIA_WOOD,
+                                Items.DARK_OAK_WOOD, Items.STRIPPED_DARK_OAK_WOOD,
+                                Items.MANGROVE_WOOD, Items.STRIPPED_MANGROVE_WOOD,
+                                Items.CHERRY_WOOD, Items.STRIPPED_CHERRY_WOOD,
+                                Items.PALE_OAK_WOOD, Items.STRIPPED_PALE_OAK_WOOD,
+
+                                Items.CRIMSON_STEM, Items.STRIPPED_CRIMSON_STEM,
+                                Items.CRIMSON_HYPHAE, Items.STRIPPED_CRIMSON_HYPHAE,
+                                Items.WARPED_STEM, Items.STRIPPED_WARPED_STEM,
+                                Items.WARPED_HYPHAE, Items.STRIPPED_WARPED_HYPHAE)
                                 .forEach((log, stripped) -> DurabilityConsumeBuilder.of(registries)
                                                 .tool(ItemTags.AXES, 1)
                                                 .add(log)
@@ -508,6 +589,25 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .output(Items.FARMLAND)
                                 .unlockedBy()
                                 .save(output);
+
+                BigMap.<Item, Item>of(
+                                Items.OAK_LEAVES, Items.OAK_SAPLING,
+                                Items.SPRUCE_LEAVES, Items.SPRUCE_SAPLING,
+                                Items.BIRCH_LEAVES, Items.BIRCH_SAPLING,
+                                Items.JUNGLE_LEAVES, Items.JUNGLE_SAPLING,
+                                Items.ACACIA_LEAVES, Items.ACACIA_SAPLING,
+                                Items.DARK_OAK_LEAVES, Items.DARK_OAK_SAPLING,
+                                Items.MANGROVE_LEAVES, Items.MANGROVE_PROPAGULE,
+                                Items.CHERRY_LEAVES, Items.CHERRY_SAPLING,
+                                Items.AZALEA_LEAVES, Items.AZALEA,
+                                Items.FLOWERING_AZALEA_LEAVES, Items.FLOWERING_AZALEA,
+                                Items.PALE_OAK_LEAVES, Items.PALE_OAK_SAPLING)
+                                .forEach((leaves, sapling) -> DurabilityConsumeBuilder.of(registries)
+                                                .tool(LibItems.WOODEN_CROOK.get(), 4)
+                                                .add(leaves)
+                                                .output(sapling)
+                                                .unlockedBy()
+                                                .save(output));
 
                 DurabilityConsumeBuilder.of(registries)
                                 .tool(ItemTags.SHOVELS, 1)
@@ -528,6 +628,18 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .output(Items.CARVED_PUMPKIN)
                                 .unlockedBy()
                                 .save(output);
+
+                for (var i = 1; i < 9; i++) {
+
+                        var temp = ReplaceItemBuilder.of(registries)
+                                        .keep(Items.WATER_BUCKET);
+
+                        for (var j = 0; j < i; j++)
+                                temp.add(LibTags.Items.TURN_INTO_MUD);
+
+                        temp.output(Items.MUD, i).unlockedBy().save(output, "_" + i + "x");
+
+                }
 
                 ReplaceItemBuilder.of(registries)
                                 .replace(Items.CAMPFIRE, Items.CHARCOAL)
@@ -596,7 +708,7 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 Items.SKULL_POTTERY_SHERD,
                                 Items.SNORT_POTTERY_SHERD)
                                 .forEach(sherd -> ReplaceItemBuilder.of(registries)
-                                                .replace(sherd, sherd)
+                                                .keep(sherd)
                                                 .add(Items.BRICK)
                                                 .add(LibItems.PATINA.get())
                                                 .output(sherd)
@@ -619,12 +731,6 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .output(Items.ITEM_FRAME)
                                 .unlockedBy()
                                 .save(output);
-
-                // shapeless(RecipeCategory.MISC, Items.BOOK)
-                // .requires(LibTags.Items.WRITABLE_BOOKS)
-                // .unlockedBy(getHasName(LibTags.Items.WRITABLE_BOOKS),
-                // has(LibTags.Items.WRITABLE_BOOKS))
-                // .save(output);
 
                 shapeless(RecipeCategory.MISC, Items.CLAY_BALL, 4)
                                 .requires(Items.CLAY)
@@ -662,6 +768,30 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .unlockedBy()
                                 .save(output);
 
+                ShapedRecipeBuilder.shaped(items, RecipeCategory.TOOLS, LibItems.DYNAMITE.get(), 2)
+                                .pattern("S")
+                                .pattern("G")
+                                .define('S', Tags.Items.STRINGS)
+                                .define('G', Tags.Items.GUNPOWDERS)
+                                .unlockedBy(getHasName(Tags.Items.GUNPOWDERS), has(Tags.Items.GUNPOWDERS))
+                                .save(output);
+
+                ShapedRecipeBuilder.shaped(items, RecipeCategory.TOOLS, LibItems.WOODEN_CROOK.get())
+                                .pattern("SS")
+                                .pattern(" S")
+                                .pattern(" S")
+                                .define('S', Tags.Items.RODS_WOODEN)
+                                .unlockedBy(getHasName(Tags.Items.RODS_WOODEN), has(Tags.Items.RODS_WOODEN))
+                                .save(output);
+
+                ShapedRecipeBuilder.shaped(items, RecipeCategory.TOOLS, LibItems.WOODEN_CROOK.get())
+                                .pattern("SS")
+                                .pattern("S ")
+                                .pattern("S ")
+                                .define('S', Tags.Items.RODS_WOODEN)
+                                .unlockedBy(getHasName(Tags.Items.RODS_WOODEN), has(Tags.Items.RODS_WOODEN))
+                                .save(output, asRecipeID(LibItems.WOODEN_CROOK.get()));
+
         }
 
         public static final class RecipeRunner extends RecipeProvider.Runner {
@@ -680,64 +810,6 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                 public String getName() {
                         return "CakeStickLib";
                 }
-        }
-
-        public void ingot(
-                        TagKey<Item> raw,
-                        Item ingot, TagKey<Item> ingot_tag,
-                        Item dust, TagKey<Item> dust_tag,
-                        Item plate, TagKey<Item> plate_tag,
-                        Item gear, TagKey<Item> gear_tag,
-                        Item foil, TagKey<Item> foil_tag,
-                        Item coil, TagKey<Item> coil_tag) {
-
-                doubleSmelt(output, dust_tag, ingot);
-
-                DurabilityConsumeBuilder.of(registries)
-                                .tool(LibItems.HAMMER.get(), 2)
-                                .add(raw)
-                                .output(dust, 2)
-                                .unlockedBy()
-                                .save(output, "_from_raw");
-
-                DurabilityConsumeBuilder.of(registries)
-                                .tool(LibItems.HAMMER.get(), 1)
-                                .add(ingot_tag)
-                                .output(dust)
-                                .unlockedBy()
-                                .save(output, "_from_ingot");
-
-                gear(output, ingot_tag, gear);
-                foil(output, plate_tag, foil);
-                plate(output, ingot_tag, plate);
-                coil(output, foil_tag, coil);
-
-        }
-
-        public void gem(
-                        TagKey<Item> gem,
-                        Item dust) {
-
-                DurabilityConsumeBuilder.of(registries)
-                                .tool(LibItems.HAMMER.get(), 1)
-                                .add(gem)
-                                .output(dust)
-                                .unlockedBy()
-                                .save(output);
-
-        }
-
-        public void gem(
-                        Item gem,
-                        Item dust) {
-
-                DurabilityConsumeBuilder.of(registries)
-                                .tool(LibItems.HAMMER.get(), 1)
-                                .add(gem)
-                                .output(dust)
-                                .unlockedBy()
-                                .save(output);
-
         }
 
         public String getHasNameGen(ItemLike i) {

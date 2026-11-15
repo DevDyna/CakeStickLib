@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:adventure/root",
+  "criteria": {
+    "craft_wooden_crook": {
+      "conditions": {
+        "items": [
+          {
+            "items": "cakesticklib:wooden_crook"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "cakesticklib.advancement.branch.wooden_crook.desc"
+    },
+    "icon": {
+      "id": "cakesticklib:wooden_crook"
+    },
+    "title": {
+      "translate": "cakesticklib.advancement.branch.wooden_crook"
+    }
+  },
+  "requirements": [
+    [
+      "craft_wooden_crook"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

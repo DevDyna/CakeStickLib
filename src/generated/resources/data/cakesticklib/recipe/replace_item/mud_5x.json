@@ -1,0 +1,22 @@
+{
+  "type": "cakesticklib:replace_item",
+  "filters": [
+    {
+      "base": "minecraft:water_bucket",
+      "result": {
+        "id": "minecraft:water_bucket"
+      }
+    }
+  ],
+  "items": [
+    "#cakesticklib:turn_into/mud",
+    "#cakesticklib:turn_into/mud",
+    "#cakesticklib:turn_into/mud",
+    "#cakesticklib:turn_into/mud",
+    "#cakesticklib:turn_into/mud"
+  ],
+  "result": {
+    "count": 5,
+    "id": "minecraft:mud"
+  }
+}

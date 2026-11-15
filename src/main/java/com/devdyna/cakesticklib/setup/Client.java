@@ -8,16 +8,12 @@ import com.devdyna.cakesticklib.api.client.ItemRenderDecorator;
 import com.devdyna.cakesticklib.api.client.hud.HudRenderable;
 import com.devdyna.cakesticklib.api.datagen.selectors.EjectTypeProperty;
 import com.devdyna.cakesticklib.api.upgrades.eject.EjectModifierScreen;
-import com.devdyna.cakesticklib.api.FluidRegister;
-import com.devdyna.cakesticklib.api.FluidRenderUtils;
-import com.devdyna.cakesticklib.api.utils.ClazzUtil;
-import com.devdyna.cakesticklib.api.utils.ModAddonUtil;
-import com.devdyna.cakesticklib.api.utils.x;
-import com.devdyna.cakesticklib.setup.registry.LibContainer;
-import com.devdyna.cakesticklib.setup.registry.LibFluids;
-import com.devdyna.cakesticklib.setup.registry.LibItems;
+import com.devdyna.cakesticklib.api.*;
+import com.devdyna.cakesticklib.api.utils.*;
+import com.devdyna.cakesticklib.setup.registry.*;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.crafting.RecipeMap;
 import net.minecraft.world.level.material.FluidState;
@@ -26,19 +22,10 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent;
-import net.neoforged.neoforge.client.event.RecipesReceivedEvent;
-import net.neoforged.neoforge.client.event.RegisterFluidModelsEvent;
-import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
-import net.neoforged.neoforge.client.event.RegisterItemDecorationsEvent;
-import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
-import net.neoforged.neoforge.client.event.RegisterSelectItemModelPropertyEvent;
-import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
-import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
+import net.neoforged.neoforge.client.event.*;
+import net.neoforged.neoforge.client.extensions.common.*;
 import net.neoforged.neoforge.client.fluid.FluidTintSource;
-import net.neoforged.neoforge.client.gui.ConfigurationScreen;
-import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
-import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
+import net.neoforged.neoforge.client.gui.*;
 import net.neoforged.neoforge.fluids.FluidType;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
@@ -53,6 +40,11 @@ public class Client {
     @SubscribeEvent
     public static void renderItemDecorators(RegisterItemDecorationsEvent r) {
         r.register(LibItems.CHISEL.get(), new ItemRenderDecorator());
+    }
+
+    @SubscribeEvent
+    public static void registerEntityRenderer(EntityRenderersEvent.RegisterRenderers r) {
+        r.registerEntityRenderer(LibEntities.DYNAMITE.get(), c -> new ThrownItemRenderer<>(c, 1.0F, true));
     }
 
     // TODO NYI

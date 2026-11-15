@@ -37,6 +37,12 @@ public class LibTags {
                 public static final TagKey<Block> MINEABLE_WITH_GLASS_CUTTER = RegistryUtils
                                 .tagBlock(MODULE_ID, "mineable/glass_cutter");
 
+                public static final TagKey<Block> MINEABLE_WITH_CROOK = RegistryUtils
+                                .tagBlock(MODULE_ID, "mineable/crook");
+
+                public static final TagKey<Block> IGNORE_MINEABLE_WITH_CRAFTING_TOOLS = RegistryUtils
+                                .tagBlock(MODULE_ID, "mineable/ignore_crafting_tools");
+
         }
 
         public class Items {
@@ -150,6 +156,8 @@ public class LibTags {
                                 "turn_into/farmland");
                 public static final TagKey<Item> TURN_INTO_DIRT = RegistryUtils.tagItem(MODULE_ID, "turn_into/dirt");
 
+                public static final TagKey<Item> TURN_INTO_MUD = RegistryUtils.tagItem(MODULE_ID,   "turn_into/mud");
+
                 // stones pre-1.17 (overworld)
                 public static final TagKey<Item> LEGACY_STONES = RegistryUtils.tagItem(MODULE_ID, "legacy_stones");
 
@@ -229,6 +237,15 @@ public class LibTags {
 
                 // TODO polished / bricks / tiles / smooth tags?
                 // TODO wood variants?
+
+
+
+         public static final TagKey<Item> TOOLS_MINING_CRAFTING = RegistryUtils.tagItem(MODULE_ID,
+                                "tools/crafting");
+
+public static final TagKey<Item> TOOLS_LEAVES_DROP_INCREASE = RegistryUtils.tagItem(MODULE_ID,
+                                "tools/leaves_drop_increase");
+
 
         }
 

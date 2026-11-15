@@ -1,0 +1,59 @@
+{
+  "parent": "minecraft:adventure/root",
+  "criteria": {
+    "craft_coils": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#c:coils"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "craft_foils": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#c:foils"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "craft_gears": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#c:gears"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "cakesticklib.advancement.branch._oil.desc"
+    },
+    "frame": "challenge",
+    "icon": {
+      "id": "cakesticklib:wooden_gear"
+    },
+    "title": {
+      "translate": "cakesticklib.advancement.branch._oil"
+    }
+  },
+  "requirements": [
+    [
+      "craft_coils"
+    ],
+    [
+      "craft_foils"
+    ],
+    [
+      "craft_gears"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

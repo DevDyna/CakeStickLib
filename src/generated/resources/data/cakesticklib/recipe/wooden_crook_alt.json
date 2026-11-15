@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "S": "#c:rods/wooden"
+  },
+  "pattern": [
+    "SS",
+    "S ",
+    "S "
+  ],
+  "result": {
+    "id": "cakesticklib:wooden_crook"
+  }
+}

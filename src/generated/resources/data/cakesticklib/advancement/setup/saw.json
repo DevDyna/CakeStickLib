@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:story/smelt_iron",
+  "criteria": {
+    "craft_saw": {
+      "conditions": {
+        "items": [
+          {
+            "items": "cakesticklib:saw"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "cakesticklib.advancement.branch.saw.desc"
+    },
+    "icon": {
+      "id": "cakesticklib:saw"
+    },
+    "title": {
+      "translate": "cakesticklib.advancement.branch.saw"
+    }
+  },
+  "requirements": [
+    [
+      "craft_saw"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
