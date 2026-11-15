@@ -364,8 +364,25 @@ public class DataItemTag extends ItemTagsProvider {
                                                 Items.TUFF_STAIRS,
                                                 Items.TUFF_WALL);
 
-                // tag(ItemTags.PICKAXES).add(LibItems.HAMMER.get());
-                // tag(ItemTags.AXES).add(LibItems.SAW.get());
+                tag(LibTags.Items.TOOLS_MINING_CRAFTING)
+                                .add(LibItems.HAMMER.get(), LibItems.SAW.get(),LibItems.WOODEN_CROOK.get());
+
+                tag(LibTags.Items.TOOLS_LEAVES_DROP_INCREASE)
+                                .add(LibItems.WOODEN_CROOK.get());
+
+                tag(ItemTags.MINING_ENCHANTABLE)
+                                .addTags(LibTags.Items.TOOLS_MINING_CRAFTING, LibTags.Items.TOOLS_LEAVES_DROP_INCREASE);
+
+                tag(ItemTags.DURABILITY_ENCHANTABLE)
+                                .add(LibItems.REDSTONE_ACID.get(), LibItems.HONEY_SOLUTION.get())
+                                .addTags(LibTags.Items.TOOLS_MINING_CRAFTING, LibTags.Items.TOOLS_LEAVES_DROP_INCREASE);
+
+                tag(ItemTags.MINING_LOOT_ENCHANTABLE)
+                                .addTags(LibTags.Items.TOOLS_MINING_CRAFTING, LibTags.Items.TOOLS_LEAVES_DROP_INCREASE);
+
+                tag(ItemTags.VANISHING_ENCHANTABLE)
+                                .add(LibItems.REDSTONE_ACID.get(), LibItems.HONEY_SOLUTION.get())
+                                .addTags(LibTags.Items.TOOLS_MINING_CRAFTING, LibTags.Items.TOOLS_LEAVES_DROP_INCREASE);
 
         }
 
