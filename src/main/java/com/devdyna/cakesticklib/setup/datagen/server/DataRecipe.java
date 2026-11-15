@@ -749,6 +749,22 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .unlockedBy(getHasName(Tags.Items.GUNPOWDERS), has(Tags.Items.GUNPOWDERS))
                                 .save(output);
 
+                ShapedRecipeBuilder.shaped(items, RecipeCategory.TOOLS, LibItems.WOODEN_CROOK.get())
+                                .pattern("SS")
+                                .pattern(" S")
+                                .pattern(" S")
+                                .define('S', Tags.Items.RODS_WOODEN)
+                                .unlockedBy(getHasName(Tags.Items.RODS_WOODEN), has(Tags.Items.RODS_WOODEN))
+                                .save(output);
+
+                ShapedRecipeBuilder.shaped(items, RecipeCategory.TOOLS, LibItems.WOODEN_CROOK.get())
+                                .pattern("SS")
+                                .pattern("S ")
+                                .pattern("S ")
+                                .define('S', Tags.Items.RODS_WOODEN)
+                                .unlockedBy(getHasName(Tags.Items.RODS_WOODEN), has(Tags.Items.RODS_WOODEN))
+                                .save(output, asRecipeID(LibItems.WOODEN_CROOK.get()));
+
         }
 
         public static final class RecipeRunner extends RecipeProvider.Runner {
