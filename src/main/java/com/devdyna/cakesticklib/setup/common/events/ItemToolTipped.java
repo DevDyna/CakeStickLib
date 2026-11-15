@@ -130,6 +130,10 @@ public class ItemToolTipped {
 
         if (item.is(LibItems.DYNAMITE))
             tip.add(ToolTipHelper.INDEX, Component.translatable(MODULE_ID + ".dynamite.tip"));
+       
+       
+            if (item.is(LibItems.WOODEN_CROOK))
+            tip.add(ToolTipHelper.INDEX, Component.translatable(MODULE_ID + ".wooden_crook.tip"));
 
     }
 }
