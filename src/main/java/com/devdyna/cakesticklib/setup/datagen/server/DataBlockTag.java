@@ -40,6 +40,12 @@ public class DataBlockTag extends BlockTagsProvider {
 
                 tag(LibTags.Blocks.MINEABLE_WITH_GLASS_CUTTER)
                                 .addTags(Tags.Blocks.GLASS_BLOCKS, Tags.Blocks.GLASS_PANES);
+
+                tag(LibTags.Blocks.MINEABLE_WITH_CROOK)
+                                .addTags(BlockTags.LEAVES);
+
+                tag(LibTags.Blocks.IGNORE_MINEABLE_WITH_CRAFTING_TOOLS).add();
+
         }
 
 }
