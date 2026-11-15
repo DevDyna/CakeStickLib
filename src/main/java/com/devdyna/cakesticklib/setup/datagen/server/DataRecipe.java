@@ -220,12 +220,12 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 .save(output);
 
                 shaped(RecipeCategory.MISC, LibItems.SAW.get())
-                                .pattern("IIS")
-                                .pattern(" IS")
-                                .pattern("  S")
+                                .pattern("PS")
+                                .pattern("PS")
+                                .pattern("SS")
                                 .define('S', Items.STICK)
-                                .define('I', Tags.Items.INGOTS_IRON)
-                                .unlockedBy(getHasName(Items.IRON_INGOT), has(Items.IRON_INGOT))
+                                .define('P', LibTags.Items.IRON_PLATE)
+                                .unlockedBy(getHasName(LibTags.Items.IRON_PLATE), has(LibTags.Items.IRON_PLATE))
                                 .save(output);
 
                 twoByTwoPacker(output, LibItems.CARBON_FIBER.get(), LibTags.Items.COAL_DUST);
