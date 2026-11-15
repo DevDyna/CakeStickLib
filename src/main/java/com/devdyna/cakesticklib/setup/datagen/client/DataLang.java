@@ -24,6 +24,7 @@ public class DataLang extends LanguageProvider implements LangGenerators {
         @Override
         protected void addTranslations() {
 
+                //core
                 LibFluids.zFluidTypes.getEntries()
                                 .forEach(f -> addFluid(f.get(), named(f).replace(" Type", "")));
                 LibItems.zBucketItems.getEntries().forEach(i -> addItem(i, named(i)));
@@ -56,6 +57,8 @@ public class DataLang extends LanguageProvider implements LangGenerators {
                 add(JEIAliasesHelper.Alias.DRILL, "Drill");
                 add(JEIAliasesHelper.Alias.MINER, "Miner");
                 add(JEIAliasesHelper.Alias.ETHEREAL, "Ethereal");
+                add(JEIAliasesHelper.Alias.MINING_TOOL, "Mining tool");
+                add(JEIAliasesHelper.Alias.TNT_LIKE, "TNT like");
 
                 // mainly for Item Tooltips
                 add(MODULE_ID + ".hold.shift", "§8Hold [" + TipColors.ITEM_TOOLTIP + "Shift§8] to see more details");
@@ -132,7 +135,6 @@ public class DataLang extends LanguageProvider implements LangGenerators {
                 add(MODULE_ID + ".wrench.tip", TipColors.ITEM_TOOLTIP + "Rotate blocks");
 
                 add(MODULE_ID + ".cakestick.tip", TipColors.ITEM_TOOLTIP + "Place cake slices");
-                advKey("cake_stick", "The cake is(n't) a lie!", "The Cake stick is right!");
 
                 add(MODULE_ID + ".jei.copper_oxidation", "Copper Oxidation Info");
                 add(MODULE_ID + ".jei.strippable", "Block Strippable Info");
@@ -190,6 +192,8 @@ public class DataLang extends LanguageProvider implements LangGenerators {
                 addConfigKey(Config.PATINA_DROP_EVENT, "Patina drop");
                 addConfigKey(Config.REDSTONE_ACID_EVENT, "Redstone Acid use");
                 addConfigKey(Config.HONEY_SOLUTION_EVENT, "Honey Solution use");
+                addConfigKey(Config.CROOK_DROP_EVENT, "Crook Item Event");
+                addConfigKey(Config.MINED_RETURN_CRAFT_EVENT, "Tool In-World Crafting Event");
 
                 addConfigKey(Config.MACHINE_MAX_SPEED_UPGRADES_TYPE, "Max Speed Modifiers");
                 addConfigKey(Config.MACHINE_MAX_ENERGY_UPGRADES_TYPE, "Max Energy Modifiers");
@@ -208,28 +212,7 @@ public class DataLang extends LanguageProvider implements LangGenerators {
                 add(MODULE_ID + ".jei.recipe.item_replace.remainder", "Replaced with %s");
                 add(MODULE_ID + ".jei.recipe.durability_consume", "Consume %s durability");
 
-                advKey("wrought_iron_ingot", "One shade of gray", "Combine some carbon dust with an iron ingot");
-
-                advKey("steel_ingot", "Steel!", "Smelt on a blast furnace a wrought iron ingot");
-
-                advKey("chisel", "StoneCutter on a Stick", "Craft a chisel to craft in-world stonecutting recipes");
-
-                advKey("glass_cutter", "Cut off from the origin", "Craft a glass cutter to insta-mine glass blocks");
-
-                advKey("hammer", "It's Hammer Time!", "Craft an hammer to craft new stuff");
-
-                advKey("honey_solution", "Wax Standby",
-                                "Craft an bottle of honey solution to wax stuff more efficiently");
-
-                advKey("redstone_acid", "Wax NOT FOUND",
-                                "Craft a bottle of redstone acid to directly oxidize copper blocks");
-
-                advKey("patina", "Wax x@M", "Obtain some patina by scrapping oxidized copper blocks");
-
-                advKey("wrench", "You spin me round", "Craft a wrench to cycle blockstates of clicked blocks");
-
-                advKey("upgrades", "Let's mod it!", "Obtain some upgrades");
-
+               
                 // jade related
                 add(MODULE_ID + ".jade.textual_delay.time.left",
                                 TipColors.LIGHT_GRAY + "Crafting" + TipColors.LIGHT_GRAY + " : " + TipColors.WHITE
@@ -259,6 +242,33 @@ public class DataLang extends LanguageProvider implements LangGenerators {
 
                 add(MODULE_ID + ".gui.tip.scroll.up", TipColors.GRAY + TipColors.ITALIC + "<Scroll up>");
                 add(MODULE_ID + ".gui.tip.scroll.down", TipColors.GRAY + TipColors.ITALIC + "<Scroll down>");
+
+
+                //advancements
+
+                //TODO IMP : same as config?
+                advKey("cake_stick", "The cake is(n't) a lie!", "The Cake stick is right!");
+                 advKey("wrought_iron_ingot", "One shade of gray", "Combine some carbon dust with an iron ingot");
+                advKey("steel_ingot", "Steel!", "Smelt on a blast furnace a wrought iron ingot");
+                advKey("chisel", "StoneCutter on a Stick", "Craft a chisel to craft in-world stonecutting recipes");
+                advKey("glass_cutter", "Cut off from the origin", "Craft a glass cutter to insta-mine glass blocks");
+                advKey("hammer", "It's Hammer Time!", "Craft an hammer to craft new stuff");
+                advKey("honey_solution", "Wax Standby",
+                                "Craft an bottle of honey solution to wax stuff more efficiently");
+                advKey("redstone_acid", "Wax NOT FOUND",
+                                "Craft a bottle of redstone acid to directly oxidize copper blocks");
+                advKey("patina", "Wax x@M", "Obtain some patina by scrapping oxidized copper blocks");
+                advKey("wrench", "You spin me round", "Craft a wrench to cycle blockstates of clicked blocks");
+                advKey("upgrades", "Let's mod it!", "Obtain some upgrades");
+                advKey("_oil", "Oil Oil Ear?!", "Craft a coil , a foil and a gear...");
+               
+                advKey("saw", "Cut in half", "Craft a saw");
+                advKey("dynamite", "Kaboom?", "Craft some dynamites");
+               
+                advKey("wooden_crook", "Ex Nihilo mentioned!", "Craft a wooden crook to increase your sapling drop rate");
+
+
+
 
         }
 
