@@ -534,6 +534,8 @@ public class DataRecipe extends RecipeProvider implements RecipeGenerators {
                                 ItemTags.MANGROVE_LOGS, Items.MANGROVE_PLANKS,
                                 ItemTags.CHERRY_LOGS, Items.CHERRY_PLANKS,
                                 ItemTags.PALE_OAK_LOGS, Items.PALE_OAK_PLANKS,
+                                ItemTags.CRIMSON_STEMS, Items.CRIMSON_PLANKS,
+                                ItemTags.WARPED_STEMS, Items.WARPED_PLANKS,
                                 ItemTags.BAMBOO_BLOCKS, Items.BAMBOO_PLANKS)
                                 .forEach((log, plank) -> DurabilityConsumeBuilder.of(registries)
                                                 .tool(LibItems.SAW.get(), 4)
