@@ -5,6 +5,7 @@ import static com.devdyna.cakesticklib.CakeStickLib.MODULE_ID;
 import com.devdyna.cakesticklib.setup.registry.builders.*;
 import com.devdyna.cakesticklib.setup.registry.builders.dynamite.DynamiteItem;
 
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.ToolMaterial;
@@ -115,7 +116,7 @@ public class LibItems {
         public static final DeferredHolder<Item, Item> SAW = zItem.registerSimpleItem("saw",
                         p -> p.axe(ToolMaterial.IRON, 5.0F, -3.1F)
                                         .durability(1024)
-                                        .repairable(Items.IRON_INGOT));
+                                        .repairable(LibTags.Items.IRON_PLATE));
 
         public static final DeferredHolder<Item, Item> DYNAMITE = zItem.registerItem("dynamite",
                         p -> new DynamiteItem(
