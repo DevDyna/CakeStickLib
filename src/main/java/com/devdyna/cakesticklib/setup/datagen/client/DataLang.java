@@ -98,7 +98,6 @@ public class DataLang extends LanguageProvider implements LangGenerators {
                 add(MODULE_ID + ".creative_tab.resources", "Resources");
 
                 List.of(
-
                                 LibItems.zItem,
                                 LibItems.zSimple,
                                 LibItems.zUpgrades,

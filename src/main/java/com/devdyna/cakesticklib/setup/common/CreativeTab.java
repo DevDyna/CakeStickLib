@@ -6,12 +6,9 @@ import com.devdyna.cakesticklib.api.CreativeTabUtils;
 import com.devdyna.cakesticklib.api.upgrades.UpgradeComponents;
 import com.devdyna.cakesticklib.api.upgrades.modifiers.base.BaseModifier.UseType;
 import com.devdyna.cakesticklib.api.utils.x;
-import com.devdyna.cakesticklib.setup.Config;
 import com.devdyna.cakesticklib.setup.registry.*;
 
 import net.minecraft.core.Direction;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -42,10 +39,10 @@ public class CreativeTab {
 
         }
 
-        if (tab(event, CreativeModeTabs.FOOD_AND_DRINKS))
+        if (event.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS)
             event.accept(LibItems.CAKE_STICK.get());
 
-        if (tab(event, CreativeModeTabs.TOOLS_AND_UTILITIES)) {
+        if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
             event.accept(LibItems.CHISEL.get());
             event.accept(LibItems.GLASS_CUTTER.get());
             event.accept(LibItems.REDSTONE_ACID.get());
@@ -64,10 +61,6 @@ public class CreativeTab {
 
         }
 
-    }
-
-    private static boolean tab(BuildCreativeModeTabContentsEvent e, ResourceKey<CreativeModeTab> v) {
-        return e.getTabKey() == (Config.CREATIVE_TAB_UNIFIED.get() ? LibCreativeTab.INGREDIENTS.getKey() : v);
     }
 
     private static ItemStack upgrade(DeferredHolder<Item, Item> item,
