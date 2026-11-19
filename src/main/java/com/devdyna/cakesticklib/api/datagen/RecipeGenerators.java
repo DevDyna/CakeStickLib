@@ -689,11 +689,11 @@ public interface RecipeGenerators {
         }
 
         default void sawing(RecipeOutput c, TagKey<Item> input, ItemLike output) {
-                hammering(c, input, output, 1);
+                sawing(c, input, output, 1);
         }
 
         default void sawing(RecipeOutput c, ItemLike input, ItemLike output) {
-                hammering(c, input, output, 1);
+                sawing(c, input, output, 1);
         }
 
         default void sawing(RecipeOutput c, TagKey<Item> input, ItemLike output, int damage) {
