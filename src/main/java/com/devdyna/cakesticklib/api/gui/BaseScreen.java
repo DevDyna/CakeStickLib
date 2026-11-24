@@ -19,6 +19,11 @@ public abstract class BaseScreen<T extends BaseMenu> extends AbstractContainerSc
 
     protected abstract Identifier background();
 
+    @Override
+    public T getMenu() {
+        return super.getMenu();
+    }
+
     protected @Nullable Identifier arrow() {
         return null;
     }
@@ -69,7 +74,7 @@ public abstract class BaseScreen<T extends BaseMenu> extends AbstractContainerSc
         return Pos.of(0, 0).setSize(256, 256);
     }
 
-    public boolean enableScreenUsage(){
+    public boolean enableScreenUsage() {
         return true;
     }
 
