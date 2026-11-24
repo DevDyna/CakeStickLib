@@ -1,6 +1,6 @@
 package com.devdyna.cakesticklib.setup;
 
-import com.devdyna.cakesticklib.api.ConfigUtils;
+import com.devdyna.cakesticklib.api.config.ConfigUtils;
 import com.devdyna.cakesticklib.api.utils.ModAddonUtil;
 
 import net.neoforged.fml.ModContainer;

@@ -39,14 +39,14 @@ public interface LangGenerators {
     }
 
     default void addConfigTitle(String key, String display) {
-        add(getModId() + ".configuration." + key, display);
+        addConfigEntry(key, display);
     }
 
     default <T extends ConfigValue<?>> void addConfigKey(T key, String display) {
         addConfigEntry(key.getPath().get(1), display);
     }
 
-    private void addConfigEntry(String key, String display) {
+    default void addConfigEntry(String key, String display) {
         add(getModId() + ".configuration." + key, display);
     }
 

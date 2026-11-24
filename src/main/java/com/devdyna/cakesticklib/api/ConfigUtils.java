@@ -4,7 +4,7 @@ import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.neoforge.common.ModConfigSpec.BooleanValue;
 import net.neoforged.neoforge.common.ModConfigSpec.DoubleValue;
 import net.neoforged.neoforge.common.ModConfigSpec.IntValue;
-
+@Deprecated
 public class ConfigUtils {
 
     public static BooleanValue bool(ModConfigSpec.Builder b, String c, String k, boolean v) {
